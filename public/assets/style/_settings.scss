@@ -1,0 +1,26 @@
+// Settings
+body {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: $font-open;
+	font-size: 16px;
+	min-height: 100vh;
+}
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+p {
+	font-family: $font-open;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-family: $font-roboto;
+}

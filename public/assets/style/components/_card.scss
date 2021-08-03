@@ -1,0 +1,187 @@
+.properties-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 7%;
+  @media screen and (max-width: 992px) {
+    margin: 10px 2%;
+  }
+}
+.card-property {
+  width: 300px;
+  height: 630px;
+  display: grid;
+  grid-template: 300px 65px repeat(2, 30px) 110px 45px 50px / repeat(3, 90px) 30px;
+  align-self: center;
+  position: relative;
+  margin: 30px 20px;
+  @media screen and (max-width: 768px) {
+    margin: 15px 10px;
+    width: 150px;
+    height: 410px;
+    display: grid;
+    grid-template: 150px 60px repeat(2, 20px) 80px 50px 30px / repeat(3, 43px) 1fr;
+  }
+  .card-property-management {
+    position: absolute;
+    height: 40px;
+    width: 180px;
+    top: 20px;
+    left: -15px;
+    transform: skew(335deg, 0deg);
+    @include flex-center;
+    background: $color-linear-gradient-primary;
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: 500;
+    font-family: $font-roboto;
+    box-shadow: 0 3px 6px rgba($color-primary, .5);
+    @media screen and (max-width: 768px) {
+      height: 30px;
+      width: 150px;
+      top: 10px;
+      left: 0px;
+    }
+    span {
+      transform: skew(25deg, 0deg);
+      @media screen and (max-width: 768px) {
+        font-size: .7rem;
+      }
+    }
+  }
+  img {
+    width: 300px;
+    height: 300px;
+    grid-area: 1 / 1 / 2 / 5;
+    @media screen and (max-width: 768px) {
+      width: 150px;
+      height: 150px;
+    }
+  }
+  h4, h3, p, a {
+    align-self: center;
+  }
+  h3 {
+    grid-area: 2 / 1 / 3 / 4;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: $color-primary;
+    padding-top: 5px;
+    height: 65px;
+    overflow: hidden;
+    @media screen and (max-width: 768px) {
+      height: 60px;
+      font-size: 1rem;
+    }
+  }
+  a {
+    justify-self: end;
+    i.fa.fa-star-o {
+      grid-area: 2 / 4 / 3 / 5;
+      font-size: 1.6rem;
+      color: $color-gold;
+      transition: opacity transform .3s ease;
+      @media screen and (max-width: 768px) {
+        font-size: 1.1rem;
+      }
+      &:hover {
+        opacity: .7;
+        transform: scale(1.05);
+      }
+    }
+  }
+  h4 {
+    font-size: 1.25rem;
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  h4.card-property-price {
+    grid-area: 3 / 1 / 4 / 5;
+    color: $color-primary;
+  }
+  h4.card-property-area {
+    grid-area: 4 / 1 / 5 / 5;
+    color: $color-brown;
+  }
+  p.card-property-text {
+    grid-area: 5 / 1 / 6 / 5;
+    height: 110px;
+    padding-right: 5px;
+    overflow-y: auto;
+    font-size: .9rem;
+    color: $color-primary;
+    @media screen and (max-width: 768px) {
+      font-size: .8rem;
+      height: 75px;
+    }
+  }
+  h4.card-property-city {
+    grid-area: 6 / 1 / 7 / 5;
+    color: $color-primary;
+    height: 45px;
+    overflow: hidden;
+    @media screen and (max-width: 768px) {
+      font-size: .9rem;
+      height: 50px;
+    }
+  }
+  .card-property-button {
+    grid-area: 7 / 1 / 8 / 5;
+    margin: 0;
+    justify-self: start;
+    align-self: end;
+    @media screen and (max-width: 768px) {
+      width: 120px;
+      height: 30px;
+      font-size: .7rem;
+    }
+  }
+}
+
+.card-show-more {
+  width: 300px;
+  height: 630px;
+  margin: 30px 20px;
+  @include flex-center;
+  @media screen and (max-width: 768px) {
+    width: 150px;
+    height: 380px;
+    margin: 15px 10px;
+  }
+  a {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%;
+    border: solid 2px $color-primary; 
+    box-shadow: 0 3px 6px rgba($color-primary, .5);
+    @include flex-center;
+    flex-direction: column;
+    text-transform: uppercase;
+    background-color: $color-primary;
+    color: $color-white;
+    font-family: $font-roboto;
+    text-align: center;
+    transition: all .3s ease;
+    @media screen and (max-width: 768px) {
+      width: 90px;
+      height: 90px;
+      font-size: .7rem;
+    }
+    i.fa.fa-plus-circle {
+      margin-top: 5px;
+      font-size: 1.5rem;
+      @media screen and (max-width: 768px) {
+        font-size: 1.1rem;
+      }
+    }
+    &:hover {
+      background-color: $color-white;
+      color: $color-primary;
+      transform: scale(1.03);
+    }
+  }
+
+}

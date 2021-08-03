@@ -1,0 +1,92 @@
+footer {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  background-color: $color-primary;
+  color: $color-white;
+  padding: 30px 7%;
+    @media screen and (max-width: 992px) {
+      padding: 20px 2%;
+    }
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  .logo-company-group {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    padding: 10px;
+    h1 {
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+    i {
+      font-size: 2.4rem;
+      margin-right: 5px;
+    }
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    @media screen and (max-width: 992px) {
+      font-size: .9rem;
+    }
+  }
+  li a.footer-item {
+    display: block;
+    font-size: .9rem;
+    width: 180px;
+    font-weight: 500;
+    padding-left: 0;
+    transition: all .2s ease-out;
+    @media screen and (max-width: 992px) {
+      font-size: .8rem;
+      width: 140px;
+    }
+    i.fa {
+      font-size: .8em;
+    }
+    &:hover {
+      color: $color-gold;
+      padding-left: 10px;
+    }
+  }
+  .footer-group-1 {
+    display: flex;
+    flex: 2;
+    justify-content: space-around;
+    padding: 10px 0;
+    @media screen and (max-width: 768px) {
+      justify-content: flex-start;
+      padding-left: 10px;
+    }
+  }
+  .footer-group-2 {
+    flex: 2;
+    padding: 10px 0 10px 10px;
+    .agencies-partners-group {
+      display: flex;
+      justify-content: space-around;
+      @media screen and (max-width: 768px) {
+        justify-content: flex-start;
+      }
+    }
+  }
+  .footer-social-media {
+    a {
+      font-size: 1.5rem;
+      margin-right: 10px;
+      transition: all .2s ease-out;
+      @media screen and (max-width: 992px) {
+        font-size: 1.2rem;
+      }
+      &:hover {
+        color: $color-gold;
+        i {
+          transform: scale(1.1);
+        }
+      }
+    }
+  } 
+}

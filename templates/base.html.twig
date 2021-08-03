@@ -2,18 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/style/bootstrap-5.0.2-dist/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/style/bootstrap-5.0.2-dist/css/bootstrap-grid.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/style/font-awesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/style/index.css') }}">
+        {% block stylesheets %}{% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
+        <script type="text/javascript" src="{{ asset('assets/style/bootstrap-5.0.2-dist/js/bootstrap.js') }}" defer></script>
+	    <script type="text/javascript" src="{{ asset('assets/js/navigation.js') }}" defer></script>
+        {% block javascripts %}{% endblock %}
     </head>
     <body>
+        {% include "include/_header.html.twig" %}
         {% block body %}{% endblock %}
+        {% include "include/_footer.html.twig" %}
     </body>
 </html>

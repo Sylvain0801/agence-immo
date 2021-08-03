@@ -1,0 +1,211 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+	<main>
+		<section class="slider-top">
+			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-1.jpg);"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-2.jpg);"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-3.jpg);"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-4.jpg);"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-5.jpg);"></div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+				<div class="slogan">
+					<h2>La satisfaction de nos clients est notre priorité</h2>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos impedit voluptatum iusto aspernatur quibusdam alias neque omnis molestiae ex, cum ducimus nihil hic ipsam sapiente dicta dignissimos porro cumque dolor enim. Voluptatibus consectetur officiis tenetur eaque aliquam sint sapiente et rem eveniet dolore. Accusantium alias fugit cum totam corporis praesentium rem veritatis quo numquam repellendus, similique distinctio libero ipsa voluptas atque exercitationem nostrum dolorem nobis! Perspiciatis quas dolore, repellendus illo temporibus voluptatem tempore facere, non ipsum eligendi, nobis porro quae!</p>
+				</div>
+			</div>
+		</section>
+		<section class="latest-properties">
+			<div class="properties-container">
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison avec piscine avec piscine et un grand jardin</h3>
+					<!-- max-length=40 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;47600 Villeneuve sur lot</h4>
+					<!-- max-length=60 -->
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Bel appartement vue sur mer</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;51000 Saint-Remy-en-Bouzemont-Saint-Genest-et-Isson</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;Castres</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison avec piscine et un grand jardin</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;Castres</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison avec piscine et un grand jardin</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;Villeneuve sur lot</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison avec piscine et un grand jardin</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;Castres</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison avec piscine et un grand jardin</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;Castres</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison avec piscine et un grand jardin</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;Castres</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>Propriétaire privé</span>
+					</div>
+					<img src="assets/images/property/home_16.jpg" alt="home">
+					<h3 class="card-property-title">Maison avec piscine et un grand jardin</h3>
+					<!-- max-length=50 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
+					</a>
+					<h4 class="card-property-price">1 500 € / mois</h4>
+					<h4 class="card-property-area">6 pièces - 120 m²</h4>
+					<p class="card-property-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, ipsa? Incidunt dicta sunt inventore exercitationem et, asperiores labore ex nihil iste, rerum quo eligendi nostrum eius dolor doloribus totam aperiam velit ipsum culpa sint unde accusamus cupiditate nam. Molestias, quia.</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;Castres</h4>
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+				</div>
+				<div class="card-show-more">
+					<a href="">voir plus<br>d'annonces<br><i class="fa fa-plus-circle"></i>
+					</a>
+				</div>
+			</div>
+		</section>
+	</main>
+{% endblock %}

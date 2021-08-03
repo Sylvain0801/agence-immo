@@ -1,0 +1,40 @@
+.button {
+	@include flex-center;
+	height: 36px; 
+	width: 180px;
+	margin: 10px;
+	cursor: pointer;
+	font-family: $font-roboto;
+	font-size: .9rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	background: $color-primary;
+	color: $color-white;
+	border: solid 2px $color-primary; 
+	box-shadow: 0 3px 6px rgba($color-primary, .5); 
+	transition: all .3s ease;
+	&:hover {
+		background: $color-white;
+		color: $color-primary;
+		transform: scale(1.03);
+	}
+}
+
+.button-rounded {
+	border-radius: 18px;
+}
+
+.button-outline {
+	background: $color-white;
+	color: $color-primary;
+	&:hover {
+		background:  $color-primary;
+		color: $color-white;
+	}
+}
+
+.button-small {
+	width: 140px;
+	height: 30px;
+	font-size: .8rem;
+}
