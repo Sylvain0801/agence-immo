@@ -879,7 +879,7 @@ footer .footer-social-media a:hover i {
   }
 }
 
-.card-property img {
+.card-property .card-property-img {
   width: 300px;
   height: 300px;
   -ms-grid-row: 1;
@@ -887,10 +887,13 @@ footer .footer-social-media a:hover i {
   -ms-grid-column: 1;
   -ms-grid-column-span: 4;
   grid-area: 1 / 1 / 2 / 5;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @media screen and (max-width: 768px) {
-  .card-property img {
+  .card-property .card-property-img {
     width: 150px;
     height: 150px;
   }

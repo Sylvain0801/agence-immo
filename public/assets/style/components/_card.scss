@@ -49,10 +49,11 @@
       }
     }
   }
-  img {
+  .card-property-img {
     width: 300px;
     height: 300px;
     grid-area: 1 / 1 / 2 / 5;
+    @include img-cover;
     @media screen and (max-width: 768px) {
       width: 150px;
       height: 150px;
