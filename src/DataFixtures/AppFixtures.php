@@ -80,7 +80,7 @@ class AppFixtures extends Fixture
                 $property->addOption($this->getReference("option_$index"));
             }
             if ($property->getTransactionType() === 'location') {
-                $property->setPrice(rand(30, 200) * 10);
+                $property->setPrice(rand(31, 201) * 10);
             } else {
                 $property->setPrice(rand(8, 50) * 10000);
             }
@@ -91,7 +91,7 @@ class AppFixtures extends Fixture
                 ->setCity($this->getReference("city_" . rand(0, count($datas) - 1)));
             $offer = new Offer();
             $offer
-                ->setTitle($faker->realText(40, $indexSize = 2))
+                ->setTitle($faker->realText(35, $indexSize = 2))
                 ->setDescription($faker->realText(400, $indexSize = 2));
             $manager->persist($offer);
             $property->addOffer($offer);

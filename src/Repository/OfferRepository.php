@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Offer;
+use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,25 @@ class OfferRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Offer::class);
+    }
+
+    public function findAllArray(int $limit = null) : array
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->leftJoin('o.property', 'p')
+            ->addSelect('p')
+            ->leftJoin('p.city', 'c')
+            ->addSelect('c')
+            // ->join('p.images', 'i')
+            // ->join('i.property', 'ip')
+            // ->where('ip.id = p.id')
+            // ->addSelect('i')
+            ->orderBy('o.updated_at', 'DESC');
+
+        if ($limit) $qb->setMaxResults($limit);
+
+        $query = $qb->getQuery();
+        return $query->execute();
     }
 
     // /**

@@ -38,6 +38,9 @@
 		position: relative;
 		width: 1100px;
 		margin: 0 7%;
+		li.navigation-item.active {
+			color: $color-gold;
+		}
 		a {
 			height: $navbar-height;
 			display: flex;

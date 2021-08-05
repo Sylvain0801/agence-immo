@@ -1,83 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
-{% endblock %}
+{% block title %}Accueil - Agence immobilière{% endblock %}
 
 {% block body %}
-	<main>
-		<section class="slider-top">
-			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-					<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+	<section class="slider-top-section">
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+			</div>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-1.jpg);"></div>
 				</div>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-1.jpg);"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-2.jpg);"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-3.jpg);"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-4.jpg);"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-5.jpg);"></div>
-					</div>
+				<div class="carousel-item">
+					<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-2.jpg);"></div>
 				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-				<div class="slogan">
-					<h2>La satisfaction de nos clients est notre priorité</h2>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos impedit voluptatum iusto aspernatur quibusdam alias neque omnis molestiae ex, cum ducimus nihil hic ipsam sapiente dicta dignissimos porro cumque dolor enim. Voluptatibus consectetur officiis tenetur eaque aliquam sint sapiente et rem eveniet dolore. Accusantium alias fugit cum totam corporis praesentium rem veritatis quo numquam repellendus, similique distinctio libero ipsa voluptas atque exercitationem nostrum dolorem nobis! Perspiciatis quas dolore, repellendus illo temporibus voluptatem tempore facere, non ipsum eligendi, nobis porro quae!</p>
+				<div class="carousel-item">
+					<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-3.jpg);"></div>
+				</div>
+				<div class="carousel-item">
+					<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-4.jpg);"></div>
+				</div>
+				<div class="carousel-item">
+					<div class="d-block w-100" style="background-image: url(assets/images/carousel/carousel-bg-5.jpg);"></div>
 				</div>
 			</div>
-		</section>
-		<section class="latest-properties">
-			<div class="properties-container">
-				{% for property in properties %}
-					<div class="card-property">
-						<div class="card-property-management">
-							<span>{{ property.manager }}</span>
-						</div>
-						<div class="card-property-img" style="background-image: url({{ asset(property.images[0].path) }})"></div>
-						<h3 class="card-property-title">{{ property.offers[0].title }}</h3>
-						<!-- max-length=40 -->
-						<a href="#">
-							<i class="fa fa-star-o"></i>
-						</a>
-						<h4 class="card-property-price">
-							{% if property.transactionType == 'location' %}
-								{{ property.price }} € / mois
-							{% else %}
-								{{ property.price }} €
-							{% endif %}
-						</h4>
-						<h4 class="card-property-area">{{ property.rooms }} pièces - {{ property.area }} m²</h4>
-						<p class="card-property-text">{{ property.offers[0].description }}</p>
-						<h4 class="card-property-city">
-							<i class="fa fa-map-marker"></i>&nbsp;{{ property.city.name }}</h4>
-						<!-- max-length=60 -->
-						<a href="#" class="card-property-button button button-outline">en savoir plus</a>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+			<div class="slogan">
+				<h2>La satisfaction de nos clients est notre priorité</h2>
+				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos impedit voluptatum iusto aspernatur quibusdam alias neque omnis molestiae ex, cum ducimus nihil hic ipsam sapiente dicta dignissimos porro cumque dolor enim. Voluptatibus consectetur officiis tenetur eaque aliquam sint sapiente et rem eveniet dolore. Accusantium alias fugit cum totam corporis praesentium rem veritatis quo numquam repellendus, similique distinctio libero ipsa voluptas atque exercitationem nostrum dolorem nobis! Perspiciatis quas dolore, repellendus illo temporibus voluptatem tempore facere, non ipsum eligendi, nobis porro quae!</p>
+			</div>
+		</div>
+	</section>
+	<section class="properties-section">
+		<div class="properties-container">
+			{% for offer in offers %}
+				<div class="card-property">
+					<div class="card-property-management">
+						<span>{{ offer.property.manager }}</span>
 					</div>
-				{% endfor %}
-				<div class="card-show-more">
-					<a href="">voir plus<br>d'annonces<br><i class="fa fa-plus-circle"></i>
+					<div class="card-property-img" style="background-image: url({{ asset(offer.property.images[0].path) }})"></div>
+					<h3 class="card-property-title">{{ offer.title }}</h3>
+					<!-- max-length=40 -->
+					<a href="#">
+						<i class="fa fa-star-o"></i>
 					</a>
+					<h4 class="card-property-price">
+						{% if offer.property.transactionType == 'location' %}
+							{{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }} / mois
+						{% else %}
+							{{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+						{% endif %}
+					</h4>
+					<h4 class="card-property-area">{{ offer.property.rooms }} pièces - {{ offer.property.area }} m²</h4>
+					<p class="card-property-text">{{ offer.description }}</p>
+					<h4 class="card-property-city">
+						<i class="fa fa-map-marker"></i>&nbsp;{{ offer.property.city.name }}</h4>
+					<!-- max-length=60 -->
+					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
 				</div>
+			{% endfor %}
+			<div class="card-show-more">
+				<a href="{{ path('offer') }}">voir plus<br>d'annonces<br><i class="fa fa-plus-circle"></i>
+				</a>
 			</div>
-		</section>
-	</main>
+		</div>
+	</section>
 {% endblock %}

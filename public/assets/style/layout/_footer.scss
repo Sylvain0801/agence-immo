@@ -12,6 +12,9 @@ footer {
     @media screen and (max-width: 768px) {
       flex-direction: column;
     }
+  a:hover {
+    color: $color-white;
+  }
   .logo-company-group {
     display: flex;
     flex: 1;

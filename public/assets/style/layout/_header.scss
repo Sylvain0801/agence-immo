@@ -6,10 +6,10 @@ header {
   .top-headband {
     width: 100%;
     height: $navbar-top;
-    padding: 10px 7%;
+    padding: 10px 15%;
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1200px) {
       padding: 0 2%;
     }
     .logo-company-group {

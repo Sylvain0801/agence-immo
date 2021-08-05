@@ -1,14 +1,16 @@
-<header>
+	<header>
 		<div class="top-headband">
 			<div class="flag-lang-group">
 				<a href="#"><img class="flag-lang-item" src="assets/images/flag-lang/fr-flag.png" alt="fr-flag"></a>
 				<a href="#"><img class="flag-lang-item" src="assets/images/flag-lang/en-flag.png" alt="en-flag"></a>
 				<a href="#"><img class="flag-lang-item" src="assets/images/flag-lang/es-flag.png" alt="es-flag"></a>
 			</div>
-			<div class="logo-company-group">
-				<i class="fa fa-home"></i>
-				<h1><strong>agence</strong><br>immobilière</h1>
-			</div>
+			<a href="{{ path('home') }}">
+				<div class="logo-company-group">
+						<i class="fa fa-home"></i>
+						<h1><strong>agence</strong><br>immobilière</h1>
+				</div>
+			</a>
 			<div class="button-group">
 				<a href="#" class="button button-rounded button-outline"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;se connecter</a>
 				<a href="#" class="button button-rounded button-outline"><i class="fa fa-star"></i>&nbsp;&nbsp;mes favoris</a>
@@ -16,7 +18,7 @@
 		</div>
 		<nav class="navigation" id="navigation">
 			<ul>
-				<li class="navigation-item"><a href="#">annonces</a></li>
+				<li class="navigation-item {{ active is defined and active == 'offers' ? 'active' : '' }}"><a href="{{ path('offer') }}">annonces</a></li>
 				<li class="navigation-item navigation-dropdown">
 					<a href="#">propriétaires privés&nbsp;<i class="fa fa-caret-right"></i></a>
 					<div class="navigation-dropdown-text-info">
@@ -48,3 +50,4 @@
 			</div>
 		</nav>
 	</header>
+<main>

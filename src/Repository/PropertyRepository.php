@@ -19,6 +19,18 @@ class PropertyRepository extends ServiceEntityRepository
         parent::__construct($registry, Property::class);
     }
 
+    public function findAllPrice(string $transaction = 'vente') : array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.transaction_type = :transaction')
+            ->setParameter('transaction', $transaction)
+            ->select('p.price')
+            ->orderBy('p.price', 'ASC');
+
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
     // /**
     //  * @return Property[] Returns an array of Property objects
     //  */

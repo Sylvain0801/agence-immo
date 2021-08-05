@@ -39,6 +39,22 @@ class Offer
      */
     private $property;
 
+    /**
+     * @var \DateTimeImmutable $created_at
+     * 
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $created_at;
+
+    /**
+     * @var \DateTimeImmutable $updated_at
+     * 
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $updated_at;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,13 +75,6 @@ class Offer
     public function getSlug(): ?string
     {
         return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 
     public function getDescription(): ?string
@@ -90,5 +99,15 @@ class Offer
         $this->property = $property;
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
     }
 }
