@@ -6,6 +6,8 @@ use App\Entity\PropertyType;
 use App\Repository\PropertyRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,8 +29,14 @@ class SearchFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('coord', HiddenType::class)
+            ->add('sell', CheckboxType::class, [
+                'label' => false,
+                'required' => false,
+            ])
             ->add('sell_price_min', IntegerType::class, [
                 'label' => 'Prix min',
+                'required' => false,
                 'attr' => [
                     'min' => 0,
                     'step' => 1000
@@ -36,27 +44,35 @@ class SearchFormType extends AbstractType
             ])
             ->add('sell_price_max', IntegerType::class, [
                 'label' => 'Prix max',
+                'required' => false,
                 'attr' => [
                     'min' => 0,
                     'step' => 1000
                 ]
             ])
+            ->add('rent', CheckboxType::class, [
+                'label' => false,
+                'required' => false,
+            ])
             ->add('rent_price_min', IntegerType::class, [
-                'label' => 'Alquiler min',
+                'label' => 'Loyer min',
+                'required' => false,
                 'attr' => [
                     'min' => 0,
                     'step' => 100
                 ]
             ])
             ->add('rent_price_max', IntegerType::class, [
-                'label' => 'Alquiler max',
+                'label' => 'Loyer max',
+                'required' => false,
                 'attr' => [
                     'min' => 0,
                     'step' => 100
                 ]
             ])
             ->add('rooms', IntegerType::class, [
-                'label' => 'Habitaciones',
+                'label' => 'Pièces',
+                'required' => false,
                 'attr' => [
                     'min' => 1,
                     'max' => 99,
@@ -64,19 +80,26 @@ class SearchFormType extends AbstractType
             ])
             ->add('type', EntityType::class, [
                 'label' => 'Type',
+                'required' => false,
                 'class' => PropertyType::class,
                 'choice_label' => 'name'
             ])
+            ->add('furnished', CheckboxType::class, [
+                'label' => false,
+                'required' => false,
+            ])
             ->add('city', TextType::class, [
-                'label' => 'Ville'
+                'label' => 'Ville',
+                'required' => true,
+                'attr' => ['autocomplete' => "off"]
             ])
             ->add('radius', IntegerType::class, [
                 'label' => 'Rayon',
+                'required' => false,
                 'attr' => [
-                    'value' => 5,
                     'min' => 5,
                     'max' => 150,
-                    'step' => 10
+                    'step' => 5
                 ]
             ])
         ;

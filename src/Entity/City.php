@@ -39,6 +39,11 @@ class City
      */
     private $department;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $coordinates;
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
@@ -111,6 +116,18 @@ class City
     public function setDepartment(string $department): self
     {
         $this->department = $department;
+
+        return $this;
+    }
+
+    public function getCoordinates(): ?string
+    {
+        return $this->coordinates;
+    }
+
+    public function setCoordinates(string $coordinates): self
+    {
+        $this->coordinates = $coordinates;
 
         return $this;
     }

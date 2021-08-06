@@ -27,10 +27,6 @@ class OfferRepository extends ServiceEntityRepository
             ->addSelect('p')
             ->leftJoin('p.city', 'c')
             ->addSelect('c')
-            // ->join('p.images', 'i')
-            // ->join('i.property', 'ip')
-            // ->where('ip.id = p.id')
-            // ->addSelect('i')
             ->orderBy('o.updated_at', 'DESC');
 
         if ($limit) $qb->setMaxResults($limit);
@@ -39,6 +35,81 @@ class OfferRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    
+    public function findOfferCitiesCoord() : array
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->leftJoin('o.property', 'p')
+            ->leftJoin('p.city', 'c')
+            ->distinct()
+            ->select('c.id', 'c.coordinates');
+
+        $query = $qb->getQuery();
+        return $query->execute();
+    }
+
+    public function searchOfferByCriteria(
+        array $listCitiesId = null,
+        int $sell = null,
+        int $priceMin = null,
+        int $priceMax = null,
+        int $rent = null,
+        int $rentMin = null,
+        int $rentMax = null,
+        int $rooms = null,
+        int $type = null,
+        int $furnished = null
+        ): array
+    {
+        $qb = $this->createQueryBuilder('o');
+
+        if ($listCitiesId != null) {
+            $qb
+            ->leftJoin('o.property', 'p')
+            ->leftJoin('p.city', 'c')
+            ->where('c.id IN(:listCitiesId)')
+            ->setParameter('listCitiesId', array_keys($listCitiesId));
+        }
+        if ($sell != null) {
+            $qb->andWhere('p.transaction_type = :sell')
+                ->setParameter('sell', 'vente');
+        }
+        if ($priceMin != null) {
+            $qb->andWhere('p.price >= :priceMin')
+                ->setParameter('priceMin', $priceMin);
+        }
+        if ($priceMax != null) {
+            $qb->andWhere('p.price <= :priceMax')
+                ->setParameter('priceMax', $priceMax);
+        }
+        if ($rent != null) {
+            $qb->andWhere('p.transaction_type = :rent')
+            ->setParameter('rent', 'location');
+        }
+        if ($rentMin != null) {
+            $qb->andWhere('p.price >= :rentMin')
+                ->setParameter('rentMin', $rentMin);
+        }
+        if ($rentMax != null) {
+            $qb->andWhere('p.price <= :rentMax')
+                ->setParameter('rentMax', $rentMax);
+        }
+        if ($rooms != null) {
+            $qb->andWhere('p.rooms = :rooms')
+                ->setParameter('rooms', $rooms);
+        }
+        if ($type != null) {
+            $qb->leftJoin('p.property_type', 't')
+                ->andWhere('t.id = :type')
+                ->setParameter('type', $type);
+        }
+        if ($furnished != null) {
+            $qb->leftJoin('p.options', 'opt')
+                ->andWhere('opt.name LIKE :furnished')
+                ->setParameter('furnished', '%meublé%');
+        }
+        return $qb->getQuery()->execute();
+    }
     // /**
     //  * @return Offer[] Returns an array of Offer objects
     //  */

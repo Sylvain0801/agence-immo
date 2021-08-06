@@ -38,7 +38,7 @@
 		position: relative;
 		width: 1100px;
 		margin: 0 7%;
-		li.navigation-item.active {
+		li.navigation-item.active a {
 			color: $color-gold;
 		}
 		a {
@@ -46,6 +46,7 @@
 			display: flex;
 			align-items: center;
 			font-size: .9rem;
+			color: $color-white;
 			transition: color .3s;
 			&:hover {
 				color: $color-gold;
@@ -142,6 +143,16 @@
 			  transition: top 0.125s 0.25s, transform 0.125s;
 			}
 		  }
+	}
+	.search-button {
+		position: absolute;
+		left: 5px;
+		font-size: 1.3rem;
+		cursor: pointer;
+		opacity: 0;
+		&.show {
+			opacity: 1
+		}
 	}
 }
 
@@ -262,6 +273,10 @@
 				a {
 					height: 35px;
 					opacity: 1;
+					color: $color-white;
+					&:hover {
+						color: $color-gold;
+					}
 				}
 			} 
 		}

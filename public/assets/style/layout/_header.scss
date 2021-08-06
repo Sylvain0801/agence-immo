@@ -9,7 +9,12 @@ header {
     padding: 10px 15%;
     display: flex;
     flex-direction: column;
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 576px) {
+      > a {
+        margin: 0 auto;
+      }
+    }
+    @media screen and (max-width: 1400px) {
       padding: 0 2%;
     }
     .logo-company-group {
@@ -46,6 +51,7 @@ header {
       justify-content: flex-end;
       margin-right: -10px;
       @media screen and (max-width: 576px) {
+        margin-right: 0;
         justify-content: center;
         a.button.button-rounded.button-outline {
           width: 140px;

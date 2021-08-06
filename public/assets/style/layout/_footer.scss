@@ -20,6 +20,7 @@ footer {
     flex: 1;
     align-items: flex-start;
     padding: 10px;
+    color: $color-white;
     h1 {
       font-size: 1rem;
       text-transform: uppercase;
@@ -43,6 +44,7 @@ footer {
     font-weight: 500;
     padding-left: 0;
     transition: all .2s ease-out;
+    color: $color-white;
     @media screen and (max-width: 992px) {
       font-size: .8rem;
       width: 140px;
@@ -81,6 +83,7 @@ footer {
       font-size: 1.5rem;
       margin-right: 10px;
       transition: all .2s ease-out;
+      color: $color-white;
       @media screen and (max-width: 992px) {
         font-size: 1.2rem;
       }

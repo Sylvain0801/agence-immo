@@ -1,9 +1,9 @@
 	<header>
 		<div class="top-headband">
 			<div class="flag-lang-group">
-				<a href="#"><img class="flag-lang-item" src="assets/images/flag-lang/fr-flag.png" alt="fr-flag"></a>
-				<a href="#"><img class="flag-lang-item" src="assets/images/flag-lang/en-flag.png" alt="en-flag"></a>
-				<a href="#"><img class="flag-lang-item" src="assets/images/flag-lang/es-flag.png" alt="es-flag"></a>
+				<a href="#"><img class="flag-lang-item" src="{{ asset('assets/images/flag-lang/fr-flag.png') }}" alt="fr-flag"></a>
+				<a href="#"><img class="flag-lang-item" src="{{ asset('assets/images/flag-lang/en-flag.png') }}" alt="en-flag"></a>
+				<a href="#"><img class="flag-lang-item" src="{{ asset('assets/images/flag-lang/es-flag.png') }}" alt="es-flag"></a>
 			</div>
 			<a href="{{ path('home') }}">
 				<div class="logo-company-group">
@@ -18,7 +18,7 @@
 		</div>
 		<nav class="navigation" id="navigation">
 			<ul>
-				<li class="navigation-item {{ active is defined and active == 'offers' ? 'active' : '' }}"><a href="{{ path('offer') }}">annonces</a></li>
+				<li class="navigation-item {{ active is defined and active == 'offers' ? 'active' : '' }}"><a href="{{ path('offer_home') }}">annonces</a></li>
 				<li class="navigation-item navigation-dropdown">
 					<a href="#">propriétaires privés&nbsp;<i class="fa fa-caret-right"></i></a>
 					<div class="navigation-dropdown-text-info">
@@ -43,6 +43,9 @@
 				<li class="navigation-item"><a href="#">faq</a></li>
 				<li class="navigation-item"><a href="#">contact</a></li>
 			</ul>
+			<div class="search-button" id="search-button">
+				<i class="fa fa-search"></i>
+			</div>
 			<div class="burger" id="burger">
 				<span></span>
 				<span></span>

@@ -9,7 +9,7 @@
 				<div class="search-form-group-1">
 					<div class="search-form-sell-group">
 						<div class="input-checkbox-group">
-							<input type="checkbox" name="search_form_sell" id="search_form_sell">
+							{{ form_widget(form.sell) }}
 							<label for="search_form_sell"><span><i class="fa fa-check"></i></span>Vente</label>
 						</div>
 						<div class="sell-price-group">
@@ -31,7 +31,7 @@
 					</div>
 					<div class="search-form-rent-group">
 						<div class="input-checkbox-group">
-							<input type="checkbox" name="search_form_rent" id="search_form_rent">
+							{{ form_widget(form.rent) }}
 							<label for="search_form_rent"><span><i class="fa fa-check"></i></span>Location</label>
 						</div>
 						<div class="rent-price-group">
@@ -63,14 +63,18 @@
 							{{ form_widget(form.type) }}
 						</div>
 						<div class="input-checkbox-group">
-							<input type="checkbox" name="search_form_furnished" id="search_form_furnished">
+							{{ form_widget(form.furnished) }}
 							<label for="search_form_furnished"><span><i class="fa fa-check"></i></span>Meublé</label>
 						</div>
 					</div>
 					<div class="search-form-group-3">
 						<div class="input-city-group">
 							{{ form_label(form.city) }}
-							{{ form_widget(form.city) }}
+							<div class="input-city-list-group">
+								{{ form_widget(form.city) }}
+								<div class="city-list-group" id="city-list-group">
+								</div>
+							</div>
 						</div>
 						<div class="input-radius-group">
 							{{ form_label(form.radius) }}
@@ -88,6 +92,9 @@
 		{{ form_end(form) }}
 	</section>
 	<section class="properties-section">
+		{% if offerCount is defined and offerCount > 0 %}
+			<div class="property-counter">{{ offerCount }}{{ offerCount > 1 ? ' annonces' : ' annonce'}} correspondent aux critères de recherche</div>
+		{% endif %}
 		<div class="properties-container">
 			{% for offer in offers %}
 				<div class="card-property">
@@ -118,13 +125,18 @@
 					<!-- max-length=60 -->
 					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
 				</div>
+			{% else %}
+				<div class="no-property-to-display">😓 Aucune annonce ne semble correspondre à votre recherche, veuillez réessayer en modifiant les critères.</div>
 			{% endfor %}
 			<div class="card-show-more">
-				<a href="">voir plus<br>d'annonces<br><i class="fa fa-plus-circle"></i>
+				<a href="">afficher<br>toutes les<br>annonces
 				</a>
 			</div>
 		</div>
 	</section>
+	{% if offers.getTotalItemCount > 12 %}
+      {{ knp_pagination_render(offers) }}
+    {% endif %}
 {% endblock %}
 {% block javascripts %}
 <script src="{{ asset('assets/js/searchForm.js') }}"></script>
