@@ -4,7 +4,10 @@ body {
 	box-sizing: border-box;
 	font-family: $font-open;
 	font-size: 16px;
-	min-height: 100vh;
+}
+main {
+	min-height: 80vh;
+
 }
 ul {
 	list-style: none;
@@ -22,4 +25,11 @@ p {
 h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	font-family: $font-roboto;
+}
+
+section {
+	margin: 10px 15%;
+  @media screen and (max-width: 1400px) {
+    margin: 10px 2%;
+  }
 }

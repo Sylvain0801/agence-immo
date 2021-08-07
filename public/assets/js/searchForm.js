@@ -127,4 +127,5 @@ window.onload = () => {
     cityList.innerHTML = ""
     document.querySelector('.search-form-group.show').style.overflow = 'hidden'
   }
+
 }

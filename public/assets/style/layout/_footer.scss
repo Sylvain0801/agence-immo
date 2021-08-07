@@ -5,8 +5,8 @@ footer {
   justify-content: space-between;
   background-color: $color-primary;
   color: $color-white;
-  padding: 30px 7%;
-    @media screen and (max-width: 992px) {
+  padding: 30px 15%;
+    @media screen and (max-width: 1400px) {
       padding: 20px 2%;
     }
     @media screen and (max-width: 768px) {

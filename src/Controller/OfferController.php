@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Property;
 use App\Repository\OfferRepository;
 use App\Repository\PropertyTypeRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -41,7 +42,6 @@ class OfferController extends AbstractController
         ];
 
         $request->getSession()->remove('_formFields');
-        dump($request->getSession()->get('_formFields'));
 
         $offers = $paginator->paginate(
             $data,
@@ -58,7 +58,7 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/search/{fields}", name="search", defaults={"fields": null})
+     * @Route("/search", name="search")
      */
     public function search(PropertyTypeRepository $propertyTypeRepository, OfferRepository $offerRepository, Request $request, PaginatorInterface $paginator): Response
     {
@@ -173,6 +173,46 @@ class OfferController extends AbstractController
             'fields' => $fields,
             'propertyTypes' => $propertyTypes,
             'active' => 'offers'
+        ]);
+    }
+
+    /**
+     * @Route("/favorite/{favoriteList}", name="favorite", defaults={"favoriteList": null})
+     */
+    public function favorite($favoriteList, OfferRepository $offerRepository, Request $request, PaginatorInterface $paginator): Response
+    {
+        $liste = explode(',', $favoriteList);
+        if ($liste !== null && count($liste) > 0) {
+            $data = $offerRepository->findFavorites($liste);
+        }
+        if ($data) {
+            $offers = $paginator->paginate(
+                $data,
+                $request->query->getInt('page', 1),
+                10
+            );
+            $offerCount = count($data);
+        } else {
+            $offers = null;
+            $offerCount = null;
+        }
+
+
+        return $this->render('offer/favorite.html.twig', [
+            'offers' => $offers,
+            'offerCount' => $offerCount
+        ]);
+    }
+
+    /**
+     * @Route("/view/{id}", name="view")
+     */
+    public function view(Property $property): Response
+    {
+        return $this->render('offer/view.html.twig', [
+            'offers' => $property,
+            'active' => 'offers',
+            
         ]);
     }
 }

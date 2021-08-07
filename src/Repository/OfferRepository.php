@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Offer;
-use App\Entity\Image;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -108,6 +107,19 @@ class OfferRepository extends ServiceEntityRepository
                 ->andWhere('opt.name LIKE :furnished')
                 ->setParameter('furnished', '%meublé%');
         }
+        
+        $qb->orderBy('o.updated_at', 'DESC');
+
+        return $qb->getQuery()->execute();
+    }
+
+    public function findFavorites(array $liste = null) : array
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->leftJoin('o.property', 'p')
+            ->where('p.id IN(:listFavoritesId)')
+            ->setParameter('listFavoritesId', array_values($liste));
+
         return $qb->getQuery()->execute();
     }
     // /**

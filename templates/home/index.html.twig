@@ -46,30 +46,9 @@
 	<section class="properties-section">
 		<div class="properties-container">
 			{% for offer in offers %}
-				<div class="card-property">
-					<div class="card-property-management">
-						<span>{{ offer.property.manager }}</span>
-					</div>
-					<div class="card-property-img" style="background-image: url({{ asset(offer.property.images[0].path) }})"></div>
-					<h3 class="card-property-title">{{ offer.title }}</h3>
-					<!-- max-length=40 -->
-					<a href="#">
-						<i class="fa fa-star-o"></i>
-					</a>
-					<h4 class="card-property-price">
-						{% if offer.property.transactionType == 'location' %}
-							{{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }} / mois
-						{% else %}
-							{{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
-						{% endif %}
-					</h4>
-					<h4 class="card-property-area">{{ offer.property.rooms }} pièces - {{ offer.property.area }} m²</h4>
-					<p class="card-property-text">{{ offer.description }}</p>
-					<h4 class="card-property-city">
-						<i class="fa fa-map-marker"></i>&nbsp;{{ offer.property.city.name }}</h4>
-					<!-- max-length=60 -->
-					<a href="#" class="card-property-button button button-outline">en savoir plus</a>
-				</div>
+				{{ include('components/_card_property.html.twig') }}
+			{% else %}
+				<div class="no-property-to-display">😓 Il n'y a encore aucune annonce à afficher.</div>
 			{% endfor %}
 			<div class="card-show-more">
 				<a href="{{ path('offer_home') }}">voir plus<br>d'annonces<br><i class="fa fa-plus-circle"></i>

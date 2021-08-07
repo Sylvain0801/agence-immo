@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces - Agence immobilière{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('message_alert') %}
+{% endfor %}
+	<section class="property-view-section">
+    <div class="property-view">
+      <div class="property-advertizement">
+      </div>
+      <div class="property-view-body">
+        <div class="property-view-img">
+        </div>
+        <div class="property-view-header">
+        </div>
+        <div class="property-view-content">
+        </div>
+        <div class="property-view-footer">
+          <div class="property-view-options">
+          </div>
+          <div class="property-view-contact">
+          </div>
+        </div>
+      </div>
+    </div>
+	</section>
+{% endblock %}

@@ -40,7 +40,7 @@ class AppFixtures extends Fixture
         // Fixtures city
         $dept = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '2A', '2B', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48', '49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59', '60', '61', '62', '63', '64', '65', '66', '67', '68', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79', '80', '81', '82', '83', '84', '85', '86', '87', '88', '89', '90', '91', '92', '93', '94', '95', '971', '972', '973', '974', '976'];
 
-        $datas = json_decode(file_get_contents("https://geo.api.gouv.fr/departements/19/communes"), true);   
+        $datas = json_decode(file_get_contents("https://geo.api.gouv.fr/departements/33/communes"), true);   
         foreach ($datas as $k => $data) {
             $cityCoord = json_decode(file_get_contents("https://geo.api.gouv.fr/communes?code=" . $data['code'] . "&fields=centre"), true);
             // dd($cityCoord[0]['centre']['coordinates']);
@@ -94,7 +94,7 @@ class AppFixtures extends Fixture
                 ->setCity($this->getReference("city_" . rand(0, count($datas) - 1)));
             $offer = new Offer();
             $offer
-                ->setTitle($faker->realText(35, $indexSize = 2))
+                ->setTitle($faker->realText(25, $indexSize = 2))
                 ->setDescription($faker->realText(400, $indexSize = 2));
             $manager->persist($offer);
             $property->addOffer($offer);

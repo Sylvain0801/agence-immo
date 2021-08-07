@@ -1,32 +1,28 @@
 .properties-container {
   display: flex;
   flex-wrap: wrap;
-  margin: 10px 15%;
   justify-content: space-around;
-  @media screen and (max-width: 992px) {
-    margin: 10px 2%;
-  }
 }
 .card-property {
   width: 300px;
-  height: 630px;
+  height: 530px;
   display: grid;
-  grid-template: 300px 65px repeat(2, 30px) 110px 45px 50px / repeat(3, 90px) 30px;
+  grid-template: 200px 65px repeat(2, 30px) 110px 45px 50px / repeat(3, 90px) 30px;
   align-self: center;
   position: relative;
   margin: 30px 20px;
   @media screen and (max-width: 768px) {
     margin: 15px 10px;
     width: 150px;
-    height: 410px;
+    height: 360px;
     display: grid;
-    grid-template: 150px 60px repeat(2, 20px) 80px 50px 30px / repeat(3, 43px) 1fr;
+    grid-template: 100px 60px repeat(2, 20px) 80px 50px 30px / repeat(3, 43px) 1fr;
   }
   .card-property-management {
     position: absolute;
     height: 40px;
     width: 180px;
-    top: 20px;
+    top: -15px;
     left: -15px;
     transform: skew(335deg, 0deg);
     @include flex-center;
@@ -52,12 +48,13 @@
   }
   .card-property-img {
     width: 300px;
-    height: 300px;
+    height: 200px;
     grid-area: 1 / 1 / 2 / 5;
     @include img-cover;
+    box-shadow: 0 3px 6px rgba($color-black, .3);
     @media screen and (max-width: 768px) {
       width: 150px;
-      height: 150px;
+      height: 100px;
     }
   }
   h4, h3, p, a {
@@ -78,22 +75,24 @@
       font-size: 1rem;
     }
   }
-  a {
+  i.card-button-favorite {
     justify-self: end;
-    i.fa.fa-star-o {
-      grid-area: 2 / 4 / 3 / 5;
-      font-size: 1.6rem;
-      color: $color-gold;
-      transition: opacity transform .3s ease;
-      @media screen and (max-width: 768px) {
-        font-size: 1.1rem;
-      }
-      &:hover {
-        opacity: .7;
-        transform: scale(1.05);
-      }
+    align-self: center;
+    grid-area: 2 / 4 / 3 / 5;
+    font-size: 1.6rem;
+    color: $color-gold;
+    cursor: pointer;
+    transition: opacity transform .3s ease;
+    @media screen and (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+    &:hover {
+      opacity: .7;
+      transform: scale(1.05);
     }
   }
+  // a {
+  // }
   h4 {
     font-size: 1.25rem;
     @media screen and (max-width: 768px) {
@@ -188,18 +187,28 @@
 
 }
 .no-property-to-display {
-  width: 500px;
-  max-width: 80%;
-  margin: 0 auto;
+  margin-top: calc(#{$navbar-height} * 1.5);
+  height: $navbar-height;
+  width: 95%;
+  font-family: $font-roboto;
   text-align: center;
+  @media screen and (max-width: 768px) {
+    margin-top: calc(#{$navbar-height-mobile} * 1.5);
+    height: $navbar-height-mobile;
+  }
 }
 .property-counter {
   width: 100%;
-  height: 40px;
+  height: $navbar-height;
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 1.2rem;
+  font-family: $font-roboto;
+  margin-top: calc(#{$navbar-height} * 1.5);
   @include flex-center;
-  @media screen and (min-width: 768px) {
-    font-size: 1.3rem;
+  @media screen and (max-width: 768px) {
+    margin-top: calc(#{$navbar-height-mobile} * 1.5);
+    font-size: .9rem;
+    height: $navbar-height-mobile;
   }
 }

@@ -13,7 +13,7 @@
   justify-content: space-around;
   transition: height .7s ease-in-out;
   &.show {
-    margin: $navbar-height 0;
+    margin-top: $navbar-height;
     padding: 10px 15%;
     opacity: 1;
     height: 180px;
@@ -24,7 +24,7 @@
     @media screen and (max-width: 768px) {
       flex-direction: column;
       height: 485px;
-      margin: $navbar-height-mobile 0;
+      margin-top: $navbar-height-mobile;
     }
     .search-form-group-1 {
       display: flex;
