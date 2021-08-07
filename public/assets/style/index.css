@@ -103,6 +103,12 @@ h1, h2, h3, h4, h5, h6 {
   color: #C29C63;
 }
 
+@media screen and (min-width: 768px) {
+  .navigation ul li.navigation-item.active a {
+    border-bottom: 3px solid;
+  }
+}
+
 .navigation ul a {
   height: 50px;
   display: -webkit-box;
@@ -1166,6 +1172,7 @@ footer .footer-social-media a:hover i {
 .no-property-to-display {
   width: 500px;
   max-width: 80%;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -1188,6 +1195,105 @@ footer .footer-social-media a:hover i {
 @media screen and (min-width: 768px) {
   .property-counter {
     font-size: 1.3rem;
+  }
+}
+
+.message-alert {
+  top: calc(-50px);
+  left: 15%;
+  position: absolute;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 300px;
+  color: #F1F1F1;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 3px 6px #CCCCCC;
+          box-shadow: 0 3px 6px #CCCCCC;
+  padding: 10px;
+  opacity: 1;
+  visibility: visible;
+  -webkit-animation: show-alert 1.5s ease 1 forwards, hidde-alert 1s 10s ease forwards;
+          animation: show-alert 1.5s ease 1 forwards, hidde-alert 1s 10s ease forwards;
+}
+
+@media screen and (max-width: 1400px) {
+  .message-alert {
+    left: 2%;
+  }
+}
+
+.message-alert span {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.message-alert span .fa.fa-close {
+  margin-bottom: .125rem;
+}
+
+.message-alert p {
+  font-family: "Open Sans", sans-serif;
+  font-size: .8rem;
+  font-weight: 500;
+  max-width: 75%;
+}
+
+.message-alert .modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #F3F3F3;
+  z-index: 10;
+}
+
+.message-alert-success {
+  background-color: rgba(35, 140, 42, 0.9);
+}
+
+.message-alert-danger {
+  background-color: rgba(191, 11, 59, 0.9);
+}
+
+@-webkit-keyframes show-alert {
+  to {
+    top: 80px;
+  }
+}
+
+@keyframes show-alert {
+  to {
+    top: 80px;
+  }
+}
+
+@-webkit-keyframes hidde-alert {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes hidde-alert {
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -1699,7 +1805,6 @@ footer .footer-social-media a:hover i {
   top: 30px;
   z-index: 1000;
   background: #F3F3F3;
-  border: 1px solid #7E8991;
   -webkit-box-shadow: 0 3px 6px rgba(51, 64, 74, 0.3);
           box-shadow: 0 3px 6px rgba(51, 64, 74, 0.3);
   font-size: .8rem;

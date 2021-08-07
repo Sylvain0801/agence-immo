@@ -1,0 +1,11 @@
+<div class="message-alert message-alert-{{ message.style }}" role="alert">
+  <span>
+    {% if message.style == 'success' %}
+      <i class="fa fa-check"></i>
+    {% elseif message.style == 'danger' %}
+      <i class="fa fa-close"></i>
+    {% endif %}
+  </span>
+  <p>{{ message.text|raw }}</p>
+  <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="alert"></a>
+</div>

@@ -10,6 +10,10 @@ const closeAllMenu = () => {
 burger.addEventListener('click', (e) => {
     e.stopPropagation()
     navigation.classList.toggle('show')
+    if (navigation.classList.contains('show')) {
+        document.querySelector('.search-form-group.show').style.overflow = 'hidden'
+        document.querySelector('.search-form-group').classList.remove('show')
+    }
     for(let drop of dropdowns) {
         drop.classList.remove('show')
     }

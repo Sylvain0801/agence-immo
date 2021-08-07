@@ -31,7 +31,13 @@ window.onload = () => {
   })
   searchButton.addEventListener('click', function(e) {
     e.stopPropagation()
-    formGroup.classList.toggle('show')
+    if(formGroup.classList.contains('show')) {
+      document.querySelector('.search-form-group.show').style.overflow = 'hidden'
+      formGroup.classList.remove('show')
+    } else {
+      formGroup.classList.add('show')
+      closeAllMenu()
+    }
   })
 
   // Gestion checkbox vente & location
@@ -46,7 +52,6 @@ window.onload = () => {
     document.getElementById('search_form_rent_price_max')
   ]
   function disabledSellOrRent(checkbox, group) {
-    console.log('check');
     if (checkbox.previousElementSibling.checked) {
       group.forEach(elt => {
         elt.setAttribute('disabled', 'disabled')
@@ -91,7 +96,7 @@ window.onload = () => {
 
   const fetchCities = async() => {
     cities = await fetch(
-      `https://geo.api.gouv.fr/communes?nom=${searchTerm}&fields=departement,codesPostaux,centre&boost=population`)
+      `https://geo.api.gouv.fr/communes?nom=${searchTerm}&fields=departement,codesPostaux,centre&boost=population&limit=100`)
       .then(res => res.json())
       .catch(error => alert('Une erreur s\'est produite, veuillez réessayer plus tard'))
   }
@@ -101,6 +106,7 @@ window.onload = () => {
     cityList.innerHTML = (
       cities
         .map(city => (
+          city.centre &&
           `<div class="city-list-item" data-coord=${city.centre.coordinates.join(',')}>${city.codesPostaux[0]}&nbsp;${city.nom}</div>`
         )).join('')
     )
@@ -111,10 +117,8 @@ window.onload = () => {
 
   searchInput.addEventListener('input', (e) => {
     searchTerm = e.target.value
-    if (searchTerm.length > 2) {
-      document.querySelector('.search-form-group.show').style.overflow = 'visible'
-      showCities()
-    }
+    document.querySelector('.search-form-group.show').style.overflow = 'visible'
+    showCities()
   })
 
   function changeSearchInputValue(cityName, coord) {
