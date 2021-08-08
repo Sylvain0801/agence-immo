@@ -7,22 +7,104 @@
 {% endfor %}
 	<section class="property-view-section">
     <div class="property-view">
-      <div class="property-advertizement">
+      <div class="property-advertisement" style="background-image: url({{ asset('assets/images/advertisement/advertisement_1.jpg') }});">
+        <div class="trapeze-headband">Offre exceptionnelle<br>Programme neuf du T1 au T5</div>
       </div>
       <div class="property-view-body">
-        <div class="property-view-img">
+        <div class="property-view-img-grid">
+          {% for k, img in offer.property.images %}
+          <a href="#" role="button" class="" data-target="#modal-property-img-view" data-toggle="modal" data-id="{{ k }}">
+            <div class="property-view-img" style="background-image: url({{ asset(img.path) }});"></div>
+          </a>
+          {% endfor %}
+        </div>
+        <div class="property-view-manager-favorite-group">
+          <div class="property-view-manager">
+            <span>{{ offer.property.manager }}</span>
+          </div>
+          <i class="card-button-favorite fa fa-star-o" data-id={{ offer.property.id }}>&nbsp;<span>favoris</span></i>
         </div>
         <div class="property-view-header">
+          <h3 class="property-view-title">{{ offer.property.propertyType.name|capitalize }} - {{ offer.title }}</h3>
+          <h4 class="property-view-city"><i class="fa fa-map-marker"></i>&nbsp;{{ offer.property.city.name }}</h4>
         </div>
         <div class="property-view-content">
+          <h4 class="property-view-price">
+            {% if offer.property.transactionType == 'location' %}
+              {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+              / mois
+            {% else %}
+              {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+            {% endif %}
+          </h4>
+          <h4 class="property-view-area">{{ offer.property.rooms }} pièces - {{ offer.property.area }} m²</h4>
+          <p class="property-view-text">{{ offer.description }}</p>
         </div>
         <div class="property-view-footer">
-          <div class="property-view-options">
+          <div class="property-view-footer-caracteristics">
+            <h4>Caractéristiques :</h4>
+            <div class="property-view-options">
+              {% for option in offer.property.options %}
+                <span>{{ option.name|capitalize }}</span>
+              {% endfor %}
+            </div>
+            <h5><i class="fa fa-flash"></i>&nbsp;Consommation énergétique :</h5>
+            <div class="property-view-energy">
+              {% for letter in letters %}
+                <span style="{{ letter == offer.property.energy ? 'font-size: 1.4em;' : '' }}">
+                  {% if letter == offer.property.energy %}
+                    <i class="fa fa-caret-up"></i>
+                  {% endif %}
+                  {{ letter }}
+                </span>
+              {% endfor %}
+            </div>
+            <h5><i class="fa fa-tree"></i>&nbsp;Emission de gaz à effet de serre :</h5>
+            <div class="property-view-ges">
+              {% for letter in letters %}
+                <span style="{{ letter == offer.property.ges ? 'font-size: 1.4em;' : '' }}">
+                  {% if letter == offer.property.ges %}
+                    <i class="fa fa-caret-up"></i>
+                  {% endif %}
+                  {{ letter }}
+                </span>
+              {% endfor %}
+            </div>
           </div>
           <div class="property-view-contact">
+            <h4>Contacter le propriétaire :</h4>
+            <a href="" class="property-view-button button button-outline"><i class="fa fa-envelope-o"></i>&nbsp;envoyer un message</a>
+            <a href="" class="property-view-button button button-outline"><i class="fa fa-phone"></i>&nbsp;appeler 05 55 55 55 55</a>
           </div>
         </div>
       </div>
     </div>
 	</section>
+  <div class="modal" id="modal-property-img-view" role="dialog">
+    <div class="modal-content-property-view">
+      <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+      <div id="carousel-property-view" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          {% for k in offer.property.images|keys %}
+            <button type="button" data-bs-target="#carousel-property-view" data-bs-slide-to="{{ k }}" aria-label="Slide {{ k + 1 }}" class="{{ k == 0 ? 'active' : '' }}" aria-current="{{ k == 0 ? 'true' : '' }}"></button>
+          {% endfor %}
+        </div>
+        <div class="carousel-inner">
+          {% for k, img in offer.property.images %}
+            <div class="carousel-item" data-carousel-item="{{ k }}">
+              <div class="carousel-img" style="background-image: url({{ asset(img.path) }});"></div>
+            </div>
+          {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-property-view" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-property-view" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </div>
 {% endblock %}

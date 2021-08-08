@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Offer;
 use App\Entity\Property;
 use App\Repository\OfferRepository;
 use App\Repository\PropertyTypeRepository;
@@ -181,7 +182,7 @@ class OfferController extends AbstractController
      */
     public function favorite($favoriteList, OfferRepository $offerRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $liste = explode(',', $favoriteList);
+        $liste = explode(',', urldecode($favoriteList));
         if ($liste !== null && count($liste) > 0) {
             $data = $offerRepository->findFavorites($liste);
         }
@@ -205,14 +206,16 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/view/{id}", name="view")
+     * @Route("/view/{slug}/{id}", name="view")
      */
-    public function view(Property $property): Response
+    public function view(Offer $offer): Response
     {
+        $letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+        
         return $this->render('offer/view.html.twig', [
-            'offers' => $property,
+            'offer' => $offer,
             'active' => 'offers',
-            
+            'letters' => $letters
         ]);
     }
 }

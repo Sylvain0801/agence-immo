@@ -13,8 +13,10 @@
 @import 'components/carousel';
 @import 'components/card';
 @import 'components/alert';
+@import 'components/modal';
 @import 'components/pagination';
 @import 'components/searchform';
 
 // Pages
-@import 'pages/offer/view.scss'
+@import 'pages/offer/view';
+@import 'pages/offer/modal';
