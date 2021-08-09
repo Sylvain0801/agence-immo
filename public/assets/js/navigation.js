@@ -136,3 +136,20 @@ for (let button of modalButtons) {
         });
     });
 }
+
+// ####################################################################
+// #                                                                  #
+// #                    Toggle réponses FAQ                           #
+// #                                                                  #
+// ####################################################################
+
+const displayAnswer = document.querySelectorAll('[data-toggle=chevron-faq]')
+
+for (const btn of displayAnswer) {
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation()
+        this.classList.toggle('show')
+        this.parentNode.classList.toggle('show')
+        this.parentNode.nextElementSibling.classList.toggle('show')
+    })
+}

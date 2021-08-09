@@ -38,3 +38,36 @@
 	height: 30px;
 	font-size: .8rem;
 }
+
+.button-circle {
+	height: 140px;
+	width: 140px;
+	border-radius: 50%;
+	border: solid 2px $color-primary; 
+	box-shadow: 0 3px 6px rgba($color-primary, .5);
+	@include flex-center;
+	flex-direction: column;
+	text-transform: uppercase;
+	background-color: $color-primary;
+	color: $color-white;
+	font-family: $font-roboto;
+	text-align: center;
+	transition: all .3s ease;
+	@media screen and (max-width: 768px) {
+		width: 90px;
+		height: 90px;
+		font-size: .7rem;
+	}
+	i.fa.fa-plus-circle {
+		margin-top: 5px;
+		font-size: 1.5rem;
+		@media screen and (max-width: 768px) {
+			font-size: 1.1rem;
+		}
+	}
+	&:hover {
+		background-color: $color-white;
+		color: $color-primary;
+		transform: scale(1.03);
+	}
+}

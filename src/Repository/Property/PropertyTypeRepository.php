@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Property;
 
-use App\Entity\Property;
+use App\Entity\Property\PropertyType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Property|null find($id, $lockMode = null, $lockVersion = null)
- * @method Property|null findOneBy(array $criteria, array $orderBy = null)
- * @method Property[]    findAll()
- * @method Property[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PropertyType|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PropertyType|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PropertyType[]    findAll()
+ * @method PropertyType[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PropertyRepository extends ServiceEntityRepository
+class PropertyTypeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Property::class);
+        parent::__construct($registry, PropertyType::class);
     }
 
     // /**
-    //  * @return Property[] Returns an array of Property objects
+    //  * @return PropertyType[] Returns an array of PropertyType objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PropertyRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Property
+    public function findOneBySomeField($value): ?PropertyType
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

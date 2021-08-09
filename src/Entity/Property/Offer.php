@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Property;
 
-use App\Repository\OfferRepository;
+use App\Repository\Property\OfferRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -24,8 +24,8 @@ class Offer
     private $title;
 
     /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(type="string", length=64)
+     * @Gedmo\Slug(fields={"title", "id"})
+     * @ORM\Column(type="string", length=128, unique=true)
      */
     private $slug;
 

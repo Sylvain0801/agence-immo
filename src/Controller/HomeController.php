@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\OfferRepository;
+use App\Repository\Property\OfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

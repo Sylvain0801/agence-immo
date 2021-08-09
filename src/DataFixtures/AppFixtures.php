@@ -2,12 +2,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\City;
-use App\Entity\Image;
-use App\Entity\Offer;
-use App\Entity\Option;
-use App\Entity\Property;
-use App\Entity\PropertyType;
+use App\Entity\Property\City;
+use App\Entity\Property\Image;
+use App\Entity\Property\Offer;
+use App\Entity\Property\Option;
+use App\Entity\Property\Property;
+use App\Entity\Property\PropertyType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker;

@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Property;
 
-use App\Repository\PropertyTypeRepository;
+use App\Repository\Property\ImageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PropertyTypeRepository::class)
+ * @ORM\Entity(repositoryClass=ImageRepository::class)
  */
-class PropertyType
+class Image
 {
     /**
      * @ORM\Id
@@ -20,18 +20,23 @@ class PropertyType
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
+     * @ORM\Column(type="string", length=128)
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="property_type")
+     * @ORM\Column(type="string", length=255)
      */
-    private $properties;
+    private $path;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Property::class, inversedBy="images")
+     */
+    private $property;
 
     public function __construct()
     {
-        $this->properties = new ArrayCollection();
+        $this->property = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,19 +56,30 @@ class PropertyType
         return $this;
     }
 
+    public function getPath(): ?string
+    {
+        return $this->path;
+    }
+
+    public function setPath(string $path): self
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Property[]
      */
-    public function getProperties(): Collection
+    public function getProperty(): Collection
     {
-        return $this->properties;
+        return $this->property;
     }
 
     public function addProperty(Property $property): self
     {
-        if (!$this->properties->contains($property)) {
-            $this->properties[] = $property;
-            $property->setPropertyType($this);
+        if (!$this->property->contains($property)) {
+            $this->property[] = $property;
         }
 
         return $this;
@@ -71,12 +87,7 @@ class PropertyType
 
     public function removeProperty(Property $property): self
     {
-        if ($this->properties->removeElement($property)) {
-            // set the owning side to null (unless already changed)
-            if ($property->getPropertyType() === $this) {
-                $property->setPropertyType(null);
-            }
-        }
+        $this->property->removeElement($property);
 
         return $this;
     }

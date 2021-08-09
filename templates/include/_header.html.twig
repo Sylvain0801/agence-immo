@@ -40,7 +40,7 @@
 						</ul>
 					</div>
 				</li>
-				<li class="navigation-item"><a href="#">faq</a></li>
+				<li class="navigation-item {{ active is defined and active == 'faq' ? 'active' : '' }}"><a href="{{ path('faq') }}">faq</a></li>
 				<li class="navigation-item"><a href="#">contact</a></li>
 			</ul>
 			<div class="search-button" id="search-button">

@@ -2,10 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Offer;
-use App\Entity\Property;
-use App\Repository\OfferRepository;
-use App\Repository\PropertyTypeRepository;
+use App\Entity\Property\Offer;
+use App\Repository\Property\OfferRepository;
+use App\Repository\Property\PropertyTypeRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -206,12 +205,14 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/view/{slug}/{id}", name="view")
+     * @Route("/view/{slug}", name="view")
      */
-    public function view(Offer $offer): Response
+    public function view($slug, Offer $offer): Response
     {
+        $offer = $this->getDoctrine()->getRepository(Offer::class)->findOneBy(['slug' => $slug]);
+
         $letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-        
+
         return $this->render('offer/view.html.twig', [
             'offer' => $offer,
             'active' => 'offers',
