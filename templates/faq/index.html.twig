@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FAQ - Agence immobilière{% endblock %}
+{% block title %}FAQ - {{'Real estate agency'|trans}}{% endblock %}
 
 {% block body %}
 	<section class="faq-section">
 		<div class="faq-group">
-			<h1 id="faq-top">foire aux questions&nbsp;
+			<h1 id="faq-top">{{'frequently asked questions'|trans}}&nbsp;
 				<svg xmlns="http://www.w3.org/2000/svg" style="width: 1em; height: 1em" viewBox="0 0 48 48">
 					<path id="Icon_material-question-answer" data-name="Icon material-question-answer" d="M48.6,12.6H43.8V34.2H12.6V39A2.407,2.407,0,0,0,15,41.4H41.4L51,51V15A2.407,2.407,0,0,0,48.6,12.6ZM39,27V5.4A2.407,2.407,0,0,0,36.6,3H5.4A2.407,2.407,0,0,0,3,5.4V39l9.6-9.6h24A2.407,2.407,0,0,0,39,27Z" transform="translate(-3 -3)" fill="#33404a"/>
 				</svg>
@@ -37,7 +37,7 @@
 				{% endfor %}
 			</div>
 			<div class="faq-other-question">
-					<a class="button-circle" href="#">poser<br>une<br>question<br>
+					<a class="button-circle" href="#">{{'ask'|trans}}<br>{{'a'|trans}}<br>{{'question'|trans}}<br>
 						<i class="fa fa-question"></i>
 					</a>
 			</div>

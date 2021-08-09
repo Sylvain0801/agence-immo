@@ -207,8 +207,10 @@ class OfferController extends AbstractController
     /**
      * @Route("/view/{slug}", name="view")
      */
-    public function view($slug, Offer $offer): Response
+    public function view($slug, Offer $offer, Request $request): Response
     {
+        $request->getSession()->set('referer', $request->headers->get('referer'));
+
         $offer = $this->getDoctrine()->getRepository(Offer::class)->findOneBy(['slug' => $slug]);
 
         $letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];

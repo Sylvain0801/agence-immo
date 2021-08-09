@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="pcfRcZ4" resname="month">
+        <source>month</source>
+        <target>mois</target>
+      </trans-unit>
+      <trans-unit id="XYjFadI" resname="rooms">
+        <source>rooms</source>
+        <target>pièces</target>
+      </trans-unit>
+      <trans-unit id="LTcLYHc" resname="show more">
+        <source>show more</source>
+        <target>en savoir plus</target>
+      </trans-unit>
+      <trans-unit id="rHhuGYq" resname="Real estate agency">
+        <source>Real estate agency</source>
+        <target>Agence immobilière</target>
+      </trans-unit>
+      <trans-unit id="bemMjf7" resname="frequently asked questions">
+        <source>frequently asked questions</source>
+        <target>foire aux questions</target>
+      </trans-unit>
+      <trans-unit id="Ly.H8un" resname="ask">
+        <source>ask</source>
+        <target>poser</target>
+      </trans-unit>
+      <trans-unit id="ypeBEso" resname="a">
+        <source>a</source>
+        <target>une</target>
+      </trans-unit>
+      <trans-unit id="H1CH25G" resname="question">
+        <source>question</source>
+        <target>question</target>
+      </trans-unit>
+      <trans-unit id="xLKvRyL" resname="agency">
+        <source>agency</source>
+        <target>agence</target>
+      </trans-unit>
+      <trans-unit id="1__i96n" resname="real estate">
+        <source>real estate</source>
+        <target>immobilière</target>
+      </trans-unit>
+      <trans-unit id="fwNIweL" resname="log in">
+        <source>log in</source>
+        <target>se connecter</target>
+      </trans-unit>
+      <trans-unit id="c4DEBmb" resname="my favorites">
+        <source>my favorites</source>
+        <target>mes favoris</target>
+      </trans-unit>
+      <trans-unit id="lq25JFK" resname="properties">
+        <source>properties</source>
+        <target>annonces</target>
+      </trans-unit>
+      <trans-unit id="WMu2O3N" resname="private owners">
+        <source>private owners</source>
+        <target>propriétaires privés</target>
+      </trans-unit>
+      <trans-unit id="oSYP6ZK" resname="more information">
+        <source>more information</source>
+        <target>plus d'informations</target>
+      </trans-unit>
+      <trans-unit id="uKE5f6c" resname="sign up">
+        <source>sign up</source>
+        <target>créer un compte</target>
+      </trans-unit>
+      <trans-unit id="MN4YzE6" resname="faq">
+        <source>faq</source>
+        <target>faq</target>
+      </trans-unit>
+      <trans-unit id="CT59X9u" resname="contact">
+        <source>contact</source>
+        <target>contact</target>
+      </trans-unit>
+      <trans-unit id="rz8S4WH" resname="You have">
+        <source>You have</source>
+        <target>Vous avez</target>
+      </trans-unit>
+      <trans-unit id="2EJeH6W" resname="properties saved">
+        <source>properties saved</source>
+        <target>annonces enregistrées</target>
+      </trans-unit>
+      <trans-unit id="vBXVA4R" resname="property saved">
+        <source>property saved</source>
+        <target>annonce enregistrée</target>
+      </trans-unit>
+      <trans-unit id=".1jwEj3" resname="in your favorites">
+        <source>in your favorites</source>
+        <target>dans vos favoris</target>
+      </trans-unit>
+      <trans-unit id="b6GH78E" resname="There are no favorites to display yet.">
+        <source>There are no favorites to display yet.</source>
+        <target>Il n'y a encore aucune annonce en favoris à afficher.</target>
+      </trans-unit>
+      <trans-unit id="37uInPG" resname="display">
+        <source>display</source>
+        <target>afficher</target>
+      </trans-unit>
+      <trans-unit id="XvXvA2S" resname="all">
+        <source>all</source>
+        <target>toutes les</target>
+      </trans-unit>
+      <trans-unit id="acmcO1_" resname="There are no properties to display yet.">
+        <source>There are no properties to display yet.</source>
+        <target>Il n'y a encore aucune annonce à afficher.</target>
+      </trans-unit>
+      <trans-unit id="cQtBPNW" resname="properties match">
+        <source>properties match</source>
+        <target>annonces correspondent</target>
+      </trans-unit>
+      <trans-unit id="7KOzGQ9" resname="property match">
+        <source>property match</source>
+        <target>annonce correspond</target>
+      </trans-unit>
+      <trans-unit id="TrXnUYr" resname="the search criteria">
+        <source>the search criteria</source>
+        <target>aux crières de recherche</target>
+      </trans-unit>
+      <trans-unit id="b..lPp7" resname="No properties seem to match your search, please try again by modifying the criteria.">
+        <source>No properties seem to match your search, please try again by modifying the criteria.</source>
+        <target>Aucun bien ne semble correspondre à votre recherche, veuillez réessayer en modifiant les critères.</target>
+      </trans-unit>
+      <trans-unit id="PkSONgW" resname="Exceptional offer">
+        <source>Exceptional offer</source>
+        <target>Offre exceptionnelle</target>
+      </trans-unit>
+      <trans-unit id="uYe5trH" resname="New program from T1 to T5">
+        <source>New program from T1 to T5</source>
+        <target>Programme neuf du T1 au T5</target>
+      </trans-unit>
+      <trans-unit id="H.OjwYM" resname="favorite">
+        <source>favorite</source>
+        <target>favoris</target>
+      </trans-unit>
+      <trans-unit id="95RZf1u" resname="Energy consumption">
+        <source>Energy consumption</source>
+        <target>Consommation énergétique</target>
+      </trans-unit>
+      <trans-unit id="dH6UXJo" resname="Greenhouse gas emission">
+        <source>Greenhouse gas emission</source>
+        <target>Emission de gaz à effet de serre</target>
+      </trans-unit>
+      <trans-unit id="X7bIOK_" resname="send a message">
+        <source>send a message</source>
+        <target>envoyer un message</target>
+      </trans-unit>
+      <trans-unit id="fts2Dwa" resname="call">
+        <source>call</source>
+        <target>appeler</target>
+      </trans-unit>
+      <trans-unit id="xn.WIGn" resname="back to liste">
+        <source>back to liste</source>
+        <target>retour liste</target>
+      </trans-unit>
+      <trans-unit id="vvyC2b9" resname="manage by agency">
+        <source>manage by agency</source>
+        <target>faire gérer</target>
+      </trans-unit>
+      <trans-unit id="TqFAWIF" resname="home">
+        <source>home</source>
+        <target>accueil</target>
+      </trans-unit>
+      <trans-unit id="megF8sl" resname="The satisfaction of our customers is our priority">
+        <source>The satisfaction of our customers is our priority</source>
+        <target>La satisfaction de nos clients est notre priorité</target>
+      </trans-unit>
+      <trans-unit id="toOMfje" resname="Private owners">
+        <source>Private owners</source>
+        <target>Propriétaires privés</target>
+      </trans-unit>
+      <trans-unit id="ZsxwA_y" resname="Manage by agency">
+        <source>Manage by agency</source>
+        <target>Faire gérer</target>
+      </trans-unit>
+      <trans-unit id="__PN.XI" resname="Confidentiality">
+        <source>Confidentiality</source>
+        <target>Confidentialité</target>
+      </trans-unit>
+      <trans-unit id="w_Om7eq" resname="Terms and conditions">
+        <source>Terms and conditions</source>
+        <target>Conditions d'utilisation</target>
+      </trans-unit>
+      <trans-unit id="sSazPyg" resname="Data protection policy">
+        <source>Data protection policy</source>
+        <target>Politique de protection des données</target>
+      </trans-unit>
+      <trans-unit id="cIZtdjM" resname="Cookies policy">
+        <source>Cookies policy</source>
+        <target>Politique de cookies</target>
+      </trans-unit>
+      <trans-unit id="7zHNomr" resname="Cookies consent">
+        <source>Cookies consent</source>
+        <target>Gestion des cookies</target>
+      </trans-unit>
+      <trans-unit id="fp3FOKZ" resname="Our partners">
+        <source>Our partners</source>
+        <target>Nos Partenaires</target>
+      </trans-unit>
+      <trans-unit id="3XKcdk5" resname="Characteristics">
+        <source>Characteristics</source>
+        <target>Caractéristiques</target>
+      </trans-unit>
+      <trans-unit id="t3y_LH." resname="Contact the owner">
+        <source>Contact the owner</source>
+        <target>Contacter le propriétaire</target>
+      </trans-unit>
+      <trans-unit id="plVuSFL" resname="our">
+        <source>our</source>
+        <target>nos</target>
+      </trans-unit>
+      <trans-unit id="Hf0e_NA" resname="agencies">
+        <source>agencies</source>
+        <target>agences</target>
+      </trans-unit>
+      <trans-unit id="Bst18TJ" resname="partners">
+        <source>partners</source>
+        <target>partenaires</target>
+      </trans-unit>
+      <trans-unit id="fz_kjKi" resname="partner">
+        <source>partner</source>
+        <target>partenaire</target>
+      </trans-unit>
+      <trans-unit id="sZpvY_r" resname="see more">
+        <source>see more</source>
+        <target>voir plus</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

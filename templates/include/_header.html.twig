@@ -1,47 +1,49 @@
 	<header>
 		<div class="top-headband">
 			<div class="flag-lang-group">
-				<a href="#"><img class="flag-lang-item" src="{{ asset('assets/images/flag-lang/fr-flag.png') }}" alt="fr-flag"></a>
-				<a href="#"><img class="flag-lang-item" src="{{ asset('assets/images/flag-lang/en-flag.png') }}" alt="en-flag"></a>
-				<a href="#"><img class="flag-lang-item" src="{{ asset('assets/images/flag-lang/es-flag.png') }}" alt="es-flag"></a>
+				{% for locale in locales %}
+					{% if locale != app.request.locale %}
+						<a href="{{ path('change_locale', {'locale': locale}) }}"><img src="{{ asset('assets/images/flag-lang/'~locale~'-flag.png') }}" alt="{{ locale }}-flag" class="flag-lang-item"></a>
+					{% endif %}
+				{% endfor %}
 			</div>
 			<a href="{{ path('home') }}">
 				<div class="logo-company-group">
-						<i class="fa fa-home"></i>
-						<h1><strong>agence</strong><br>immobilière</h1>
+					<i class="fa fa-home"></i>
+					<h1><strong>{{ 'agency'|trans }}</strong><br>{{ 'real estate'|trans}}</h1>
 				</div>
 			</a>
 			<div class="button-group">
-				<a href="#" class="button button-rounded button-outline"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;se connecter</a>
-				<a href="{{ path('offer_favorite') }}" class="button button-rounded button-outline" id="button-favorite-list"><i class="fa fa-star"></i>&nbsp;&nbsp;mes favoris</a>
+				<a href="{{ path('app_login') }}" class="button button-rounded button-outline"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{{'log in'|trans}}</a>
+				<a href="{{ path('offer_favorite') }}" class="button button-rounded button-outline" id="button-favorite-list"><i class="fa fa-star"></i>&nbsp;&nbsp;{{'my favorites'|trans}}</a>
 			</div>
 		</div>
 		<nav class="navigation" id="navigation">
 			<ul>
-				<li class="navigation-item {{ active is defined and active == 'offers' ? 'active' : '' }}"><a href="{{ path('offer_home') }}">annonces</a></li>
+				<li class="navigation-item {{ active is defined and active == 'offers' ? 'active' : '' }}"><a href="{{ path('offer_home') }}">{{'properties'|trans}}</a></li>
 				<li class="navigation-item navigation-dropdown">
-					<a href="#">propriétaires privés&nbsp;<i class="fa fa-caret-right"></i></a>
+					<a href="#">{{'private owners'|trans}}&nbsp;<i class="fa fa-caret-right"></i></a>
 					<div class="navigation-dropdown-text-info">
 						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet</p>
 						<ul class="navigation-dropdown-menu">
-							<li class="navigation-dropdown-item"><a class="button-navbar" href="#">plus d'informations</a></li>
-							<li class="navigation-dropdown-item"><a class="button-navbar" href="#">créer un compte</a></li>
-							<li class="navigation-dropdown-item"><a class="button-navbar" href="#">se connecter</a></li>
+							<li class="navigation-dropdown-item"><a class="button-navbar" href="#">{{'more information'|trans}}</a></li>
+							<li class="navigation-dropdown-item"><a class="button-navbar" href="{{ path('app_register') }}">{{'sign up'|trans}}</a></li>
+							<li class="navigation-dropdown-item"><a class="button-navbar" href="{{ path('app_login') }}">{{'log in'|trans}}</a></li>
 						</ul>
 					</div>
 				</li>
 				<li class="navigation-item navigation-dropdown">
-					<a href="#">faire gérer&nbsp;<i class="fa fa-caret-right"></i></a>
+					<a href="#">{{'manage by agency'|trans}}&nbsp;<i class="fa fa-caret-right"></i></a>
 					<div class="navigation-dropdown-text-info">
 						<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet</p>
 						<ul class="navigation-dropdown-menu">
-							<li class="navigation-dropdown-item"><a class="button-navbar"  href="#">plus d'informations</a></li>
-							<li class="navigation-dropdown-item"><a class="button-navbar"  href="#">se connecter</a></li>
+							<li class="navigation-dropdown-item"><a class="button-navbar" href="#">{{'more information'|trans}}</a></li>
+							<li class="navigation-dropdown-item"><a class="button-navbar" href="{{ path('app_login') }}">{{'log in'|trans}}</a></li>
 						</ul>
 					</div>
 				</li>
-				<li class="navigation-item {{ active is defined and active == 'faq' ? 'active' : '' }}"><a href="{{ path('faq') }}">faq</a></li>
-				<li class="navigation-item"><a href="#">contact</a></li>
+				<li class="navigation-item {{ active is defined and active == 'faq' ? 'active' : '' }}"><a href="{{ path('faq') }}">{{'faq'|trans}}</a></li>
+				<li class="navigation-item"><a href="#">{{'contact'|trans}}</a></li>
 			</ul>
 			<div class="search-button" id="search-button">
 				<i class="fa fa-search"></i>

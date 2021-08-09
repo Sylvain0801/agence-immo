@@ -9,18 +9,18 @@
     <h4 class="card-property-price">
       {% if offer.property.transactionType == 'location' %}
         {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
-        / mois
+        / {{'month'|trans}}
       {% else %}
         {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
       {% endif %}
     </h4>
     <h4 class="card-property-area">{{ offer.property.rooms }}
-      pièces -
+      {{'rooms'|trans}} -
       {{ offer.property.area }}
       m²</h4>
     <p class="card-property-text">{{ offer.description }}</p>
     <h4 class="card-property-city">
       <i class="fa fa-map-marker"></i>&nbsp;{{ offer.property.city.name }}</h4>
     <!-- max-length=60 -->
-    <a href="{{ path('offer_view', {slug: offer.slug}) }}" class="card-property-button button button-outline">en savoir plus</a>
+    <a href="{{ path('offer_view', {slug: offer.slug}) }}" class="card-property-button button button-outline">{{'show more'|trans}}</a>
   </div>

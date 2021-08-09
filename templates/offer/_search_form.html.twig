@@ -4,18 +4,18 @@
 					<div class="search-form-sell-group">
 						<div class="input-checkbox-group">
 							<input type="checkbox" id="search_form_sell" name="sell" value="1" {{ fields.sell ? 'checked' : ''}}>
-							<label for="search_form_sell"><span><i class="fa fa-check"></i></span>Vente</label>
+							<label for="search_form_sell"><span><i class="fa fa-check"></i></span>{{'Sale'trans|}}</label>
 						</div>
 						<div class="sell-price-group">
 							<div class="input-price-group">
-								<label for="search_form_sell_price_min">Prix min</label>
+								<label for="search_form_sell_price_min">{{'price'|trans|capitalize}} min</label>
 								<span class="input-price">
 									<input type="number" id="search_form_sell_price_min" name="sell_price_min" min="0" step="1000" value="{{ fields.sellPriceMin }}">
 									<i class="fa fa-euro"></i>
 								</span>
 							</div>
 							<div class="input-price-group">
-								<label for="search_form_sell_price_max">Prix max</label>
+								<label for="search_form_sell_price_max">{{'price'|trans|capitalize}} max</label>
 								<span class="input-price">
 									<input type="number" id="search_form_sell_price_max" name="sell_price_max" min="0" step="1000" value="{{ fields.sellPriceMax }}">
 									<i class="fa fa-euro"></i>
@@ -26,18 +26,18 @@
 					<div class="search-form-rent-group">
 						<div class="input-checkbox-group">
 							<input type="checkbox" id="search_form_rent" name="rent" value="1" {{ fields.rent ? 'checked' : ''}}>
-							<label for="search_form_rent"><span><i class="fa fa-check"></i></span>Location</label>
+							<label for="search_form_rent"><span><i class="fa fa-check"></i></span>{{'Rental'trans|}}</label>
 						</div>
 						<div class="rent-price-group">
 							<div class="input-price-group">
-								<label for="search_form_rent_price_min">Loyer min</label>
+								<label for="search_form_rent_price_min">{{'rent'|trans|capitalize}} min</label>
 								<span class="input-price">
 									<input type="number" id="search_form_rent_price_min" name="rent_price_min" min="0" step="100" value="{{ fields.rentPriceMax }}">
 									<i class="fa fa-euro"></i>
 								</span>
 							</div>
 							<div class="input-price-group">
-								<label for="search_form_rent_price_max">Loyer max</label>
+								<label for="search_form_rent_price_max">{{'rent'|trans|capitalize}} max</label>
 								<span class="input-price">
 									<input type="number" id="search_form_rent_price_max" name="rent_price_max" min="0" step="100" value="{{ fields.rentPriceMax }}">
 									<i class="fa fa-euro"></i>
@@ -49,13 +49,13 @@
 				<div class="center-mobile-group">
 					<div class="search-form-group-2">
 						<div class="input-rooms-group">
-							<label for="search_form_rooms">Pièces</label>
+							<label for="search_form_rooms">{{'rooms'|trans|capitalize}}</label>
 							<input type="number" id="search_form_rooms" name="rooms" min="1" max="99" value="{{ fields.rooms }}">
 						</div>
 						<div class="input-type-group">
-							<label for="search_form_type">Type</label>
+							<label for="search_form_type">{{'type'|trans|capitalize}}</label>
 							<select id="search_form_type" name="type">
-								<option value="" disabled selected hidden>--type de bien--</option>
+								<option value="" disabled selected hidden>--{{'type of property'|trans}}--</option>
 								<option value=""></option>
 								{% for propertyType in propertyTypes %}
 									<option value="{{ propertyType.id }}" {{ fields.type == propertyType.id ? 'selected' : ''}}>{{ propertyType.name }}</option>
@@ -64,12 +64,12 @@
 						</div>
 						<div class="input-checkbox-group">
 							<input type="checkbox" id="search_form_furnished" name="furnished" value="1" {{ fields.furnished ? 'checked' : ''}}>
-							<label for="search_form_furnished"><span><i class="fa fa-check"></i></span>Meublé</label>
+							<label for="search_form_furnished"><span><i class="fa fa-check"></i></span>{{'furnished'|trans|capitalize}}</label>
 						</div>
 					</div>
 					<div class="search-form-group-3">
 						<div class="input-city-group">
-							<label for="search_form_city" class="required">Ville</label>
+							<label for="search_form_city" class="required">{{'city'|trans|capitalize}}</label>
 							<div class="input-city-list-group">
 								<input type="text" id="search_form_city" name="city" required="required" autocomplete="off" value="{{ fields.cityName }}">
 								<div class="city-list-group" id="city-list-group">
@@ -77,7 +77,7 @@
 							</div>
 						</div>
 						<div class="input-radius-group">
-							<label for="search_form_radius">Rayon</label>
+							<label for="search_form_radius">{{'radius'|trans|capitalize}}</label>
 							<span class="input-radius">
 								<input type="number" id="search_form_radius" name="radius" min="0" max="150" step="5" value="{{ fields.radius }}">
 								<i>Km</i>
@@ -86,7 +86,7 @@
 							</span>
 						</div>
 						<input type="hidden" id="search_form_coord" name="coord" value="{{ fields.cityCoord }}">
-						<button type="submit">rechercher&nbsp;<i class="fa fa-search"></i></button>
+						<button type="submit">{{'search'|trans}}&nbsp;<i class="fa fa-search"></i></button>
 					</div>
 				</div>
 			</div>
