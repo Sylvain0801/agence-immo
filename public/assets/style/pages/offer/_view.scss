@@ -1,5 +1,5 @@
 .property-view {
-  margin-top: calc(#{$navbar-height} * 2);
+  margin-top: calc(#{var(--navbar-height)} * 2);
   font-size: 1rem;
   @media screen and (max-width: 992px) {
     font-size: .8rem;
@@ -7,7 +7,7 @@
   .property-advertisement {
     @include img-cover;
     height: 600px;
-    margin: 0 auto $navbar-height;
+    margin: 0 auto var(--navbar-height);
     position: relative;
     box-shadow: 0 3px 6px rgba($color-black, .5);
     .trapeze-headband {

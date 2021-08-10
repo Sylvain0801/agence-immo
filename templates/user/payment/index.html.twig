@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'payment'|trans|capitalize}} - {{'Real estate agency'|trans}}
+{% endblock %}
+
+{% block body %}
+	<section class="form-section">
+		<h1>{{'payment'|trans}}</h1>
+		<form method="post">
+			<div class="form-control-group">
+				<h4>{{ 'Subscription periodicity'|trans }} :</h4>
+				<div class="input-radio-group">
+					<input type="radio" name="payment_periodicity" id="payment_monthly" value="50">
+					<label for="payment_monthly"><div><span></span><i class="fa fa-caret-left"></i>&nbsp;{{'monthly'|trans|capitalize}}</div><p>50 € {{'per month'|trans}}</p></label>
+				</div>
+				<div class="input-radio-group">
+					<input type="radio" name="payment_periodicity" id="payment_annual" checked value="600">
+					<label for="payment_annual"><div><span></span><i class="fa fa-caret-left"></i>&nbsp;{{'annual'|trans|capitalize}}</div><p>600 € {{'per year'|trans}}</p></label>
+				</div>
+			</div>
+			<div class="form-control-group">
+				<div id="errors" role="alert"></div>
+			</div>
+			<div class="form-control-group">
+				<input id="cardholder-name" type="text" placeholder="{{ 'Credit cardholder'|trans }}" class="form-control-input" required>
+			</div>
+			<div class="form-control-group">
+				<div id="card-element" class="form-control-input"></div>
+			</div>
+			<div class="form-control-group">
+				<div id="card-errors"></div>
+			</div>
+			<div class="form-button-submit-right">
+				<a href="#" id="display-modal-confirm-payment" role="button" class="button button-rounded button-outline button-fit" data-toggle="modal">{{ 'Validate the payment'|trans }}</a>
+			</div>
+		</form>
+	</section>
+	<div class="modal" id="modal-confirm-payment" role="dialog">
+    <div class="modal-content">
+      <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+			<div class="modal-header">
+			<h3>{{ 'Confirm payment'|trans }}</h3>
+			</div>
+      <div class="modal-body">
+				<p>Merci de confirmer votre souscription à l'abonnement payant de propriétaire privé :</p>
+				<br>
+				<ol>
+					<li>Si vous confirmer, vous recevrez un premier mail de confirmation de votre demande d'abonnement.</li>
+					<li>Une fois le paiement confirmé par votre banque, nous vous enverrons un deuxième mail avec vos identifiants afin de pouvoir vous connecter à votre compte.</li>
+				</ol>
+				<p></p>
+			</div>
+			<div class="modal-footer">
+				<button class="button button-rounded button-outline" role="button" data-dismiss="dialog">{{'cancel'|trans}}</button>
+				<button id="card-button" type="button" data-secret="{{ intent.client_secret }}" class="button button-rounded">{{'confirm'|trans}}</button>
+			</div>
+    </div>
+  </div>
+{% endblock %}
+{% block javascripts %}
+	<script src="https://js.stripe.com/v3/"></script>
+	<script src="{{ asset('assets/js/scripts_paiement.js') }}"></script>
+{% endblock %}

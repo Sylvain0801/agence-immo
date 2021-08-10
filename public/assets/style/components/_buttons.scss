@@ -5,7 +5,7 @@
 	margin: 10px;
 	cursor: pointer;
 	font-family: $font-roboto;
-	font-size: .9rem;
+	font-size: .9em;
 	font-weight: 500;
 	text-transform: uppercase;
 	background: $color-primary;
@@ -37,6 +37,10 @@
 	width: 140px;
 	height: 30px;
 	font-size: .8rem;
+}
+.button-fit {
+	width: initial;
+	padding: 0 1em;
 }
 
 .button-circle {

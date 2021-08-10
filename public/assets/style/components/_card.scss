@@ -91,8 +91,6 @@
       transform: scale(1.05);
     }
   }
-  // a {
-  // }
   h4 {
     font-size: 1.25rem;
     @media screen and (max-width: 768px) {
@@ -154,28 +152,28 @@
   }
 }
 .no-property-to-display {
-  margin-top: calc(#{$navbar-height} * 1.5);
-  height: $navbar-height;
+  margin-top: calc(#{var(--navbar-height)} * 1.5);
+  height: var(--navbar-height);
   width: 95%;
   font-family: $font-roboto;
   text-align: center;
   @media screen and (max-width: 768px) {
-    margin-top: calc(#{$navbar-height-mobile} * 1.5);
-    height: $navbar-height-mobile;
+    margin-top: calc(#{var(--navbar-height)} * 1.5);
+    height: var(--navbar-height);
   }
 }
 .property-counter {
   width: 100%;
-  height: $navbar-height;
+  height: var(--navbar-height);
   text-transform: uppercase;
   font-weight: 600;
   font-size: 1.2rem;
   font-family: $font-roboto;
-  margin-top: calc(#{$navbar-height} * 1.5);
+  margin-top: calc(#{var(--navbar-height)} * 1.5);
   @include flex-center;
   @media screen and (max-width: 768px) {
-    margin-top: calc(#{$navbar-height-mobile} * 1.5);
+    margin-top: calc(#{var(--navbar-height)} * 1.5);
     font-size: .9rem;
-    height: $navbar-height-mobile;
+    height: var(--navbar-height);
   }
 }

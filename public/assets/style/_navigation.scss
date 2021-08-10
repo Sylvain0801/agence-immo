@@ -1,6 +1,6 @@
 .navigation {
 	width: 100%;
-	height: $navbar-height;
+	height: var(--navbar-height);
 	position: absolute;
 	top: $navbar-top;
 	z-index: 100;
@@ -45,7 +45,7 @@
 			}
 		}
 		a {
-			height: $navbar-height;
+			height: var(--navbar-height);
 			display: flex;
 			align-items: center;
 			font-size: .9rem;
@@ -162,7 +162,7 @@
 
 @media screen and (max-width: 768px) {
 	.navigation {
-		height: $navbar-height-mobile;
+		height: var(--navbar-height);
 		justify-content: flex-end;
 		.burger {
 			margin-right: calc(50% - (35px / 2));
@@ -171,7 +171,7 @@
 		}
 		ul {
 			position: absolute;
-			top: $navbar-height-mobile;
+			top: var(--navbar-height);
 			width: 100%;
 			flex-direction: column;
 			background-color: $color-primary;

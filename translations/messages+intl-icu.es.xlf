@@ -233,6 +233,22 @@
         <source>see more</source>
         <target>ver mas</target>
       </trans-unit>
+      <trans-unit id="h3gPpd5" resname="register">
+        <source>register</source>
+        <target>__register</target>
+      </trans-unit>
+      <trans-unit id="TP3eab3" resname="firstname">
+        <source>firstname</source>
+        <target>__firstname</target>
+      </trans-unit>
+      <trans-unit id="c1prjRW" resname="Agree terms">
+        <source>Agree terms</source>
+        <target>__Agree terms</target>
+      </trans-unit>
+      <trans-unit id="u3I07BJ" resname="Register">
+        <source>Register</source>
+        <target>__Register</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

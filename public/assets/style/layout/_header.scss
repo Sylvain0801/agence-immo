@@ -1,7 +1,7 @@
 header {
-  margin-bottom: $navbar-height;
+  margin-bottom: var(--navbar-height);
   @media screen and (max-width: 992px) {
-    margin-bottom: $navbar-height-mobile;
+    margin-bottom: var(--navbar-height);
   }
   .top-headband {
     width: 100%;

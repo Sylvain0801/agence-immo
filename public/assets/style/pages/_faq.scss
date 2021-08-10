@@ -3,15 +3,15 @@
   @media screen and (max-width: 768px) {
     font-size: .9em;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 576px) {
     font-size: .8em;
   }
   h1 {
     text-align: center;
     text-transform: uppercase;
     color: $color-primary;
-    height: $navbar-height;
-    margin: calc(2 * #{$navbar-height}) auto $navbar-height;
+    height: var(--navbar-height);
+    margin: calc(2 * #{var(--navbar-height)}) auto var(--navbar-height);
     font-size: 2.5em;
     font-weight: bold;
   }
@@ -23,13 +23,13 @@
     font-weight: bold;
   }
   .faq-item {
-    height: $navbar-height;
+    height: var(--navbar-height);
     padding: .5em 1.25em;
     @include flex-between;
     margin-bottom: 10px;
   }
   .faq-menu-group {
-    margin-bottom: $navbar-height;
+    margin-bottom: var(--navbar-height);
     a {
       background-color: $color-white;
       color: $color-primary;
@@ -51,7 +51,7 @@
         color: $color-white;
         border-radius: 2px;
         box-shadow: 0 2px 6px rgba($color-black, .15);
-        margin-top: $navbar-height;
+        margin-top: var(--navbar-height);
         i {
           color: $color-white;
           font-size: 1.4em;

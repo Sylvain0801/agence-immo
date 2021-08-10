@@ -1,5 +1,5 @@
 .message-alert {
-  top: calc(-#{$navbar-height});
+  top: calc(-#{var(--navbar-height)});
   left: 15%;
   @media screen and (max-width: 1400px) {
     left: 2%;
