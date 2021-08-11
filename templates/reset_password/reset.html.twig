@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+    <section class="form-section">
+		<h1>{{'Reset your password'|trans|capitalize}}</h1>
+        {{ form_start(resetForm) }}
+            <div class="form-control-group">
+                {{ form_label(resetForm.plainPassword.first, null, {'label': 'new password'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(resetForm.plainPassword.first) }}
+			</div>
+            <div class="form-control-group">
+                {{ form_label(resetForm.plainPassword.second, null, {'label': 'repeat password'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(resetForm.plainPassword.second) }}
+			</div>
+            <div class="form-button-submit-right">
+                <button type="submit" class="button button-rounded button-outline button-fit">{{'reset password'|trans}}</button>
+			</div>
+        {{ form_end(resetForm) }}
+	</section>
+{% endblock %}

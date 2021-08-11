@@ -249,6 +249,190 @@
         <source>Register</source>
         <target>__Register</target>
       </trans-unit>
+      <trans-unit id="cHB4BFd" resname="your question has been sent successfully">
+        <source>your question has been sent successfully</source>
+        <target>__your question has been sent successfully</target>
+      </trans-unit>
+      <trans-unit id="LAXqlq0" resname="ask a question">
+        <source>ask a question</source>
+        <target>__ask a question</target>
+      </trans-unit>
+      <trans-unit id="T_6ag8M" resname="email address">
+        <source>email address</source>
+        <target>__email address</target>
+      </trans-unit>
+      <trans-unit id="7TNivS3" resname="your question">
+        <source>your question</source>
+        <target>__your question</target>
+      </trans-unit>
+      <trans-unit id="x_uzepG" resname="back to faq">
+        <source>back to faq</source>
+        <target>__back to faq</target>
+      </trans-unit>
+      <trans-unit id="J84dG.Q" resname="send">
+        <source>send</source>
+        <target>__send</target>
+      </trans-unit>
+      <trans-unit id="N4uWqjr" resname="back to homepage">
+        <source>back to homepage</source>
+        <target>__back to homepage</target>
+      </trans-unit>
+      <trans-unit id="PyUAuC2" resname="Sale">
+        <source>Sale</source>
+        <target>__Sale</target>
+      </trans-unit>
+      <trans-unit id="aDtTH0H" resname="price">
+        <source>price</source>
+        <target>__price</target>
+      </trans-unit>
+      <trans-unit id="29ZlLoj" resname="Rental">
+        <source>Rental</source>
+        <target>__Rental</target>
+      </trans-unit>
+      <trans-unit id="Dp.RWWx" resname="rent">
+        <source>rent</source>
+        <target>__rent</target>
+      </trans-unit>
+      <trans-unit id="EwPAaws" resname="type">
+        <source>type</source>
+        <target>__type</target>
+      </trans-unit>
+      <trans-unit id="X21yWHI" resname="type of property">
+        <source>type of property</source>
+        <target>__type of property</target>
+      </trans-unit>
+      <trans-unit id="YMAz34e" resname="furnished">
+        <source>furnished</source>
+        <target>__furnished</target>
+      </trans-unit>
+      <trans-unit id="EaYsI0E" resname="city">
+        <source>city</source>
+        <target>__city</target>
+      </trans-unit>
+      <trans-unit id="mBl5oiu" resname="radius">
+        <source>radius</source>
+        <target>__radius</target>
+      </trans-unit>
+      <trans-unit id="JBkykGe" resname="search">
+        <source>search</source>
+        <target>__search</target>
+      </trans-unit>
+      <trans-unit id="VbXFH4Z" resname="lastname">
+        <source>lastname</source>
+        <target>__lastname</target>
+      </trans-unit>
+      <trans-unit id="2Ayb_RD" resname="address">
+        <source>address</source>
+        <target>__address</target>
+      </trans-unit>
+      <trans-unit id="XohImNo" resname="password">
+        <source>password</source>
+        <target>__password</target>
+      </trans-unit>
+      <trans-unit id="WsJl85a" resname="Confirm password">
+        <source>Confirm password</source>
+        <target>__Confirm password</target>
+      </trans-unit>
+      <trans-unit id="WfpDeb4" resname="Reset your password">
+        <source>Reset your password</source>
+        <target>__Reset your password</target>
+      </trans-unit>
+      <trans-unit id="DMkAEun" resname="address email">
+        <source>address email</source>
+        <target>__address email</target>
+      </trans-unit>
+      <trans-unit id="hOB8_o1" resname="Enter your email address and we we will send you a link to reset your password.">
+        <source>Enter your email address and we we will send you a link to reset your password.</source>
+        <target>__Enter your email address and we we will send you a link to reset your password.</target>
+      </trans-unit>
+      <trans-unit id="HGwELqp" resname="send password reset email">
+        <source>send password reset email</source>
+        <target>__send password reset email</target>
+      </trans-unit>
+      <trans-unit id="f5NGhoD" resname="please sign in">
+        <source>please sign in</source>
+        <target>__please sign in</target>
+      </trans-unit>
+      <trans-unit id="acVpEs4" resname="You are logged in as">
+        <source>You are logged in as</source>
+        <target>__You are logged in as</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>__Logout</target>
+      </trans-unit>
+      <trans-unit id="23A6pdO" resname="forgot your password ?">
+        <source>forgot your password ?</source>
+        <target>__forgot your password ?</target>
+      </trans-unit>
+      <trans-unit id="_TJnqhH" resname="Remember me">
+        <source>Remember me</source>
+        <target>__Remember me</target>
+      </trans-unit>
+      <trans-unit id="lv8WRZJ" resname="Not yet registered, create an account ?">
+        <source>Not yet registered, create an account ?</source>
+        <target>__Not yet registered, create an account ?</target>
+      </trans-unit>
+      <trans-unit id="BA.9WSX" resname="payment">
+        <source>payment</source>
+        <target>__payment</target>
+      </trans-unit>
+      <trans-unit id="tWv15pQ" resname="Subscription periodicity">
+        <source>Subscription periodicity</source>
+        <target>__Subscription periodicity</target>
+      </trans-unit>
+      <trans-unit id="kWnjynP" resname="monthly">
+        <source>monthly</source>
+        <target>__monthly</target>
+      </trans-unit>
+      <trans-unit id="iLHRpn4" resname="per month">
+        <source>per month</source>
+        <target>__per month</target>
+      </trans-unit>
+      <trans-unit id="7l4oeMS" resname="annual">
+        <source>annual</source>
+        <target>__annual</target>
+      </trans-unit>
+      <trans-unit id="YRwe4y2" resname="per year">
+        <source>per year</source>
+        <target>__per year</target>
+      </trans-unit>
+      <trans-unit id="N8kaHp5" resname="Credit cardholder">
+        <source>Credit cardholder</source>
+        <target>__Credit cardholder</target>
+      </trans-unit>
+      <trans-unit id="DxenLOZ" resname="Validate the payment">
+        <source>Validate the payment</source>
+        <target>__Validate the payment</target>
+      </trans-unit>
+      <trans-unit id="pVxO0ts" resname="Confirm payment">
+        <source>Confirm payment</source>
+        <target>__Confirm payment</target>
+      </trans-unit>
+      <trans-unit id="I3TZF5S" resname="cancel">
+        <source>cancel</source>
+        <target>__cancel</target>
+      </trans-unit>
+      <trans-unit id="PyZ8KrQ" resname="confirm">
+        <source>confirm</source>
+        <target>__confirm</target>
+      </trans-unit>
+      <trans-unit id="FmrMHS6" resname="If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.">
+        <source>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</source>
+        <target>__If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</target>
+      </trans-unit>
+      <trans-unit id="87wG9uu" resname="This link will expire in">
+        <source>This link will expire in</source>
+        <target>__This link will expire in</target>
+      </trans-unit>
+      <trans-unit id="bs9avOq" resname="If you don't receive an email please check your spam folder or">
+        <source>If you don't receive an email please check your spam folder or</source>
+        <target>__If you don't receive an email please check your spam folder or</target>
+      </trans-unit>
+      <trans-unit id="W13t7jL" resname="try again">
+        <source>try again</source>
+        <target>__try again</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

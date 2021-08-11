@@ -51,7 +51,6 @@ class PaymentController extends AbstractController
      */
     public function success(Request $request, MailerInterface $mailer): RedirectResponse
     {
-            dump($request->getSession()->get('email'));
             $email = (new Email())
                 ->from(new Address('agence-immobiliere@no-reply.com', 'Agence Immobilière'))
                 ->to($request->getSession()->get('email'))
@@ -64,7 +63,7 @@ class PaymentController extends AbstractController
                 ->html('<p>See Twig integration for better HTML integration!</p>');
     
             $mailer->send($email);
-            return $this->redirectToRoute('payment');
+            return $this->redirectToRoute('home');
     }
 
 

@@ -1,0 +1,64 @@
+.modal-popup{
+  background-color: transparentize(#323232, .15);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 90000;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  &.show{
+    @include flex-center;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.modal-popup-content{
+  margin: 10px 25%;
+  @media screen and (max-width: 1400px) {
+    margin: 10px 10%;
+  }
+  background-color: $color-white;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal-popup-close{
+  position: absolute;
+  color: #323232;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  &:hover {
+    color: rgba(#323232, .75);
+  }
+}
+
+.modal-popup-header{
+  font-size: 2.5em;
+  display: flex;
+  justify-content: center;
+  i {
+    font-size: 2em;
+    text-shadow: 0px 3px 6px rgba($color-black,.5);
+    &.fa.fa-check {
+      color: $color-green;
+    }
+  }
+}
+
+.modal-popup-body{
+  margin: 2em;
+  font-size: 1em;
+  text-align: center;
+}
+
+.modal-popup-footer{
+  display: flex;
+  justify-content: center;
+}

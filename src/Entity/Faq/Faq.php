@@ -20,18 +20,24 @@ class Faq
 
     /**
      * @ORM\ManyToOne(targetEntity=CategoryFaq::class, inversedBy="faqs")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $category;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $question;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $answer;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
 
     public function getId(): ?int
     {
@@ -70,6 +76,18 @@ class Faq
     public function setAnswer(string $answer): self
     {
         $this->answer = $answer;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

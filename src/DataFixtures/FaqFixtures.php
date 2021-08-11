@@ -28,6 +28,7 @@ class FaqFixtures extends Fixture
         $faq = new Faq();
         $faq->setQuestion($faker->realText(65, $indexSize = 2) . ' ?')
             ->setAnswer($faker->realText(200, $indexSize = 2))
+            ->setEmail($faker->email)
             ->setCategory($this->getReference("categoryFaq_" . rand(0, count($categories) - 1)));
         $manager->persist($faq);
       }

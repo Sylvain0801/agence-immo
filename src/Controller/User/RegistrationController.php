@@ -4,6 +4,7 @@ namespace App\Controller\User;
 
 use App\Entity\User\PrivateOwner;
 use App\Form\RegistrationFormType;
+use App\Security\AppAuthenticator;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
+use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
@@ -45,7 +48,8 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
+            
+            
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
@@ -56,6 +60,7 @@ class RegistrationController extends AbstractController
             );
             // do anything else you need here, like send an email
             $request->getSession()->set('email', $user->getEmail());
+
             return $this->redirectToRoute('payment');
         }
 

@@ -139,6 +139,36 @@ for (let button of modalButtons) {
 
 // ####################################################################
 // #                                                                  #
+// #                  Gestion des modales popup                       #
+// #                                                                  #
+// ####################################################################
+
+const modalPopups = document.querySelectorAll("[data-modal=popup]");
+for (let popup of modalPopups) {
+   
+
+    // On récupère les boutons de fermeture
+    const popupClose = popup.querySelectorAll("[data-dismiss=popup]");
+
+    for (let close of popupClose) {
+            close.addEventListener("click", (e) => {
+            e.preventDefault()
+            popup.classList.remove("show");
+        });
+    }
+
+    // On gère la fermeture lors du clic sur la zone grise
+    popup.addEventListener("click", function () {
+        this.classList.remove("show");
+    });
+    // On évite la propagation du clic d'un enfant à son parent
+    popup.children[0].addEventListener("click", function (e) {
+    e.stopPropagation();
+    });
+}
+
+// ####################################################################
+// #                                                                  #
 // #                    Toggle réponses FAQ                           #
 // #                                                                  #
 // ####################################################################
