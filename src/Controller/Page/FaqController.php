@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Page;
 
 use App\Entity\Faq\Faq;
 use App\Form\Faq\ContactFormType;
@@ -23,7 +23,7 @@ class FaqController extends AbstractController
     {
         $categories = $categoryFaqRepository->findAll();
 
-        return $this->render('faq/index.html.twig', [
+        return $this->render('page/faq/index.html.twig', [
             'categories' => $categories,
             'active' => 'faq'
         ]);
@@ -50,7 +50,7 @@ class FaqController extends AbstractController
             return $this->redirectToRoute('faq_contact');
         }
 
-        return $this->render('faq/contact.html.twig', [
+        return $this->render('page/faq/contact.html.twig', [
             'form' => $form->createView(),
             'active' => 'faq'
         ]);

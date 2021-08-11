@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'more information'|trans|capitalize}} - {{'Real estate agency'|trans}}{% endblock %}
+
+{% block body %}
+    <section class="form-section">
+		<h1>{{'more information'|trans|capitalize}}</h1>
+		<div class="form-control-group">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni hic sint eius ea odit, sequi assumenda iure aliquid, modi ipsam quo repellendus quisquam maiores perferendis incidunt veniam voluptas accusantium consequatur vitae impedit facilis illo optio, illum iste! Ratione vitae illo incidunt est corrupti cumque repudiandae, dolorem enim quos magni aperiam rem voluptatem? Maiores voluptatem quaerat inventore facere ducimus quis quam repellendus impedit corporis aliquid, ad iste harum unde culpa ipsam quibusdam provident eveniet eaque aperiam quidem sapiente, explicabo tenetur. Eaque aliquam, quo ducimus a iste molestiae necessitatibus eius blanditiis nemo deserunt delectus tenetur veritatis, assumenda deleniti qui eos commodi. Voluptatibus voluptates aliquid, accusantium nisi, iure ex ab vitae dolor ducimus expedita veniam id eum ipsam voluptas optio officiis facere reprehenderit quasi modi quam! Qui recusandae pariatur excepturi cum sunt quos repellat et reprehenderit odio aut, tempore, quaerat voluptatem perspiciatis nam dicta vitae consequatur officia. Culpa eaque veniam nihil natus quod?</p>
+		</div>
+		<div class="form-button-submit-right">
+			<a href="{{ path('app_register_private_owner') }}" role="button" class="button button-rounded button-outline">{{'create an account'|trans}}</a>
+		</div>
+	</section>
+{% endblock %}

@@ -3,8 +3,7 @@
 namespace App\Controller\User;
 
 use App\Entity\User\PrivateOwner;
-use App\Form\RegistrationFormType;
-use App\Security\AppAuthenticator;
+use App\Form\User\RegistrationFormType;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,8 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
-use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController

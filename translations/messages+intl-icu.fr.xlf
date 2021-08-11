@@ -421,6 +421,98 @@
         <source>try again</source>
         <target>réessayer</target>
       </trans-unit>
+      <trans-unit id="TJRSvLr" resname="-- Choose a reason --">
+        <source>-- Choose a reason --</source>
+        <target>-- Choisissez une raison --</target>
+      </trans-unit>
+      <trans-unit id="S9GeOjE" resname="contact us">
+        <source>contact us</source>
+        <target>nous contacter</target>
+      </trans-unit>
+      <trans-unit id="j8.M9nW" resname="reason">
+        <source>reason</source>
+        <target>raison</target>
+      </trans-unit>
+      <trans-unit id="oCEDyIl" resname="property address">
+        <source>property address</source>
+        <target>adresse du bien</target>
+      </trans-unit>
+      <trans-unit id="IeRf0ck" resname="your message">
+        <source>your message</source>
+        <target>votre message</target>
+      </trans-unit>
+      <trans-unit id="PnqTnpb" resname="phone number">
+        <source>phone number</source>
+        <target>numéro de téléphone</target>
+      </trans-unit>
+      <trans-unit id="Gy121Ee" resname="create an account">
+        <source>create an account</source>
+        <target>créer un compte</target>
+      </trans-unit>
+      <trans-unit id="t2zh.Em" resname="password reset email sent">
+        <source>password reset email sent</source>
+        <target>e-mail de réinitialisation du mot de passe envoyé</target>
+      </trans-unit>
+      <trans-unit id="ylHOH7F" resname="Hi!">
+        <source>Hi!</source>
+        <target>Hello !</target>
+      </trans-unit>
+      <trans-unit id="vQH5j0c" resname="To reset your password, please visit the following link">
+        <source>To reset your password, please visit the following link</source>
+        <target>Pour réinitialiser votre mot de passe, veuillez cliquer sur lien suivant</target>
+      </trans-unit>
+      <trans-unit id="F7WctIl" resname="Cheers!">
+        <source>Cheers!</source>
+        <target>Bravo !</target>
+      </trans-unit>
+      <trans-unit id="dW2OSVc" resname="reset your password">
+        <source>reset your password</source>
+        <target>réinitialisez votre mot de passe</target>
+      </trans-unit>
+      <trans-unit id="idUPqG8" resname="new password">
+        <source>new password</source>
+        <target>nouveau mot de passe</target>
+      </trans-unit>
+      <trans-unit id="4FJQr4X" resname="repeat password">
+        <source>repeat password</source>
+        <target>confirmer le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="8hGtqC1" resname="reset password">
+        <source>reset password</source>
+        <target>réinitialiser le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="lyA4dMH" resname="I accept the conditions of use of the data of the form after sending">
+        <source>I accept the conditions of use of the data of the form after sending</source>
+        <target>J'accepte les conditions d'utilisation des données du formulaire après envoi</target>
+      </trans-unit>
+      <trans-unit id="rf5UeEN" resname="I subscribe to the newsletter">
+        <source>I subscribe to the newsletter</source>
+        <target>Je m'abonne à la newsletter</target>
+      </trans-unit>
+      <trans-unit id="nqc5TlV" resname="your message has been sent successfully">
+        <source>your message has been sent successfully</source>
+        <target>votre message a été envoyé avec succès</target>
+      </trans-unit>
+      <trans-unit id="ghqN5v_" resname="new message">
+        <source>new message</source>
+        <target>nouveau message</target>
+      </trans-unit>
+      <trans-unit id="dYV6RYm" resname="from">
+        <source>from</source>
+        <target>de</target>
+      </trans-unit>
+      <trans-unit id="qUkfTBv" resname="subject">
+        <source>subject</source>
+        <target>sujet</target>
+      </trans-unit>
+      <trans-unit id="06MO9WO" resname="property location">
+        <source>property location</source>
+        <target>localisation du bien</target>
+      </trans-unit>
+      <trans-unit id="rV2eMy0" resname="-- Choose a city from the list --">
+        <source>-- Choose a city from the list --</source>
+        <target>-- Choisissez une ville dans la liste --</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'contact'|trans|capitalize}} - {{'Real estate agency'|trans}}{% endblock %}
+
+{% block body %}
+{% for message in app.flashes('message_popup') %}
+    {{ include('include/_popup_confirm.html.twig') }}
+  {% endfor %}
+    <section class="form-section">
+		<h1>{{'contact us'|trans|capitalize}}</h1>
+        {{ form_start(form) }}
+            <div class="form-control-group">
+                {{ form_label(form.reason, null, {'label': 'reason'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(form.reason) }}
+			</div>
+            <div class="form-control-group">
+                <div class="input-city-group">
+                    <label for="property_location" class="required">{{'property location'|trans|capitalize}}&nbsp;<i class="fa fa-caret-right"></i></label>
+                    <div class="input-city-list-group">
+                        <input class="form-control-input" type="text" placeholder="{{ '-- Choose a city from the list --'|trans }}" id="property_location" name="property_location" pattern="[0-9]{5}.{1,80}" required="required" autocomplete="off">
+                        <div class="input-city-info"><i class="fa fa-question"></i></div>
+                        <div class="city-list-group" id="city-list-group">
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="form-control-group">
+                {{ form_label(form.message, null, {'label': 'your message'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(form.message) }}
+			</div>
+            <div class="form-control-group">
+                {{ form_label(form.firstname, null, {'label': 'firstname'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(form.firstname) }}
+			</div>
+            <div class="form-control-group">
+                {{ form_label(form.lastname, null, {'label': 'lastname'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(form.lastname) }}
+			</div>
+            <div class="form-control-group">
+                {{ form_label(form.email, null, {'label': 'email address'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(form.email) }}
+			</div>
+            <div class="form-control-group">
+                {{ form_label(form.phone_number, null, {'label': 'phone number'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+                {{ form_widget(form.phone_number) }}
+			</div>
+            <div class="form-control-group">
+				<div class="input-checkbox-group">
+					<input type="checkbox" name="agree_conditions" id="agree_conditions">
+					<label for="agree_conditions"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{'I accept the conditions of use of the data of the form after sending'|trans}}</label>
+				</div>
+				<div class="input-checkbox-group">
+					<input type="checkbox" name="newsletter" id="newsletter">
+					<label for="newsletter"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{'I subscribe to the newsletter'|trans}}</label>
+				</div>
+			</div> 
+            <div class="form-control-group">
+			</div> 
+            <div class="form-button-submit-right">
+                <button type="submit" class="button button-rounded button-outline"><i class="fa fa-paper-plane"></i>&nbsp;{{'send'|trans}}</button>
+			</div>
+        {{ form_end(form) }}
+	</section>
+{% endblock %}
+{% block javascripts %}
+  <script src="{{ asset('assets/js/searchCities.js') }}"></script>
+{% endblock %}

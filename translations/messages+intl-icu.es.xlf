@@ -433,6 +433,98 @@
         <source>try again</source>
         <target>__try again</target>
       </trans-unit>
+      <trans-unit id="TJRSvLr" resname="-- Choose a reason --">
+        <source>-- Choose a reason --</source>
+        <target>__-- Choose a reason --</target>
+      </trans-unit>
+      <trans-unit id="S9GeOjE" resname="contact us">
+        <source>contact us</source>
+        <target>__contact us</target>
+      </trans-unit>
+      <trans-unit id="j8.M9nW" resname="reason">
+        <source>reason</source>
+        <target>__reason</target>
+      </trans-unit>
+      <trans-unit id="oCEDyIl" resname="property address">
+        <source>property address</source>
+        <target>__property address</target>
+      </trans-unit>
+      <trans-unit id="IeRf0ck" resname="your message">
+        <source>your message</source>
+        <target>__your message</target>
+      </trans-unit>
+      <trans-unit id="PnqTnpb" resname="phone number">
+        <source>phone number</source>
+        <target>__phone number</target>
+      </trans-unit>
+      <trans-unit id="Gy121Ee" resname="create an account">
+        <source>create an account</source>
+        <target>__create an account</target>
+      </trans-unit>
+      <trans-unit id="t2zh.Em" resname="password reset email sent">
+        <source>password reset email sent</source>
+        <target>__password reset email sent</target>
+      </trans-unit>
+      <trans-unit id="ylHOH7F" resname="Hi!">
+        <source>Hi!</source>
+        <target>__Hi!</target>
+      </trans-unit>
+      <trans-unit id="vQH5j0c" resname="To reset your password, please visit the following link">
+        <source>To reset your password, please visit the following link</source>
+        <target>__To reset your password, please visit the following link</target>
+      </trans-unit>
+      <trans-unit id="F7WctIl" resname="Cheers!">
+        <source>Cheers!</source>
+        <target>__Cheers!</target>
+      </trans-unit>
+      <trans-unit id="dW2OSVc" resname="reset your password">
+        <source>reset your password</source>
+        <target>__reset your password</target>
+      </trans-unit>
+      <trans-unit id="idUPqG8" resname="new password">
+        <source>new password</source>
+        <target>__new password</target>
+      </trans-unit>
+      <trans-unit id="4FJQr4X" resname="repeat password">
+        <source>repeat password</source>
+        <target>__repeat password</target>
+      </trans-unit>
+      <trans-unit id="8hGtqC1" resname="reset password">
+        <source>reset password</source>
+        <target>__reset password</target>
+      </trans-unit>
+      <trans-unit id="lyA4dMH" resname="I accept the conditions of use of the data of the form after sending">
+        <source>I accept the conditions of use of the data of the form after sending</source>
+        <target>__I accept the conditions of use of the data of the form after sending</target>
+      </trans-unit>
+      <trans-unit id="rf5UeEN" resname="I subscribe to the newsletter">
+        <source>I subscribe to the newsletter</source>
+        <target>__I subscribe to the newsletter</target>
+      </trans-unit>
+      <trans-unit id="nqc5TlV" resname="your message has been sent successfully">
+        <source>your message has been sent successfully</source>
+        <target>__your message has been sent successfully</target>
+      </trans-unit>
+      <trans-unit id="ghqN5v_" resname="new message">
+        <source>new message</source>
+        <target>__new message</target>
+      </trans-unit>
+      <trans-unit id="dYV6RYm" resname="from">
+        <source>from</source>
+        <target>__from</target>
+      </trans-unit>
+      <trans-unit id="qUkfTBv" resname="subject">
+        <source>subject</source>
+        <target>__subject</target>
+      </trans-unit>
+      <trans-unit id="06MO9WO" resname="property location">
+        <source>property location</source>
+        <target>__property location</target>
+      </trans-unit>
+      <trans-unit id="rV2eMy0" resname="-- choose a city from the list --">
+        <source>-- choose a city from the list --</source>
+        <target>__-- choose a city from the list --</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}{{'reset your password'|trans|capitalize}} - {{'Real estate agency'|trans}}{% endblock %}
 
 {% block body %}
     <section class="form-section">
-		<h1>{{'Reset your password'|trans|capitalize}}</h1>
+		<h1>{{'reset your password'|trans|capitalize}}</h1>
         {% for flashError in app.flashes('reset_password_error') %}
             <div class="alert alert-danger" role="alert">{{ flashError }}</div>
         {% endfor %}

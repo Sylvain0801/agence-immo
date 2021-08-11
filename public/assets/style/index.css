@@ -2137,13 +2137,19 @@ footer .footer-social-media a:hover i {
   border-radius: 4px;
   border: 1px solid #CCCCCC;
   outline: none;
-  padding: 10px 20px;
+  padding: .5em 20px;
 }
 
 .form-section .form-control-group .form-control-input:focus {
   border: none;
   -webkit-box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15), 0 0 3px 3px #C29C63;
           box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15), 0 0 3px 3px #C29C63;
+}
+
+.form-section .form-control-group .form-control-input:focus:invalid {
+  border: none;
+  -webkit-box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15), 0 0 3px 3px #eb1c26;
+          box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15), 0 0 3px 3px #eb1c26;
 }
 
 .form-section .form-control-group textarea.form-control-input {
@@ -2920,5 +2926,60 @@ footer .footer-social-media a:hover i {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+}
+
+.input-city-group input[type="text"]#property_location {
+  font-size: .9em;
+}
+
+.input-city-group .input-city-list-group {
+  position: relative;
+}
+
+.input-city-group .input-city-list-group #city-list-group {
+  position: absolute;
+  left: 0;
+  top: var(--navbar-height);
+  z-index: 1000;
+  background: whitesmoke;
+  -webkit-box-shadow: 0 3px 6px rgba(51, 64, 74, 0.3);
+          box-shadow: 0 3px 6px rgba(51, 64, 74, 0.3);
+  font-size: .9em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  width: 100%;
+  max-height: 295px;
+  overflow-y: auto;
+}
+
+.input-city-group .input-city-list-group #city-list-group .city-list-item {
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.input-city-group .input-city-list-group #city-list-group .city-list-item:hover {
+  background-color: rgba(126, 137, 145, 0.7);
+  color: #F3F3F3;
+}
+
+.input-city-group .input-city-list-group .input-city-info {
+  position: absolute;
+  height: calc(var(--navbar-height) / 2);
+  width: calc(var(--navbar-height) / 2);
+  top: .6em;
+  bottom: .6em;
+  right: 10px;
+  border-radius: 50%;
+  color: rgba(51, 64, 74, 0.75);
+  cursor: pointer;
+  font-size: 1.3em;
+}
+
+.input-city-group .input-city-list-group .input-city-info i.fa.fa-question {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 /*# sourceMappingURL=index.css.map */

@@ -26,7 +26,19 @@ class RegistrationFormType extends AbstractType
                 'attr' => ['class' => 'form-control-input']
             ])
             ->add('address', TextType::class, [
-                'attr' => ['class' => 'form-control-input']
+                'attr' => [
+                    'class' => 'form-control-input',
+                    'minlength' => 5,
+                    'maxlength' => 15,
+                    'pattern' => "(\+|0)[1-9][0-9]{3,14}"
+                ],
+                'constraints' => [
+                    new Length([
+                        'min' => 5,
+                        'minMessage' => 'Your phone number should be at least {{ limit }} characters',
+                        'max' => 16,
+                    ]),
+                ],
             ])
             ->add('phone_number', TextType::class, [
                 'attr' => ['class' => 'form-control-input']
