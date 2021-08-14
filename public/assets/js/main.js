@@ -1,53 +1,5 @@
 // ####################################################################
 // #                                                                  #
-// #                Gestion menu burger et navigation                 #
-// #                                                                  #
-// ####################################################################
-
-const burger = document.getElementById('burger')
-const navigation = document.getElementById('navigation')
-const dropdowns = document.querySelectorAll('.navigation-dropdown')
-const closeAllMenu = () => {
-    navigation.classList.remove('show')
-    for(let drop of dropdowns) {
-        drop.classList.remove('show')
-    }
-}
-burger.addEventListener('click', (e) => {
-    e.stopPropagation()
-    navigation.classList.toggle('show')
-    if (navigation.classList.contains('show')) {
-        document.querySelector('.search-form-group.show').style.overflow = 'hidden'
-        document.querySelector('.search-form-group').classList.remove('show')
-    }
-    for(let drop of dropdowns) {
-        drop.classList.remove('show')
-    }
-})
-
-for(let drop of dropdowns) {
-    drop.addEventListener('click', function(e) {
-        e.stopPropagation()
-        for(let drop of dropdowns) {
-            if (drop != this) drop.classList.remove('show')
-        }
-        this.classList.toggle('show')
-    })
-}
-document.addEventListener('click', closeAllMenu)
-window.addEventListener('resize', closeAllMenu)
-
-// Ferme les messages alert
-const alertClose = document.querySelectorAll("[data-dismiss=alert]");
-for (let close of alertClose) {
-  close.addEventListener("click", function (e) {
-    e.preventDefault();
-    this.parentNode.style.display = "none";
-  });
-}
-
-// ####################################################################
-// #                                                                  #
 // #                       Gestion des favoris                        #
 // #                                                                  #
 // ####################################################################
@@ -83,7 +35,6 @@ for (const btn of buttonFavorite) {
             this.className = 'card-button-favorite fa fa-star'
         }
     })
- 
 }
 
 // ####################################################################
@@ -146,7 +97,6 @@ for (let button of modalButtons) {
 const modalPopups = document.querySelectorAll("[data-modal=popup]");
 for (let popup of modalPopups) {
    
-
     // On récupère les boutons de fermeture
     const popupClose = popup.querySelectorAll("[data-dismiss=popup]");
 
@@ -161,6 +111,7 @@ for (let popup of modalPopups) {
     popup.addEventListener("click", function () {
         this.classList.remove("show");
     });
+
     // On évite la propagation du clic d'un enfant à son parent
     popup.children[0].addEventListener("click", function (e) {
     e.stopPropagation();
@@ -182,4 +133,19 @@ for (const btn of displayAnswer) {
         this.parentNode.classList.toggle('show')
         this.parentNode.nextElementSibling.classList.toggle('show')
     })
+}
+
+
+// ####################################################################
+// #                                                                  #
+// #                   Fermeture message alert                        #
+// #                                                                  #
+// ####################################################################
+
+const alertClose = document.querySelectorAll("[data-dismiss=alert]");
+for (let close of alertClose) {
+  close.addEventListener("click", function (e) {
+    e.preventDefault();
+    this.parentNode.style.display = "none";
+  });
 }

@@ -2,7 +2,7 @@
 
 namespace App\Form\User;
 
-use App\Entity\User\User;
+use App\Entity\User\PrivateOwner;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -28,8 +28,13 @@ class RegistrationFormType extends AbstractType
             ->add('address', TextType::class, [
                 'attr' => [
                     'class' => 'form-control-input',
+                ],
+            ])
+            ->add('phone_number', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control-input',
                     'minlength' => 5,
-                    'maxlength' => 15,
+                    'maxlength' => 16,
                     'pattern' => "(\+|0)[1-9][0-9]{3,14}"
                 ],
                 'constraints' => [
@@ -39,9 +44,6 @@ class RegistrationFormType extends AbstractType
                         'max' => 16,
                     ]),
                 ],
-            ])
-            ->add('phone_number', TextType::class, [
-                'attr' => ['class' => 'form-control-input']
             ])
             ->add('email', EmailType::class, [
                 'attr' => ['class' => 'form-control-input'],
@@ -92,13 +94,17 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('public_phone', CheckboxType::class, [
+                'label' => true,
+                'required' => false
+            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => PrivateOwner::class,
         ]);
     }
 }

@@ -1,0 +1,35 @@
+main#private-area-main {
+  min-height: calc(100vh - 200px);
+  max-height: 100vh;
+  margin: 100px 20px;
+  margin-left: 20px;
+  transition: margin-left .3s .3s ease-in-out;
+  &.show {
+    transition: margin-left .3s .3s ease-in-out;
+    margin-left: 320px;
+  }
+  color: $color-primary;
+  .top-right-user {
+    position: absolute;
+    top: 20px;
+    right: 2%;
+    h3 {
+      font-size: 1.3em;
+    }
+    i {
+      margin-left: 15px;
+      font-size: 1.3em;
+    }
+    a {
+      color: $color-primary;
+      &:hover {
+        opacity: .75;
+      }
+    }
+  }
+  h2 {
+    color: $color-primary;
+    padding-bottom: 20px;
+    border-bottom: 2px solid;
+  }
+}

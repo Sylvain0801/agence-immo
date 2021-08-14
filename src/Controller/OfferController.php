@@ -3,14 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Property\Offer;
+use App\Form\Property\AskInformationFormType;
 use App\Repository\Property\OfferRepository;
 use App\Repository\Property\PropertyTypeRepository;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/offer", name="offer_")
@@ -219,6 +224,46 @@ class OfferController extends AbstractController
             'offer' => $offer,
             'active' => 'offers',
             'letters' => $letters
+        ]);
+    }
+
+    /**
+     * @Route("/view/{slug}/ask-information", name="view_ask_information")
+     */
+    public function askInformation($slug, Offer $offer, Request $request, MailerInterface $mailer, TranslatorInterface $translator): Response
+    {
+        $request->getSession()->set('referer', $request->headers->get('referer'));
+
+        $form = $this->createForm(AskInformationFormType::class);
+        $formData = $form->handleRequest($request);
+
+        $offer = $this->getDoctrine()->getRepository(Offer::class)->findOneBy(['slug' => $slug]);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $email = (new TemplatedEmail())
+                ->from($formData->get('email')->getData())
+                ->to($offer->getProperty()->getManager()->getEmail())
+                ->subject($offer->getTitle())
+                ->htmlTemplate('offer/email.html.twig')
+                ->context([
+                    'mail' => $formData->get('email')->getData(),
+                    'subject' => $offer->getTitle(),
+                    'message' => $formData->get('message')->getData()
+                ]);
+    
+            $mailer->send($email);
+
+            $message = $translator->trans('your message has been sent successfully');
+            $this->addFlash('message_popup', $message);
+
+            return $this->redirectToRoute('offer_view_ask_information', ['slug' => $slug]);
+        }
+
+        return $this->render('offer/ask_information.html.twig', [
+            'offer' => $offer,
+            'active' => 'offers',
+            'form' => $form->createView()
         ]);
     }
 }

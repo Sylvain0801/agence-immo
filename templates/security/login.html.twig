@@ -8,9 +8,10 @@
 		<h1>{{'please sign in'|trans}}</h1>
 		<form method="post">
 			{% if error %}
+			<div class="form-control-group">
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+			</div>
 			{% endif %}
-
 			{% if app.user %}
 			<div class="form-control-group">
 				{{'You are logged in as'|trans}}&nbsp;{{ app.user.username }},

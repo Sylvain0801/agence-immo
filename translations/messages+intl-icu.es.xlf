@@ -525,6 +525,34 @@
         <source>-- choose a city from the list --</source>
         <target>__-- choose a city from the list --</target>
       </trans-unit>
+      <trans-unit id="tNWCWCF" resname="private owner">
+        <source>private owner</source>
+        <target>__private owner</target>
+      </trans-unit>
+      <trans-unit id="8wTXvrJ" resname="by agency">
+        <source>by agency</source>
+        <target>__by agency</target>
+      </trans-unit>
+      <trans-unit id="NhgbaTl" resname="-- Choose a city from the list --">
+        <source>-- Choose a city from the list --</source>
+        <target>__-- Choose a city from the list --</target>
+      </trans-unit>
+      <trans-unit id="de1wI.q" resname="If you are an owner and do not have your property managed by an agency in our network, please enter the name of the city where your property is located.">
+        <source>If you are an owner and do not have your property managed by an agency in our network, please enter the name of the city where your property is located.</source>
+        <target>__If you are an owner and do not have your property managed by an agency in our network, please enter the name of the city where your property is located.</target>
+      </trans-unit>
+      <trans-unit id="RGQ3MRU" resname="If you are looking for a property to rent or buy, please enter the name of the city where the properties you are interested in are located.">
+        <source>If you are looking for a property to rent or buy, please enter the name of the city where the properties you are interested in are located.</source>
+        <target>__If you are looking for a property to rent or buy, please enter the name of the city where the properties you are interested in are located.</target>
+      </trans-unit>
+      <trans-unit id="ya9GneW" resname="For questions related to the operation of the site and our various offers, consult our">
+        <source>For questions related to the operation of the site and our various offers, consult our</source>
+        <target>__For questions related to the operation of the site and our various offers, consult our</target>
+      </trans-unit>
+      <trans-unit id="hQFSPTl" resname="faq page">
+        <source>faq page</source>
+        <target>__faq page</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -509,9 +509,33 @@
         <source>property location</source>
         <target>localisation du bien</target>
       </trans-unit>
-      <trans-unit id="rV2eMy0" resname="-- Choose a city from the list --">
+      <trans-unit id="NhgbaTl" resname="-- Choose a city from the list --">
         <source>-- Choose a city from the list --</source>
         <target>-- Choisissez une ville dans la liste --</target>
+      </trans-unit>
+      <trans-unit id="tNWCWCF" resname="private owner">
+        <source>private owner</source>
+        <target>propriétaire privé</target>
+      </trans-unit>
+      <trans-unit id="8wTXvrJ" resname="by agency">
+        <source>by agency</source>
+        <target>par agence</target>
+      </trans-unit>
+      <trans-unit id="de1wI.q" resname="If you are an owner and do not have your property managed by an agency in our network, please enter the name of the city where your property is located.">
+        <source>If you are an owner and do not have your property managed by an agency in our network, please enter the name of the city where your property is located.</source>
+        <target>Si vous êtes propriétaire et ne faites pas gérer votre bien par une agence de notre réseau, merci de renseigner le nom de la ville où se situe votre bien.</target>
+      </trans-unit>
+      <trans-unit id="RGQ3MRU" resname="If you are looking for a property to rent or buy, please enter the name of the city where the properties you are interested in are located.">
+        <source>If you are looking for a property to rent or buy, please enter the name of the city where the properties you are interested in are located.</source>
+        <target>Si vous êtes propriétaire et ne faites pas gérer votre bien par une agence de notre réseau, merci de renseigner le nom de la ville où se situe votre bien.</target>
+      </trans-unit>
+      <trans-unit id="ya9GneW" resname="For questions related to the operation of the site and our various offers, consult our">
+        <source>For questions related to the operation of the site and our various offers, consult our</source>
+        <target>Pour des questions liées au fonctionnement du site et de nos diverses offres, consultez notre</target>
+      </trans-unit>
+      <trans-unit id="hQFSPTl" resname="faq page">
+        <source>faq page</source>
+        <target>page faq</target>
       </trans-unit>
     </body>
   </file>

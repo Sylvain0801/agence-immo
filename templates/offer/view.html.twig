@@ -20,7 +20,13 @@
         </div>
         <div class="property-view-manager-favorite-group">
           <div class="property-view-manager">
-            <span>{{ offer.property.manager }}</span>
+            <span>
+              {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
+                {{ 'private owner'|trans }}
+              {% else %}
+                {{ 'by agency'|trans }}
+              {% endif %}
+            </span>
           </div>
           <i class="card-button-favorite fa fa-star-o" data-id={{ offer.property.id }}>&nbsp;<span>{{'favorite'|trans}}</span></i>
         </div>
@@ -74,8 +80,10 @@
           <div class="property-view-contact">
             <div>
               <h4>{{'Contact the owner'|trans}} :</h4>
-              <a href="" class="property-view-button button button-outline"><i class="fa fa-envelope-o"></i>&nbsp;{{'send a message'|trans}}</a>
-              <a href="" class="property-view-button button button-outline"><i class="fa fa-phone"></i>&nbsp;{{'call'|trans}} 05 55 55 55 55</a>
+              <a href="{{ path('offer_view_ask_information', {slug: offer.slug}) }}" class="property-view-button button button-outline"><i class="fa fa-envelope-o"></i>&nbsp;{{'send a message'|trans}}</a>
+              {% if offer.property.manager.publicPhone is defined and offer.property.manager.publicPhone == 1 %}
+                <a href="" class="property-view-button button button-outline"><i class="fa fa-phone"></i>&nbsp;{{'call'|trans}} {{ offer.property.manager.phoneNumber }}</a>
+              {% endif %}
             </div>
             <a href="{{ path('referer') }}" class="property-view-button button"><i class="fa fa-list-ul"></i>&nbsp;&nbsp;{{'back to liste'|trans}}</a>
           </div>

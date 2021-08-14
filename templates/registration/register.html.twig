@@ -26,8 +26,12 @@
 				{{ form_widget(registrationForm.address) }}
 			</div>
 			<div class="form-control-group">
-				{{ form_label(registrationForm.phone_number) }}&nbsp;<i class="fa fa-caret-right"></i>
+				{{ form_label(registrationForm.phone_number, null, {'label': 'phone number'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
 				{{ form_widget(registrationForm.phone_number) }}
+				<div class="input-checkbox-group">
+					{{ form_widget(registrationForm.public_phone) }}
+					<label for="registration_form_public_phone"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{'I agree to provide my phone number on the website'|trans}}</label>
+				</div>
 			</div>
 			<div class="form-control-group">
 				{{ form_label(registrationForm.email, null, {'label': 'email address'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
@@ -44,7 +48,6 @@
 			<div class="form-control-group">
 				<div class="input-checkbox-group">
 					{{ form_widget(registrationForm.agreeTerms) }}
-					{{ form_errors(registrationForm.agreeTerms) }}
 					<label for="registration_form_agreeTerms"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{'Agree terms'|trans}}</label>
 				</div>
 			</div>

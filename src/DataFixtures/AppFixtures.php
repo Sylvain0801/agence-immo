@@ -9,11 +9,12 @@ use App\Entity\Property\Option;
 use App\Entity\Property\Property;
 use App\Entity\Property\PropertyType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 
-class AppFixtures extends Fixture
+class AppFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -74,8 +75,8 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 200; $i++) { 
             $property = new Property();
             $property
-                ->setTransactionType(array_rand(['location' => 'location', 'vente' => 'vente']))
-                ->setManager(array_rand(['propriétaire privé' => 'propriétaire privé', 'gestion agence' => 'gestion agence']))
+                ->setTransactionType($faker->randomElement(['location', 'vente']))
+                ->setManager($this->getReference("agent_" . $i % 50))
                 ->setArea(rand(20, 200))
                 ->setRooms(rand(2, 10));
             $options = array_rand($optionNames, rand(2, count($optionNames)));
@@ -88,8 +89,8 @@ class AppFixtures extends Fixture
                 $property->setPrice(rand(8, 50) * 10000);
             }
             $property
-                ->setEnergy(array_rand(['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D', 'E' => 'E', 'F' => 'F', 'G' => 'G']))
-                ->setGES(array_rand(['A' => 'A', 'B' => 'B', 'C' => 'C', 'D' => 'D', 'E' => 'E', 'F' => 'F', 'G' => 'G']))
+                ->setEnergy($faker->randomElement(['A', 'B', 'C', 'D', 'E', 'F', 'G']))
+                ->setGES($faker->randomElement(['A', 'B', 'C', 'D', 'E', 'F', 'G']))
                 ->setPropertyType($this->getReference("type_" . rand(0, count($types) - 1)))
                 ->setCity($this->getReference("city_" . rand(0, count($datas) - 1)));
             $offer = new Offer();
@@ -107,5 +108,12 @@ class AppFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            UserFixtures::class
+        ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entity\Property;
 
+use App\Entity\User\User;
 use App\Repository\Property\PropertyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,11 +24,6 @@ class Property
      * @ORM\Column(type="string", length=15)
      */
     private $transaction_type;
-
-    /**
-     * @ORM\Column(type="string", length=45)
-     */
-    private $manager;
 
     /**
      * @ORM\Column(type="integer")
@@ -81,6 +77,11 @@ class Property
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="properties")
+     */
+    private $manager;
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -101,18 +102,6 @@ class Property
     public function setTransactionType(string $transaction_type): self
     {
         $this->transaction_type = $transaction_type;
-
-        return $this;
-    }
-
-    public function getManager(): ?string
-    {
-        return $this->manager;
-    }
-
-    public function setManager(string $manager): self
-    {
-        $this->manager = $manager;
 
         return $this;
     }
@@ -281,6 +270,18 @@ class Property
         if ($this->images->removeElement($image)) {
             $image->removeProperty($this);
         }
+
+        return $this;
+    }
+
+    public function getManager(): ?User
+    {
+        return $this->manager;
+    }
+
+    public function setManager(?User $manager): self
+    {
+        $this->manager = $manager;
 
         return $this;
     }

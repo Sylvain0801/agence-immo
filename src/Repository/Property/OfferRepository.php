@@ -122,6 +122,7 @@ class OfferRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->execute();
     }
+
     // /**
     //  * @return Offer[] Returns an array of Offer objects
     //  */

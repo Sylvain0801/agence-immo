@@ -12,12 +12,25 @@
         {% block stylesheets %}{% endblock %}
 
         <script type="text/javascript" src="{{ asset('assets/style/bootstrap-5.0.2-dist/js/bootstrap.js') }}" defer></script>
-	    <script type="text/javascript" src="{{ asset('assets/js/navigation.js') }}" defer></script>
+	    <script type="text/javascript" src="{{ asset('assets/js/main.js') }}" defer></script>
+        {% if navigationPrivate is defined %}
+	        <script type="text/javascript" src="{{ asset('assets/js/navigationPrivate.js') }}" defer></script>  
+        {% else %}
+	        <script type="text/javascript" src="{{ asset('assets/js/navigationMain.js') }}" defer></script>  
+        {% endif %}
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        {% include "include/_header.html.twig" %}
+        {% if navigationPrivate is defined %}
+            {% include "include/_header_private.html.twig" %}
+        {% else %}
+            {% include "include/_header.html.twig" %}
+        {% endif %}
         {% block body %}{% endblock %}
-        {% include "include/_footer.html.twig" %}
+        {% if navigationPrivate is defined %}
+
+        {% else %}
+            {% include "include/_footer.html.twig" %}
+        {% endif %}
     </body>
 </html>

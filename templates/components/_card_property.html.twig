@@ -1,6 +1,15 @@
 	<div class="card-property">
+    <pre>
+      {{ dump(offer.property.manager) }}
+    </pre>
     <div class="card-property-management">
-      <span>{{ offer.property.manager }}</span>
+      <span>
+        {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
+          {{ 'private owner'|trans }}
+        {% else %}
+          {{ 'by agency'|trans }}
+        {% endif %}
+      </span>
     </div>
     <div class="card-property-img" style="background-image: url({{ asset(offer.property.images[0].path) }})"></div>
     <h3 class="card-property-title">{{ offer.property.propertyType.name|capitalize }} - {{ offer.title }}</h3>

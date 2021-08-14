@@ -18,7 +18,7 @@
                     <label for="property_location" class="required">{{'property location'|trans|capitalize}}&nbsp;<i class="fa fa-caret-right"></i></label>
                     <div class="input-city-list-group">
                         <input class="form-control-input" type="text" placeholder="{{ '-- Choose a city from the list --'|trans }}" id="property_location" name="property_location" pattern="[0-9]{5}.{1,80}" required="required" autocomplete="off">
-                        <div class="input-city-info"><i class="fa fa-question"></i></div>
+                        <a class="input-city-info" href="#" role="button" data-target="#modal-input-city-info" data-toggle="modal"><i class="fa fa-question"></i></a>
                         <div class="city-list-group" id="city-list-group">
                         </div>
                     </div>
@@ -61,6 +61,21 @@
 			</div>
         {{ form_end(form) }}
 	</section>
+    <div class="modal" id="modal-input-city-info" role="dialog">
+        <div class="modal-content">
+            <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+            <div class="modal-body">
+                <p>{{ 'If you are an owner and do not have your property managed by an agency in our network, please enter the name of the city where your property is located.'|trans }}</p>
+                <br>
+                <p>{{ 'If you are looking for a property to rent or buy, please enter the name of the city where the properties you are interested in are located.'|trans }}</p>
+                <br>
+                <p>{{ 'For questions related to the operation of the site and our various offers, consult our'|trans}} :</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{ path('faq_home') }}" role="button" class="button button-rounded">&nbsp;{{'faq page'|trans}}</a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block javascripts %}
   <script src="{{ asset('assets/js/searchCities.js') }}"></script>

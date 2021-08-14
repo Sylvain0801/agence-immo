@@ -1,7 +1,10 @@
 @import 'variables';
 @import 'mixins';
 @import 'settings';
-@import 'navigation';
+
+// Navigation
+@import 'navigation/navigation';
+@import 'navigation/navigationPrivate';
 
 // Layout
 @import 'layout/header';
@@ -18,9 +21,11 @@
 @import 'components/searchform';
 @import 'components/form';
 @import 'components/popup';
+@import 'components/table';
 
 // Pages
 @import 'pages/offer/view';
 @import 'pages/offer/modal';
 @import 'pages/faq';
-@import 'pages/contact'
+@import 'pages/contact';
+@import 'pages/private_area/home'

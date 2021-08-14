@@ -34,8 +34,7 @@
       bottom: .6em;
       right: 10px;
       border-radius: 50%;
-      color: rgba($color-primary,.75);
-      cursor: pointer;
+      color: rgba($color-grey,.9);
       font-size: 1.3em;
       i.fa.fa-question {
         position: absolute;
@@ -44,5 +43,14 @@
         transform: translate(-50%, -50%);
       }
     }
+  }
+}
+
+#modal-input-city-info {
+  .modal-footer {
+    justify-content: center;
+  }
+  .modal-content {
+    max-width: 600px;
   }
 }

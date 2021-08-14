@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'ask for information'|trans|capitalize}} - {{'Real estate agency'|trans}}{% endblock %}
+
+{% block body %}
+	{% for message in app.flashes('message_popup') %}
+		{{ include('include/_popup_confirm.html.twig') }}
+	{% endfor %}
+	<section class="form-section">
+		<h1>{{'ask for information'|trans}} ?</h1>
+    {{ form_start(form) }}
+			<div class="form-control-group">
+        {{ form_label(form.email, null, {'label': 'email address'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+        {{ form_widget(form.email) }}
+			</div>
+			<div class="form-control-group">
+        {{ form_label(form.message, null, {'label': 'your message'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+        {{ form_widget(form.message) }}
+			</div>
+      <div class="form-button-submit-between">
+				<a href="{{ path('faq_home') }}" role="button" class="button button-rounded"><i class="fa fa-backward"></i>&nbsp;&nbsp;{{'back'|trans}}</a>
+				<button type="submit" class="button button-rounded button-outline"><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;{{'send'|trans}}</button>
+			</div>
+    {{ form_end(form) }}
+	</section>    
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{'icons'|trans|capitalize}} - {{'Real estate agency'|trans}}{% endblock %}
+
+{% block body %}
+<section>
+    {% for icon in icons %}
+        <i class="fa-2x fa {{ icon }}" title="{{ icon }}" style="margin: 5px"></i>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -18,7 +18,14 @@ class PropertyRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Property::class);
     }
+    
+    public function findListSortBycriteria(string $sort = null, string $order = 'asc') : array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->orderBy('p.' . $sort, $order);
 
+        return $qb->getQuery()->execute();
+    }
     // /**
     //  * @return Property[] Returns an array of Property objects
     //  */
