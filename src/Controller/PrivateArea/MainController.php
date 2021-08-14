@@ -28,6 +28,7 @@ class MainController extends AbstractController
      */
     public function list($entity, $sort, $order): Response
     {
+
         switch ($entity) {
             case 'offer':
                 $datas = $this->getDoctrine()->getRepository(Offer::class)->findAll();

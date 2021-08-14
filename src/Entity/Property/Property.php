@@ -48,7 +48,7 @@ class Property
     /**
      * @ORM\Column(type="string", length=3)
      */
-    private $GES;
+    private $ges;
 
     /**
      * @ORM\ManyToOne(targetEntity=City::class, inversedBy="properties")
@@ -154,14 +154,14 @@ class Property
         return $this;
     }
 
-    public function getGES(): ?string
+    public function getGes(): ?string
     {
-        return $this->GES;
+        return $this->ges;
     }
 
-    public function setGES(string $GES): self
+    public function setGes(string $ges): self
     {
-        $this->GES = $GES;
+        $this->ges = $ges;
 
         return $this;
     }
