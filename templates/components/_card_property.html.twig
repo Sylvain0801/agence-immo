@@ -1,7 +1,4 @@
 	<div class="card-property">
-    <pre>
-      {{ dump(offer.property.manager) }}
-    </pre>
     <div class="card-property-management">
       <span>
         {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
@@ -11,7 +8,7 @@
         {% endif %}
       </span>
     </div>
-    <div class="card-property-img" style="background-image: url({{ asset(offer.property.images[0].path) }})"></div>
+    <div class="card-property-img" style="background-image: url({{ asset(offer.images[0].path) }})"></div>
     <h3 class="card-property-title">{{ offer.property.propertyType.name|capitalize }} - {{ offer.title }}</h3>
     <!-- max-length=40 -->
     <i class="card-button-favorite fa fa-star-o" data-id={{ offer.property.id }}></i>

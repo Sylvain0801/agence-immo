@@ -3,6 +3,8 @@
 namespace App\Entity\Property;
 
 use App\Repository\Property\OfferRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -54,6 +56,16 @@ class Offer
      * @ORM\Column(type="datetime_immutable")
      */
     private $updated_at;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Image::class, inversedBy="offers")
+     */
+    private $images;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -109,5 +121,29 @@ class Offer
     public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updated_at;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images[] = $image;
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        $this->images->removeElement($image);
+
+        return $this;
     }
 }

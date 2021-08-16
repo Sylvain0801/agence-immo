@@ -2,11 +2,7 @@
 
 {% block body %}
 <main id="private-area-main">
-	<div class="top-right-user">
-		{% if app.user is defined %}
-		<h3>{{ app.user.firstname }} {{ app.user.lastname }}<i class="fa fa-user"></i><a href="{{ path('app_logout') }}" title="{{ 'logout'|trans|capitalize }}"><i class="fa fa-power-off"></i></a></h3>
-		{% endif %}
-	</div>
+	{% include "private_area/_header_user.html.twig" %}
 	<h2>Bonjour, bienvenue dans votre espace privé</h2>
 </main>
 {% endblock %}

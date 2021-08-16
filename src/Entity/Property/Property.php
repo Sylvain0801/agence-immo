@@ -2,6 +2,7 @@
 
 namespace App\Entity\Property;
 
+use App\Entity\User\Owner;
 use App\Entity\User\User;
 use App\Repository\Property\PropertyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -73,20 +74,24 @@ class Property
     private $options;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Image::class, mappedBy="property")
-     */
-    private $images;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="properties")
      */
     private $manager;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Owner::class, inversedBy="properties")
+     */
+    private $owner;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_property_add = false;
 
     public function __construct()
     {
         $this->offers = new ArrayCollection();
         $this->options = new ArrayCollection();
-        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,33 +252,6 @@ class Property
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getImages(): Collection
-    {
-        return $this->images;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->addProperty($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->images->removeElement($image)) {
-            $image->removeProperty($this);
-        }
-
-        return $this;
-    }
-
     public function getManager(): ?User
     {
         return $this->manager;
@@ -282,6 +260,30 @@ class Property
     public function setManager(?User $manager): self
     {
         $this->manager = $manager;
+
+        return $this;
+    }
+
+    public function getOwner(): ?Owner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?Owner $owner): self
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getIsPropertyAdd(): ?bool
+    {
+        return $this->is_property_add;
+    }
+
+    public function setIsPropertyAdd(bool $is_property_add): self
+    {
+        $this->is_property_add = $is_property_add;
 
         return $this;
     }

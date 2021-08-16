@@ -1,6 +1,10 @@
 header.private-navigation {
   margin: 0;
 }
+.navigation-responsive {
+  overflow-y: auto;
+  height: calc(100% - 100px);
+}
 .private-navigation-aside {
   transform: translateX(-300px);
   transition: transform .3s .3s ease-in-out;
@@ -41,6 +45,7 @@ header.private-navigation {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 1000;
   background: $color-linear-gradient-primary;
   padding: 20px 0;
   color: $color-white;

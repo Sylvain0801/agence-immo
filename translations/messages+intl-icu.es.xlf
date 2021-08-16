@@ -553,6 +553,142 @@
         <source>faq page</source>
         <target>__faq page</target>
       </trans-unit>
+      <trans-unit id="BM5oaoV" resname="icons">
+        <source>icons</source>
+        <target>__icons</target>
+      </trans-unit>
+      <trans-unit id="H9UEdtt" resname="main menu">
+        <source>main menu</source>
+        <target>__main menu</target>
+      </trans-unit>
+      <trans-unit id="pO8wS6Q" resname="language">
+        <source>language</source>
+        <target>__language</target>
+      </trans-unit>
+      <trans-unit id="J_2iggS" resname="private area menu">
+        <source>private area menu</source>
+        <target>__private area menu</target>
+      </trans-unit>
+      <trans-unit id="_GcnbSm" resname="my properties">
+        <source>my properties</source>
+        <target>__my properties</target>
+      </trans-unit>
+      <trans-unit id="BQgf5Rs" resname="my properties ads">
+        <source>my properties ads</source>
+        <target>__my properties ads</target>
+      </trans-unit>
+      <trans-unit id="svVZo6J" resname="ask for information">
+        <source>ask for information</source>
+        <target>__ask for information</target>
+      </trans-unit>
+      <trans-unit id="PEgjRvN" resname="back">
+        <source>back</source>
+        <target>__back</target>
+      </trans-unit>
+      <trans-unit id="2VcjUcX" resname="private area">
+        <source>private area</source>
+        <target>__private area</target>
+      </trans-unit>
+      <trans-unit id="ACcM9j_" resname="logout">
+        <source>logout</source>
+        <target>__logout</target>
+      </trans-unit>
+      <trans-unit id="38M3a4J" resname="filter">
+        <source>filter</source>
+        <target>__filter</target>
+      </trans-unit>
+      <trans-unit id="kTpMuRv" resname="clear">
+        <source>clear</source>
+        <target>__clear</target>
+      </trans-unit>
+      <trans-unit id="EzyOuGz" resname="validate">
+        <source>validate</source>
+        <target>__validate</target>
+      </trans-unit>
+      <trans-unit id="p0PFUqk" resname="descending sort">
+        <source>descending sort</source>
+        <target>__descending sort</target>
+      </trans-unit>
+      <trans-unit id="opUjXUV" resname="ascending sort">
+        <source>ascending sort</source>
+        <target>__ascending sort</target>
+      </trans-unit>
+      <trans-unit id="inmIkP6" resname="yes">
+        <source>yes</source>
+        <target>__yes</target>
+      </trans-unit>
+      <trans-unit id="k5Apjz_" resname="no">
+        <source>no</source>
+        <target>__no</target>
+      </trans-unit>
+      <trans-unit id="c8D7hbB" resname="I agree to provide my phone number on the website">
+        <source>I agree to provide my phone number on the website</source>
+        <target>__I agree to provide my phone number on the website</target>
+      </trans-unit>
+      <trans-unit id="pWFFJwz" resname="id">
+        <source>id</source>
+        <target>__id</target>
+      </trans-unit>
+      <trans-unit id="zpIlGaP" resname="transaction">
+        <source>transaction</source>
+        <target>__transaction</target>
+      </trans-unit>
+      <trans-unit id="SpHuXwE" resname="area">
+        <source>area</source>
+        <target>__area</target>
+      </trans-unit>
+      <trans-unit id="OBz7bh5" resname="energy">
+        <source>energy</source>
+        <target>__energy</target>
+      </trans-unit>
+      <trans-unit id="ugimYbC" resname="ghg">
+        <source>ghg</source>
+        <target>__ghg</target>
+      </trans-unit>
+      <trans-unit id="p5Orj8w" resname="options">
+        <source>options</source>
+        <target>__options</target>
+      </trans-unit>
+      <trans-unit id="TBApaX7" resname="owner">
+        <source>owner</source>
+        <target>__owner</target>
+      </trans-unit>
+      <trans-unit id="M4pxZoY" resname="property ad">
+        <source>property ad</source>
+        <target>__property ad</target>
+      </trans-unit>
+      <trans-unit id="Kw3N1AA" resname="actions">
+        <source>actions</source>
+        <target>__actions</target>
+      </trans-unit>
+      <trans-unit id="H3EB.nE" resname="sale">
+        <source>sale</source>
+        <target>__sale</target>
+      </trans-unit>
+      <trans-unit id="4MFG49l" resname="rental">
+        <source>rental</source>
+        <target>__rental</target>
+      </trans-unit>
+      <trans-unit id="sPXJ45v" resname="-- Choose an owner from the list --">
+        <source>-- Choose an owner from the list --</source>
+        <target>__-- Choose an owner from the list --</target>
+      </trans-unit>
+      <trans-unit id="6P1yk37" resname="add new">
+        <source>add new</source>
+        <target>__add new</target>
+      </trans-unit>
+      <trans-unit id="Ms.xjdK" resname="create new property">
+        <source>create new property</source>
+        <target>__create new property</target>
+      </trans-unit>
+      <trans-unit id="LifkG7d" resname="transaction type">
+        <source>transaction type</source>
+        <target>__transaction type</target>
+      </trans-unit>
+      <trans-unit id="_ohHsMM" resname="create">
+        <source>create</source>
+        <target>__create</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -14,29 +14,31 @@
 					</div>
 				</a>
 			</div>
-			<h3>{{ 'main menu'|trans }}</h3>
-			<ul class="private-navigation-main-menu">
-				<li><a href="{{ path('home') }}"><i class="fa fa-home"></i>{{ 'home' |trans }}</a></li>
-				<li><a href="{{ path('offer_home') }}"><i class="fa fa-th-list"></i>{{ 'properties' |trans }}</a></li>
-				<li><a href="{{ path('faq_home') }}"><i class="fa fa-comments"></i>{{ 'faq' |trans }}</a></li>
-				<li><a href="{{ path('contact_home') }}"><i class="fa fa-envelope"></i>{{ 'contact' |trans }}</a></li>
-				<li><a href="{{ path('offer_favorite') }}" id="button-favorite-list"><i class="fa fa-star"></i>{{ 'my favorites' |trans }}</a></li>
-				<li>
-					<i class="fa fa-language"></i>{{ 'language' |trans }}
-					<div class="flag-lang-group">
-						{% for locale in locales %}
-							{% if locale != app.request.locale %}
-								<a href="{{ path('change_locale', {'locale': locale}) }}"><img src="{{ asset('assets/images/flag-lang/'~locale~'-flag.png') }}" alt="{{ locale }}-flag" class="flag-lang-item"></a>
-							{% endif %}
-						{% endfor %}
-					</div>
-				</li>
-			</ul>
-			<h3 class="title-border-top">{{ 'private area menu'|trans }}</h3>
-			<ul class="private-navigation-private-menu">
-				<li class="{{ active is defined and active == 'property' ? 'active' : '' }}"><a href="{{ path('private_area_list', {entity: 'property'}) }}"><i class="fa fa-building"></i>{{ 'my properties' |trans }}</a></li>
-				<li class="{{ active is defined and active == 'offer' ? 'active' : '' }}"><a href="{{ path('private_area_list', {entity: 'offer'}) }}"><i class="fa fa-th-list"></i>{{ 'my properties ads' |trans }}</a></li>
-			</ul>
+			<div class="navigation-responsive">
+				<h3>{{ 'main menu'|trans }}</h3>
+				<ul class="private-navigation-main-menu">
+					<li><a href="{{ path('home') }}"><i class="fa fa-home"></i>{{ 'home' |trans }}</a></li>
+					<li><a href="{{ path('offer_home') }}"><i class="fa fa-th-list"></i>{{ 'properties' |trans }}</a></li>
+					<li><a href="{{ path('faq_home') }}"><i class="fa fa-comments"></i>{{ 'faq' |trans }}</a></li>
+					<li><a href="{{ path('contact_home') }}"><i class="fa fa-envelope"></i>{{ 'contact' |trans }}</a></li>
+					<li><a href="{{ path('offer_favorite') }}" id="button-favorite-list"><i class="fa fa-star"></i>{{ 'my favorites' |trans }}</a></li>
+					<li>
+						<i class="fa fa-language"></i>{{ 'language' |trans }}
+						<div class="flag-lang-group">
+							{% for locale in locales %}
+								{% if locale != app.request.locale %}
+									<a href="{{ path('change_locale', {'locale': locale}) }}"><img src="{{ asset('assets/images/flag-lang/'~locale~'-flag.png') }}" alt="{{ locale }}-flag" class="flag-lang-item"></a>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</li>
+				</ul>
+				<h3 class="title-border-top">{{ 'private area menu'|trans }}</h3>
+				<ul class="private-navigation-private-menu">
+					<li class="{{ active is defined and active == 'property' ? 'active' : '' }}"><a href="{{ path('private_area_property_list') }}"><i class="fa fa-building"></i>{{ 'my properties' |trans }}</a></li>
+					<li class="{{ active is defined and active == 'offer' ? 'active' : '' }}"><a href=""><i class="fa fa-th-list"></i>{{ 'my properties ads' |trans }}</a></li>
+				</ul>
+			</div>
 		</nav>
 	</aside>
 </header>

@@ -43,15 +43,21 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
 
         $datas = json_decode(file_get_contents("https://geo.api.gouv.fr/departements/33/communes"), true);   
         foreach ($datas as $k => $data) {
-            $cityCoord = json_decode(file_get_contents("https://geo.api.gouv.fr/communes?code=" . $data['code'] . "&fields=centre"), true);
-            // dd($cityCoord[0]['centre']['coordinates']);
-            $city = (new City)
-                ->setCoordinates($cityCoord[0]['centre']['coordinates'][1] . ',' . $cityCoord[0]['centre']['coordinates'][0])
-                ->setName($data['nom'])
-                ->setZipCode($data['codesPostaux'][0])
-                ->setDepartment($data['codeDepartement']);
-            $manager->persist($city);
-            $this->addReference("city_$k", $city);
+            try {
+                $cityCoord = json_decode(file_get_contents("https://geo.api.gouv.fr/communes?code=" . $data['code'] . "&fields=centre"), true);
+            } catch (\Throwable $th) {
+                //throw $th;
+            }
+            if ($cityCoord) {
+                $city = (new City)
+                    ->setCoordinates($cityCoord[0]['centre']['coordinates'][1] . ',' . $cityCoord[0]['centre']['coordinates'][0])
+                    ->setName($data['nom'])
+                    ->setZipCode($data['codesPostaux'][0])
+                    ->setDepartment($data['codeDepartement']);
+                $manager->persist($city);
+                $this->addReference("city_$k", $city);
+
+            }
         }
 
         // Fixtures images
@@ -75,8 +81,9 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 200; $i++) { 
             $property = new Property();
             $property
-                ->setTransactionType($faker->randomElement(['location', 'vente']))
+                ->setTransactionType($faker->randomElement(['rental', 'sale']))
                 ->setManager($this->getReference("agent_" . $i % 50))
+                ->setOwner($this->getReference("owner_" . $faker->numberBetween(0, 99)))
                 ->setArea(rand(20, 200))
                 ->setRooms(rand(2, 10));
             $options = array_rand($optionNames, rand(2, count($optionNames)));
@@ -92,16 +99,19 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
                 ->setEnergy($faker->randomElement(['A', 'B', 'C', 'D', 'E', 'F', 'G']))
                 ->setGES($faker->randomElement(['A', 'B', 'C', 'D', 'E', 'F', 'G']))
                 ->setPropertyType($this->getReference("type_" . rand(0, count($types) - 1)))
-                ->setCity($this->getReference("city_" . rand(0, count($datas) - 1)));
+                ->setCity($this->getReference("city_" . rand(0, count($datas) - 1)))
+                ->setIsPropertyAdd(1);
+            // Fixtures offer
             $offer = new Offer();
             $offer
                 ->setTitle($faker->realText(25, $indexSize = 2))
                 ->setDescription($faker->realText(400, $indexSize = 2));
-            $manager->persist($offer);
-            $property->addOffer($offer);
             for ($l = 0; $l < 6; $l++) { 
-                $property->addImage($this->getReference('image_' . rand(0, $fileImgCount - 1)));
+                $offer->addImage($this->getReference('image_' . rand(0, $fileImgCount - 1)));
             }
+            $manager->persist($offer);
+
+            $property->addOffer($offer);
 
             $manager->persist($property);
             $this->addReference("property_$i", $property);

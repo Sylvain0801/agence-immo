@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User\Agent;
+use App\Entity\User\Owner;
 use App\Entity\User\PrivateOwner;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -61,6 +62,25 @@ class UserFixtures extends Fixture
       $manager->persist($agent);
 
       $this->addReference('agent_'.$i, $agent);
+    }
+    for($i = 0; $i < 100; $i++) {
+
+      $owner = new Owner();
+  
+      $owner
+          ->setFirstname($faker->firstname())
+          ->setLastname($faker->lastname)
+          ->setEmail('owner_' . $i . '@demo.fr')
+          ->setPhoneNumber($faker->phoneNumber)
+          ->setAddress($faker->address)
+          ->setRoles(['OWNER'])
+          ->setIsVerified(1)
+          ->setIsActive(1)
+          ->setPassword($this->userPasswordHasher->hashPassword($owner, 'agence_immo'));
+
+      $manager->persist($owner);
+
+      $this->addReference('owner_'.$i, $owner);
     }
     $manager->flush();
   }

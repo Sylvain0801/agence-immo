@@ -1,0 +1,7 @@
+<div class="top-right-user">
+		{% if app.user is defined and app.user != null %}
+			<h3>{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+			<i class="fa fa-user" title="{{ app.user.firstname }} {{ app.user.lastname }}"></i>
+			<a href="{{ path('app_logout') }}" title="{{ 'logout'|trans|capitalize }}"><i class="fa fa-power-off"></i></a>
+		{% endif %}
+	</div>

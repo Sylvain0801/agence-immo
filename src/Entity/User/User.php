@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"private_owner" = "PrivateOwner", "agent" = "Agent"})
+ * @ORM\DiscriminatorMap({"private_owner" = "PrivateOwner", "owner" = "Owner", "agent" = "Agent"})
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -286,5 +286,10 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->lastname . ' ' . $this->firstname;
     }
 }

@@ -1,6 +1,7 @@
 .pagination {
 	display: flex;
 	justify-content: center;
+	margin-top: 1em;
 	& .first, .last, .page, .next, .previous, .current {
 		border: 0;
 		border-radius: 4px;

@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<main id="private-area-main">
+	{% include "private_area/_header_user.html.twig" %}
+	{% for message in app.flashes('message_alert') %}
+    {{ include('include/_alert.html.twig') }}
+  {% endfor %}
+	<h2>{{'my properties'|trans|capitalize}}</h2>
+	<div class="actions-buttons-group">
+		<a href="{{ path('private_area_property_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a>
+		<form action="{{ path('private_area_property_list_sorted') }}" method="POST">
+			<div class="filter-group">
+				<a href="#" class="button button-small button-filter" id="main-button-filter">
+					<i class="fa fa-filter"></i>&nbsp;{{ 'filter'|trans|capitalize }}
+					{% if app.request.session.get('filter_criterias') != null %}
+						{% set countFilters = 0 %}
+						{% for filterCategory in app.request.session.get('filter_criterias') %}
+							{% set categoryHasFilter = false %}
+							{% for key, item in filterCategory|filter(item => item != '') %}
+									{% set categoryHasFilter = true  %}
+							{% endfor %}
+							{% if categoryHasFilter %}
+								{% set countFilters = countFilters + 1 %}
+							{% endif %}
+						{% endfor %}
+						({{ countFilters }})
+					{% endif %}
+				</a>
+				<div class="filter-list-group" id="filter-list-group">
+					<h6><i class="fa fa-filter"></i>&nbsp;{{ 'filter'|trans|capitalize }}</h6>
+					<div class="filter-top-button-group">
+						<a href="{{ path('private_area_property_list') }}" class="button button-small button-tiny" id="button-clear-filters">{{ 'clear'|trans|capitalize }}</a>
+						<button type="submit" class="button button-small button-tiny">{{ 'validate'|trans|capitalize }}</button>
+					</div>
+					<ul>
+						{% for k, header in headers %}
+							{% if header.filter %}
+								<li>
+									<div class="input-checkbox-group">
+										<input type="checkbox" id="{{ header.label }}" data-header="{{ k }}">
+										<label for="{{ header.label }}">
+											<span><i class="fa fa-check"></i></span>
+											{{ header.label|trans|capitalize }}&nbsp;
+											{% if app.request.session.get('filter_criterias') != null %}
+												{% if app.request.session.get('filter_criterias').get(k) != null %}
+													{% set countItemsFiltered = 0 %}
+													{% for key, item in app.request.session.get('filter_criterias').get(k)|filter(item => item != '') %}
+														{% set countItemsFiltered = countItemsFiltered + 1 %}
+													{% endfor %}
+													{% if countItemsFiltered > 0 %}
+														({{ countItemsFiltered }})
+													{% endif %}
+												{% endif %}
+											{% endif %}
+										</label>
+									</div>
+									{% if header.type == 'checkbox' %}
+										<ul>
+											{% for index, value in header.values %}
+											{% set checked = '' %}
+											{% if app.request.session.get('filter_criterias') != null %}
+												{% if app.request.session.get('filter_criterias').get(k) != null %}
+													{% if value[k] in app.request.session.get('filter_criterias').get(k) %}
+														{% set checked = 'checked' %}
+													{% endif %}
+												{% endif %}
+											{% endif %}
+												<li>
+													<div class="input-checkbox-group">
+														<input type="checkbox" id="{{ k~'_'~value[k] }}" name="{{ k }}[]" value="{{ value[k] }}" {{ checked }}>
+														<label for="{{ k~'_'~value[k] }}"><span><i class="fa fa-check"></i></span>{{ value[k]|trans|capitalize }}</label>
+													</div>
+												</li>
+											{% endfor %}
+										</ul>
+									{% elseif header.type == 'number' %}
+										<ul class="input-number-group">
+											<li>
+												<label for="{{ k~'_Min' }}">Min</label>
+												{% set inputMinValue = '' %}
+												{% if app.request.session.get('filter_criterias') != null %}
+													{% if app.request.session.get('filter_criterias').get(k) != null %}
+														{% if app.request.session.get('filter_criterias').get(k)[0] != '' %}
+															{% set inputMinValue = app.request.session.get('filter_criterias').get(k)[0] %}
+														{% endif %}
+													{% endif %}
+												{% endif %}
+												<input type="number" name="{{ k }}[]" id="{{ k~'_Min' }}" value="{{ inputMinValue }}">
+											</li>
+											<li>
+												<label for="{{ k~'_Max' }}">Max</label>
+												{% set inputMaxValue = '' %}
+												{% if app.request.session.get('filter_criterias') != null %}
+													{% if app.request.session.get('filter_criterias').get(k) != null %}
+														{% if app.request.session.get('filter_criterias').get(k)[1] != '' %}
+															{% set inputMaxValue = app.request.session.get('filter_criterias').get(k)[1] %}
+														{% endif %}
+													{% endif %}
+												{% endif %}
+												<input type="number" name="{{ k }}[]" id="{{ k~'_Max' }}" value="{{ inputMaxValue }}">
+											</li>
+										</ul>
+									{% endif %}
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="table-responsive-container">
+		<table>
+			<thead>
+				<tr>
+					{% for k, header in headers %}
+					<th>
+						<div class="header-btn-sort-group">
+							{{ header.label|trans|capitalize }}
+							{% if header.sort %}
+								<div class="table-sort-buttons">
+									<a href="{{ path('private_area_property_list_sorted', {sort: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+									<a href="{{ path('private_area_property_list_sorted', {sort: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+								</div>
+							{% endif %}
+						</div>
+					</th>
+					{% endfor %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for property in datas %}
+					<tr>
+						<td>{{ property.id }}</td>
+						<td>{{ property.transaction_type|capitalize }}</td>
+						<td>{{ property.city.name }}</td>
+						<td>{{ property.property_type.name|capitalize }}</td>
+						<td>{{ property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}</td>
+						<td>{{ property.area }}</td>
+						<td>{{ property.rooms }}</td>
+						<td>{{ property.energy }}</td>
+						<td>{{ property.ges }}</td>
+						<td>
+							{% for option in property.options %}
+							{{ option.name|capitalize }}
+							{% endfor %}
+						</td>
+						<td>{{ property.owner.lastname }} {{ property.owner.firstname }}</td>
+						<td>
+							{{ property.is_property_add ? 'yes'|trans|capitalize : 'no'|trans|capitalize }}
+						</td>
+						<td class="table-td-actions">
+							<a href="{{ path('private_area_property_edit', {id: property.id}) }}" title="{{ 'edit property' }}"><i class="fa fa-pencil"></a></i>
+							<a href="" title="{{ 'delete property' }}"><i class="fa fa-trash"></a></i>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% if datas|length > 0 %}
+			{% if datas.getTotalItemCount > 10 %}
+				{{ knp_pagination_render(datas) }}
+			{% endif %}
+		{% endif %}
+	</div>
+</main>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/js/filter.js') }}"></script>
+{% endblock %}

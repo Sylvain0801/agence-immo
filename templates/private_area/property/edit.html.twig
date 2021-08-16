@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<main id="private-area-main">
+  {% include "private_area/_header_user.html.twig" %}
+  <h1>{{'modify a property'|trans|upper}}</h1>
+  {{ form_start(form, {'attr': {'class': 'private-area-form'}}) }}
+    <div class="form-control-group">
+      {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.transaction_type, null, {'label': 'transaction type'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      <div class="input-horizontal-group">
+        {% for child in form.transaction_type %}
+          <div class="input-radio-group">
+            <input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.transaction_type.vars.name ~ ']' }}" required="required" value="{{ child.vars.value }}" {{ child.vars.value == property.transactionType ? 'checked' : '' }}>
+            <label for="{{ child.vars.id }}" class="required"><div><span></span><i class="fa fa-caret-left"></i>&nbsp;{{ child.vars.label|trans|capitalize }}</div></label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.property_type, null, {'label': 'type'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      <div class="input-horizontal-group">
+        {% for child in form.property_type %}
+          <div class="input-radio-group">
+            <input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.property_type.vars.name ~ ']' }}" required="required" value="{{ child.vars.value }}" {{ child.vars.value == property.propertyType.id ? 'checked' : '' }}>
+            <label for="{{ child.vars.id }}" class="required"><div><span></span><i class="fa fa-caret-left"></i>&nbsp;{{ child.vars.label|trans|capitalize }}</div></label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="input-number-group">
+      <div class="form-control-group">
+        {{ form_label(form.area, null, {'label': 'area'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+        {{ form_widget(form.area) }}
+      </div>
+      <div class="form-control-group">
+        {{ form_label(form.rooms, null, {'label': 'rooms'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+        {{ form_widget(form.rooms) }}
+      </div>
+      <div class="form-control-group">
+        {{ form_label(form.price, null, {'label': 'price'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+        {{ form_widget(form.price) }}
+      </div>
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.energy, null, {'label': 'Energy consumption'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      <div class="input-horizontal-group">
+        {% for child in form.energy %}
+          <div class="input-radio-group">
+            <input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.energy.vars.name ~ ']' }}" required="required" value="{{ child.vars.value }}" {{ child.vars.value == property.energy ? 'checked' : '' }}>
+            <label for="{{ child.vars.id }}" class="required"><div><span></span><i class="fa fa-caret-left"></i>&nbsp;{{ child.vars.label|capitalize }}</div></label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.ges, null, {'label': 'Greenhouse gas emission'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      <div class="input-horizontal-group">
+        {% for child in form.ges %}
+          <div class="input-radio-group">
+            <input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.ges.vars.name ~ ']' }}" required="required" value="{{ child.vars.value }}" {{ child.vars.value == property.ges ? 'checked' : '' }}>
+            <label for="{{ child.vars.id }}" class="required"><div><span></span><i class="fa fa-caret-left"></i>&nbsp;{{ child.vars.label|capitalize }}</div></label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.options, null, {'label': 'options'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      <div class="input-horizontal-group">
+        {% for child in form.options %}
+          <div class="input-checkbox-group">
+            {% set checked = false %}
+            {% for opt in property.options %}
+              {% if opt.id == child.vars.value %}
+                {% set checked = true %}
+              {% endif %}              
+            {% endfor %}
+            <input type="checkbox" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.options.vars.name ~ '][]' }}" value="{{ child.vars.value }}" {{ checked ? 'checked' : '' }}>
+            <label for="{{ child.vars.id }}"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{ child.vars.label|capitalize }}</label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="form-control-group">
+      <div class="input-city-group">
+          <label for="property_add_edit_form[city]" class="required">{{'property location'|trans|capitalize}}&nbsp;<i class="fa fa-caret-right"></i></label>
+          <div class="input-city-list-group">
+            <input class="form-control-input" value="{{ property.city.zipCode ~ ' ' ~ property.city.name }}" type="text" placeholder="{{ '-- Choose a city from the list --'|trans }}" id="property_location" name="property_add_edit_form[city]" pattern="[0-9]{5}.{1,80}" required="required" autocomplete="off">
+            <a class="input-city-info" href="#" role="button" data-target="#modal-input-city-info" data-toggle="modal"></a>
+            <div class="city-list-group" id="city-list-group">
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.owner, null, {'label': 'owner'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      {{ form_widget(form.owner) }}
+    </div>
+    <input type="hidden" id="property_add_edit_form__token" name="property_add_edit_form[_token]" value="{{ csrf_token('property_add_edit_form') }}"/>
+    <div class="form-button-submit-right">
+      <button type="submit" class="button button-rounded button-outline">{{'create'|trans}}</button>
+    </div>
+  {{ form_end(form, {'render_rest': false}) }}
+</main>
+{% endblock %}
+{% block javascripts %}
+  <script src="{{ asset('assets/js/searchCities.js') }}"></script>
+{% endblock %}

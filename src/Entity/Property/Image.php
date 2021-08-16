@@ -30,13 +30,13 @@ class Image
     private $path;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Property::class, inversedBy="images")
+     * @ORM\ManyToMany(targetEntity=Offer::class, mappedBy="images")
      */
-    private $property;
+    private $offers;
 
     public function __construct()
     {
-        $this->property = new ArrayCollection();
+        $this->offers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -69,26 +69,30 @@ class Image
     }
 
     /**
-     * @return Collection|Property[]
+     * @return Collection|Offer[]
      */
-    public function getProperty(): Collection
+    public function getOffers(): Collection
     {
-        return $this->property;
+        return $this->offers;
     }
 
-    public function addProperty(Property $property): self
+    public function addOffer(Offer $offer): self
     {
-        if (!$this->property->contains($property)) {
-            $this->property[] = $property;
+        if (!$this->offers->contains($offer)) {
+            $this->offers[] = $offer;
+            $offer->addImage($this);
         }
 
         return $this;
     }
 
-    public function removeProperty(Property $property): self
+    public function removeOffer(Offer $offer): self
     {
-        $this->property->removeElement($property);
+        if ($this->offers->removeElement($offer)) {
+            $offer->removeImage($this);
+        }
 
         return $this;
     }
+
 }

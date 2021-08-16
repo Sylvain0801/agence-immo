@@ -12,12 +12,13 @@ setTimeout(() => {
     document.querySelector('.show .logo-company-group').style.transition = 'color .1s .5s ease'
 }, 500)
 
-if (window.innerWidth > 576) [navigation, main].forEach(elt => elt.classList.add('show'))
+// if (window.innerWidth > 576) [navigation, main].forEach(elt => elt.classList.add('show'))
+if (window.innerWidth < 576) main.classList.remove('show')
 
 burger.addEventListener('click', (e) => {
     e.stopPropagation()
     navigation.classList.toggle('show')
-    main.classList.toggle('show')
+    if (window.innerWidth > 576) main.classList.toggle('show')
 })
 
 window.addEventListener('resize', () => {

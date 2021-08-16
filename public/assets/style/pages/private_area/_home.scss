@@ -1,7 +1,7 @@
 main#private-area-main {
-  min-height: calc(100vh - 200px);
-  max-height: 100vh;
-  margin: 100px 20px;
+  min-height: initial;
+  height: calc(100vh - 12em);
+  margin: 6em 20px;
   margin-left: 20px;
   transition: margin-left .3s .3s ease-in-out;
   &.show {
@@ -9,12 +9,22 @@ main#private-area-main {
     margin-left: 320px;
   }
   color: $color-primary;
+  h1 {
+    text-align: center;
+    margin-bottom: 1em;
+  }
   .top-right-user {
     position: absolute;
     top: 20px;
     right: 2%;
+    display: flex;
+    align-items: center;
     h3 {
       font-size: 1.3em;
+      display: block;
+      @media screen and (max-width: 576px) {
+        display: none;
+      }
     }
     i {
       margin-left: 15px;
@@ -31,5 +41,82 @@ main#private-area-main {
     color: $color-primary;
     padding-bottom: 20px;
     border-bottom: 2px solid;
+  }
+}
+
+
+// Style filter
+.actions-buttons-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter-group {
+  position: relative;
+  font-size: .9em;
+  .button-filter {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .filter-list-group {
+    position: absolute;
+    top: 0;
+    right: 150px;
+    z-index: 10;
+    background-color: #f6f6f6;
+    padding: 5px;
+    font-size: .9em;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px rgba(black, .5);
+    width: 100%;
+    max-width: 200px;
+    display: none;
+    &.show {
+      display: block;
+    }
+    > ul {
+      max-height: 70vh;
+      overflow-y: auto;
+      > li {
+        > .input-checkbox-group {
+          border-bottom: 1px solid $color-grey;
+          padding-bottom: 5px;
+        }
+        ul {
+          max-height: 200px;
+          overflow: auto;
+          display: none;
+          &.show {
+            display: block;
+          }
+        }
+        li {
+          font-size: .9em;
+          padding-left: 10px;
+          .input-checkbox-group {
+            margin-top: 0;
+          }
+          &:hover {
+            background-color: rgba($color-grey, .15);
+          }
+        }
+      }
+    }
+    .filter-top-button-group {
+      display: flex;
+    }
+  }
+  ul.input-number-group {
+    font-size: .7rem;
+    li {
+      padding-top: 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      outline: none;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 3px rgba($color-primary, .15);
+    }
   }
 }
