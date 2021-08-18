@@ -4,6 +4,7 @@
 	width: 180px;
 	margin: 10px;
 	cursor: pointer;
+	line-height: 0;
 	font-family: $font-roboto;
 	font-size: .9em;
 	font-weight: 500;
@@ -82,4 +83,17 @@
 	border-radius: 4px;
 	margin: 10px 2px;
 	width: 75px;
+}
+
+.button-icon {
+	margin: 10px;
+	cursor: pointer;
+	line-height: 0;
+	font-size: 1.6em;
+	color: $color-primary;
+	transition: all .3s ease;
+	&:hover {
+		transform: scale(1.1);
+    opacity: .8;
+	}
 }

@@ -10,6 +10,7 @@ const main = document.getElementById('private-area-main')
 setTimeout(() => {
     document.querySelector('.logo-company-group').style.transition = 'color .1s .5s ease'
     document.querySelector('.show .logo-company-group').style.transition = 'color .1s .5s ease'
+    
 }, 500)
 
 // if (window.innerWidth > 576) [navigation, main].forEach(elt => elt.classList.add('show'))

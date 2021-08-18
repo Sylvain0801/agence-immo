@@ -1,0 +1,27 @@
+<div class="modal" id="modal-property-img-view" role="dialog">
+  <div class="modal-content-property-view">
+    <a href="#" class="modal-close fa fa-close color-white" role="button" data-dismiss="dialog"></a>
+    <div id="carousel-property-view" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        {% for k in offer.images|keys %}
+          <button type="button" data-bs-target="#carousel-property-view" data-bs-slide-to="{{ k }}" aria-label="Slide {{ k + 1 }}" class="{{ k == 0 ? 'active' : '' }}" aria-current="{{ k == 0 ? 'true' : '' }}"></button>
+        {% endfor %}
+      </div>
+      <div class="carousel-inner">
+        {% for k, img in offer.images %}
+          <div class="carousel-item" data-carousel-item="{{ k }}">
+            <div class="carousel-img" style="background-image: url({{ asset(img.path) }});"></div>
+          </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel-property-view" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel-property-view" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>

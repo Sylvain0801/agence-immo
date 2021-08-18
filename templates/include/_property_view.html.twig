@@ -1,0 +1,83 @@
+<section class="property-view-section">
+  <div class="property-view">
+    <div class="property-view-body">
+      <div class="property-view-img-grid">
+        {% for k, img in offer.images %}
+        <a href="#" role="button" class="" data-target="#modal-property-img-view" data-toggle="modal" data-id="{{ k }}">
+          <div class="property-view-img" style="background-image: url({{ asset(img.path) }});"></div>
+        </a>
+        {% endfor %}
+      </div>
+      <div class="property-view-manager-favorite-group">
+        <div class="property-view-manager">
+          <span>
+            {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
+              {{ 'private owner'|trans }}
+            {% else %}
+              {{ 'by agency'|trans }}
+            {% endif %}
+          </span>
+        </div>
+        <i class="card-button-favorite fa fa-star-o" data-id={{ offer.property.id }}>&nbsp;<span>{{'favorite'|trans}}</span></i>
+      </div>
+      <div class="property-view-header">
+        <h3 class="property-view-title">{{ offer.property.propertyType.name|capitalize }} - {{ offer.title }}</h3>
+        <h4 class="property-view-city"><i class="fa fa-map-marker"></i>&nbsp;{{ offer.property.city.name }}</h4>
+      </div>
+      <div class="property-view-content">
+        <h4 class="property-view-price">
+          {% if offer.property.transactionType == 'location' %}
+            {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+            / mois
+          {% else %}
+            {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+          {% endif %}
+        </h4>
+        <h4 class="property-view-area">{{ offer.property.rooms }} {{'rooms'|trans}} - {{ offer.property.area }} m²</h4>
+        <p class="property-view-text">{{ offer.description }}</p>
+      </div>
+      <div class="property-view-footer">
+        <div class="property-view-footer-caracteristics">
+          <h4>{{'Characteristics'|trans}} :</h4>
+          <div class="property-view-options">
+            {% for option in offer.property.options %}
+              <span>{{ option.name|capitalize }}</span>
+            {% endfor %}
+          </div>
+          <h5><i class="fa fa-flash"></i>&nbsp;{{'Energy consumption'|trans}} :</h5>
+          <div class="property-view-energy">
+            {% for letter in letters %}
+              <span style="{{ letter == offer.property.energy ? 'font-size: 1.4em;' : '' }}">
+                {% if letter == offer.property.energy %}
+                  <i class="fa fa-caret-up"></i>
+                {% endif %}
+                {{ letter }}
+              </span>
+            {% endfor %}
+          </div>
+          <h5><i class="fa fa-tree"></i>&nbsp;{{'Greenhouse gas emission'|trans}} :</h5>
+          <div class="property-view-ges">
+            {% for letter in letters %}
+              <span style="{{ letter == offer.property.ges ? 'font-size: 1.4em;' : '' }}">
+                {% if letter == offer.property.ges %}
+                  <i class="fa fa-caret-up"></i>
+                {% endif %}
+                {{ letter }}
+              </span>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="property-view-contact">
+          <div>
+            <h4>{{'Contact the owner'|trans}} :</h4>
+            <a href="{{ path('offer_view_ask_information', {slug: offer.slug}) }}" class="property-view-button button button-outline"><i class="fa fa-envelope-o"></i>&nbsp;{{'send a message'|trans}}</a>
+            {% if offer.property.manager.publicPhone is defined and offer.property.manager.publicPhone == 1 %}
+              <a href="" class="property-view-button button button-outline"><i class="fa fa-phone"></i>&nbsp;{{'call'|trans}} {{ offer.property.manager.phoneNumber }}</a>
+            {% endif %}
+          </div>
+          <a href="{{ path('referer') }}" class="property-view-button button"><i class="fa fa-list-ul"></i>&nbsp;&nbsp;{{'back to liste'|trans}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -6,11 +6,12 @@ use App\Entity\User\Agent;
 use App\Entity\User\Owner;
 use App\Entity\User\PrivateOwner;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Faker;
 
-class UserFixtures extends Fixture
+class UserFixtures extends Fixture implements FixtureGroupInterface
 {
   private $userPasswordHasher;
 
@@ -44,7 +45,7 @@ class UserFixtures extends Fixture
 
       $this->addReference('private_owner_'.$i, $privateOwner);
     }
-    for($i = 0; $i < 50; $i++) {
+    for($i = 0; $i < 10; $i++) {
 
       $agent = new Agent();
   
@@ -83,5 +84,10 @@ class UserFixtures extends Fixture
       $this->addReference('owner_'.$i, $owner);
     }
     $manager->flush();
+  }
+
+  public static function getGroups(): array
+  {
+      return ['user'];
   }
 }

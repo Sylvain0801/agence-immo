@@ -101,26 +101,26 @@ class PropertyAddEditFormType extends AbstractType
                 'expanded' => true,
                 'multiple' => false,
                 'choices' => [
-                    'a' => 'A',
-                    'b' => 'B',
-                    'c' => 'C',
-                    'd' => 'D',
-                    'e' => 'E',
-                    'f' => 'F',
-                    'g' => 'G'
+                    'A' => 'A',
+                    'B' => 'B',
+                    'C' => 'C',
+                    'D' => 'D',
+                    'E' => 'E',
+                    'F' => 'F',
+                    'G' => 'G'
                 ],
             ])
             ->add('ges', ChoiceType::class, [
                 'expanded' => true,
                 'multiple' => false,
                 'choices' => [
-                    'a' => 'A',
-                    'b' => 'B',
-                    'c' => 'C',
-                    'd' => 'D',
-                    'e' => 'E',
-                    'f' => 'F',
-                    'g' => 'G'
+                    'A' => 'A',
+                    'B' => 'B',
+                    'C' => 'C',
+                    'D' => 'D',
+                    'E' => 'E',
+                    'F' => 'F',
+                    'G' => 'G'
                 ],
             ])
             ->add('options', EntityType::class, [
@@ -128,6 +128,7 @@ class PropertyAddEditFormType extends AbstractType
                 'multiple' => true,
                 'class' => Option::class,
                 'choice_label' => 'name',
+                'mapped' => false,
                 'required'=> false,
             ])
             ->add('city', TextareaType::class, [

@@ -11,14 +11,14 @@ main#private-area-main {
   color: $color-primary;
   h1 {
     text-align: center;
-    margin-bottom: 1em;
+    margin: 0 auto 1em;
+    max-width: 600px;
   }
   .top-right-user {
     position: absolute;
     top: 20px;
     right: 2%;
     display: flex;
-    align-items: center;
     h3 {
       font-size: 1.3em;
       display: block;
@@ -48,7 +48,10 @@ main#private-area-main {
 // Style filter
 .actions-buttons-group {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  div {
+    display: flex;
+  }
 }
 
 .filter-group {
@@ -106,10 +109,11 @@ main#private-area-main {
       display: flex;
     }
   }
-  ul.input-number-group {
+  ul.input-filter-number-group {
     font-size: .7rem;
     li {
       padding-top: 5px;
+      padding-right: 10px;
     }
     input[type="number"] {
       width: 100%;

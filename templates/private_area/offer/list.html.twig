@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<main id="private-area-main">
+	{% include "private_area/_header_user.html.twig" %}
+	{% for message in app.flashes('message_alert') %}
+    {{ include('include/_alert.html.twig') }}
+  {% endfor %}
+	<h2>{{'my property ads'|trans|capitalize}}</h2>
+  <div class="actions-buttons-group">
+		{% if viewMode is defined and viewMode == 'thumbnail' %}
+			<a href="{{ path('private_area_offer_list_sorted', {viewMode: 'list'}) }}" class="button-icon" title="{{ 'list'|trans }}"><i class="fa fa-list"></i>&nbsp;</a>
+		{% else %}
+			<a href="{{ path('private_area_offer_list_sorted', {viewMode: 'thumbnail'}) }}" class="button-icon" title="{{ 'thumbnails'|trans }}"><i class="fa fa-th"></i>&nbsp;</a>
+		{% endif %}
+		<div>
+			{# <a href="{{ path('private_area_offer_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a> #}
+			<a href="#" class="button button-small button-filter" id="main-button-filter">
+				<i class="fa fa-filter"></i>&nbsp;{{ 'filter'|trans|capitalize }}
+				{% if app.request.session.get('filter_criterias') != null %}
+					{% set countFilters = 0 %}
+					{% for filterCategory in app.request.session.get('filter_criterias') %}
+						{% set categoryHasFilter = false %}
+						{% for key, item in filterCategory|filter(item => item != '') %}
+								{% set categoryHasFilter = true  %}
+						{% endfor %}
+						{% if categoryHasFilter %}
+							{% set countFilters = countFilters + 1 %}
+						{% endif %}
+					{% endfor %}
+					({{ countFilters }})
+				{% endif %}
+			</a>
+		</div>
+	</div>
+  {{ include('private_area/_filter.html.twig', {entity: 'offer'}) }}
+	<div class="table-responsive-container">
+		{% if viewMode is defined and viewMode == 'thumbnail' %}
+		<div class="properties-container">
+			{% for offer in datas %}
+				{{ include('components/_card_property.html.twig') }}
+			{% else %}
+				<div class="no-property-to-display">😓 {{'There are no properties to display yet.'|trans}}</div>
+			{% endfor %}
+		</div>
+		{% else %}
+			<table>
+				<thead>
+					<tr>
+						{% for k, header in headers %}
+							{% if header.header %}
+								<th>
+									<div class="header-btn-sort-group">
+										{{ header.label|trans|capitalize }}
+										{% if header.sort %}
+											<div class="table-sort-buttons">
+												<a href="{{ path('private_area_offer_list_sorted', {sort: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+												<a href="{{ path('private_area_offer_list_sorted', {sort: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+											</div>
+										{% endif %}
+									</div>
+								</th>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for offer in datas %}
+						<tr>
+							<td>{{ offer.id }}</td>
+							<td>{{ offer.property.id }}</td>
+							<td>{{ offer.title|trans|capitalize }}</td>
+							<td>{{ offer.description|trans|capitalize }}</td>
+							<td>{{ include('private_area/_switch_buttons.html.twig') }}</td>
+							<td>
+								<div class="offer-table-view-img-grid">
+									{% for img in offer.images %}
+										<div class="offer-table-view-img" style="background-image: url({{ asset(img.path) }});"></div>
+									{% endfor %}
+								</div>
+							</td>
+							<td>
+								{{ include('private_area/offer/_action_buttons.html.twig') }}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
+		{% if datas|length > 0 %}
+			{% if datas.getTotalItemCount > 10 %}
+				{{ knp_pagination_render(datas) }}
+			{% endif %}
+		{% endif %}
+	</div>
+</main>
+<div class="modal" id="modal-confirm-delete" role="dialog">
+	<div class="modal-content w-450">
+		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+		<div class="modal-header">
+		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'confirm deletion'|trans|capitalize }}</h3>
+		</div>
+		<div class="modal-body">
+			<p>{{ 'you are about to delete property ad from property no'|trans|capitalize }}&nbsp;<span class="span-property-id"></span>.</p>
+			<br>
+			<p>{{ 'this action is irreversible.'|trans|capitalize }}</p>
+		</div>
+		<div class="modal-footer">
+			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+			<a id="delete-button" role="button" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/js/filter.js') }}"></script>
+{% endblock %}

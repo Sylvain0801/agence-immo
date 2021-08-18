@@ -6,6 +6,7 @@ use App\Entity\Property\Property;
 use App\Form\PrivateArea\PropertyAddEditFormType;
 use App\Repository\Property\PropertyRepository;
 use App\Service\CityManageService;
+use App\Service\ConfigPropertyTableService;
 use App\Service\TableConfigService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,11 +23,11 @@ class PropertyController extends AbstractController
     /**
      * @Route("/list", name="list")
      */
-    public function list(PropertyRepository $propertyRepo, TableConfigService $tableConfigService, Request $request, PaginatorInterface $paginator): Response
+    public function list(PropertyRepository $propertyRepo, ConfigPropertyTableService $configPropertyTableService, Request $request, PaginatorInterface $paginator): Response
     {
         $request->getSession()->remove('filter_criterias');
 
-        $datas = $tableConfigService->configInitTableProperty($propertyRepo);
+        $datas = $configPropertyTableService->configInitPropertyTable($propertyRepo);
         
         $properties = $paginator->paginate(
             $datas['table'],
@@ -44,7 +45,7 @@ class PropertyController extends AbstractController
     /**
      * @Route("/list-sorted/{sort}/{order}", name="list_sorted", defaults={"sort": "id", "order": "asc"})
      */
-    public function listSortedFilteredProperty($sort, $order, TableConfigService $tableConfigService, PropertyRepository $propertyRepo, Request $request, PaginatorInterface $paginator): Response
+    public function listSortedFilteredProperty($sort, $order, ConfigPropertyTableService $configPropertyTableService, PropertyRepository $propertyRepo, Request $request, PaginatorInterface $paginator): Response
     {
         if (count($request->request) > 0) {
             $criterias = $request->request;
@@ -54,8 +55,7 @@ class PropertyController extends AbstractController
         } else {
             $criterias = null;
         }
-        dump($criterias);
-        $datas = $tableConfigService->configSortedFilteredTableProperty($propertyRepo, $criterias, $sort, $order);
+        $datas = $configPropertyTableService->configSortedFilteredPropertyTable($propertyRepo, $criterias, $sort, $order);
 
         $properties = $paginator->paginate(
             $datas['table'],
@@ -70,11 +70,12 @@ class PropertyController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/new", name="new")
      */
     public function new(Request $request, CityManageService $cityManageService, TranslatorInterface $translator): Response
     {
+        
         $property = new Property();
         $form = $this->createForm(PropertyAddEditFormType::class, $property);
         $formData = $form->handleRequest($request);
@@ -84,6 +85,13 @@ class PropertyController extends AbstractController
 
             $zipCode = substr($formData->get('city')->getData(), 0, 5);
             $cityManageService->createCityIfNotExists($zipCode, $property);
+
+            $options = $formData->get('options')->getData();
+            if ($options) {
+                foreach ($options as $option) {
+                    $property->addOption($option);
+                }
+            }
 
             $property->setManager($this->getUser());
             $em->persist($property);
@@ -104,12 +112,11 @@ class PropertyController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/edit/{id}", name="edit")
      */
     public function edit(Property $property, Request $request, CityManageService $cityManageService, TranslatorInterface $translator): Response
     {
-        dump($request->request);
         $form = $this->createForm(PropertyAddEditFormType::class, $property);
         $formData = $form->handleRequest($request);
         
@@ -118,6 +125,14 @@ class PropertyController extends AbstractController
 
             $zipCode = substr($formData->get('city')->getData(), 0, 5);
             $cityManageService->createCityIfNotExists($zipCode, $property);
+
+            
+            $options = $formData->get('options')->getData();
+            if ($options) {
+                foreach ($options as $option) {
+                    $property->addOption($option);
+                }
+            }
 
             $property->setManager($this->getUser());
             $em->persist($property);
@@ -137,5 +152,23 @@ class PropertyController extends AbstractController
             'form' => $form->createView(),
             'property' => $property
         ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function delete(Property $property, TranslatorInterface $translator): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($property);
+        $em->flush();
+
+        $this->addFlash('message_alert', [
+            'text' => $translator->trans('The property has been deleted successfully'), 
+            'style' => 'success'
+        ]);
+
+        return $this->redirectToRoute('private_area_property_list');
+
     }
 }

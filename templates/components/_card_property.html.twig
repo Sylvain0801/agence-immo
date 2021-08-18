@@ -1,32 +1,37 @@
-	<div class="card-property">
-    <div class="card-property-management">
-      <span>
-        {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
-          {{ 'private owner'|trans }}
-        {% else %}
-          {{ 'by agency'|trans }}
-        {% endif %}
-      </span>
-    </div>
-    <div class="card-property-img" style="background-image: url({{ asset(offer.images[0].path) }})"></div>
-    <h3 class="card-property-title">{{ offer.property.propertyType.name|capitalize }} - {{ offer.title }}</h3>
-    <!-- max-length=40 -->
-    <i class="card-button-favorite fa fa-star-o" data-id={{ offer.property.id }}></i>
-    <h4 class="card-property-price">
-      {% if offer.property.transactionType == 'location' %}
-        {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
-        / {{'month'|trans}}
+<div class="card-property">
+  <div class="card-property-management">
+    <span>
+      {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
+        {{ 'private owner'|trans }}
       {% else %}
-        {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+        {{ 'by agency'|trans }}
       {% endif %}
-    </h4>
-    <h4 class="card-property-area">{{ offer.property.rooms }}
-      {{'rooms'|trans}} -
-      {{ offer.property.area }}
-      m²</h4>
-    <p class="card-property-text">{{ offer.description }}</p>
-    <h4 class="card-property-city">
-      <i class="fa fa-map-marker"></i>&nbsp;{{ offer.property.city.name }}</h4>
-    <!-- max-length=60 -->
-    <a href="{{ path('offer_view', {slug: offer.slug}) }}" class="card-property-button button button-outline">{{'show more'|trans}}</a>
+    </span>
   </div>
+  <div class="card-property-img" style="background-image: url({{ asset(offer.images[0].path) }})"></div>
+  <h3 class="card-property-title">{{ offer.property.property_type.name|capitalize }} - {{ offer.title }}</h3>
+  <!-- max-length=40 -->
+  <i class="card-button-favorite fa fa-star-o" data-id={{ offer.property.id }}></i>
+  <h4 class="card-property-price">
+    {% if offer.property.transaction_type == 'rental' %}
+      {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+      / {{'month'|trans}}
+    {% else %}
+      {{ offer.property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+    {% endif %}
+  </h4>
+  <h4 class="card-property-area">{{ offer.property.rooms }}
+    {{'rooms'|trans}} -
+    {{ offer.property.area }}
+    m²</h4>
+  <p class="card-property-text">{{ offer.description }}</p>
+  <h4 class="card-property-city">
+    <i class="fa fa-map-marker"></i>&nbsp;{{ offer.property.city.name }}</h4>
+  <!-- max-length=60 -->
+  {% if navigationPrivate is defined %}
+    {{ include('private_area/offer/_action_buttons.html.twig') }}
+    {{ include('private_area/_switch_buttons.html.twig') }}
+  {% else %} 
+    <a href="{{ path('offer_view', {slug: offer.slug}) }}" class="card-property-button button button-outline">{{'show more'|trans}}</a>
+  {% endif %}
+</div>

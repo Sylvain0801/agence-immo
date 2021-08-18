@@ -85,11 +85,19 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
-        "prepare": [
+        "test": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit"
+        ],
+        "prepare1": [
             "php bin/console doctrine:database:drop --if-exists --force",
             "php bin/console doctrine:database:create",
             "php bin/console doctrine:schema:update --force",
             "php bin/console doctrine:fixtures:load -n"
+        ],
+        "prepare2": [
+            "php bin/console doctrine:fixtures:load --append --group=user",
+            "php bin/console doctrine:fixtures:load --append --group=document"
         ],
         "trans": [
             "php bin/console translation:update --force fr",

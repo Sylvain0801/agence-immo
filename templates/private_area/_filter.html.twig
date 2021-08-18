@@ -1,0 +1,85 @@
+<div class="filter-group">
+	<form action="{{ path('private_area_' ~ entity ~ '_list_sorted') }}" method="POST">
+		<div class="filter-list-group" id="filter-list-group">
+			<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="close"></a>
+			<h6><i class="fa fa-filter"></i>&nbsp;{{ 'filter'|trans|capitalize }}</h6>
+			<div class="filter-top-button-group">
+				<a href="{{ path('private_area_' ~ entity ~ '_list') }}" class="button button-small button-tiny" id="button-clear-filters">{{ 'clear'|trans|capitalize }}</a>
+				<button type="submit" class="button button-small button-tiny">{{ 'validate'|trans|capitalize }}</button>
+			</div>
+			<ul>
+				{% for k, header in headers %}
+					{% if header.filter %}
+						<li>
+							<div class="input-checkbox-group">
+								<input type="checkbox" id="{{ header.label }}" data-header="{{ k }}">
+								<label for="{{ header.label }}">
+									<span><i class="fa fa-check"></i></span>
+									{{ header.label|trans|capitalize }}&nbsp;
+									{% if app.request.session.get('filter_criterias') != null %}
+										{% if app.request.session.get('filter_criterias').get(k) != null %}
+											{% set countItemsFiltered = 0 %}
+											{% for key, item in app.request.session.get('filter_criterias').get(k)|filter(item => item != '') %}
+												{% set countItemsFiltered = countItemsFiltered + 1 %}
+											{% endfor %}
+											{% if countItemsFiltered > 0 %}
+												({{ countItemsFiltered }})
+											{% endif %}
+										{% endif %}
+									{% endif %}
+								</label>
+							</div>
+							{% if header.type == 'checkbox' %}
+								<ul>
+									{% for index, value in header.values %}
+									{% set checked = '' %}
+									{% if app.request.session.get('filter_criterias') != null %}
+										{% if app.request.session.get('filter_criterias').get(k) != null %}
+											{% if value[k] in app.request.session.get('filter_criterias').get(k) %}
+												{% set checked = 'checked' %}
+											{% endif %}
+										{% endif %}
+									{% endif %}
+										<li>
+											<div class="input-checkbox-group">
+												<input type="checkbox" id="{{ k~'_'~value[k] }}" name="{{ k }}[]" value="{{ value[k] }}" {{ checked }}>
+												<label for="{{ k~'_'~value[k] }}"><span><i class="fa fa-check"></i></span>{{ value[k]|trans|capitalize }}</label>
+											</div>
+										</li>
+									{% endfor %}
+								</ul>
+							{% elseif header.type == 'number' %}
+								<ul class="input-filter-number-group">
+									<li>
+										<label for="{{ k~'_Min' }}">Min</label>
+										{% set inputMinValue = '' %}
+										{% if app.request.session.get('filter_criterias') != null %}
+											{% if app.request.session.get('filter_criterias').get(k) != null %}
+												{% if app.request.session.get('filter_criterias').get(k)[0] != '' %}
+													{% set inputMinValue = app.request.session.get('filter_criterias').get(k)[0] %}
+												{% endif %}
+											{% endif %}
+										{% endif %}
+										<input type="number" name="{{ k }}[]" id="{{ k~'_Min' }}" value="{{ inputMinValue }}">
+									</li>
+									<li>
+										<label for="{{ k~'_Max' }}">Max</label>
+										{% set inputMaxValue = '' %}
+										{% if app.request.session.get('filter_criterias') != null %}
+											{% if app.request.session.get('filter_criterias').get(k) != null %}
+												{% if app.request.session.get('filter_criterias').get(k)[1] != '' %}
+													{% set inputMaxValue = app.request.session.get('filter_criterias').get(k)[1] %}
+												{% endif %}
+											{% endif %}
+										{% endif %}
+										<input type="number" name="{{ k }}[]" id="{{ k~'_Max' }}" value="{{ inputMaxValue }}">
+									</li>
+								</ul>
+							{% endif %}
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</form>
+</div>

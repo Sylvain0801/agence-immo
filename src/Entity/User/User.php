@@ -2,6 +2,7 @@
 
 namespace App\Entity\User;
 
+use App\Entity\Document;
 use App\Entity\Property\Property;
 use App\Repository\User\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -87,9 +88,15 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $properties;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Document::class, mappedBy="users")
+     */
+    private $documents;
+
     public function __construct()
     {
         $this->properties = new ArrayCollection();
+        $this->documents = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -291,5 +298,32 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __toString()
     {
         return $this->lastname . ' ' . $this->firstname;
+    }
+
+    /**
+     * @return Collection|Document[]
+     */
+    public function getDocuments(): Collection
+    {
+        return $this->documents;
+    }
+
+    public function addDocument(Document $document): self
+    {
+        if (!$this->documents->contains($document)) {
+            $this->documents[] = $document;
+            $document->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDocument(Document $document): self
+    {
+        if ($this->documents->removeElement($document)) {
+            $document->removeUser($this);
+        }
+
+        return $this;
     }
 }

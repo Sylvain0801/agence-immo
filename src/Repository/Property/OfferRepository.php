@@ -4,6 +4,7 @@ namespace App\Repository\Property;
 
 use App\Entity\Property\Offer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,21 +20,50 @@ class OfferRepository extends ServiceEntityRepository
         parent::__construct($registry, Offer::class);
     }
 
-    public function findAllArray(int $limit = null) : array
+    public function findArrayAllDatas() : array
+    {
+        $qb = $this->createQueryBuilder('o')
+                ->addSelect('o')
+                ->leftJoin('o.images', 'i')
+                ->addSelect('i')
+                ->leftJoin('o.property', 'p')
+                ->addSelect('p')
+                ->leftJoin('p.city', 'c')
+                ->addSelect('c')
+                ->leftJoin('p.property_type', 't')
+                ->addSelect('t')
+                ->leftJoin('p.owner', 'ow')
+                ->addSelect('ow')
+                ->leftJoin('p.manager', 'm')
+                ->addSelect('m')
+                ->leftJoin('p.options', 'opt')
+                ->addSelect('opt')
+                ->orderBy('o.updated_at', 'DESC');
+        
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
+    }
+
+    public function findListByFieldSortAscending(string $field = null) : array
+    {
+        $qb = $this->createQueryBuilder('o')
+            ->select('o.' . $field)
+            ->distinct()
+            ->orderBy('o.' . $field, 'asc');
+
+        return $qb->getQuery()->execute();
+    }
+
+    public function findListByPropertyIdSortAscending() : array
     {
         $qb = $this->createQueryBuilder('o')
             ->leftJoin('o.property', 'p')
-            ->addSelect('p')
-            ->leftJoin('p.city', 'c')
-            ->addSelect('c')
-            ->orderBy('o.updated_at', 'DESC');
+            ->select('p.id AS property_id')
+            ->distinct()
+            ->orderBy('property_id', 'asc');
 
-        if ($limit) $qb->setMaxResults($limit);
+        return $qb->getQuery()->execute();
 
-        $query = $qb->getQuery();
-        return $query->execute();
     }
-
     
     public function findOfferCitiesCoord() : array
     {
@@ -60,18 +90,31 @@ class OfferRepository extends ServiceEntityRepository
         int $furnished = null
         ): array
     {
-        $qb = $this->createQueryBuilder('o');
+        $qb = $this
+            ->createQueryBuilder('o')
+            ->leftJoin('o.images', 'i')
+            ->addSelect('i')
+            ->leftJoin('o.property', 'p')
+            ->addSelect('p')
+            ->leftJoin('p.city', 'c')
+            ->addSelect('c')
+            ->leftJoin('p.property_type', 't')
+            ->addSelect('t')
+            ->leftJoin('p.owner', 'ow')
+            ->addSelect('ow')
+            ->leftJoin('p.manager', 'm')
+            ->addSelect('m')
+            ->leftJoin('p.options', 'opt')
+            ->addSelect('opt');
 
         if ($listCitiesId != null) {
             $qb
-            ->leftJoin('o.property', 'p')
-            ->leftJoin('p.city', 'c')
             ->where('c.id IN(:listCitiesId)')
             ->setParameter('listCitiesId', array_keys($listCitiesId));
         }
         if ($sell != null) {
             $qb->andWhere('p.transaction_type = :sell')
-                ->setParameter('sell', 'vente');
+                ->setParameter('sell', 'sale');
         }
         if ($priceMin != null) {
             $qb->andWhere('p.price >= :priceMin')
@@ -83,7 +126,7 @@ class OfferRepository extends ServiceEntityRepository
         }
         if ($rent != null) {
             $qb->andWhere('p.transaction_type = :rent')
-            ->setParameter('rent', 'location');
+            ->setParameter('rent', 'rental');
         }
         if ($rentMin != null) {
             $qb->andWhere('p.price >= :rentMin')
@@ -98,19 +141,17 @@ class OfferRepository extends ServiceEntityRepository
                 ->setParameter('rooms', $rooms);
         }
         if ($type != null) {
-            $qb->leftJoin('p.property_type', 't')
-                ->andWhere('t.id = :type')
+            $qb->andWhere('t.id = :type')
                 ->setParameter('type', $type);
         }
         if ($furnished != null) {
-            $qb->leftJoin('p.options', 'opt')
-                ->andWhere('opt.name LIKE :furnished')
+            $qb->andWhere('opt.name LIKE :furnished')
                 ->setParameter('furnished', '%meublé%');
         }
         
         $qb->orderBy('o.updated_at', 'DESC');
 
-        return $qb->getQuery()->execute();
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
 
     public function findFavorites(array $liste = null) : array
@@ -122,33 +163,102 @@ class OfferRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->execute();
     }
-
-    // /**
-    //  * @return Offer[] Returns an array of Offer objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findListSortedFilteredBycriteria($criterias = null, string $sort = 'id', string $order = 'asc') : array
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('o')
+                ->addSelect('o')
+                ->leftJoin('o.images', 'i')
+                ->addSelect('i')
+                ->leftJoin('o.property', 'p')
+                ->addSelect('p')
+                ->leftJoin('p.city', 'c')
+                ->addSelect('c')
+                ->leftJoin('p.property_type', 't')
+                ->addSelect('t')
+                ->leftJoin('p.owner', 'ow')
+                ->addSelect('ow')
+                ->leftJoin('p.manager', 'm')
+                ->addSelect('m')
+                ->leftJoin('p.options', 'opt')
+                ->addSelect('opt');
 
-    /*
-    public function findOneBySomeField($value): ?Offer
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if ($criterias !== null) {
+            if ($criterias->get('id') !== null) {
+                $qb->andWhere('o.id IN(:idList)')
+                    ->setParameter('idList', array_values($criterias->get('id')));
+            }
+            if ($criterias->get('property_id') !== null) {
+                $qb->andWhere('o.property IN(:propertyIdList)')
+                    ->setParameter('propertyIdList', array_values($criterias->get('property_id')));
+            }
+            if ($criterias->get('title') !== null) {
+                $qb->andWhere('o.title IN(:titleList)')
+                    ->setParameter('titleList', array_values($criterias->get('title')));
+            }
+            if ($criterias->get('transaction_type') !== null) {
+                $qb->andWhere('p.transaction_type IN(:transacList)')
+                    ->setParameter('transacList', array_values($criterias->get('transaction_type')));
+            }
+            if ($criterias->get('city') !== null) {
+                $qb->andWhere('c.name IN(:cityList)')
+                    ->setParameter('cityList', array_values($criterias->get('city')));
+            }
+            if ($criterias->get('property_type') !== null) {
+                $qb->andWhere('t.name IN(:typeList)')
+                    ->setParameter('typeList', array_values($criterias->get('property_type')));
+            }
+            if ($criterias->get('price') !== null) {
+                if (!empty(array_values($criterias->get('price'))[0])) {
+                    $qb->andWhere('p.price >= :priceMin')
+                        ->setParameter('priceMin', array_values($criterias->get('price'))[0]);
+                }
+                if (!empty(array_values($criterias->get('price'))[1])) {
+                    $qb->andWhere('p.price <= :priceMax')
+                        ->setParameter('priceMax', array_values($criterias->get('price'))[1]);
+                }
+            }
+            if ($criterias->get('area') !== null) {
+                if (!empty(array_values($criterias->get('area'))[0])) {
+                    $qb->andWhere('p.area >= :areaMin')
+                        ->setParameter('areaMin', array_values($criterias->get('area'))[0]);
+                }
+                if (!empty(array_values($criterias->get('area'))[1])) {
+                    $qb->andWhere('p.area <= :areaMax')
+                        ->setParameter('areaMax', array_values($criterias->get('area'))[1]);
+                }
+            }
+            if ($criterias->get('rooms') !== null) {
+                if (!empty(array_values($criterias->get('rooms'))[0])) {
+                    $qb->andWhere('p.rooms >= :roomsMin')
+                        ->setParameter('roomsMin', array_values($criterias->get('rooms'))[0]);
+                }
+                if (!empty(array_values($criterias->get('rooms'))[1])) {
+                    $qb->andWhere('p.rooms <= :roomsMax')
+                        ->setParameter('roomsMax', array_values($criterias->get('rooms'))[1]);
+                }
+            }
+            if ($criterias->get('energy') !== null) {
+                $qb->andWhere('p.energy IN(:energyList)')
+                    ->setParameter('energyList', array_values($criterias->get('energy')));
+            }
+            if ($criterias->get('ges') !== null) {
+                $qb->andWhere('p.ges IN(:gesList)')
+                    ->setParameter('gesList', array_values($criterias->get('ges')));
+            }
+            if ($criterias->get('options') !== null) {
+                $qb->andWhere('opt.name IN(:optionList)')
+                    ->setParameter('optionList', array_values($criterias->get('options')));
+                
+            }
+        }
+        if ($sort === 'property_id') {
+            $qb->orderBy('p.id', $order);
+        } else {
+            $qb->orderBy('o.' . $sort, $order);
+        }
+
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
-    */
+   
 }

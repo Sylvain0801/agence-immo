@@ -45,7 +45,7 @@
 	</section>
 	<section class="properties-section">
 		<div class="properties-container">
-			{% for offer in offers %}
+			{% for k, offer in offers|filter((offer, k) => k < limit_results) %}
 				{{ include('components/_card_property.html.twig') }}
 			{% else %}
 				<div class="no-property-to-display">😓 {{'There are no properties to display yet.'|trans}}</div>

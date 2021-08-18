@@ -1,0 +1,12 @@
+.offer-table-view-img-grid {
+  display: grid;
+  margin: auto;
+  $height-img: 60px;
+  height: calc(2 * #{$height-img});
+  width: calc(#{$height-img} * 1.5 * 3);
+  grid-template: repeat(2, $height-img) / repeat(3, 1fr);
+  .offer-table-view-img {
+    @include img-cover;
+    height: $height-img;
+  }
+}

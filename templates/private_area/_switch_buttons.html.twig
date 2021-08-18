@@ -1,0 +1,4 @@
+<div class="toggle-switch-button">
+  <input type="{{ offer.property.property_ad_count > 1 ? 'radio' : 'checkbox' }}" name="{{ 'property' ~ offer.property.id }}" id="{{ 'offer' ~ offer.id }}" {{ offer.is_active ? 'checked' : ''}}>
+  <label for="{{ 'offer' ~ offer.id }}"><span class="ball-switch-button"></span></label>
+</div>

@@ -689,6 +689,130 @@
         <source>create</source>
         <target>__create</target>
       </trans-unit>
+      <trans-unit id="GE9LvMX" resname="property add no">
+        <source>property add no</source>
+        <target>__property add no</target>
+      </trans-unit>
+      <trans-unit id="DAhXCwo" resname="property no">
+        <source>property no</source>
+        <target>__property no</target>
+      </trans-unit>
+      <trans-unit id="qvIyBkY" resname="title">
+        <source>title</source>
+        <target>__title</target>
+      </trans-unit>
+      <trans-unit id="yQRveje" resname="description">
+        <source>description</source>
+        <target>__description</target>
+      </trans-unit>
+      <trans-unit id="loeWEWU" resname="active">
+        <source>active</source>
+        <target>__active</target>
+      </trans-unit>
+      <trans-unit id="IbLu0eM" resname="images">
+        <source>images</source>
+        <target>__images</target>
+      </trans-unit>
+      <trans-unit id="QH18dX9" resname="The property ad has been created successfully">
+        <source>The property ad has been created successfully</source>
+        <target>__The property ad has been created successfully</target>
+      </trans-unit>
+      <trans-unit id="OZWwByS" resname="The property ad has been modified successfully">
+        <source>The property ad has been modified successfully</source>
+        <target>__The property ad has been modified successfully</target>
+      </trans-unit>
+      <trans-unit id="9lhJJYm" resname="The property ad has been deleted successfully">
+        <source>The property ad has been deleted successfully</source>
+        <target>__The property ad has been deleted successfully</target>
+      </trans-unit>
+      <trans-unit id="MNOpEmD" resname="The property has been created successfully">
+        <source>The property has been created successfully</source>
+        <target>__The property has been created successfully</target>
+      </trans-unit>
+      <trans-unit id="T1f5fvn" resname="The property has been modified successfully">
+        <source>The property has been modified successfully</source>
+        <target>__The property has been modified successfully</target>
+      </trans-unit>
+      <trans-unit id="l.VShx_" resname="The property has been deleted successfully">
+        <source>The property has been deleted successfully</source>
+        <target>__The property has been deleted successfully</target>
+      </trans-unit>
+      <trans-unit id="nl7F.Ab" resname="my property ads">
+        <source>my property ads</source>
+        <target>__my property ads</target>
+      </trans-unit>
+      <trans-unit id="ozA5XMC" resname="list">
+        <source>list</source>
+        <target>__list</target>
+      </trans-unit>
+      <trans-unit id="q.vOgGx" resname="thumbnails">
+        <source>thumbnails</source>
+        <target>__thumbnails</target>
+      </trans-unit>
+      <trans-unit id="0WyeK2M" resname="confirm deletion">
+        <source>confirm deletion</source>
+        <target>__confirm deletion</target>
+      </trans-unit>
+      <trans-unit id="MWyYtQl" resname="you are about to delete property number">
+        <source>you are about to delete property number</source>
+        <target>__you are about to delete property number</target>
+      </trans-unit>
+      <trans-unit id="HOzGMdE" resname="related property ads will also be removed, this action is irreversible.">
+        <source>related property ads will also be removed, this action is irreversible.</source>
+        <target>__related property ads will also be removed, this action is irreversible.</target>
+      </trans-unit>
+      <trans-unit id="dMlpSHU" resname="the maximum size allowed per file is">
+        <source>the maximum size allowed per file is</source>
+        <target>__the maximum size allowed per file is</target>
+      </trans-unit>
+      <trans-unit id="7_xybrz" resname="6 files maximum per download">
+        <source>6 files maximum per download</source>
+        <target>__6 files maximum per download</target>
+      </trans-unit>
+      <trans-unit id="U9KCn.." resname="create new property ad for property no">
+        <source>create new property ad for property no</source>
+        <target>__create new property ad for property no</target>
+      </trans-unit>
+      <trans-unit id="IIOuxRP" resname="view property ad">
+        <source>view property ad</source>
+        <target>__view property ad</target>
+      </trans-unit>
+      <trans-unit id="ik6xxig" resname="edit property ad">
+        <source>edit property ad</source>
+        <target>__edit property ad</target>
+      </trans-unit>
+      <trans-unit id="I.innF5" resname="delete property ad">
+        <source>delete property ad</source>
+        <target>__delete property ad</target>
+      </trans-unit>
+      <trans-unit id="G4anWmT" resname="download images">
+        <source>download images</source>
+        <target>__download images</target>
+      </trans-unit>
+      <trans-unit id="U0M9PNE" resname="back to list">
+        <source>back to list</source>
+        <target>__back to list</target>
+      </trans-unit>
+      <trans-unit id="ERM7Kym" resname="modify a property">
+        <source>modify a property</source>
+        <target>__modify a property</target>
+      </trans-unit>
+      <trans-unit id="s4J4gPl" resname="no ad">
+        <source>no ad</source>
+        <target>__no ad</target>
+      </trans-unit>
+      <trans-unit id="UuRm5YM" resname="new property ad">
+        <source>new property ad</source>
+        <target>__new property ad</target>
+      </trans-unit>
+      <trans-unit id="8.2gvIJ" resname="edit property">
+        <source>edit property</source>
+        <target>__edit property</target>
+      </trans-unit>
+      <trans-unit id="j1C9k.d" resname="delete property">
+        <source>delete property</source>
+        <target>__delete property</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

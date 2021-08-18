@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -28,7 +27,7 @@ class OfferController extends AbstractController
     public function index(PropertyTypeRepository $propertyTypeRepository, OfferRepository $offerRepository, Request $request, PaginatorInterface $paginator): Response
     {   
         $propertyTypes = $propertyTypeRepository->findAll();
-        $data = $offerRepository->findAllArray();
+        $data = $offerRepository->findArrayAllDatas();
 
         // Réinitialise tous les filtres du formulaire
         $fields = [

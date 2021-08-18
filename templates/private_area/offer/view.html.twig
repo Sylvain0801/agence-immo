@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<main id="private-area-main">
+	{% include "private_area/_header_user.html.twig" %}
+	{% for message in app.flashes('message_alert') %}
+    {{ include('include/_alert.html.twig') }}
+  {% endfor %}
+	<h2>{{'my property ads'|trans|capitalize}}</h2>
+	<div class="table-responsive-container">
+		{{ include('include/_property_view.html.twig') }}
+	</div>
+</main>
+{{ include('include/_carousel_property_view.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/js/filter.js') }}"></script>
+{% endblock %}

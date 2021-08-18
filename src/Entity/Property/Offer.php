@@ -38,6 +38,7 @@ class Offer
 
     /**
      * @ORM\ManyToOne(targetEntity=Property::class, inversedBy="offers")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $property;
 
@@ -61,6 +62,11 @@ class Offer
      * @ORM\ManyToMany(targetEntity=Image::class, inversedBy="offers")
      */
     private $images;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $is_active;
 
     public function __construct()
     {
@@ -143,6 +149,18 @@ class Offer
     public function removeImage(Image $image): self
     {
         $this->images->removeElement($image);
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->is_active;
+    }
+
+    public function setIsActive(bool $is_active): self
+    {
+        $this->is_active = $is_active;
 
         return $this;
     }

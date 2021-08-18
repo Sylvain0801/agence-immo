@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<div class="message-alert message-alert-danger" role="alert" id="max-size-exceeded">
+  <span><i class="fa fa-close"></i></span>
+  <p>{{ 'the maximum size allowed per file is'|trans|capitalize }} 2M</p>
+  <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="alert"></a>
+</div>
+<div class="message-alert message-alert-danger" role="alert" id="max-files-exceeded">
+  <span><i class="fa fa-close"></i></span>
+  <p>{{ '6 files maximum per property ad'|trans|capitalize }}</p>
+  <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="alert"></a>
+</div>
+<main id="private-area-main">
+  {% include "private_area/_header_user.html.twig" %}
+  <h1>{{'modify property ad for property no'|trans|upper}} {{ propertyId }}</h1>
+  {{ form_start(form, {'attr': {'class': 'private-area-form'}}) }}
+    <div class="form-control-group">
+      {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.title, null, {'label': 'title'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      {{ form_widget(form.title) }}
+    </div>
+    <div class="form-control-group">
+      {{ form_label(form.description, null, {'label': 'description'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      {{ form_widget(form.description) }}
+    </div>
+    <div class="form-control-group">
+      <label>{{ 'current files'|trans|capitalize }}</label>
+      <span class="current-files">
+        {% for img in offer.images %}
+          <span class="current-file-item" style="background-image: url({{ asset(img.path) }});">
+            <a href="" class="delete-current-file-item" title="{{ 'delete file'|trans|capitalize }}" data-offer-id="{{ offer.id }}" data-image-id="{{ img.id }}"><i class="fa fa-trash"></i></a>
+          </span>
+        {% endfor %}
+      </span>
+    </div>
+    <div class="form-control-group">
+      {{ form_widget(form.images) }}
+      <label for="offer_add_edit_form_images"><span class="input-file-button button button-fit"><i class="fa fa-download"></i>&nbsp;{{ 'download images'|trans }}</span></label>
+      <span id="input-file-container" data-count-current-files="{{ 6 - offer.images|length }}"></span>
+    </div>
+    <div class="form-button-submit-between">
+      <a href="{{ path('private_area_property_list') }}" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+      <button type="submit" class="button button-rounded button-outline"><i class="fa fa-check"></i>&nbsp;{{'modify'|trans}}</button>
+    </div>
+  {{ form_end(form) }}
+</main>
+{% endblock %}
+{% block javascripts %}
+  <script src="{{ asset('assets/js/customInputFile.js') }}" defer></script>
+{% endblock %}

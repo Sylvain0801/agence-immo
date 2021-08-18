@@ -51,7 +51,6 @@ for (let button of modalButtons) {
     let target = this.dataset.target;
 
     // On renseigne les champs variables de la modale
-      // Si on doit afficher la modale de confirmation delete 
       if (target === '#modal-property-img-view') {
         let id = this.dataset.id
         document.querySelector(`[data-bs-slide-to="${id}"]`).className = 'active';
@@ -59,6 +58,10 @@ for (let button of modalButtons) {
 
         document.querySelectorAll(`[data-carousel-item]`).forEach( item => item.className = 'carousel-item')
         document.querySelector(`[data-carousel-item="${id}"]`).classList.add('active');
+      }
+      if (target === '#modal-confirm-delete') {
+        document.querySelector(target + ' span.span-property-id').textContent = this.dataset.id
+        document.getElementById('delete-button').href = this.dataset.path
       }
 
     // On récupère la bonne modale

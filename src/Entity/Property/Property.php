@@ -84,9 +84,9 @@ class Property
     private $owner;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer")
      */
-    private $is_property_add = false;
+    private int $property_ad_count = 0;
 
     public function __construct()
     {
@@ -276,14 +276,14 @@ class Property
         return $this;
     }
 
-    public function getIsPropertyAdd(): ?bool
+    public function getPropertyAdCount(): ?int
     {
-        return $this->is_property_add;
+        return $this->property_ad_count;
     }
 
-    public function setIsPropertyAdd(bool $is_property_add): self
+    public function setPropertyAdCount(int $property_ad_count) :self
     {
-        $this->is_property_add = $is_property_add;
+        $this->property_ad_count = $property_ad_count;
 
         return $this;
     }

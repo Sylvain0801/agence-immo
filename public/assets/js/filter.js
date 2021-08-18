@@ -13,7 +13,12 @@ window.onload = () => {
     e.stopPropagation()
     filterListGroup.classList.toggle('show')
   })
-
+  // Bouton close filter
+  const buttonClose = document.querySelector('[data-dismiss=close]')
+  buttonClose.addEventListener('click', function(e) {
+    e.preventDefault()
+    filterListGroup.classList.remove('show')
+  })
   // Affiche/masque les sous menus
   const checkboxFirstLevel = document.querySelectorAll("[data-header] + label")
   for (const checkbox of checkboxFirstLevel) {

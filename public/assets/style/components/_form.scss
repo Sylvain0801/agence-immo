@@ -74,9 +74,12 @@ a.underlined-link {
   .input-checkbox-group {
     margin-top: .5em;
     input[type="checkbox"] {
-      margin-bottom: -5px;
-      display: block;
-      height: 1px;
+      opacity: 0;
+      height: 0;
+      width: 0;
+      // margin-bottom: -5px;
+      // display: block;
+      // height: 1px;
     }
     input[type="checkbox"] + label {
       display: flex;

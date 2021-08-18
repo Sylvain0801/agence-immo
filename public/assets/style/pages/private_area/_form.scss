@@ -2,6 +2,7 @@ main#private-area-main {
   .private-area-form {
     height: calc(100vh - 8em);
     overflow-y: auto;
+    position: relative;
   }
   .input-horizontal-group {
     display: flex;
@@ -20,6 +21,10 @@ main#private-area-main {
   .form-control-input {
     height: 35px;
   }
+  textarea.form-control-input {
+    height: calc(5 * var(--navbar-height));
+    resize: none;
+  }
   .input-number-group {
     max-width: 600px;
     margin: 0 auto;
@@ -28,6 +33,68 @@ main#private-area-main {
     .form-control-group {
       margin: 10px 20px 0 0;
       width: 150px;
+    }
+  }
+  input[type="File"] {
+    opacity: 0;
+    height: 0;
+    width: 0;
+    + label .input-file-button {
+      margin-left: 0px;
+    }
+  }
+  span#input-file-container {
+    border: 1px solid $color-CCCCCC;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 50px;
+    min-width: 50%;
+    margin-bottom: 2em;
+    span.clear-input-file-content i {
+      @include flex-center;
+      height: 25px;
+      width: 25px;
+      margin: 5px;
+      font-size: 1.2em;
+      border-radius: 50%;
+      cursor: pointer;
+      background-color: $color-grey;
+      color: $color-white;
+      box-shadow: 0 3px 6px rgba($color-black, .2);
+    }
+    span.input-file-item {
+      margin: 5px;
+      height: 50px;
+      width: 75px;
+      @include img-cover;
+    }
+  }
+  span.current-files {
+    border: 1px solid $color-CCCCCC;
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 50px;
+    span.current-file-item {
+      margin: 10px;
+      height: 80px;
+      width: 120px;
+      @include img-cover;
+      position: relative;
+      i.fa.fa-trash {
+        position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 2em;
+      transform: translate(-50%, -50%);
+      color: $color-white;
+      cursor: pointer;
+      }
     }
   }
 }

@@ -22,9 +22,12 @@ class HomeController extends AbstractController
             $request->getSession()->set('_locale', $locale);
         }
 
-        $offers = $offerRepository->findAllArray(11);
+        $offers = $offerRepository->findArrayAllDatas();
+        $limitResults = 11;
+        dump($offers);
         return $this->render('home/index.html.twig', [
             'offers' => $offers,
+            'limit_results' => $limitResults
         ]);
     }
 }

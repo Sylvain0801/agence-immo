@@ -1,0 +1,5 @@
+<div class="table-td-actions">
+  <a href="{{ path('private_area_offer_view', {slug: offer.slug}) }}" title="{{ 'view property ad'|trans|capitalize }}"><i class="fa fa-eye"></i></a>
+  <a href="{{ path('private_area_offer_edit', {slug: offer.slug, propertyId: offer.property.id}) }}" title="{{ 'edit property ad'|trans|capitalize }}"><i class="fa fa-pencil"></i></a>
+  <a href="" role="button" title="{{ 'delete property ad'|trans|capitalize }}" data-target="#modal-confirm-delete" data-toggle="modal" data-id="{{ offer.property.id }}" data-path="{{ path('private_area_offer_delete', {id: offer.id}) }}"><i class="fa fa-trash"></i></a>
+</div>

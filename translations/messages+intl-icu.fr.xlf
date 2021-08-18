@@ -673,6 +673,130 @@
         <source>create</source>
         <target>créer</target>
       </trans-unit>
+      <trans-unit id="GE9LvMX" resname="property add no">
+        <source>property add no</source>
+        <target>annonce n°</target>
+      </trans-unit>
+      <trans-unit id="DAhXCwo" resname="property no">
+        <source>property no</source>
+        <target>bien n°</target>
+      </trans-unit>
+      <trans-unit id="qvIyBkY" resname="title">
+        <source>title</source>
+        <target>titre</target>
+      </trans-unit>
+      <trans-unit id="yQRveje" resname="description">
+        <source>description</source>
+        <target>description</target>
+      </trans-unit>
+      <trans-unit id="loeWEWU" resname="active">
+        <source>active</source>
+        <target>active</target>
+      </trans-unit>
+      <trans-unit id="IbLu0eM" resname="images">
+        <source>images</source>
+        <target>images</target>
+      </trans-unit>
+      <trans-unit id="QH18dX9" resname="The property ad has been created successfully">
+        <source>The property ad has been created successfully</source>
+        <target>L'annonce a été créée avec succès</target>
+      </trans-unit>
+      <trans-unit id="OZWwByS" resname="The property ad has been modified successfully">
+        <source>The property ad has been modified successfully</source>
+        <target>L'annonce a été modifiée avec succès</target>
+      </trans-unit>
+      <trans-unit id="9lhJJYm" resname="The property ad has been deleted successfully">
+        <source>The property ad has been deleted successfully</source>
+        <target>L'annonce a été supprimée avec succès</target>
+      </trans-unit>
+      <trans-unit id="MNOpEmD" resname="The property has been created successfully">
+        <source>The property has been created successfully</source>
+        <target>Le bien a été créé avec succès</target>
+      </trans-unit>
+      <trans-unit id="T1f5fvn" resname="The property has been modified successfully">
+        <source>The property has been modified successfully</source>
+        <target>Le bien a été modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="l.VShx_" resname="The property has been deleted successfully">
+        <source>The property has been deleted successfully</source>
+        <target>Le bien a été supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="nl7F.Ab" resname="my property ads">
+        <source>my property ads</source>
+        <target>mes annonces</target>
+      </trans-unit>
+      <trans-unit id="ozA5XMC" resname="list">
+        <source>list</source>
+        <target>liste</target>
+      </trans-unit>
+      <trans-unit id="q.vOgGx" resname="thumbnails">
+        <source>thumbnails</source>
+        <target>miniatures</target>
+      </trans-unit>
+      <trans-unit id="0WyeK2M" resname="confirm deletion">
+        <source>confirm deletion</source>
+        <target>confirmer la suppression</target>
+      </trans-unit>
+      <trans-unit id="MWyYtQl" resname="you are about to delete property number">
+        <source>you are about to delete property number</source>
+        <target>vous êtes sur le point de supprimer le bien n°</target>
+      </trans-unit>
+      <trans-unit id="HOzGMdE" resname="related property ads will also be removed, this action is irreversible.">
+        <source>related property ads will also be removed, this action is irreversible.</source>
+        <target>les annonces associées seront aussi supprimées, cette action est irreversible.</target>
+      </trans-unit>
+      <trans-unit id="dMlpSHU" resname="the maximum size allowed per file is">
+        <source>the maximum size allowed per file is</source>
+        <target>la taille maximale autorisée par fichier est</target>
+      </trans-unit>
+      <trans-unit id="7_xybrz" resname="6 files maximum per property ad">
+        <source>6 files maximum per property ad</source>
+        <target>6 fichiers maximum par annonce</target>
+      </trans-unit>
+      <trans-unit id="U9KCn.." resname="create new property ad for property no">
+        <source>create new property ad for property no</source>
+        <target>créer une nouvelle annonce immobilière pour la propriété n°</target>
+      </trans-unit>
+      <trans-unit id="IIOuxRP" resname="view property ad">
+        <source>view property ad</source>
+        <target>voir l'annonce</target>
+      </trans-unit>
+      <trans-unit id="ik6xxig" resname="edit property ad">
+        <source>edit property ad</source>
+        <target>éditer l'annonce</target>
+      </trans-unit>
+      <trans-unit id="I.innF5" resname="delete property ad">
+        <source>delete property ad</source>
+        <target>effacer l'annonce</target>
+      </trans-unit>
+      <trans-unit id="G4anWmT" resname="download images">
+        <source>download images</source>
+        <target>télécharger images</target>
+      </trans-unit>
+      <trans-unit id="U0M9PNE" resname="back to list">
+        <source>back to list</source>
+        <target>retour liste</target>
+      </trans-unit>
+      <trans-unit id="ERM7Kym" resname="modify a property">
+        <source>modify a property</source>
+        <target>modifier un bien</target>
+      </trans-unit>
+      <trans-unit id="s4J4gPl" resname="no ad">
+        <source>no ad</source>
+        <target>aucune annonce</target>
+      </trans-unit>
+      <trans-unit id="UuRm5YM" resname="new property ad">
+        <source>new property ad</source>
+        <target>nouvelle annonce</target>
+      </trans-unit>
+      <trans-unit id="8.2gvIJ" resname="edit property">
+        <source>edit property</source>
+        <target>éditer le bien</target>
+      </trans-unit>
+      <trans-unit id="j1C9k.d" resname="delete property">
+        <source>delete property</source>
+        <target>supprimer le bien</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
