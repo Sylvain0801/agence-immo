@@ -54,6 +54,7 @@ tr {
     i {
       padding: 5px 5px 5px 0;
       cursor: pointer;
+      transition: all .1s ease;
       &:hover {
         transform: scale(1.2);
         opacity: .8;

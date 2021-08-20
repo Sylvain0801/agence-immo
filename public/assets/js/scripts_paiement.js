@@ -4,19 +4,26 @@ window.onload = () => {
   let modalButton = document.getElementById("display-modal-confirm-payment")
 
   // Modifie l'intention de paiement en fonction du bouton radio selectionné (annuel ou mensuel)
+  const setPaymentPeriod = async(price) => {
+    await fetchPaymentPeriods(price)
+    cardButton.dataset.secret = intent.client_secret
+  }
+  
+  const fetchPaymentPeriods = async (price) => {
+    intent = await fetch(`/payment/intention/${price}`)
+    .then((res) => {
+      return res.ok ? res.json() : alert("Une erreur s'est produite, veuillez réessayer plus tard")
+    })
+    .catch((error) => alert("Une erreur s'est produite, veuillez réessayer plus tard"))
+  }
+
   paymentPeriods = document.querySelectorAll("[name=payment_periodicity]");
   for (const period of paymentPeriods) {
     period.addEventListener("click", function (e) {
-      fetchPaymentPeriods(this.value);
+      setPaymentPeriod(this.value)
     });
   }
-	
-  const fetchPaymentPeriods = async (price) => {
-		intent = await fetch(`/payment/intention/${price}`)
-		.then((res) => res.json())
-		.catch((error) => alert("Une erreur s'est produite, veuillez réessayer plus tard"));
-		cardButton.dataset.secret = intent.client_secret
-  };
+  
 
   // On instancie Stripe et on lui passe notre clé publique
   let stripe = Stripe(

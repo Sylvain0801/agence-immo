@@ -42,9 +42,13 @@
       {{ form_widget(form.images) }}
       <label for="offer_add_edit_form_images"><span class="input-file-button button button-fit"><i class="fa fa-download"></i>&nbsp;{{ 'download images'|trans }}</span></label>
       <span id="input-file-container" data-count-current-files="{{ 6 - offer.images|length }}"></span>
+      <ul>
+        <li>{{ 'the maximum size allowed per file is'|trans|capitalize }} 2M</li>
+        <li>{{ '6 files maximum per download'|trans|capitalize }}</li>
+      </ul>
     </div>
     <div class="form-button-submit-between">
-      <a href="{{ path('private_area_property_list') }}" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+      <a href="{{ path('referer') }}" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
       <button type="submit" class="button button-rounded button-outline"><i class="fa fa-check"></i>&nbsp;{{'modify'|trans}}</button>
     </div>
   {{ form_end(form) }}

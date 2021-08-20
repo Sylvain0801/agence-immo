@@ -2,15 +2,15 @@
 
 namespace App\Form\PrivateArea;
 
-use App\Entity\Property\Offer;
+use App\Entity\Document;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
-class OfferAddEditFormType extends AbstractType
+class DocumentAddEditFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -18,15 +18,17 @@ class OfferAddEditFormType extends AbstractType
             ->add('title', TextType::class, [
                 'attr' => ['class' => 'form-control-input'],
             ])
-            ->add('description', TextareaType::class, [
-                'attr' => ['class' => 'form-control-input'],
-            ])
-            ->add('images', FileType::class, [
+            ->add('document', FileType::class, [
                 'mapped' => false,
-                'multiple' => true,
-                'required' => false,
+                'multiple' => false,
                 'label' =>false,
-                'attr' => ['accept' => '.jpg,.jpeg'],
+                'attr' => ['accept' => '.pdf'],
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => 'application/pdf'
+                    ])
+                ]
             ])
         ;
     }
@@ -34,7 +36,7 @@ class OfferAddEditFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Offer::class,
+            'data_class' => Document::class,
         ]);
     }
 }

@@ -813,6 +813,38 @@
         <source>delete property</source>
         <target>__delete property</target>
       </trans-unit>
+      <trans-unit id="mxa0TQ4" resname="documents">
+        <source>documents</source>
+        <target>__documents</target>
+      </trans-unit>
+      <trans-unit id="kw4DRf4" resname="6 files maximum per property ad">
+        <source>6 files maximum per property ad</source>
+        <target>__6 files maximum per property ad</target>
+      </trans-unit>
+      <trans-unit id="dYsoYCO" resname="modify property ad for property no">
+        <source>modify property ad for property no</source>
+        <target>__modify property ad for property no</target>
+      </trans-unit>
+      <trans-unit id="jkN2lMx" resname="current files">
+        <source>current files</source>
+        <target>__current files</target>
+      </trans-unit>
+      <trans-unit id="_SOgcSn" resname="delete file">
+        <source>delete file</source>
+        <target>__delete file</target>
+      </trans-unit>
+      <trans-unit id="kQbWISu" resname="modify">
+        <source>modify</source>
+        <target>__modify</target>
+      </trans-unit>
+      <trans-unit id="4lEOgWY" resname="you are about to delete property ad from property no">
+        <source>you are about to delete property ad from property no</source>
+        <target>__you are about to delete property ad from property no</target>
+      </trans-unit>
+      <trans-unit id="IWr_8m0" resname="this action is irreversible.">
+        <source>this action is irreversible.</source>
+        <target>__this action is irreversible.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

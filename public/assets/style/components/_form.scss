@@ -75,11 +75,9 @@ a.underlined-link {
     margin-top: .5em;
     input[type="checkbox"] {
       opacity: 0;
-      height: 0;
-      width: 0;
-      // margin-bottom: -5px;
-      // display: block;
-      // height: 1px;
+      height: 1px;
+      margin-bottom: -5px;
+      display: block;
     }
     input[type="checkbox"] + label {
       display: flex;

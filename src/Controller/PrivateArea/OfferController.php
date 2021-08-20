@@ -12,7 +12,7 @@ use App\Repository\Property\OfferRepository;
 use App\Repository\Property\PropertyRepository;
 use App\Service\CityManageService;
 use App\Service\ConfigOfferTableService;
-use App\Service\FileManageService;
+use App\Service\ImageManageService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -113,8 +113,9 @@ class OfferController extends AbstractController
     /**
      * @Route("/new/{propertyId}", name="new")
      */
-    public function new($propertyId, PropertyRepository $propertyRepo, Request $request, TranslatorInterface $translator, FileManageService $fileManageService): Response
+    public function new($propertyId, PropertyRepository $propertyRepo, Request $request, TranslatorInterface $translator, ImageManageService $imageManageService): Response
     {
+        $request->getSession()->set('referer', $request->headers->get('referer'));
         $property = $propertyRepo->findOneBy(['id' => $propertyId]);
         $offer = new Offer();
         $form = $this->createForm(OfferAddEditFormType::class, $offer);
@@ -124,7 +125,7 @@ class OfferController extends AbstractController
             $em = $this->getDoctrine()->getManager();
 
             $images = ($formData->get('images')->getData());
-            $fileManageService->add($images, $offer);
+            $imageManageService->add($images, $offer);
 
             $property->setPropertyAdCount($property->getPropertyAdCount() + 1);
             $offer->setProperty($property);
@@ -152,8 +153,9 @@ class OfferController extends AbstractController
     /**
      * @Route("/edit/{slug}/{propertyId}", name="edit")
      */
-    public function edit($slug, $propertyId, OfferRepository $offerRepo, Request $request, TranslatorInterface $translator, FileManageService $fileManageService): Response
+    public function edit($slug, $propertyId, OfferRepository $offerRepo, Request $request, TranslatorInterface $translator, ImageManageService $imageManageService): Response
     {
+        $request->getSession()->set('referer', $request->headers->get('referer'));
         $offer = $offerRepo->findOneBy(['slug' => $slug]);
         $form = $this->createForm(OfferAddEditFormType::class, $offer);
         $formData = $form->handleRequest($request);
@@ -162,7 +164,7 @@ class OfferController extends AbstractController
             $em = $this->getDoctrine()->getManager();
 
             $images = ($formData->get('images')->getData());
-            $fileManageService->add($images, $offer);
+            $imageManageService->add($images, $offer);
 
             $em->persist($offer);
             $em->flush();

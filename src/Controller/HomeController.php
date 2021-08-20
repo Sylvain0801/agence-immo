@@ -24,7 +24,7 @@ class HomeController extends AbstractController
 
         $offers = $offerRepository->findArrayAllDatas();
         $limitResults = 11;
-        dump($offers);
+        
         return $this->render('home/index.html.twig', [
             'offers' => $offers,
             'limit_results' => $limitResults

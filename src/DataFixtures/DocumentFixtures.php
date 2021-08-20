@@ -18,7 +18,7 @@ class DocumentFixtures extends Fixture implements DependentFixtureInterface, Fix
         for ($i = 0; $i < 100; $i++) { 
             $document = new Document;
             $document->setTitle($faker->realText(45, $indexSize = 2));
-            $document->setPath(dirname(__FILE__, 4) . str_replace('/', DIRECTORY_SEPARATOR, '/public/uploads/documents/document-exemple.pdf'));
+            $document->setPath('uploads/documents/document-exemple.pdf');
             for ($j = 0; $j < 2; $j++) { 
                 $document->addUser($this->getReference('private_owner_'. $faker->numberBetween(0, 49)));
             }

@@ -5,13 +5,16 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {% block stylesheets %}{% endblock %}
+	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('assets/style/bootstrap-5.0.2-dist/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/style/font-awesome.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/style/index.css') }}">
-        {% block stylesheets %}{% endblock %}
 
         <script type="text/javascript" src="{{ asset('assets/style/bootstrap-5.0.2-dist/js/bootstrap.js') }}" defer></script>
-	    <script type="text/javascript" src="{{ asset('assets/js/main.js') }}" defer></script>
+        <script type="text/javascript" src="{{ asset('assets/js/main.js') }}" defer></script>
+	    
         {% if navigationPrivate is defined %}
 	        <script type="text/javascript" src="{{ asset('assets/js/navigationPrivate.js') }}" defer></script>  
         {% else %}
@@ -26,9 +29,7 @@
             {% include "include/_header.html.twig" %}
         {% endif %}
         {% block body %}{% endblock %}
-        {% if navigationPrivate is defined %}
-
-        {% else %}
+        {% if not navigationPrivate is defined %}
             {% include "include/_footer.html.twig" %}
         {% endif %}
     </body>

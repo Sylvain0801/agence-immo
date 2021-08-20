@@ -295,11 +295,6 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function __toString()
-    {
-        return $this->lastname . ' ' . $this->firstname;
-    }
-
     /**
      * @return Collection|Document[]
      */
@@ -325,5 +320,10 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+    
+    public function __toString()
+    {
+        return $this->firstname . ' ' . $this->lastname . ' ' . $this->id;
     }
 }

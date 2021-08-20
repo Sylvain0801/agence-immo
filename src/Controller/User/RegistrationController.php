@@ -4,6 +4,7 @@ namespace App\Controller\User;
 
 use App\Entity\User\PrivateOwner;
 use App\Form\User\RegistrationFormType;
+use App\Security\AppAuthenticator;
 use App\Security\EmailVerifier;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
@@ -26,7 +28,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register/private-owner", name="app_register_private_owner")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, AppAuthenticator $appAuthenticator, UserAuthenticatorInterface $userAuthenticatorInterface): Response
     {
 
         $user = new PrivateOwner();
@@ -56,7 +58,7 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
-            $request->getSession()->set('email', $user->getEmail());
+            $userAuthenticatorInterface->authenticateUser($user, $appAuthenticator, $request);
 
             return $this->redirectToRoute('payment');
         }

@@ -6,7 +6,7 @@ use App\Entity\Property\Image;
 use App\Entity\Property\Offer;
 use Doctrine\ORM\EntityManagerInterface;
 
-class FileManageService
+class ImageManageService
 {
   private $em;
 
@@ -17,7 +17,7 @@ class FileManageService
 
   public function add($images, Offer $offer)
   {
-    $filePath = (dirname(__FILE__, 3).str_replace('/', DIRECTORY_SEPARATOR, '/public/uploads/images/'));
+    $filePath = dirname(__FILE__, 3).str_replace('/', DIRECTORY_SEPARATOR, '/public/uploads/images/');
 
     foreach ($images as $key => $image) {
 

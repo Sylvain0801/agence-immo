@@ -1,7 +1,6 @@
 window.onload = () => {
-  
   // Gestion input file customisé
-  const customInputFile = document.getElementById('offer_add_edit_form_images')
+  const customInputFile = document.getElementById('document_add_edit_form_document')
   const inputFileContainer = document.getElementById('input-file-container')
   const maxSizeAllowed = document.getElementById('max-size-exceeded')
   const maxFilesAllowed = document.getElementById('max-files-exceeded')
@@ -38,16 +37,10 @@ window.onload = () => {
           break 
         }
       }
-      for (let i = 0; i < this.files.length; i++) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            let span = document.createElement('span')
-            span.className = 'input-file-item'
-            span.style.backgroundImage = `url(${e.target.result})`
-            inputFileContainer.insertAdjacentElement('afterbegin', span)
-          }
-          reader.readAsDataURL(e.target.files[i]) 
-        }
+      let span = document.createElement('span')
+      span.className = 'input-file-item'
+      span.textContent = this.files[0].name
+      inputFileContainer.insertAdjacentElement('afterbegin', span)
       }
     }
   )

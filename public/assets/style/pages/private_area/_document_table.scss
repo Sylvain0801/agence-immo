@@ -1,39 +1,16 @@
-main#private-area-main {
-  .private-area-form {
-    height: calc(100vh - 8em);
-    overflow-y: auto;
-    position: relative;
+.document-title-link {
+  color: $color-primary;
+  i {
+    font-size: 1.5em;
   }
-  .input-horizontal-group {
-    display: flex;
-    flex-wrap: wrap;
-    input[type="checkbox"] + label, input[type="radio"] + label {
-      margin: 5px 20px 0 0;
-      font-size: .9em;
-      div span, span {
-        margin-right: 5px;
-      }
-    }
+  &:hover {
+    opacity: .75;
   }
-  select {
-    font-size: .9em;
-  }
-  .form-control-input {
-    height: 35px;
-  }
-  textarea.form-control-input {
-    height: calc(5 * var(--navbar-height));
-    resize: none;
-  }
-  .input-number-group {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    .form-control-group {
-      margin: 10px 20px 0 0;
-      width: 150px;
-    }
+}
+
+#modal-add-document, #modal-manage-users-access {
+  .modal-body {
+    text-align: left;
   }
   input[type="File"] {
     opacity: 0;
@@ -66,9 +43,11 @@ main#private-area-main {
     }
     span.input-file-item {
       margin: 5px;
-      height: 50px;
-      width: 75px;
-      @include img-cover;
+      padding: 5px 10px;
+      color: $color-white;
+      background-color: $color-grey;
+      border-radius: 4px;
+      box-shadow: 0 3px 6px rgba($color-black, .15);
     }
     + ul {
       list-style: inside;

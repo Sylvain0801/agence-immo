@@ -51,6 +51,16 @@ section {
   }
 }
 
+.select2-container {
+  z-index: 100000;
+  width: 100% !important;
+  min-height: var(--navbar-height);
+}
+
+.select2-selection--multiple {
+  border: 1px solid #CCCCCC !important;
+}
+
 .navigation {
   width: 100%;
   height: var(--navbar-height);
@@ -1767,7 +1777,7 @@ footer .footer-social-media a:hover i {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-top: 1em;
+  margin: 1em auto;
 }
 
 .pagination .first, .pagination .last, .pagination .page, .pagination .next, .pagination .previous, .pagination .current {
@@ -2508,8 +2518,9 @@ a.underlined-link:hover {
 
 .form-control-group .input-checkbox-group input[type="checkbox"] {
   opacity: 0;
-  height: 0;
-  width: 0;
+  height: 1px;
+  margin-bottom: -5px;
+  display: block;
 }
 
 .form-control-group .input-checkbox-group input[type="checkbox"] + label {
@@ -2841,6 +2852,8 @@ tr {
 .table-td-actions a i {
   padding: 5px 5px 5px 0;
   cursor: pointer;
+  -webkit-transition: all .1s ease;
+  transition: all .1s ease;
 }
 
 .table-td-actions a i:hover {
@@ -3770,7 +3783,6 @@ main#private-area-main span#input-file-container {
           align-items: center;
   min-height: 50px;
   min-width: 50%;
-  margin-bottom: 2em;
 }
 
 main#private-area-main span#input-file-container span.clear-input-file-content i {
@@ -3802,6 +3814,13 @@ main#private-area-main span#input-file-container span.input-file-item {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+main#private-area-main span#input-file-container + ul {
+  list-style: inside;
+  font-size: .8em;
+  color: #7E8991;
+  margin-left: 5px;
 }
 
 main#private-area-main span.current-files {
@@ -3856,5 +3875,122 @@ main#private-area-main span.current-files span.current-file-item i.fa.fa-trash {
   background-size: cover;
   background-position: center;
   height: 60px;
+}
+
+.document-title-link {
+  color: #33404A;
+}
+
+.document-title-link i {
+  font-size: 1.5em;
+}
+
+.document-title-link:hover {
+  opacity: .75;
+}
+
+#modal-add-document .modal-body, #modal-manage-users-access .modal-body {
+  text-align: left;
+}
+
+#modal-add-document input[type="File"], #modal-manage-users-access input[type="File"] {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+#modal-add-document input[type="File"] + label .input-file-button, #modal-manage-users-access input[type="File"] + label .input-file-button {
+  margin-left: 0px;
+}
+
+#modal-add-document span#input-file-container, #modal-manage-users-access span#input-file-container {
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 50px;
+  min-width: 50%;
+}
+
+#modal-add-document span#input-file-container span.clear-input-file-content i, #modal-manage-users-access span#input-file-container span.clear-input-file-content i {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 25px;
+  width: 25px;
+  margin: 5px;
+  font-size: 1.2em;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #7E8991;
+  color: #F3F3F3;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+#modal-add-document span#input-file-container span.input-file-item, #modal-manage-users-access span#input-file-container span.input-file-item {
+  margin: 5px;
+  padding: 5px 10px;
+  color: #F3F3F3;
+  background-color: #7E8991;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#modal-add-document span#input-file-container + ul, #modal-manage-users-access span#input-file-container + ul {
+  list-style: inside;
+  font-size: .8em;
+  color: #7E8991;
+  margin-left: 5px;
+}
+
+#modal-add-document span.current-files, #modal-manage-users-access span.current-files {
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 50px;
+}
+
+#modal-add-document span.current-files span.current-file-item, #modal-manage-users-access span.current-files span.current-file-item {
+  margin: 10px;
+  height: 80px;
+  width: 120px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+#modal-add-document span.current-files span.current-file-item i.fa.fa-trash, #modal-manage-users-access span.current-files span.current-file-item i.fa.fa-trash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 2em;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #F3F3F3;
+  cursor: pointer;
 }
 /*# sourceMappingURL=index.css.map */

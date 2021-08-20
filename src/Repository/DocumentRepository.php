@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Document;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,14 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
-    // /**
-    //  * @return Document[] Returns an array of Document objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findArrayAllDatas() : array
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('d')
+                ->addSelect('d')
+                ->leftJoin('d.users', 'u')
+                ->addSelect('u')
+                ->orderBy('d.title', 'asc');
 
-    /*
-    public function findOneBySomeField($value): ?Document
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
-    */
 }
