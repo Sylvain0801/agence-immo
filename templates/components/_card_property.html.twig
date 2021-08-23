@@ -1,7 +1,7 @@
 <div class="card-property">
   <div class="card-property-management">
     <span>
-      {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
+      {% if "PRIVATE_OWNER" in offer.property.manager_property.roles %}
         {{ 'private owner'|trans }}
       {% else %}
         {{ 'by agency'|trans }}

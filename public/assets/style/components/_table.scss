@@ -1,7 +1,7 @@
 table {
   font-size: 1rem;
   color: $color-primary;
-  width: 100%;
+  // width: 100%;
 }
 th, td {
   padding: 5px 10px;
@@ -70,5 +70,6 @@ tr {
 .table-responsive-container {
   height: 100%;
   max-width: 100%;
+  width: fit-content;
   overflow: auto;
 }

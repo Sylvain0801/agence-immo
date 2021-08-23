@@ -17,7 +17,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"private_owner" = "PrivateOwner", "owner" = "Owner", "agent" = "Agent"})
+ * @ORM\DiscriminatorMap({"private_owner" = "PrivateOwner", "owner" = "Owner", "agent" = "Agent", "tenant" = "Tenant"})
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -84,19 +84,19 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $is_active = true;
 
     /**
-     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="manager")
-     */
-    private $properties;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Document::class, mappedBy="users")
      */
     private $documents;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="manager_property")
+     */
+    private $manager_properties;
+
     public function __construct()
     {
-        $this->properties = new ArrayCollection();
         $this->documents = new ArrayCollection();
+        $this->manager_properties = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -266,36 +266,6 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Property[]
-     */
-    public function getProperties(): Collection
-    {
-        return $this->properties;
-    }
-
-    public function addProperty(Property $property): self
-    {
-        if (!$this->properties->contains($property)) {
-            $this->properties[] = $property;
-            $property->setManager($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProperty(Property $property): self
-    {
-        if ($this->properties->removeElement($property)) {
-            // set the owning side to null (unless already changed)
-            if ($property->getManager() === $this) {
-                $property->setManager(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Document[]
      */
     public function getDocuments(): Collection
@@ -326,4 +296,35 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->firstname . ' ' . $this->lastname . ' ' . $this->id;
     }
+
+    /**
+     * @return Collection|Property[]
+     */
+    public function getManagerProperties(): Collection
+    {
+        return $this->manager_properties;
+    }
+
+    public function addManagerProperty(Property $managerProperty): self
+    {
+        if (!$this->manager_properties->contains($managerProperty)) {
+            $this->manager_properties[] = $managerProperty;
+            $managerProperty->setManagerProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeManagerProperty(Property $managerProperty): self
+    {
+        if ($this->manager_properties->removeElement($managerProperty)) {
+            // set the owning side to null (unless already changed)
+            if ($managerProperty->getManagerProperty() === $this) {
+                $managerProperty->setManagerProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

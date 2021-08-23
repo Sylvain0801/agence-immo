@@ -62,7 +62,7 @@ for (let button of modalButtons) {
       }
       // Modale confirmer la suppression
       if (target === '#modal-confirm-delete') {
-        document.querySelector(target + ' span.span-property-id').textContent = this.dataset.id
+        document.querySelector(target + ' span.span-item-id').textContent = this.dataset.id
         document.getElementById('delete-button').href = this.dataset.path
       }
 		

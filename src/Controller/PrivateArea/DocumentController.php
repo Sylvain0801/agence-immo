@@ -6,7 +6,6 @@ use App\Entity\Document;
 use App\Form\PrivateArea\DocumentAddEditFormType;
 use App\Form\PrivateArea\DocumentManageUsersAccessFormType;
 use App\Repository\DocumentRepository;
-use App\Repository\User\UserRepository;
 use App\Service\ConfigDocumentTableService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,11 +20,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class DocumentController extends AbstractController
 {  
     /**
-     * @Route("/list", name="list")
+     * @Route("/list/{order}", name="list", defaults={"order": "asc"})
      */
-    public function list(DocumentRepository $documentRepo, ConfigDocumentTableService $configDocumentTableService, Request $request, TranslatorInterface $translator, PaginatorInterface $paginator): Response
+    public function list($order, DocumentRepository $documentRepo, ConfigDocumentTableService $configDocumentTableService, Request $request, TranslatorInterface $translator, PaginatorInterface $paginator): Response
     {
-        $datas = $configDocumentTableService->configInitDocumentTable($documentRepo);
+        $datas = $configDocumentTableService->configInitDocumentTable($documentRepo, $order);
         $document = new Document();
         $form = $this->createForm(DocumentAddEditFormType::class, $document);
         $formData = $form->handleRequest($request);

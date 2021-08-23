@@ -833,12 +833,10 @@ header .top-headband .button-group, header .top-headband .flag-lang-group {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  margin-right: -10px;
 }
 
 @media screen and (max-width: 576px) {
   header .top-headband .button-group, header .top-headband .flag-lang-group {
-    margin-right: 0;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -848,6 +846,10 @@ header .top-headband .button-group, header .top-headband .flag-lang-group {
     height: 30px;
     font-size: 12px;
   }
+}
+
+header .top-headband .button-group a, header .top-headband .flag-lang-group a {
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 768px) {
@@ -865,7 +867,6 @@ header .top-headband .button-group .flag-lang-item, header .top-headband .flag-l
   height: 25px;
   width: 25px;
   border-radius: 50%;
-  margin: 10px;
   -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
           box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 }
@@ -1068,7 +1069,7 @@ footer .footer-social-media a:hover i {
           justify-content: center;
   height: 36px;
   width: 180px;
-  margin: 10px;
+  margin: 10px 0;
   cursor: pointer;
   line-height: 0;
   font-family: "Roboto", sans-serif;
@@ -2778,7 +2779,6 @@ a.underlined-link:hover {
 table {
   font-size: 1rem;
   color: #33404A;
-  width: 100%;
 }
 
 th, td {
@@ -2877,6 +2877,9 @@ tr {
 .table-responsive-container {
   height: 100%;
   max-width: 100%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   overflow: auto;
 }
 
@@ -3992,5 +3995,47 @@ main#private-area-main span.current-files span.current-file-item i.fa.fa-trash {
           transform: translate(-50%, -50%);
   color: #F3F3F3;
   cursor: pointer;
+}
+
+.owner-view-informations {
+  padding: 20px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 20px 0;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.owner-view-informations h3 {
+  font-size: 1.5em;
+  margin: 20px 0 10px;
+}
+
+.owner-view-informations ul {
+  list-style: inside;
+  margin-left: 10px;
+}
+
+.tenant-view-informations {
+  padding: 20px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 20px 0;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.tenant-view-informations h3 {
+  font-size: 1.5em;
+  margin: 20px 0 10px;
+}
+
+.tenant-view-informations ul {
+  list-style: inside;
+  margin-left: 10px;
 }
 /*# sourceMappingURL=index.css.map */

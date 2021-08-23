@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<main id="private-area-main">
+  {% include "private_area/_header_user.html.twig" %}
+  <h1>{{'create new tenant'|trans|upper}}</h1>
+  {{ form_start(form, {'attr': {'class': 'private-area-form'}}) }}
+  <div class="form-control-group">
+    {{ form_label(form.firstname, null, {'label': 'firstname'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+    {{ form_widget(form.firstname) }}
+  </div>
+  <div class="form-control-group">
+    {{ form_label(form.lastname, null, {'label': 'lastname'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+    {{ form_widget(form.lastname) }}
+  </div>
+  <div class="form-control-group">
+    {{ form_label(form.email, null, {'label': 'email'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+    {{ form_widget(form.email) }}
+  </div>
+  <div class="form-control-group">
+    {{ form_label(form.address, null, {'label': 'address'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+    {{ form_widget(form.address) }}
+  </div>
+  <div class="form-control-group">
+    {{ form_label(form.phone_number, null, {'label': 'phone number'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+    {{ form_widget(form.phone_number) }}
+  </div> 
+  <div class="form-button-submit-between">
+    <a href="{{ path('private_area_tenant_list') }}" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+    <button type="submit" class="button button-rounded button-outline"><i class="fa fa-check"></i>&nbsp;{{'create'|trans}}</button>
+  </div>
+{{ form_end(form) }}
+</main>
+{% endblock %}

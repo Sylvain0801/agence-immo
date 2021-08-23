@@ -11,7 +11,7 @@
       <div class="property-view-manager-favorite-group">
         <div class="property-view-manager">
           <span>
-            {% if "PRIVATE_OWNER" in offer.property.manager.roles %}
+            {% if "PRIVATE_OWNER" in offer.property.managerProperty.roles %}
               {{ 'private owner'|trans }}
             {% else %}
               {{ 'by agency'|trans }}
@@ -71,8 +71,11 @@
           <div>
             <h4>{{'Contact the owner'|trans}} :</h4>
             <a href="{{ path('offer_view_ask_information', {slug: offer.slug}) }}" class="property-view-button button button-outline"><i class="fa fa-envelope-o"></i>&nbsp;{{'send a message'|trans}}</a>
-            {% if offer.property.manager.publicPhone is defined and offer.property.manager.publicPhone == 1 %}
-              <a href="" class="property-view-button button button-outline"><i class="fa fa-phone"></i>&nbsp;{{'call'|trans}} {{ offer.property.manager.phoneNumber }}</a>
+            {% if offer.property.manager.publicPhone is defined and offer.property.managerProperty.publicPhone == 1 %}
+              <a href="" class="property-view-button button button-outline"><i class="fa fa-phone"></i>&nbsp;{{'call'|trans}} {{ offer.property.managerProperty.phoneNumber }}</a>
+            {% endif %}
+            {% if navigationPrivate is defined %}
+              <a href="{{ path('private_area_owner_view', {id: offer.property.ownerProperty.id}) }}" class="property-view-button button button-outline"><i class="fa fa-user"></i>&nbsp;{{'owner informations'|trans}}</a>
             {% endif %}
           </div>
           <a href="{{ path('referer') }}" class="property-view-button button"><i class="fa fa-list-ul"></i>&nbsp;&nbsp;{{'back to liste'|trans}}</a>

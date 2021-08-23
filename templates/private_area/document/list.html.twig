@@ -23,8 +23,8 @@
 										{{ header.label|trans|capitalize }}
 										{% if header.sort %}
 											<div class="table-sort-buttons">
-												<a href=""><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
-												<a href=""><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+												<a href="{{ path('private_area_document_list', {order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+												<a href="{{ path('private_area_document_list', {order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
 											</div>
 										{% endif %}
 									</div>
@@ -34,6 +34,7 @@
 					</tr>
 				</thead>
 				<tbody>
+					
 					{% for document in datas %}
 						<tr>
 							<td><a href="{{ asset(document.path) }}" class="document-title-link" target="_blank" title="{{ 'download document'|trans|capitalize }}"><i class="fa fa-download"></i>&nbsp;{{ document.title }}</a></td>
@@ -71,6 +72,23 @@
 		{% endif %}
 	</div>
 </main>
+<div class="modal" id="modal-confirm-delete" role="dialog">
+	<div class="modal-content w-450">
+		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+		<div class="modal-header">
+		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'confirm deletion'|trans|capitalize }}</h3>
+		</div>
+		<div class="modal-body">
+			<p>{{ 'you are about to delete document no'|trans|capitalize }}&nbsp;<span class="span-item-id"></span>.</p>
+			<br>
+			<p>{{ 'this action is irreversible.'|trans|capitalize }}</p>
+		</div>
+		<div class="modal-footer">
+			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+			<a id="delete-button" role="button" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+		</div>
+	</div>
+</div>
 <div class="modal" id="modal-add-document" role="dialog">
 	<div class="modal-content">
 		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>

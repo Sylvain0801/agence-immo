@@ -14,40 +14,40 @@ use Doctrine\ORM\Mapping as ORM;
 class Owner extends User
 {
     /**
-     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="owner")
+     * @ORM\OneToMany(targetEntity=Property::class, mappedBy="owner_property")
      */
-    private $properties;
+    private $owner_properties;
 
     public function __construct()
     {
         parent::__construct();
-        $this->properties = new ArrayCollection();
+        $this->owner_properties = new ArrayCollection();
     }
 
     /**
      * @return Collection|Property[]
      */
-    public function getProperties(): Collection
+    public function getOwnerProperties(): Collection
     {
-        return $this->properties;
+        return $this->owner_properties;
     }
 
-    public function addProperty(Property $property): self
+    public function addOwnerProperty(Property $ownerProperty): self
     {
-        if (!$this->properties->contains($property)) {
-            $this->properties[] = $property;
-            $property->setOwner($this);
+        if (!$this->owner_properties->contains($ownerProperty)) {
+            $this->owner_properties[] = $ownerProperty;
+            $ownerProperty->setOwnerProperty($this);
         }
 
         return $this;
     }
 
-    public function removeProperty(Property $property): self
+    public function removeOwnerProperty(Property $ownerProperty): self
     {
-        if ($this->properties->removeElement($property)) {
+        if ($this->owner_properties->removeElement($ownerProperty)) {
             // set the owning side to null (unless already changed)
-            if ($property->getOwner() === $this) {
-                $property->setOwner(null);
+            if ($ownerProperty->getOwnerProperty() === $this) {
+                $ownerProperty->setOwnerProperty(null);
             }
         }
 

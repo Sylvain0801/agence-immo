@@ -14,10 +14,10 @@ class ConfigPropertyTableService
       $this->translator = $translator;
   }
 
-  public function configInitPropertyTable(PropertyRepository $propertyRepo): array
+  public function configInitPropertyTable(PropertyRepository $propertyRepo, int $userId): array
   {
     $datas = [
-      'table' => $propertyRepo->findArrayAllDatas(),
+      'table' => $propertyRepo->findArrayAllDatas($userId),
       'activeTab' => 'property',
       'headers' => $this->configHeadersPropertyTable($propertyRepo)
       ]; 
@@ -25,10 +25,10 @@ class ConfigPropertyTableService
     return $datas;
   }
 
-  public function configSortedFilteredPropertyTable(PropertyRepository $propertyRepo, $criterias, $sort, $order): array
+  public function configSortedFilteredPropertyTable(PropertyRepository $propertyRepo, $criterias, $sortBy, $order, int $userId): array
   {
     $datas = [
-      'table' => $propertyRepo->findListSortedFilteredBycriteria($criterias, $sort, $order),
+      'table' => $propertyRepo->findListSortedFilteredBycriteria($criterias, $sortBy, $order, $userId),
       'activeTab' => 'property',
       'headers' => $this->configHeadersPropertyTable($propertyRepo)
       ]; 
@@ -117,7 +117,7 @@ class ConfigPropertyTableService
 			'type' => 'checkbox',
 			'values' => $propertyRepo->findListOptions()
 		],
-		'owner' => [
+		'owner_property' => [
 			'header' => true,
 			'label' => $this->translator->trans('owner'), 
 			'sort' => true, 

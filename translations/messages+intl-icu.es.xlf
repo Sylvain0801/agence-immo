@@ -845,6 +845,130 @@
         <source>this action is irreversible.</source>
         <target>__this action is irreversible.</target>
       </trans-unit>
+      <trans-unit id="iKdDjlI" resname="users with access to the document">
+        <source>users with access to the document</source>
+        <target>__users with access to the document</target>
+      </trans-unit>
+      <trans-unit id="T8bUxVJ" resname="The document has been created successfully">
+        <source>The document has been created successfully</source>
+        <target>__The document has been created successfully</target>
+      </trans-unit>
+      <trans-unit id="Off_SUF" resname="Users access has been changed successfully">
+        <source>Users access has been changed successfully</source>
+        <target>__Users access has been changed successfully</target>
+      </trans-unit>
+      <trans-unit id="1LSJ5gZ" resname="The document has been deleted successfully">
+        <source>The document has been deleted successfully</source>
+        <target>__The document has been deleted successfully</target>
+      </trans-unit>
+      <trans-unit id="bw46jA6" resname="owners">
+        <source>owners</source>
+        <target>__owners</target>
+      </trans-unit>
+      <trans-unit id="no6etuA" resname="owner informations">
+        <source>owner informations</source>
+        <target>__owner informations</target>
+      </trans-unit>
+      <trans-unit id="meF7K95" resname="download document">
+        <source>download document</source>
+        <target>__download document</target>
+      </trans-unit>
+      <trans-unit id="CUX3x7x" resname="manage users access">
+        <source>manage users access</source>
+        <target>__manage users access</target>
+      </trans-unit>
+      <trans-unit id="ul_o90K" resname="delete document">
+        <source>delete document</source>
+        <target>__delete document</target>
+      </trans-unit>
+      <trans-unit id="ofagH_M" resname="you are about to delete document no">
+        <source>you are about to delete document no</source>
+        <target>__you are about to delete document no</target>
+      </trans-unit>
+      <trans-unit id="28OcUGI" resname="add new document">
+        <source>add new document</source>
+        <target>__add new document</target>
+      </trans-unit>
+      <trans-unit id="rdNp383" resname="Manage user access for document number">
+        <source>Manage user access for document number</source>
+        <target>__Manage user access for document number</target>
+      </trans-unit>
+      <trans-unit id="7oRwyRQ" resname="see owner information">
+        <source>see owner information</source>
+        <target>__see owner information</target>
+      </trans-unit>
+      <trans-unit id="YfGKaoS" resname="owner no">
+        <source>owner no</source>
+        <target>__owner no</target>
+      </trans-unit>
+      <trans-unit id="MMCKREg" resname="personal informations">
+        <source>personal informations</source>
+        <target>__personal informations</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>__email</target>
+      </trans-unit>
+      <trans-unit id="ajvZWNv" resname="properties informations">
+        <source>properties informations</source>
+        <target>__properties informations</target>
+      </trans-unit>
+      <trans-unit id="6aihJ2Y" resname="number of properties">
+        <source>number of properties</source>
+        <target>__number of properties</target>
+      </trans-unit>
+      <trans-unit id="e2LZyrQ" resname="number of properties rented">
+        <source>number of properties rented</source>
+        <target>__number of properties rented</target>
+      </trans-unit>
+      <trans-unit id="EIbMotW" resname="Your account has been successfully created">
+        <source>Your account has been successfully created</source>
+        <target>__Your account has been successfully created</target>
+      </trans-unit>
+      <trans-unit id="os82G5w" resname="The owner account has been created successfully">
+        <source>The owner account has been created successfully</source>
+        <target>__The owner account has been created successfully</target>
+      </trans-unit>
+      <trans-unit id="9YN12tm" resname="The tenant account has been created successfully">
+        <source>The tenant account has been created successfully</source>
+        <target>__The tenant account has been created successfully</target>
+      </trans-unit>
+      <trans-unit id="BW4itvc" resname="tenants">
+        <source>tenants</source>
+        <target>__tenants</target>
+      </trans-unit>
+      <trans-unit id="2OKZ0K2" resname="creation of your tenant account">
+        <source>creation of your tenant account</source>
+        <target>__creation of your tenant account</target>
+      </trans-unit>
+      <trans-unit id="TzSQXy." resname="your login details">
+        <source>your login details</source>
+        <target>__your login details</target>
+      </trans-unit>
+      <trans-unit id="KA1Eqx6" resname="welcome">
+        <source>welcome</source>
+        <target>__welcome</target>
+      </trans-unit>
+      <trans-unit id="vvrq2vQ" resname="create new owner">
+        <source>create new owner</source>
+        <target>__create new owner</target>
+      </trans-unit>
+      <trans-unit id="y9r0b.k" resname="creation of your owner account">
+        <source>creation of your owner account</source>
+        <target>__creation of your owner account</target>
+      </trans-unit>
+      <trans-unit id="2_ajZKT" resname="see tenant information">
+        <source>see tenant information</source>
+        <target>__see tenant information</target>
+      </trans-unit>
+      <trans-unit id=".VVyMgG" resname="create new tenant">
+        <source>create new tenant</source>
+        <target>__create new tenant</target>
+      </trans-unit>
+      <trans-unit id="rPs9mGR" resname="tenant no">
+        <source>tenant no</source>
+        <target>__tenant no</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

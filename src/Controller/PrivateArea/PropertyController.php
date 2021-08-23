@@ -7,7 +7,6 @@ use App\Form\PrivateArea\PropertyAddEditFormType;
 use App\Repository\Property\PropertyRepository;
 use App\Service\CityManageService;
 use App\Service\ConfigPropertyTableService;
-use App\Service\TableConfigService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +26,7 @@ class PropertyController extends AbstractController
     {
         $request->getSession()->remove('filter_criterias');
 
-        $datas = $configPropertyTableService->configInitPropertyTable($propertyRepo);
+        $datas = $configPropertyTableService->configInitPropertyTable($propertyRepo, $this->getUser()->getId());
         
         $properties = $paginator->paginate(
             $datas['table'],
@@ -43,9 +42,9 @@ class PropertyController extends AbstractController
     }
 
     /**
-     * @Route("/list-sorted/{sort}/{order}", name="list_sorted", defaults={"sort": "id", "order": "asc"})
+     * @Route("/list-sorted/{sortBy}/{order}", name="list_sorted", defaults={"sortBy": "id", "order": "asc"})
      */
-    public function listSortedFilteredProperty($sort, $order, ConfigPropertyTableService $configPropertyTableService, PropertyRepository $propertyRepo, Request $request, PaginatorInterface $paginator): Response
+    public function listSortedFilteredProperty($sortBy, $order, ConfigPropertyTableService $configPropertyTableService, PropertyRepository $propertyRepo, Request $request, PaginatorInterface $paginator): Response
     {
         if (count($request->request) > 0) {
             $criterias = $request->request;
@@ -55,7 +54,7 @@ class PropertyController extends AbstractController
         } else {
             $criterias = null;
         }
-        $datas = $configPropertyTableService->configSortedFilteredPropertyTable($propertyRepo, $criterias, $sort, $order);
+        $datas = $configPropertyTableService->configSortedFilteredPropertyTable($propertyRepo, $criterias, $sortBy, $order, $this->getUser()->getId());
 
         $properties = $paginator->paginate(
             $datas['table'],

@@ -15,11 +15,7 @@
         <script type="text/javascript" src="{{ asset('assets/style/bootstrap-5.0.2-dist/js/bootstrap.js') }}" defer></script>
         <script type="text/javascript" src="{{ asset('assets/js/main.js') }}" defer></script>
 	    
-        {% if navigationPrivate is defined %}
-	        <script type="text/javascript" src="{{ asset('assets/js/navigationPrivate.js') }}" defer></script>  
-        {% else %}
-	        <script type="text/javascript" src="{{ asset('assets/js/navigationMain.js') }}" defer></script>  
-        {% endif %}
+        
         {% block javascripts %}{% endblock %}
     </head>
     <body>
@@ -31,6 +27,11 @@
         {% block body %}{% endblock %}
         {% if not navigationPrivate is defined %}
             {% include "include/_footer.html.twig" %}
+        {% endif %}
+        {% if navigationPrivate is defined %}
+	        <script type="text/javascript" src="{{ asset('assets/js/navigationPrivate.js') }}"></script>  
+        {% else %}
+	        <script type="text/javascript" src="{{ asset('assets/js/navigationMain.js') }}"></script>  
         {% endif %}
     </body>
 </html>

@@ -29,10 +29,10 @@ class ConfigOfferTableService
     return $datas;
   }
 
-  public function configSortedFilteredOfferTable(OfferRepository $offerRepo, $criterias, $sort, $order): array
+  public function configSortedFilteredOfferTable(OfferRepository $offerRepo, $criterias, $sortBy, $order): array
   {
     $datas = [
-      'table' => $offerRepo->findListSortedFilteredBycriteria($criterias, $sort, $order),
+      'table' => $offerRepo->findListSortedFilteredBycriteria($criterias, $sortBy, $order),
       'activeTab' => 'offer',
       'headers' => $this->configHeadersOfferTable($offerRepo)
       ]; 
@@ -159,7 +159,7 @@ class ConfigOfferTableService
 			'type' => 'checkbox',
 			'values' => $this->propertyRepo->findListOptions()
 		],
-		'owner' => [
+		'owner_property' => [
 			'header' => false,
 			'label' => $this->translator->trans('owner'), 
 			'sort' => false, 

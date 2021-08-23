@@ -32,9 +32,9 @@ class OfferRepository extends ServiceEntityRepository
                 ->addSelect('c')
                 ->leftJoin('p.property_type', 't')
                 ->addSelect('t')
-                ->leftJoin('p.owner', 'ow')
+                ->leftJoin('p.owner_property', 'ow')
                 ->addSelect('ow')
-                ->leftJoin('p.manager', 'm')
+                ->leftJoin('p.manager_property', 'm')
                 ->addSelect('m')
                 ->leftJoin('p.options', 'opt')
                 ->addSelect('opt')
@@ -100,9 +100,9 @@ class OfferRepository extends ServiceEntityRepository
             ->addSelect('c')
             ->leftJoin('p.property_type', 't')
             ->addSelect('t')
-            ->leftJoin('p.owner', 'ow')
+            ->leftJoin('p.owner_property', 'ow')
             ->addSelect('ow')
-            ->leftJoin('p.manager', 'm')
+            ->leftJoin('p.manager_property', 'm')
             ->addSelect('m')
             ->leftJoin('p.options', 'opt')
             ->addSelect('opt');
@@ -164,7 +164,7 @@ class OfferRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
     
-    public function findListSortedFilteredBycriteria($criterias = null, string $sort = 'id', string $order = 'asc') : array
+    public function findListSortedFilteredBycriteria($criterias = null, string $sortBy = 'id', string $order = 'asc') : array
     {
         $qb = $this->createQueryBuilder('o')
                 ->addSelect('o')
@@ -176,9 +176,9 @@ class OfferRepository extends ServiceEntityRepository
                 ->addSelect('c')
                 ->leftJoin('p.property_type', 't')
                 ->addSelect('t')
-                ->leftJoin('p.owner', 'ow')
+                ->leftJoin('p.owner_property', 'ow')
                 ->addSelect('ow')
-                ->leftJoin('p.manager', 'm')
+                ->leftJoin('p.manager_property', 'm')
                 ->addSelect('m')
                 ->leftJoin('p.options', 'opt')
                 ->addSelect('opt');
@@ -252,10 +252,10 @@ class OfferRepository extends ServiceEntityRepository
                 
             }
         }
-        if ($sort === 'property_id') {
+        if ($sortBy === 'property_id') {
             $qb->orderBy('p.id', $order);
         } else {
-            $qb->orderBy('o.' . $sort, $order);
+            $qb->orderBy('o.' . $sortBy, $order);
         }
 
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);

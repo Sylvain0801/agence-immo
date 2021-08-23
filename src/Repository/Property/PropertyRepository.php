@@ -20,7 +20,7 @@ class PropertyRepository extends ServiceEntityRepository
         parent::__construct($registry, Property::class);
     }
     
-    public function findArrayAllDatas() : array
+    public function findArrayAllDatas(int $userId = null) : array
     {
         $qb = $this->createQueryBuilder('p')
                 ->addSelect('p')
@@ -28,12 +28,19 @@ class PropertyRepository extends ServiceEntityRepository
                 ->addSelect('c')
                 ->leftJoin('p.property_type', 'pp')
                 ->addSelect('pp')
-                ->leftJoin('p.owner', 'ow')
+                ->leftJoin('p.owner_property', 'ow')
                 ->addSelect('ow')
                 ->leftJoin('p.options', 'o')
                 ->addSelect('o')
                 ->leftJoin('p.offers', 'po')
                 ->addSelect('po');
+
+        if ($userId !== null) {
+            $qb->leftJoin('p.manager_property', 'm')
+                ->addSelect('m')
+                ->where('m.id =:userId')
+                ->setParameter('userId', $userId);
+        }
 
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
@@ -84,15 +91,15 @@ class PropertyRepository extends ServiceEntityRepository
     public function findListOwners() : array
     {
         $qb = $this->createQueryBuilder('p')
-            ->leftJoin('p.owner', 'o')
-            ->select('CONCAT(o.lastname, \' \', o.firstname) AS owner')
+            ->leftJoin('p.owner_property', 'o')
+            ->select('CONCAT(o.lastname, \' \', o.firstname) AS owner_property')
             ->distinct()
-            ->orderBy('owner', 'asc');
+            ->orderBy('owner_property', 'asc');
 
         return $qb->getQuery()->execute();
     }
 
-    public function findListSortedFilteredBycriteria($criterias = null, string $sort = 'id', string $order = 'asc') : array
+    public function findListSortedFilteredBycriteria($criterias = null, string $sortBy = 'id', string $order = 'asc', int $userId = null) : array
     {
         $qb = $this->createQueryBuilder('p')
                 ->addSelect('p')
@@ -100,12 +107,19 @@ class PropertyRepository extends ServiceEntityRepository
                 ->addSelect('c')
                 ->leftJoin('p.property_type', 't')
                 ->addSelect('t')
-                ->leftJoin('p.owner', 'ow')
+                ->leftJoin('p.owner_property', 'ow')
                 ->addSelect('ow')
                 ->leftJoin('p.options', 'o')
                 ->addSelect('o')
                 ->leftJoin('p.offers', 'po')
                 ->addSelect('po');
+                
+        if ($userId !== null) {
+            $qb->leftJoin('p.manager_property', 'm')
+                ->addSelect('m')
+                ->where('m.id =:userId')
+                ->setParameter('userId', $userId);
+        }
 
         if ($criterias !== null) {
             if ($criterias->get('id') !== null) {
@@ -168,14 +182,14 @@ class PropertyRepository extends ServiceEntityRepository
                 
             }
         }
-        if ($sort === 'city') {
+        if ($sortBy === 'city') {
             $qb->orderBy('c.name', $order);
-        } else if ($sort === 'property_type') {
+        } else if ($sortBy === 'property_type') {
             $qb->orderBy('t.name', $order);
-        } else if ($sort === 'owner') {
+        } else if ($sortBy === 'owner_property') {
             $qb->orderBy('ow.lastname', $order);
         } else {
-            $qb->orderBy('p.' . $sort, $order);
+            $qb->orderBy('p.' . $sortBy, $order);
         }
 
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);

@@ -38,8 +38,8 @@
 									{{ header.label|trans|capitalize }}
 									{% if header.sort %}
 										<div class="table-sort-buttons">
-											<a href="{{ path('private_area_property_list_sorted', {sort: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
-											<a href="{{ path('private_area_property_list_sorted', {sort: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+											<a href="{{ path('private_area_property_list_sorted', {sortBy: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+											<a href="{{ path('private_area_property_list_sorted', {sortBy: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
 										</div>
 									{% endif %}
 								</div>
@@ -65,7 +65,7 @@
 								{{ option.name|trans|capitalize }}
 							{% endfor %}
 						</td>
-						<td>{{ property.owner.lastname }} {{ property.owner.firstname }}</td>
+						<td>{{ property.owner_property.lastname }} {{ property.owner_property.firstname }}</td>
 						<td>
 							{{ property.property_ad_count == 0 ? 'no ad'|trans|capitalize : property.property_ad_count }}
 							<a href="{{ path('private_area_offer_new', {propertyId: property.id}) }}" class="button-icon" title="{{ 'new property ad'|trans|capitalize }}"><i class="fa fa-plus-circle"></i></a>
@@ -94,7 +94,7 @@
 		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'confirm deletion'|trans|capitalize }}</h3>
 		</div>
 		<div class="modal-body">
-			<p>{{ 'you are about to delete property number'|trans|capitalize }}&nbsp;<span class="span-property-id"></span>.</p>
+			<p>{{ 'you are about to delete property number'|trans|capitalize }}&nbsp;<span class="span-item-id"></span>.</p>
 			<br>
 			<p>{{ 'related property ads will also be removed, this action is irreversible.'|trans|capitalize }}</p>
 		</div>

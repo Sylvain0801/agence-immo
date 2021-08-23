@@ -3,6 +3,7 @@
 namespace App\Entity\Property;
 
 use App\Entity\User\Owner;
+use App\Entity\User\Tenant;
 use App\Entity\User\User;
 use App\Repository\Property\PropertyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -74,24 +75,30 @@ class Property
     private $options;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="properties")
-     */
-    private $manager;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Owner::class, inversedBy="properties")
-     */
-    private $owner;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private int $property_ad_count = 0;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="manager_properties")
+     */
+    private $manager_property;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Owner::class, inversedBy="owner_properties")
+     */
+    private $owner_property;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tenant::class, mappedBy="tenant_property")
+     */
+    private $property_tenants;
 
     public function __construct()
     {
         $this->offers = new ArrayCollection();
         $this->options = new ArrayCollection();
+        $this->property_tenants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -252,30 +259,6 @@ class Property
         return $this;
     }
 
-    public function getManager(): ?User
-    {
-        return $this->manager;
-    }
-
-    public function setManager(?User $manager): self
-    {
-        $this->manager = $manager;
-
-        return $this;
-    }
-
-    public function getOwner(): ?Owner
-    {
-        return $this->owner;
-    }
-
-    public function setOwner(?Owner $owner): self
-    {
-        $this->owner = $owner;
-
-        return $this;
-    }
-
     public function getPropertyAdCount(): ?int
     {
         return $this->property_ad_count;
@@ -284,6 +267,60 @@ class Property
     public function setPropertyAdCount(int $property_ad_count) :self
     {
         $this->property_ad_count = $property_ad_count;
+
+        return $this;
+    }
+
+    public function getManagerProperty(): ?User
+    {
+        return $this->manager_property;
+    }
+
+    public function setManagerProperty(?User $manager_property): self
+    {
+        $this->manager_property = $manager_property;
+
+        return $this;
+    }
+
+    public function getOwnerProperty(): ?Owner
+    {
+        return $this->owner_property;
+    }
+
+    public function setOwnerProperty(?Owner $owner_property): self
+    {
+        $this->owner_property = $owner_property;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tenant[]
+     */
+    public function getPropertyTenants(): Collection
+    {
+        return $this->property_tenants;
+    }
+
+    public function addPropertyTenant(Tenant $propertyTenant): self
+    {
+        if (!$this->property_tenants->contains($propertyTenant)) {
+            $this->property_tenants[] = $propertyTenant;
+            $propertyTenant->setTenantProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removePropertyTenant(Tenant $propertyTenant): self
+    {
+        if ($this->property_tenants->removeElement($propertyTenant)) {
+            // set the owning side to null (unless already changed)
+            if ($propertyTenant->getTenantProperty() === $this) {
+                $propertyTenant->setTenantProperty(null);
+            }
+        }
 
         return $this;
     }

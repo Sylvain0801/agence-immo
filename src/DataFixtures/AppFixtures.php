@@ -85,8 +85,9 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $property = new Property();
             $property
                 ->setTransactionType($faker->randomElement(['rental', 'sale']))
-                ->setManager($this->getReference("agent_" . $i % 10))
-                ->setOwner($this->getReference("owner_" . $faker->numberBetween(0, 99)))
+                ->setManagerProperty($this->getReference("agent_" . $i % 10))
+                ->setOwnerProperty($this->getReference("owner_" . $faker->numberBetween(0, 99)))
+                ->addPropertyTenant($this->getReference("tenant_" . $i))
                 ->setArea(rand(20, 200))
                 ->setRooms(rand(2, 10));
             $options = array_rand($optionNames, rand(2, count($optionNames)));

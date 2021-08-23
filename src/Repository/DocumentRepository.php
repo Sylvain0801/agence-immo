@@ -20,13 +20,13 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
-    public function findArrayAllDatas() : array
+    public function findArrayAllDatas(string $order = 'asc') : array
     {
         $qb = $this->createQueryBuilder('d')
                 ->addSelect('d')
                 ->leftJoin('d.users', 'u')
                 ->addSelect('u')
-                ->orderBy('d.title', 'asc');
+                ->orderBy('d.title', $order);
 
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }

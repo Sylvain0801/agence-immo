@@ -14,10 +14,10 @@ class ConfigDocumentTableService
       $this->translator = $translator;
   }
 
-  public function configInitDocumentTable(DocumentRepository $documentRepo): array
+  public function configInitDocumentTable(DocumentRepository $documentRepo, $order): array
   {
     $datas = [
-      'table' => $documentRepo->findArrayAllDatas(),
+      'table' => $documentRepo->findArrayAllDatas($order),
       'activeTab' => 'document',
       'headers' => $this->configHeadersDocumentTable($documentRepo)
       ]; 
@@ -25,10 +25,10 @@ class ConfigDocumentTableService
     return $datas;
   }
 
-  public function configSortedFilteredDocumentTable(DocumentRepository $documentRepo, $criterias, $sort, $order): array
+  public function configSortedFilteredDocumentTable(DocumentRepository $documentRepo, $criterias, $sortBy, $order): array
   {
     $datas = [
-      'table' => $documentRepo->findListSortedFilteredBycriteria($criterias, $sort, $order),
+      'table' => $documentRepo->findListSortedFilteredBycriteria($criterias, $sortBy, $order),
       'activeTab' => 'document',
       'headers' => $this->configHeadersDocumentTable($documentRepo)
       ]; 

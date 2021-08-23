@@ -55,9 +55,9 @@ class OfferController extends AbstractController
     }
 
     /**
-     * @Route("/list-sorted/{sort}/{order}/{viewMode}", name="list_sorted", defaults={"sort": "id", "order": "asc", "viewMode": null})
+     * @Route("/list-sorted/{sortBy}/{order}/{viewMode}", name="list_sorted", defaults={"sortBy": "id", "order": "asc", "viewMode": null})
      */
-    public function listSortedFilteredProperty($viewMode, $sort, $order, ConfigOfferTableService $configOfferTableService, OfferRepository $offerRepo, Request $request, PaginatorInterface $paginator): Response
+    public function listSortedFilteredProperty($viewMode, $sortBy, $order, ConfigOfferTableService $configOfferTableService, OfferRepository $offerRepo, Request $request, PaginatorInterface $paginator): Response
     {
         if (count($request->request) > 0) {
             $criterias = $request->request;
@@ -73,7 +73,7 @@ class OfferController extends AbstractController
             $request->getSession()->set('viewMode', $viewMode);
         }
 
-        $datas = $configOfferTableService->configSortedFilteredOfferTable($offerRepo, $criterias, $sort, $order);
+        $datas = $configOfferTableService->configSortedFilteredOfferTable($offerRepo, $criterias, $sortBy, $order);
 
         $offers = $paginator->paginate(
             $datas['table'],
