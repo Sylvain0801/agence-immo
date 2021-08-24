@@ -9,7 +9,7 @@
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
 	<h2>{{'tenant no'|trans|capitalize}}&nbsp;{{ tenant.id }}</h2>
-	<div class="tenant-view-informations">
+	<div class="view-informations">
 		<h3><i class="fa fa-user"></i>&nbsp;{{ 'personal informations'|trans|capitalize }} :</h3>
 		<ul>
 			<li><strong>{{ 'lastname'|trans|capitalize }} : </strong>{{ tenant.lastname }}</li>
@@ -17,14 +17,6 @@
 			<li><strong>{{ 'address'|trans|capitalize }} : </strong>{{ tenant.address }}</li>
 			<li><strong>{{ 'email'|trans|capitalize }} : </strong>{{ tenant.email }}</li>
 			<li><strong>{{ 'phone number'|trans|capitalize }} : </strong>{{ tenant.phoneNumber }}</li>
-		</ul>
-		<h3><i class="fa fa-building"></i>&nbsp;{{ 'owner informations'|trans|capitalize }} :</h3>
-		<ul>
-			<li><strong>{{ 'lastname'|trans|capitalize }} : </strong>{{ tenant.tenantProperty.ownerProperty.lastname }}</li>
-			<li><strong>{{ 'firstname'|trans|capitalize }} : </strong>{{ tenant.tenantProperty.ownerProperty.firstname }}</li>
-			<li><strong>{{ 'address'|trans|capitalize }} : </strong>{{ tenant.tenantProperty.ownerProperty.address }}</li>
-			<li><strong>{{ 'email'|trans|capitalize }} : </strong>{{ tenant.tenantProperty.ownerProperty.email }}</li>
-			<li><strong>{{ 'phone number'|trans|capitalize }} : </strong>{{ tenant.tenantProperty.ownerProperty.phoneNumber }}</li>
 		</ul>
 	</div>
 	<a href="{{ path('referer') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>

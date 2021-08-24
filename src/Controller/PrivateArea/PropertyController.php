@@ -4,6 +4,7 @@ namespace App\Controller\PrivateArea;
 
 use App\Entity\Property\Property;
 use App\Form\PrivateArea\PropertyAddEditFormType;
+use App\Form\PrivateArea\PropertyManageTenantFormType;
 use App\Repository\Property\PropertyRepository;
 use App\Service\CityManageService;
 use App\Service\ConfigPropertyTableService;
@@ -80,6 +81,7 @@ class PropertyController extends AbstractController
         $formData = $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form-> isValid()) {
+            $request->getSession()->set('referer', $request->headers->get('referer'));
             $em = $this->getDoctrine()->getManager();
 
             $zipCode = substr($formData->get('city')->getData(), 0, 5);
@@ -92,7 +94,7 @@ class PropertyController extends AbstractController
                 }
             }
 
-            $property->setManager($this->getUser());
+            $property->setManagerProperty($this->getUser());
             $em->persist($property);
             $em->flush();
 
@@ -133,7 +135,7 @@ class PropertyController extends AbstractController
                 }
             }
 
-            $property->setManager($this->getUser());
+            $property->setManagerProperty($this->getUser());
             $em->persist($property);
             $em->flush();
 
@@ -154,6 +156,23 @@ class PropertyController extends AbstractController
     }
 
     /**
+     * @Route("/view/{id}", name="view")
+     */
+    public function view(Property $property, Request $request): Response
+    {
+        $request->getSession()->set('referer', $request->headers->get('referer'));
+        $letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+        return $this->render('private_area/property/view.html.twig', [
+            'navigationPrivate' => true,
+            'active' => 'property',
+            'property' => $property,
+            'letters' => $letters
+        ]);
+
+    }
+
+    /**
      * @Route("/delete/{id}", name="delete")
      */
     public function delete(Property $property, TranslatorInterface $translator): Response
@@ -169,5 +188,44 @@ class PropertyController extends AbstractController
 
         return $this->redirectToRoute('private_area_property_list');
 
+    }
+
+    /**
+     * @Route("/manage-tenant/{id}", name="manage_tenant")
+     */
+    public function manageTenant(Property $property, Request $request, TranslatorInterface $translator): Response
+    {
+        $request->getSession()->set('referer', $request->headers->get('referer'));
+        $form = $this->createForm(PropertyManageTenantFormType::class, $property);
+        $formData = $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form-> isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $offers = $property->getOffers();
+            $tenants = $property->getPropertyTenants();
+            if (!empty($offers) && !empty($tenants)) {
+                foreach ($offers as $offer) {
+                    $em->remove($offer);
+                }
+                $property->setPropertyAdCount(0);
+            }
+            $em->persist($property);
+            $em->flush();
+
+            $this->addFlash('message_alert', [
+                'text' => $translator->trans('Tenants have been changed successfully'), 
+                'style' => 'success'
+            ]);
+
+            return $this->redirectToRoute('private_area_property_list');
+        }
+
+        return $this->render('private_area/property/manage_tenants.html.twig', [
+            'navigationPrivate' => true,
+            'active' => 'property',
+            'form' => $form->createView(),
+            'propertyId' => $property->getId()
+        ]);
     }
 }

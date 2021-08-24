@@ -134,7 +134,7 @@ class PropertyAddEditFormType extends AbstractType
             ->add('city', TextareaType::class, [
                 'mapped' => false
             ])
-            ->add('owner', EntityType::class, [
+            ->add('owner_property', EntityType::class, [
                 'class' => Owner::class,
                 'choices' => $this->ownerRepo->getListOwnersSorted(),
                 'attr' => [

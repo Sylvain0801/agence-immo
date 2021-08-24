@@ -47,11 +47,12 @@ tr {
   }
 }
 .table-td-actions {
-  font-size: 1.6em;
   display: flex;
+  align-items: center;
   a {
     color: $color-primary;
     i {
+      font-size: 1.6em;
       padding: 5px 5px 5px 0;
       cursor: pointer;
       transition: all .1s ease;

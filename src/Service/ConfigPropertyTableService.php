@@ -56,6 +56,12 @@ class ConfigPropertyTableService
 			'type' => 'checkbox',
 			'values' => $propertyRepo->findListByFieldSortAscending('transaction_type')
 		],
+		'property_tenants' => [
+			'header' => true,
+			'label' => $this->translator->trans('status'), 
+			'sort' => false, 
+			'filter' => false,
+		],
 		'city' => [
 			'header' => true,
 			'label' => $this->translator->trans('city'), 

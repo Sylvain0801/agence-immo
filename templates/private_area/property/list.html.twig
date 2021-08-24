@@ -53,6 +53,16 @@
 					<tr>
 						<td>{{ property.id }}</td>
 						<td>{{ property.transaction_type|trans|capitalize }}</td>
+						{% if property.transaction_type == 'rental' %}
+							<td>
+								<div class="table-td-actions">
+									{{ property.property_tenants|length > 0 ? 'rented'|trans|capitalize : 'not rented'|trans|capitalize }}&nbsp;
+									<a href="" title="{{ 'manage tenants'|trans|capitalize }}" data-target="#modal-confirm-manage-tenant" data-toggle="modal" data-id="{{ property.id }}" data-path="{{ path('private_area_property_manage_tenant', {id: property.id}) }}"><i class="fa fa-pencil"></i></a>
+								</div>
+							</td>
+						{% else %}
+							<td></td>
+						{% endif %}
 						<td>{{ property.city.name }}</td>
 						<td>{{ property.property_type.name|trans|capitalize }}</td>
 						<td>{{ property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}</td>
@@ -67,11 +77,14 @@
 						</td>
 						<td>{{ property.owner_property.lastname }} {{ property.owner_property.firstname }}</td>
 						<td>
-							{{ property.property_ad_count == 0 ? 'no ad'|trans|capitalize : property.property_ad_count }}
-							<a href="{{ path('private_area_offer_new', {propertyId: property.id}) }}" class="button-icon" title="{{ 'new property ad'|trans|capitalize }}"><i class="fa fa-plus-circle"></i></a>
+							{{ property.property_ad_count }}
+							{% if property.property_tenants|length == 0 %}
+								<a href="{{ path('private_area_offer_new', {propertyId: property.id}) }}" class="button-icon" title="{{ 'new property ad'|trans|capitalize }}"><i class="fa fa-plus-circle"></i></a>
+							{% endif %}
 						</td>
 						<td>
 							<div class="table-td-actions">
+								<a href="{{ path('private_area_property_view', {id: property.id}) }}" title="{{ 'see property informations'|trans|capitalize }}"><i class="fa fa-eye"></i></a>
 								<a href="{{ path('private_area_property_edit', {id: property.id}) }}" title="{{ 'edit property'|trans|capitalize }}"><i class="fa fa-pencil"></i></a>
 								<a href="" role="button" title="{{ 'delete property'|trans|capitalize }}" data-target="#modal-confirm-delete" data-toggle="modal" data-id="{{ property.id }}" data-path="{{ path('private_area_property_delete', {id: property.id}) }}"><i class="fa fa-trash"></i></a>
 							</div>
@@ -101,6 +114,27 @@
 		<div class="modal-footer">
 			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
 			<a id="delete-button" role="button" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+		</div>
+	</div>
+</div>
+<div class="modal" id="modal-confirm-manage-tenant" role="dialog">
+	<div class="modal-content">
+		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+		<div class="modal-header">
+		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'change the status of a rental property'|trans|capitalize }}</h3>
+		</div>
+		<div class="modal-body">
+			<p>{{ 'you are about to change the status of a rental property.'|trans|capitalize }}</p>
+			<br>
+			<ol>
+				<li>{{ 'rented status: the property has at least one attached tenant, if it has an ad it is automatically deleted and you can no longer create one.'|trans|capitalize }}</li>
+				<li>{{ 'not-rented status: the property does not have any attached tenant, you can create an ad'|trans|capitalize }}</li>
+			</ol>
+			<p>{{ 'you can cancel or continue.'|trans|capitalize }}</p>
+		</div>
+		<div class="modal-footer">
+			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+			<a id="continue-button" role="button" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'continue'|trans}}</a>
 		</div>
 	</div>
 </div>

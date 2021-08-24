@@ -90,7 +90,7 @@ class Property
     private $owner_property;
 
     /**
-     * @ORM\OneToMany(targetEntity=Tenant::class, mappedBy="tenant_property")
+     * @ORM\ManyToMany(targetEntity=Tenant::class, inversedBy="tenant_properties")
      */
     private $property_tenants;
 
@@ -307,7 +307,6 @@ class Property
     {
         if (!$this->property_tenants->contains($propertyTenant)) {
             $this->property_tenants[] = $propertyTenant;
-            $propertyTenant->setTenantProperty($this);
         }
 
         return $this;
@@ -315,12 +314,7 @@ class Property
 
     public function removePropertyTenant(Tenant $propertyTenant): self
     {
-        if ($this->property_tenants->removeElement($propertyTenant)) {
-            // set the owning side to null (unless already changed)
-            if ($propertyTenant->getTenantProperty() === $this) {
-                $propertyTenant->setTenantProperty(null);
-            }
-        }
+        $this->property_tenants->removeElement($propertyTenant);
 
         return $this;
     }

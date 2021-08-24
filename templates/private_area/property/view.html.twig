@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<main id="private-area-main">
+	{% include "private_area/_header_user.html.twig" %}
+	{% for message in app.flashes('message_alert') %}
+    {{ include('include/_alert.html.twig') }}
+  {% endfor %}
+	<h2>{{'property no'|trans|capitalize}}&nbsp;{{ property.id }}</h2>
+	<div class="view-informations">
+		<div class="view-informations-group-1">
+			<h3><i class="fa fa-list"></i>&nbsp;{{ 'general informations'|trans|capitalize }} :</h3>
+			<ul>
+				<li><strong>{{ 'transaction type'|trans|capitalize }} : </strong>{{ property.transactionType|trans|capitalize }}</li>
+				{% if property.transactionType == 'rental' %}
+					<li><strong>{{ 'status'|trans|capitalize }} : </strong>
+						{{ property.propertyTenants|length > 0 ? 'rented'|trans|capitalize : 'not rented'|trans|capitalize }}&nbsp;
+						<a href="" class="button-icon" style="margin: 0; font-size: 1em" title="{{ 'manage tenants'|trans|capitalize }}" data-target="#modal-confirm-manage-tenant" data-toggle="modal" data-id="{{ property.id }}" data-path="{{ path('private_area_property_manage_tenant', {id: property.id}) }}"><i class="fa fa-pencil"></i></a>
+					</li>
+				{% endif %}
+
+				<li><strong>{{ 'property ad'|trans|capitalize }} : </strong>
+					{{ property.propertyAdCount }}
+					{% if property.propertyTenants|length == 0 %}
+						<a href="{{ path('private_area_offer_new', {propertyId: property.id}) }}" class="button-icon" style="margin: 0; font-size: 1em" title="{{ 'new property ad'|trans|capitalize }}"><i class="fa fa-plus-circle"></i></a>
+					{% endif %}
+				</li>
+				<li><strong>{{ 'city'|trans|capitalize }} : </strong>{{ property.city.zipcode }} {{ property.city.name }}</li>
+				<li><strong>{{ 'type'|trans|capitalize }} : </strong>{{ property.propertyType }}</li>
+				{% if property.transactionType == 'rental' %}
+					<li>
+						<strong>{{ 'rent'|trans|capitalize }} : </strong>
+						{{ property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}	/ {{'month'|trans}}
+					</li>
+				{% else %}
+					<li>
+						<strong>{{ 'price'|trans|capitalize }} : </strong>
+						{{ property.price|format_currency('EUR', locale='fr', attrs={rounding_mode: 'floor', fraction_digit: 0}) }}
+					</li>
+				{% endif %}
+				<li><strong>{{ 'area'|trans|capitalize }} : </strong>{{ property.area }} m²</li>
+				<li><strong>{{ 'rooms'|trans|capitalize }} : </strong>{{ property.rooms }}</li>
+			</ul>
+			<div class="energy-ges-property-view-group">
+				<h3><i class="fa fa-flash"></i>&nbsp;{{ 'Energy consumption'|trans|capitalize }} :</h3>
+				<div class="property-view-energy">
+					{% for letter in letters %}
+						<span style="{{ letter == property.energy ? 'font-size: 1.4em;' : '' }}">
+							{% if letter == property.energy %}
+								<i class="fa fa-caret-up"></i>
+							{% endif %}
+							{{ letter }}
+						</span>
+					{% endfor %}
+				</div>
+				<h3><i class="fa fa-tree"></i>&nbsp;{{ 'Greenhouse gas emission'|trans|capitalize }} :</h3>
+				<div class="property-view-ges">
+					{% for letter in letters %}
+					<span style="{{ letter == property.ges ? 'font-size: 1.4em;' : '' }}">
+						{% if letter == property.ges %}
+						<i class="fa fa-caret-up"></i>
+						{% endif %}
+						{{ letter }}
+					</span>
+					{% endfor %}
+				</div>
+				<h3><i class="fa fa-cog"></i>&nbsp;{{ 'options'|trans|capitalize }} :</h3>
+				<div class="property-view-options">
+					{% for option in property.options %}
+						<span>{{ option.name|capitalize }}</span>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		<div class="view-informations-group-2">
+			<h3><i class="fa fa-address-card-o"></i>&nbsp;{{ 'owner informations'|trans|capitalize }} :</h3>
+			<ul>
+				<h6><i class="fa fa-user"></i>&nbsp;{{ 'owner no'|trans|capitalize }} {{ property.ownerProperty.id }} :</h6>
+				<li><strong>{{ 'lastname'|trans|capitalize }} : </strong>{{ property.ownerProperty.lastname }}</li>
+				<li><strong>{{ 'firstname'|trans|capitalize }} : </strong>{{ property.ownerProperty.firstname }}</li>
+				<li><strong>{{ 'address'|trans|capitalize }} : </strong>{{ property.ownerProperty.address }}</li>
+				<li><strong>{{ 'email'|trans|capitalize }} : </strong>{{ property.ownerProperty.email }}</li>
+				<li><strong>{{ 'phone number'|trans|capitalize }} : </strong>{{ property.ownerProperty.phoneNumber }}</li>
+			</ul>
+			{% if property.transactionType == 'rental' and property.propertyTenants|length > 0 %}
+			<h3><i class="fa fa-address-book-o"></i>&nbsp;{{ 'tenants informations'|trans|capitalize }} :</h3>
+				{% for tenant in property.propertyTenants %}
+					<ul>
+						<h6><i class="fa fa-user"></i>&nbsp;{{ 'tenant no'|trans|capitalize }} {{ tenant.id }} :</h6>
+						<li><strong>{{ 'lastname'|trans|capitalize }} : </strong>{{ tenant.lastname }}</li>
+						<li><strong>{{ 'firstname'|trans|capitalize }} : </strong>{{ tenant.firstname }}</li>
+						<li><strong>{{ 'address'|trans|capitalize }} : </strong>{{ tenant.address }}</li>
+						<li><strong>{{ 'email'|trans|capitalize }} : </strong>{{ tenant.email }}</li>
+						<li><strong>{{ 'phone number'|trans|capitalize }} : </strong>{{ tenant.phoneNumber }}</li>
+					</ul>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+	<a href="{{ path('private_area_property_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+</main>
+<div class="modal" id="modal-confirm-manage-tenant" role="dialog">
+	<div class="modal-content">
+		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+		<div class="modal-header">
+		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'change the status of a rental property'|trans|capitalize }}</h3>
+		</div>
+		<div class="modal-body">
+			<p>{{ 'you are about to change the status of a rental property.'|trans|capitalize }}</p>
+			<br>
+			<ol>
+				<li>{{ 'rented status: the property has at least one attached tenant, if it has an ad it is automatically deleted and you can no longer create one.'|trans|capitalize }}</li>
+				<li>{{ 'not-rented status: the property does not have any attached tenant, you can create an ad'|trans|capitalize }}</li>
+			</ol>
+			<p>{{ 'you can cancel or continue.'|trans|capitalize }}</p>
+		</div>
+		<div class="modal-footer">
+			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+			<a id="continue-button" role="button" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'continue'|trans}}</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
+

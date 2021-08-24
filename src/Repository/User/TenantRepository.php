@@ -23,7 +23,7 @@ class TenantRepository extends ServiceEntityRepository
     public function findArrayAllDatas(string $sortBy = 'lastname', string $order = 'asc', int $userId = null) : array
     {
         $qb = $this->createQueryBuilder('t')
-                ->leftJoin('t.tenant_property', 'p')
+                ->leftJoin('t.tenant_properties', 'p')
                 ->addSelect('p')
                 ->orderBy('t.' . $sortBy, $order);
         
@@ -36,4 +36,14 @@ class TenantRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
+
+    public function getListTenantsSorted(): array
+    {
+        $qb = $this->createQueryBuilder('t')
+                ->distinct()
+                ->orderBy('t.lastname', 'asc');
+        
+        return $qb->getQuery()->getResult();
+    }
+
 }

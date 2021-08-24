@@ -121,8 +121,8 @@
       </div>
     </div>
     <div class="form-control-group">
-      {{ form_label(form.owner, null, {'label': 'owner'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-      {{ form_widget(form.owner) }}
+      {{ form_label(form.owner_property, null, {'label': 'owner'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+      {{ form_widget(form.owner_property) }}
     </div>
     <input type="hidden" id="property_add_edit_form__token" name="property_add_edit_form[_token]" value="{{ csrf_token('property_add_edit_form') }}"/>
     <div class="form-button-submit-between">

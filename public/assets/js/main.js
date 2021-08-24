@@ -45,7 +45,7 @@ for (const btn of buttonFavorite) {
 
 const modalButtons = document.querySelectorAll("[data-toggle=modal]");
 for (let button of modalButtons) {
-    button.addEventListener("click", function (e) {
+    button.addEventListener("click", function(e) {
     e.preventDefault();
     // On récupère le data-target
     let target = this.dataset.target;
@@ -64,6 +64,10 @@ for (let button of modalButtons) {
       if (target === '#modal-confirm-delete') {
         document.querySelector(target + ' span.span-item-id').textContent = this.dataset.id
         document.getElementById('delete-button').href = this.dataset.path
+      }
+      // Modale gestion des locataires
+      if (target === '#modal-confirm-manage-tenant') {
+        document.getElementById('continue-button').href = this.dataset.path
       }
 		
     // On récupère la bonne modale

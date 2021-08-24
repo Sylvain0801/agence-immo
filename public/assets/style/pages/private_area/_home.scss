@@ -42,6 +42,121 @@ main#private-area-main {
     padding-bottom: 20px;
     border-bottom: 2px solid;
   }
+  .view-informations {
+    padding: 20px;
+    width: fit-content;
+    max-height: 800px;
+    overflow-y: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .15);
+    display: flex;
+    @media screen and (max-width: 768px){
+      flex-direction: column;
+    }
+    h3 {
+      font-size: 1.5em;
+      margin: 20px 0 10px;
+    }
+    ul {
+      list-style: inside;
+      margin-left: 10px;
+    }
+    .view-informations-group-1 {
+      padding-right: 20px;
+    }
+  }
+  .property-view-options {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
+    max-width: 400px;
+    span {
+      display: block;
+      background-color: $color-grey;
+      color: $color-white;
+      padding: .3em .625em;
+      border-radius: 4px;
+      margin: .3em .625em .3em 0;
+      box-shadow: 0 3px 6px rgba($color-black, .15);
+    }
+  }
+  .energy-ges-property-view-group {
+    font-size: .8rem;
+  }
+  .property-view-energy, .property-view-ges {
+    display: flex;
+    align-items: center;
+    margin: 1em 0 2em;
+    span {
+      display: block;
+      position: relative;
+      padding: .625em;
+      margin-right: .3em;
+      height: 2.25em;
+      width: 2.25em;
+      line-height: 1;
+      color: $color-white;
+      font-weight: bold;
+      text-align: center;
+      border-radius: .3em;
+      box-shadow: 0 3px 6px rgba($color-black, .15);
+      i.fa.fa-caret-up {
+        position: absolute;
+        left: 50%;
+        bottom: -20px;
+        transform: translateX(-50%);
+        color: #555555;
+      }
+    }
+  }
+  .property-view-energy {
+    span:nth-child(1) {
+      background-color: #009C6D;
+    }
+    span:nth-child(2) {
+      background-color: #52B153;
+    }
+    span:nth-child(3) {
+      background-color: #78BD76;
+    }
+    span:nth-child(4) {
+      background-color: #F4E70F;
+    }
+    span:nth-child(5) {
+      background-color: #F0B50F;
+    }
+    span:nth-child(6) {
+      background-color: #EB8235;
+    }
+    span:nth-child(7) {
+      background-color: #D7221F;
+    }
+  }
+  .property-view-ges {
+
+    span:nth-child(1) {
+      background-color: #A4DbF8;
+    }
+    span:nth-child(2) {
+      background-color: #8CB4D3;
+    }
+    span:nth-child(3) {
+      background-color: #7792B1;
+    }
+    span:nth-child(4) {
+      background-color: #606F8F;
+    }
+    span:nth-child(5) {
+      background-color: #4D5271;
+    }
+    span:nth-child(6) {
+      background-color: #393551;
+    }
+    span:nth-child(7) {
+      background-color: #281B35;
+    }
+  }
 }
 
 

@@ -3,6 +3,8 @@
 namespace App\Entity\User;
 
 use App\Entity\Document;
+use App\Entity\Message\Message;
+use App\Entity\Message\UserHasMessageRead;
 use App\Entity\Property\Property;
 use App\Repository\User\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -93,10 +95,22 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $manager_properties;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender")
+     */
+    private $sender_messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserHasMessageRead::class, mappedBy="recipient")
+     */
+    private $user_recipient_messages;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
         $this->manager_properties = new ArrayCollection();
+        $this->sender_messages = new ArrayCollection();
+        $this->user_recipient_messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -294,7 +308,7 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     
     public function __toString()
     {
-        return $this->firstname . ' ' . $this->lastname . ' ' . $this->id;
+        return $this->lastname . ' ' . $this->firstname . ' ' . $this->id;
     }
 
     /**
@@ -321,6 +335,66 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($managerProperty->getManagerProperty() === $this) {
                 $managerProperty->setManagerProperty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getSenderMessages(): Collection
+    {
+        return $this->sender_messages;
+    }
+
+    public function addSenderMessage(Message $senderMessage): self
+    {
+        if (!$this->sender_messages->contains($senderMessage)) {
+            $this->sender_messages[] = $senderMessage;
+            $senderMessage->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSenderMessage(Message $senderMessage): self
+    {
+        if ($this->sender_messages->removeElement($senderMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($senderMessage->getSender() === $this) {
+                $senderMessage->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserHasMessageRead[]
+     */
+    public function getUserRecipientMessages(): Collection
+    {
+        return $this->user_recipient_messages;
+    }
+
+    public function addUserRecipientMessage(UserHasMessageRead $userRecipientMessage): self
+    {
+        if (!$this->user_recipient_messages->contains($userRecipientMessage)) {
+            $this->user_recipient_messages[] = $userRecipientMessage;
+            $userRecipientMessage->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserRecipientMessage(UserHasMessageRead $userRecipientMessage): self
+    {
+        if ($this->user_recipient_messages->removeElement($userRecipientMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($userRecipientMessage->getRecipient() === $this) {
+                $userRecipientMessage->setRecipient(null);
             }
         }
 
