@@ -7,6 +7,7 @@ use App\Repository\Message\MessageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=MessageRepository::class)
@@ -40,6 +41,14 @@ class Message
      * @ORM\OneToMany(targetEntity=UserHasMessageRead::class, mappedBy="message")
      */
     private $recipients;
+
+    /**
+     * @var \DateTimeImmutable $created_at
+     * 
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $created_at;
 
     public function __construct()
     {
@@ -115,5 +124,10 @@ class Message
         }
 
         return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
     }
 }

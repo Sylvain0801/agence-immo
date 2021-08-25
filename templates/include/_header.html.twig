@@ -6,6 +6,9 @@
 						<a href="{{ path('change_locale', {'locale': locale}) }}"><img src="{{ asset('assets/images/flag-lang/'~locale~'-flag.png') }}" alt="{{ locale }}-flag" class="flag-lang-item"></a>
 					{% endif %}
 				{% endfor %}
+				{% if app.user %}
+					<a href="{{ path('app_logout') }}" class="button-icon fa fa-power-off" style="font-size: 1.3em;" title="{{ 'logout'|trans|capitalize }}"></a>
+				{% endif %}
 			</div>
 			<a href="{{ path('home') }}">
 				<div class="logo-company-group">
@@ -14,7 +17,11 @@
 				</div>
 			</a>
 			<div class="button-group">
-				<a href="{{ path('app_login') }}" class="button button-rounded button-outline"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{{'log in'|trans}}</a>
+				{% if app.user %}
+					<a href="{{ path('private_area_message_list') }}" class="button button-rounded button-outline"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{{'my space'|trans}}</a>
+				{% else %}
+					<a href="{{ path('app_login') }}" class="button button-rounded button-outline"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{{'log in'|trans}}</a>
+				{% endif %}
 				<a href="{{ path('offer_favorite') }}" class="button button-rounded button-outline" id="button-favorite-list"><i class="fa fa-star"></i>&nbsp;&nbsp;{{'my favorites'|trans}}</a>
 			</div>
 		</div>

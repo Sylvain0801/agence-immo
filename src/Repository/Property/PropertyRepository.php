@@ -3,6 +3,7 @@
 namespace App\Repository\Property;
 
 use App\Entity\Property\Property;
+use App\Entity\User\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,7 +21,7 @@ class PropertyRepository extends ServiceEntityRepository
         parent::__construct($registry, Property::class);
     }
     
-    public function findArrayAllDatas(int $userId = null) : array
+    public function findArrayAllDatas(?User $user) : array
     {
         $qb = $this->createQueryBuilder('p')
                 ->addSelect('p')
@@ -28,20 +29,26 @@ class PropertyRepository extends ServiceEntityRepository
                 ->addSelect('c')
                 ->leftJoin('p.property_type', 'pp')
                 ->addSelect('pp')
-                ->leftJoin('p.owner_property', 'ow')
-                ->addSelect('ow')
                 ->leftJoin('p.property_tenants', 'te')
                 ->addSelect('te')
                 ->leftJoin('p.options', 'o')
                 ->addSelect('o')
                 ->leftJoin('p.offers', 'po')
-                ->addSelect('po');
-
-        if ($userId !== null) {
-            $qb->leftJoin('p.manager_property', 'm')
+                ->addSelect('po')
+                ->leftJoin('p.manager_property', 'm')
                 ->addSelect('m')
-                ->where('m.id =:userId')
-                ->setParameter('userId', $userId);
+                ->leftJoin('p.owner_property', 'ow')
+                ->addSelect('ow');
+
+        if ($user !== null) {
+            if (in_array('AGENT', $user->getRoles()) || in_array('PRIVATE_OWNER', $user->getRoles())) {
+                $qb->where('m.id =:userId')
+                    ->setParameter('userId', $user->getId());
+            }
+            if (in_array('OWNER', $user->getRoles())) {
+                $qb->where('ow.id =:userId')
+                    ->setParameter('userId', $user->getId());
+            }
         }
 
         return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
@@ -101,7 +108,7 @@ class PropertyRepository extends ServiceEntityRepository
         return $qb->getQuery()->execute();
     }
 
-    public function findListSortedFilteredBycriteria($criterias = null, string $sortBy = 'id', string $order = 'asc', int $userId = null) : array
+    public function findListSortedFilteredBycriteria($criterias = null, string $sortBy = 'id', string $order = 'asc', ?User $user) : array
     {
         $qb = $this->createQueryBuilder('p')
                 ->addSelect('p')
@@ -109,20 +116,26 @@ class PropertyRepository extends ServiceEntityRepository
                 ->addSelect('c')
                 ->leftJoin('p.property_type', 't')
                 ->addSelect('t')
-                ->leftJoin('p.owner_property', 'ow')
-                ->addSelect('ow')
                 ->leftJoin('p.property_tenants', 'te')
                 ->addSelect('te')
                 ->leftJoin('p.options', 'o')
                 ->addSelect('o')
                 ->leftJoin('p.offers', 'po')
-                ->addSelect('po');
-                
-        if ($userId !== null) {
-            $qb->leftJoin('p.manager_property', 'm')
+                ->addSelect('po')
+                ->leftJoin('p.manager_property', 'm')
                 ->addSelect('m')
-                ->where('m.id =:userId')
-                ->setParameter('userId', $userId);
+                ->leftJoin('p.owner_property', 'ow')
+                ->addSelect('ow');
+                
+        if ($user) {
+            if (in_array('AGENT', $user->getRoles())) {
+                $qb->where('m.id =:userId')
+                    ->setParameter('userId', $user->getId());
+            }
+            if (in_array('OWNER', $user->getRoles())) {
+                $qb->where('ow.id =:userId')
+                    ->setParameter('userId', $user->getId());
+            }
         }
 
         if ($criterias !== null) {
@@ -192,6 +205,8 @@ class PropertyRepository extends ServiceEntityRepository
             $qb->orderBy('t.name', $order);
         } else if ($sortBy === 'owner_property') {
             $qb->orderBy('ow.lastname', $order);
+        } else if ($sortBy === 'manager_property') {
+            $qb->orderBy('m.lastname', $order);
         } else {
             $qb->orderBy('p.' . $sortBy, $order);
         }

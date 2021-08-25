@@ -20,6 +20,7 @@ class HomeController extends AbstractController
         $locale = substr($request->server->get('LANG'), 0, 2);
         if (!$request->getSession()->get('_locale')) {
             $request->getSession()->set('_locale', $locale);
+            return $this->redirectToRoute('home');
         }
 
         $offers = $offerRepository->findArrayAllDatas();

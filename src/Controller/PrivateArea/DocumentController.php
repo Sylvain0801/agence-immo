@@ -33,7 +33,7 @@ class DocumentController extends AbstractController
 
             $doc = $formData->get('document')->getData();
             $newFileName = md5(uniqid()).'.'.$doc->guessExtension();
-            $doc->move(dirname(__FILE__, 3).str_replace('/', DIRECTORY_SEPARATOR, '/public/uploads/documents/'), $newFileName);
+            $doc->move(dirname(__FILE__, 4).str_replace('/', DIRECTORY_SEPARATOR, '/public/uploads/documents/'), $newFileName);
 
             $document->setPath('uploads/documents/'.$newFileName);
             $document->addUser($this->getUser());

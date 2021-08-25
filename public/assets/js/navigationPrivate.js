@@ -22,7 +22,7 @@ burger.addEventListener('click', (e) => {
 })
 
 window.addEventListener('resize', () => {
-    if (window.innerWidth < 576) [navigation, main].forEach(elt => elt.classList.remove('show'))
+    if (window.innerWidth < 992) [navigation, main].forEach(elt => elt.classList.remove('show'))
 })
 
 document.addEventListener('click', () => {

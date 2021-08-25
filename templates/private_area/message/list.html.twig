@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block body %}
+<main id="private-area-main">
+	{% include "private_area/_header_user.html.twig" %}
+	{% for message in app.flashes('message_alert') %}
+    {{ include('include/_alert.html.twig') }}
+  {% endfor %}
+	{% if datas|length > 0 %}
+		<h2>{{'my messages'|trans|capitalize}}</h2>
+		<div class="actions-buttons-group">
+			<a href="#" role="button" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'new'|trans }}</a>
+		</div>
+		<div class="table-responsive-container">
+			<table>
+				<thead>
+					<tr>
+						{% for k, header in headers %}
+							{% if header.header %}
+								<th>
+									<div class="header-btn-sort-group">
+										{{ header.label|trans|capitalize }}
+										{% if header.sort %}
+											<div class="table-sort-buttons">
+												<a href="{{ path('private_area_message_list', {sortBy: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+												<a href="{{ path('private_area_message_list', {sortBy: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+											</div>
+										{% endif %}
+									</div>
+								</th>
+							{% endif %}
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for msgRead in datas %}
+						<tr>
+							<td>
+								<a href="" class="button-icon button-msg-read" data-id="{{ msgRead.id }}"><i class="{{ msgRead.is_read ? 'fa fa-envelope-open-o' : 'fa fa-envelope'}}"></i></a>
+							</td>
+							<td>
+								<strong>{{ msgRead.message.sender.lastname }} {{ msgRead.message.sender.firstname }}</strong>
+								<br>
+								{{ msgRead.message.sender.email }}
+							</td>
+							<td>
+								<strong>{{ msgRead.message.subject }}</strong>
+								<br>
+								{{ msgRead.message.content|slice(0, 200) }}...
+							</td>
+							<td>{{ msgRead.message.created_at|date('d/m/Y H:i') }}</td>
+							<td>
+								<div class="table-td-actions">
+									<a href="{{ path('private_area_message_reply', {id: msgRead.id}) }}" title="{{ 'reply to message'|trans|capitalize }}"><i class="fa fa-reply"></i></a>
+									<a href="{{ path('private_area_message_view', {id: msgRead.id}) }}" title="{{ 'see message'|trans|capitalize }}"><i class="fa fa-eye"></i></a>
+								</div>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% if datas|length > 0 %}
+				{% if datas.getTotalItemCount > 10 %}
+					{{ knp_pagination_render(datas) }}
+				{% endif %}
+			{% endif %}
+		</div>
+	{% else %}
+		<h2>Bonjour, bienvenue dans votre espace privé</h2>
+	{% endif %}
+	
+</main>
+<div class="modal" id="modal-confirm-delete" role="dialog">
+	<div class="modal-content w-450">
+		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+		<div class="modal-header">
+		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'confirm deletion'|trans|capitalize }}</h3>
+		</div>
+		<div class="modal-body">
+			<p>{{ 'you are about to delete document no'|trans|capitalize }}&nbsp;<span class="span-item-id"></span>.</p>
+			<br>
+			<p>{{ 'this action is irreversible.'|trans|capitalize }}</p>
+		</div>
+		<div class="modal-footer">
+			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+			<a id="delete-button" role="button" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/js/message.js') }}"></script>
+{% endblock %}

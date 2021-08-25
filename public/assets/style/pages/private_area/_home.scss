@@ -19,6 +19,7 @@ main#private-area-main {
     top: 20px;
     right: 2%;
     display: flex;
+    align-items: center;
     h3 {
       font-size: 1.3em;
       display: block;
@@ -27,11 +28,13 @@ main#private-area-main {
       }
     }
     i {
-      margin-left: 15px;
+      margin-left: 10px;
       font-size: 1.3em;
     }
     a {
       color: $color-primary;
+      display: flex;
+      align-items: center;
       &:hover {
         opacity: .75;
       }
@@ -64,6 +67,13 @@ main#private-area-main {
     }
     .view-informations-group-1 {
       padding-right: 20px;
+      max-width: 450px;
+      h6 {
+        color: $color-grey;
+      }
+      p {
+        text-align: justify;
+      }
     }
   }
   .property-view-options {

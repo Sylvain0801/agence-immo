@@ -1,0 +1,3 @@
+{% if nbMessageNotRead > 0 %}
+  <a href="{{ path('private_area_message_list') }}" title="{{ 'see messages'|trans|capitalize }}"><i class="fa fa-envelope"></i>&nbsp;{{ nbMessageNotRead }}</a>
+{% endif %}

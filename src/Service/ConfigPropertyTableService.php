@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\User\User;
 use App\Repository\Property\PropertyRepository;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -14,29 +15,29 @@ class ConfigPropertyTableService
       $this->translator = $translator;
   }
 
-  public function configInitPropertyTable(PropertyRepository $propertyRepo, int $userId): array
+  public function configInitPropertyTable(PropertyRepository $propertyRepo, ?User $user): array
   {
     $datas = [
-      'table' => $propertyRepo->findArrayAllDatas($userId),
+      'table' => $propertyRepo->findArrayAllDatas($user),
       'activeTab' => 'property',
-      'headers' => $this->configHeadersPropertyTable($propertyRepo)
+      'headers' => $this->configHeadersPropertyTable($propertyRepo, $user)
       ]; 
     
     return $datas;
   }
 
-  public function configSortedFilteredPropertyTable(PropertyRepository $propertyRepo, $criterias, $sortBy, $order, int $userId): array
+  public function configSortedFilteredPropertyTable(PropertyRepository $propertyRepo, $criterias, $sortBy, $order, ?User $user): array
   {
     $datas = [
-      'table' => $propertyRepo->findListSortedFilteredBycriteria($criterias, $sortBy, $order, $userId),
+      'table' => $propertyRepo->findListSortedFilteredBycriteria($criterias, $sortBy, $order, $user),
       'activeTab' => 'property',
-      'headers' => $this->configHeadersPropertyTable($propertyRepo)
+      'headers' => $this->configHeadersPropertyTable($propertyRepo, $user)
       ]; 
     
     return $datas;
   }
 
-  private function configHeadersPropertyTable(PropertyRepository $propertyRepo): array
+  private function configHeadersPropertyTable(PropertyRepository $propertyRepo, ?User $user): array
   {
 
     $headers = [
@@ -124,12 +125,18 @@ class ConfigPropertyTableService
 			'values' => $propertyRepo->findListOptions()
 		],
 		'owner_property' => [
-			'header' => true,
+			'header' => in_array('AGENT', $user->getRoles()) ? true : false,
 			'label' => $this->translator->trans('owner'), 
 			'sort' => true, 
 			'filter' => true,
 			'type' => 'checkbox',
 			'values' => $propertyRepo->findListOwners()
+		],
+		'manager_property' => [
+			'header' => in_array('OWNER', $user->getRoles()) ? true : false,
+			'label' => $this->translator->trans('manager'), 
+			'sort' => true, 
+			'filter' => false,
 		],
 		'offer' => [
 			'header' => true,

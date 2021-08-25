@@ -75,7 +75,12 @@
 								{{ option.name|trans|capitalize }}
 							{% endfor %}
 						</td>
-						<td>{{ property.owner_property.lastname }} {{ property.owner_property.firstname }}</td>
+						<td>
+							{% if 'AGENT' in app.user.roles %}
+								{{ property.owner_property.lastname }} {{ property.owner_property.firstname }}</td>
+							{% elseif 'OWNER' in app.user.roles %}
+								{{ property.manager_property.lastname }} {{ property.manager_property.firstname }}</td>
+							{% endif %}
 						<td>
 							{{ property.property_ad_count }}
 							{% if property.property_tenants|length == 0 %}

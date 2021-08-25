@@ -4,6 +4,7 @@ namespace App\Repository\Message;
 
 use App\Entity\Message\UserHasMessageRead;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,48 @@ class UserHasMessageReadRepository extends ServiceEntityRepository
         parent::__construct($registry, UserHasMessageRead::class);
     }
 
-    // /**
-    //  * @return UserHasMessageRead[] Returns an array of UserHasMessageRead objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findArrayAllDatas(string $sortBy = 'is_read', string $order = 'asc', int $userId = null) : array
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $qb = $this->createQueryBuilder('um')
+                ->leftJoin('um.message', 'msg')
+                ->addSelect('msg')
+                ->leftJoin('msg.sender', 's')
+                ->addSelect('s');
+                
+        if ($userId !== null) {
+            $qb->leftJoin('um.recipient', 'r')
+                ->addSelect('r')
+                ->where('r.id =:userId')
+                ->setParameter('userId', $userId);
+        }
 
-    /*
-    public function findOneBySomeField($value): ?UserHasMessageRead
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if ($sortBy === 'sender') {
+            $qb->orderBy('s.lastname', $order);
+        } else if ($sortBy === 'content') {
+            $qb->orderBy('msg.subject', $order);
+        } else if ($sortBy === 'created_at') {
+            $qb->orderBy('msg.created_at', $order);
+        } else {
+            $qb->orderBy('um.'.$sortBy, $order);
+
+        }
+
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
-    */
+
+    public function countMsgNotReadByUser(int $userId = null) : array
+    {
+        $qb = $this->createQueryBuilder('um');
+
+        if ($userId !== null) {
+            $qb->leftJoin('um.recipient', 'r')
+                ->addSelect('r')
+                ->where('r.id =:userId')
+                ->setParameter('userId', $userId);
+        }
+                
+        $qb->andWhere('um.is_read = 0');
+
+        return $qb->getQuery()->getResult();
+    }
 }

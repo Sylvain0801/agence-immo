@@ -26,8 +26,7 @@ class PropertyController extends AbstractController
     public function list(PropertyRepository $propertyRepo, ConfigPropertyTableService $configPropertyTableService, Request $request, PaginatorInterface $paginator): Response
     {
         $request->getSession()->remove('filter_criterias');
-
-        $datas = $configPropertyTableService->configInitPropertyTable($propertyRepo, $this->getUser()->getId());
+        $datas = $configPropertyTableService->configInitPropertyTable($propertyRepo, $this->getUser());
         
         $properties = $paginator->paginate(
             $datas['table'],
@@ -55,7 +54,9 @@ class PropertyController extends AbstractController
         } else {
             $criterias = null;
         }
-        $datas = $configPropertyTableService->configSortedFilteredPropertyTable($propertyRepo, $criterias, $sortBy, $order, $this->getUser()->getId());
+
+        $username = $request->getSession()->get('_security.last_username');
+        $datas = $configPropertyTableService->configSortedFilteredPropertyTable($propertyRepo, $criterias, $sortBy, $order, $this->getUser());
 
         $properties = $paginator->paginate(
             $datas['table'],
@@ -158,9 +159,8 @@ class PropertyController extends AbstractController
     /**
      * @Route("/view/{id}", name="view")
      */
-    public function view(Property $property, Request $request): Response
+    public function view(Property $property): Response
     {
-        $request->getSession()->set('referer', $request->headers->get('referer'));
         $letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
         return $this->render('private_area/property/view.html.twig', [

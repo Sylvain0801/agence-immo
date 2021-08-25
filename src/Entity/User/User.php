@@ -19,7 +19,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"private_owner" = "PrivateOwner", "owner" = "Owner", "agent" = "Agent", "tenant" = "Tenant"})
+ * @ORM\DiscriminatorMap({"protected_owner" = "PrivateOwner", "owner" = "Owner", "agent" = "Agent", "tenant" = "Tenant"})
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -29,38 +29,38 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    protected $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\Column(type="string", length=128)
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @ORM\Column(type="string", length=128)
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $phone_number;
+    protected $phone_number;
 
     /**
      * @var \DateTimeImmutable $created_at
@@ -68,42 +68,42 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime_immutable")
      */
-    private $created_at;
+    protected $created_at;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isVerified = false;
+    protected $isVerified = false;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $address;
+    protected $address;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $is_active = true;
+    protected $is_active = true;
 
     /**
      * @ORM\ManyToMany(targetEntity=Document::class, mappedBy="users")
      */
-    private $documents;
+    protected $documents;
 
     /**
      * @ORM\OneToMany(targetEntity=Property::class, mappedBy="manager_property")
      */
-    private $manager_properties;
+    protected $manager_properties;
 
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="sender")
      */
-    private $sender_messages;
+    protected $sender_messages;
 
     /**
      * @ORM\OneToMany(targetEntity=UserHasMessageRead::class, mappedBy="recipient")
      */
-    private $user_recipient_messages;
+    protected $user_recipient_messages;
 
     public function __construct()
     {

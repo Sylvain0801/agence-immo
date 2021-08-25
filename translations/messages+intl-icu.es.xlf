@@ -969,6 +969,102 @@
         <source>tenant no</source>
         <target>__tenant no</target>
       </trans-unit>
+      <trans-unit id="MxY0jbr" resname="read">
+        <source>read</source>
+        <target>__read</target>
+      </trans-unit>
+      <trans-unit id="CjZ7ks8" resname="sender">
+        <source>sender</source>
+        <target>__sender</target>
+      </trans-unit>
+      <trans-unit id="q1MKE_R" resname="message">
+        <source>message</source>
+        <target>__message</target>
+      </trans-unit>
+      <trans-unit id="KdzmqLe" resname="sent at">
+        <source>sent at</source>
+        <target>__sent at</target>
+      </trans-unit>
+      <trans-unit id="BzwWNMS" resname="status">
+        <source>status</source>
+        <target>__status</target>
+      </trans-unit>
+      <trans-unit id="4DNt7Wj" resname="Tenants have been changed successfully">
+        <source>Tenants have been changed successfully</source>
+        <target>__Tenants have been changed successfully</target>
+      </trans-unit>
+      <trans-unit id="9czPtzd" resname="messages">
+        <source>messages</source>
+        <target>__messages</target>
+      </trans-unit>
+      <trans-unit id="5YYoE4P" resname="my messages">
+        <source>my messages</source>
+        <target>__my messages</target>
+      </trans-unit>
+      <trans-unit id="EVB6Di9" resname="new">
+        <source>new</source>
+        <target>__new</target>
+      </trans-unit>
+      <trans-unit id="lVwP9EV" resname="rented">
+        <source>rented</source>
+        <target>__rented</target>
+      </trans-unit>
+      <trans-unit id="gHpPuET" resname="not rented">
+        <source>not rented</source>
+        <target>__not rented</target>
+      </trans-unit>
+      <trans-unit id="djjSQmf" resname="manage tenants">
+        <source>manage tenants</source>
+        <target>__manage tenants</target>
+      </trans-unit>
+      <trans-unit id="aBsiad5" resname="see property informations">
+        <source>see property informations</source>
+        <target>__see property informations</target>
+      </trans-unit>
+      <trans-unit id="EjcOcvK" resname="change the status of a rental property">
+        <source>change the status of a rental property</source>
+        <target>__change the status of a rental property</target>
+      </trans-unit>
+      <trans-unit id="7C.pXOX" resname="you are about to change the status of a rental property.">
+        <source>you are about to change the status of a rental property.</source>
+        <target>__you are about to change the status of a rental property.</target>
+      </trans-unit>
+      <trans-unit id="t8jIRW." resname="rented status: the property has at least one attached tenant, if it has an ad it is automatically deleted and you can no longer create one.">
+        <source>rented status: the property has at least one attached tenant, if it has an ad it is automatically deleted and you can no longer create one.</source>
+        <target>__rented status: the property has at least one attached tenant, if it has an ad it is automatically deleted and you can no longer create one.</target>
+      </trans-unit>
+      <trans-unit id="noHf31P" resname="not-rented status: the property does not have any attached tenant, you can create an ad">
+        <source>not-rented status: the property does not have any attached tenant, you can create an ad</source>
+        <target>__not-rented status: the property does not have any attached tenant, you can create an ad</target>
+      </trans-unit>
+      <trans-unit id="mXR1CcM" resname="you can cancel or continue.">
+        <source>you can cancel or continue.</source>
+        <target>__you can cancel or continue.</target>
+      </trans-unit>
+      <trans-unit id="4lbujnr" resname="continue">
+        <source>continue</source>
+        <target>__continue</target>
+      </trans-unit>
+      <trans-unit id="Wbuffk6" resname="manage tenants for rental property no">
+        <source>manage tenants for rental property no</source>
+        <target>__manage tenants for rental property no</target>
+      </trans-unit>
+      <trans-unit id="V8tJbgo" resname="tenants for this property">
+        <source>tenants for this property</source>
+        <target>__tenants for this property</target>
+      </trans-unit>
+      <trans-unit id="poGCP8D" resname="general informations">
+        <source>general informations</source>
+        <target>__general informations</target>
+      </trans-unit>
+      <trans-unit id="y3ilz0A" resname="tenants informations">
+        <source>tenants informations</source>
+        <target>__tenants informations</target>
+      </trans-unit>
+      <trans-unit id="_m.QmcH" resname="see messages">
+        <source>see messages</source>
+        <target>__see messages</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

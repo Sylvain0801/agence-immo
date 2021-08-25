@@ -3587,6 +3587,9 @@ main#private-area-main .top-right-user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 main#private-area-main .top-right-user h3 {
@@ -3601,12 +3604,18 @@ main#private-area-main .top-right-user h3 {
 }
 
 main#private-area-main .top-right-user i {
-  margin-left: 15px;
+  margin-left: 10px;
   font-size: 1.3em;
 }
 
 main#private-area-main .top-right-user a {
   color: #33404A;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 main#private-area-main .top-right-user a:hover {
@@ -3656,6 +3665,15 @@ main#private-area-main .view-informations ul {
 
 main#private-area-main .view-informations .view-informations-group-1 {
   padding-right: 20px;
+  max-width: 450px;
+}
+
+main#private-area-main .view-informations .view-informations-group-1 h6 {
+  color: #7E8991;
+}
+
+main#private-area-main .view-informations .view-informations-group-1 p {
+  text-align: justify;
 }
 
 main#private-area-main .property-view-options {
