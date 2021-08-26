@@ -78,7 +78,7 @@ class TenantController extends AbstractController
             $password = $this->generate_password();
             $tenant
                 ->setPassword($userPasswordHasher->hashPassword($tenant, $password))
-                ->setRoles(['TENANT']);
+                ->setRoles(['ROLE_TENANT']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($tenant);

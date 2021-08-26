@@ -19,11 +19,13 @@ class DocumentFixtures extends Fixture implements DependentFixtureInterface, Fix
             $document = new Document;
             $document->setTitle($faker->realText(45, $indexSize = 2));
             $document->setPath('uploads/documents/document-exemple.pdf');
-            for ($j = 0; $j < 2; $j++) { 
+            for ($j = 0; $j < 5; $j++) { 
                 $document->addUser($this->getReference('private_owner_'. $faker->numberBetween(0, 49)));
             }
-            $document->addUser($this->getReference('agent_'. $faker->numberBetween(0, 9)));
-            for ($k = 0; $k < 2; $k++) { 
+            for ($l = 0; $l < 5; $l++) { 
+                $document->addUser($this->getReference('agent_'. $faker->numberBetween(0, 9)));
+            }
+            for ($k = 0; $k < 5; $k++) { 
                 $document->addUser($this->getReference('owner_'. $faker->numberBetween(0, 99)));
             }
             $manager->persist($document);

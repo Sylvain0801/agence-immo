@@ -4045,6 +4045,34 @@ main#private-area-main span.current-files span.current-file-item i.fa.fa-trash {
   cursor: pointer;
 }
 
+#calendar {
+  min-width: 350px;
+  max-width: 60%;
+  height: 60vh;
+  margin-top: 20px;
+}
+
+#calendar .fc-toolbar-title {
+  text-transform: capitalize;
+  border: none;
+  padding: 0;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#calendar button {
+  padding: 0 5px;
+  font-size: .8em;
+}
+
+#calendar .fc-next-button, #calendar .fc-prev-button {
+  padding: 0;
+}
+
+#calendar .fc-icon {
+  font-size: 1.2em;
+}
+
 .offer-table-view-img-grid {
   display: -ms-grid;
   display: grid;

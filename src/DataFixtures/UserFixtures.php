@@ -36,7 +36,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setEmail('private_owner_' . $i . '@demo.fr')
           ->setPhoneNumber($faker->phoneNumber)
           ->setAddress($faker->address)
-          ->setRoles(['PRIVATE_OWNER'])
+          ->setRoles(['ROLE_PRIVATE_OWNER'])
           ->setIsVerified(1)
           ->setIsActive(1)
           ->setPublicPhone(rand(0, 1))
@@ -56,7 +56,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setEmail('agent_' . $i . '@demo.fr')
           ->setPhoneNumber($faker->phoneNumber)
           ->setAddress($faker->address)
-          ->setRoles(['AGENT'])
+          ->setRoles(['ROLE_AGENT'])
           ->setIsVerified(1)
           ->setIsActive(1)
           ->setPassword($this->userPasswordHasher->hashPassword($agent, 'agence_immo'));
@@ -75,7 +75,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setEmail('owner_' . $i . '@demo.fr')
           ->setPhoneNumber($faker->phoneNumber)
           ->setAddress($faker->address)
-          ->setRoles(['OWNER'])
+          ->setRoles(['ROLE_OWNER'])
           ->setIsVerified(1)
           ->setIsActive(1)
           ->setPassword($this->userPasswordHasher->hashPassword($owner, 'agence_immo'));
@@ -94,7 +94,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setEmail('tenant_' . $i . '@demo.fr')
           ->setPhoneNumber($faker->phoneNumber)
           ->setAddress($faker->address)
-          ->setRoles(['TENANT'])
+          ->setRoles(['ROLE_TENANT'])
           ->setIsVerified(1)
           ->setIsActive(1)
           ->setPassword($this->userPasswordHasher->hashPassword($tenant, 'agence_immo'));

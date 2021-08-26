@@ -1,8 +1,35 @@
 {% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/fullcalendar/lib/main.css') }}">
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/fullcalendar/lib/main.js') }}"></script>
+	<script src="{{ asset('assets/fullcalendar/lib/locales/fr.js') }}"></script>
+	<script src="{{ asset('assets/fullcalendar/lib/locales/en-gb.js') }}"></script>
+	<script src="{{ asset('assets/fullcalendar/lib/locales/es.js') }}"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var calendarEl = document.getElementById('calendar');
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				initialView: 'dayGridMonth',
+				headerToolbar: 
+					{
+						start: 'prev,next today', 
+						center: 'title',
+						end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth' 
+					},
+				events: {{ data|raw }},
+			});
+			calendar.setOption('locale', "{{ app.session.get('_locale') }}");
+			calendar.render();
+		});
+	</script>
+{% endblock %}
 {% block body %}
 <main id="private-area-main">
 	{% include "private_area/_header_user.html.twig" %}
 	<h2>Bonjour, bienvenue dans votre espace privé</h2>
+	<div id='calendar'></div>
 </main>
 {% endblock %}

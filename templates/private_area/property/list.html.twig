@@ -7,26 +7,28 @@
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
 	<h2>{{'my properties'|trans|capitalize}}</h2>
-	<div class="actions-buttons-group">
-		<a href="{{ path('private_area_property_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a>
-		<a href="#" class="button button-small button-filter" id="main-button-filter">
-			<i class="fa fa-filter"></i>&nbsp;{{ 'filter'|trans|capitalize }}
-			{% if app.request.session.get('filter_criterias') != null %}
-				{% set countFilters = 0 %}
-				{% for filterCategory in app.request.session.get('filter_criterias') %}
-					{% set categoryHasFilter = false %}
-					{% for key, item in filterCategory|filter(item => item != '') %}
+	{% if is_granted('ROLE_AGENT') or is_granted('ROLE_PRIVATE_OWNER') %}
+		<div class="actions-buttons-group">
+			<a href="{{ path('private_area_property_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a>
+			<a href="#" class="button button-small button-filter" id="main-button-filter">
+				<i class="fa fa-filter"></i>&nbsp;{{ 'filter'|trans|capitalize }}
+				{% if app.request.session.get('filter_criterias') != null %}
+					{% set countFilters = 0 %}
+					{% for filterCategory in app.request.session.get('filter_criterias') %}
+						{% set categoryHasFilter = false %}
+						{% for key, item in filterCategory|filter(item => item != '') %}
 							{% set categoryHasFilter = true  %}
+						{% endfor %}
+						{% if categoryHasFilter %}
+							{% set countFilters = countFilters + 1 %}
+						{% endif %}
 					{% endfor %}
-					{% if categoryHasFilter %}
-						{% set countFilters = countFilters + 1 %}
-					{% endif %}
-				{% endfor %}
-				({{ countFilters }})
-			{% endif %}
-		</a>
-	</div>
-  {{ include('private_area/_filter.html.twig', {entity: 'property'}) }}
+					({{ countFilters }})
+				{% endif %}
+			</a>
+		</div>
+		{{ include('private_area/_filter.html.twig', {entity: 'property'}) }}
+	{% endif %}
 	<div class="table-responsive-container">
 		<table>
 			<thead>
@@ -76,9 +78,9 @@
 							{% endfor %}
 						</td>
 						<td>
-							{% if 'AGENT' in app.user.roles %}
+							{% if 'ROLE_AGENT' in app.user.roles %}
 								{{ property.owner_property.lastname }} {{ property.owner_property.firstname }}</td>
-							{% elseif 'OWNER' in app.user.roles %}
+							{% elseif 'ROLE_OWNER' in app.user.roles %}
 								{{ property.manager_property.lastname }} {{ property.manager_property.firstname }}</td>
 							{% endif %}
 						<td>

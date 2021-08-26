@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\User\User;
 use App\Repository\DocumentRepository;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -14,29 +15,18 @@ class ConfigDocumentTableService
       $this->translator = $translator;
   }
 
-  public function configInitDocumentTable(DocumentRepository $documentRepo, $order): array
+  public function configInitDocumentTable(DocumentRepository $documentRepo, $order, ?User $user): array
   {
     $datas = [
-      'table' => $documentRepo->findArrayAllDatas($order),
+      'table' => $documentRepo->findArrayAllDatas($order, $user),
       'activeTab' => 'document',
-      'headers' => $this->configHeadersDocumentTable($documentRepo)
+      'headers' => $this->configHeadersDocumentTable()
       ]; 
     
     return $datas;
   }
 
-  public function configSortedFilteredDocumentTable(DocumentRepository $documentRepo, $criterias, $sortBy, $order): array
-  {
-    $datas = [
-      'table' => $documentRepo->findListSortedFilteredBycriteria($criterias, $sortBy, $order),
-      'activeTab' => 'document',
-      'headers' => $this->configHeadersDocumentTable($documentRepo)
-      ]; 
-    
-    return $datas;
-  }
-
-  private function configHeadersDocumentTable(DocumentRepository $documentRepo): array
+  private function configHeadersDocumentTable(): array
   {
     $headers = [
 		'title' => [
@@ -44,16 +34,12 @@ class ConfigDocumentTableService
 			'label' => $this->translator->trans('title'), 
 			'sort' => true, 
 			'filter' => false, 
-			'type' => 'checkbox',
-			// 'values' => $offerRepo->findListByPropertyIdSortAscending()
 		],
 		'users' => [
 			'header' =>true,
 			'label' => $this->translator->trans('users with access to the document'), 
 			'sort' => false, 
 			'filter' => false,
-			'type' => 'checkbox',
-			// 'values' => $offerRepo->findListByFieldSortAscending('description')
       	],
       	'actions' => [
 			'header' =>true,

@@ -25,6 +25,7 @@ class DocumentManageUsersAccessFormType extends AbstractType
             ->add('users', EntityType::class, [
                 'class' => User::class,
                 'multiple' => true,
+                'required' => false,
                 'choices' => $this->userRepo->getListUsersSorted()
             ])
         ;

@@ -125,7 +125,7 @@ class ConfigPropertyTableService
 			'values' => $propertyRepo->findListOptions()
 		],
 		'owner_property' => [
-			'header' => in_array('AGENT', $user->getRoles()) ? true : false,
+			'header' => in_array('ROLE_AGENT', $user->getRoles()) ? true : false,
 			'label' => $this->translator->trans('owner'), 
 			'sort' => true, 
 			'filter' => true,
@@ -133,7 +133,7 @@ class ConfigPropertyTableService
 			'values' => $propertyRepo->findListOwners()
 		],
 		'manager_property' => [
-			'header' => in_array('OWNER', $user->getRoles()) ? true : false,
+			'header' => in_array('ROLE_OWNER', $user->getRoles()) ? true : false,
 			'label' => $this->translator->trans('manager'), 
 			'sort' => true, 
 			'filter' => false,

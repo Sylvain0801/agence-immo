@@ -30,7 +30,7 @@ class MessageController extends AbstractController
         $messages = $paginator->paginate(
             $datas['table'],
             $request->query->getInt('page', 1),
-            12);
+            10);
 
         return $this->render('private_area/message/list.html.twig', [
             'navigationPrivate' => true,

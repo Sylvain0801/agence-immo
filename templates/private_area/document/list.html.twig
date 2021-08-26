@@ -34,7 +34,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					
 					{% for document in datas %}
 						<tr>
 							<td><a href="{{ asset(document.path) }}" class="document-title-link" target="_blank" title="{{ 'download document'|trans|capitalize }}"><i class="fa fa-download"></i>&nbsp;{{ document.title }}</a></td>
@@ -66,7 +65,7 @@
 				</tbody>
 			</table>
 		{% if datas|length > 0 %}
-			{% if datas.getTotalItemCount > 10 %}
+			{% if datas.getTotalItemCount > 8 %}
 				{{ knp_pagination_render(datas) }}
 			{% endif %}
 		{% endif %}

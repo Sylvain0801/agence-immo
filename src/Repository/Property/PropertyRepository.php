@@ -41,11 +41,11 @@ class PropertyRepository extends ServiceEntityRepository
                 ->addSelect('ow');
 
         if ($user !== null) {
-            if (in_array('AGENT', $user->getRoles()) || in_array('PRIVATE_OWNER', $user->getRoles())) {
+            if (in_array('ROLE_AGENT', $user->getRoles()) || in_array('ROLE_PRIVATE_OWNER', $user->getRoles())) {
                 $qb->where('m.id =:userId')
                     ->setParameter('userId', $user->getId());
             }
-            if (in_array('OWNER', $user->getRoles())) {
+            if (in_array('ROLE_OWNER', $user->getRoles())) {
                 $qb->where('ow.id =:userId')
                     ->setParameter('userId', $user->getId());
             }
@@ -128,11 +128,11 @@ class PropertyRepository extends ServiceEntityRepository
                 ->addSelect('ow');
                 
         if ($user) {
-            if (in_array('AGENT', $user->getRoles())) {
+            if (in_array('ROLE_AGENT', $user->getRoles())) {
                 $qb->where('m.id =:userId')
                     ->setParameter('userId', $user->getId());
             }
-            if (in_array('OWNER', $user->getRoles())) {
+            if (in_array('ROLE_OWNER', $user->getRoles())) {
                 $qb->where('ow.id =:userId')
                     ->setParameter('userId', $user->getId());
             }
@@ -196,7 +196,6 @@ class PropertyRepository extends ServiceEntityRepository
             if ($criterias->get('options') !== null) {
                 $qb->andWhere('o.name IN(:optionList)')
                     ->setParameter('optionList', array_values($criterias->get('options')));
-                
             }
         }
         if ($sortBy === 'city') {

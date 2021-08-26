@@ -78,7 +78,7 @@ class OwnerController extends AbstractController
             $password = $this->generate_password();
             $owner
                 ->setPassword($userPasswordHasher->hashPassword($owner, $password))
-                ->setRoles(['OWNER']);
+                ->setRoles(['ROLE_OWNER']);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($owner);

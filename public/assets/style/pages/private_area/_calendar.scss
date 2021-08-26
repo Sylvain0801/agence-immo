@@ -1,0 +1,23 @@
+#calendar {
+  min-width: 350px;
+  max-width: 60%;
+  height: 60vh;
+  margin-top: 20px;
+  .fc-toolbar-title {
+    text-transform: capitalize;
+    border: none;
+    padding: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+  } 
+  button {
+    padding: 0 5px;
+    font-size: .8em;
+  }
+  .fc-next-button, .fc-prev-button {
+    padding: 0;
+  }
+  .fc-icon {
+    font-size: 1.2em;
+  }
+}

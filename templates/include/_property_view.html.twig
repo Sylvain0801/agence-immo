@@ -11,7 +11,7 @@
       <div class="property-view-manager-favorite-group">
         <div class="property-view-manager">
           <span>
-            {% if "PRIVATE_OWNER" in offer.property.managerProperty.roles %}
+            {% if "ROLE_PRIVATE_OWNER" in offer.property.managerProperty.roles %}
               {{ 'private owner'|trans }}
             {% else %}
               {{ 'by agency'|trans }}
