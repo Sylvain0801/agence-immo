@@ -1065,6 +1065,90 @@
         <source>see messages</source>
         <target>__see messages</target>
       </trans-unit>
+      <trans-unit id="buSkac1" resname="manager">
+        <source>manager</source>
+        <target>__manager</target>
+      </trans-unit>
+      <trans-unit id="aENLew_" resname="A new document in your private area">
+        <source>A new document in your private area</source>
+        <target>__A new document in your private area</target>
+      </trans-unit>
+      <trans-unit id="Vyg.MQW" resname="Go to the document tab of your private area, you have received a new document.">
+        <source>Go to the document tab of your private area, you have received a new document.</source>
+        <target>__Go to the document tab of your private area, you have received a new document.</target>
+      </trans-unit>
+      <trans-unit id="Lzy3xZB" resname="The date has been added to the calendar successfully">
+        <source>The date has been added to the calendar successfully</source>
+        <target>__The date has been added to the calendar successfully</target>
+      </trans-unit>
+      <trans-unit id="5Qo0PMp" resname="my space">
+        <source>my space</source>
+        <target>__my space</target>
+      </trans-unit>
+      <trans-unit id="d4Xu4Wd" resname="my agenda">
+        <source>my agenda</source>
+        <target>__my agenda</target>
+      </trans-unit>
+      <trans-unit id="GzrW134" resname="new document">
+        <source>new document</source>
+        <target>__new document</target>
+      </trans-unit>
+      <trans-unit id="KmnFcVb" resname="reply to message">
+        <source>reply to message</source>
+        <target>__reply to message</target>
+      </trans-unit>
+      <trans-unit id="Fbe7iXc" resname="see message">
+        <source>see message</source>
+        <target>__see message</target>
+      </trans-unit>
+      <trans-unit id="Zj6hv.." resname="to">
+        <source>to</source>
+        <target>__to</target>
+      </trans-unit>
+      <trans-unit id="TJW1oPu" resname="original subject">
+        <source>original subject</source>
+        <target>__original subject</target>
+      </trans-unit>
+      <trans-unit id="KRvzJr_" resname="original message">
+        <source>original message</source>
+        <target>__original message</target>
+      </trans-unit>
+      <trans-unit id="fHXMtbx" resname="sent on">
+        <source>sent on</source>
+        <target>__sent on</target>
+      </trans-unit>
+      <trans-unit id="sda5G2f" resname="at">
+        <source>at</source>
+        <target>__at</target>
+      </trans-unit>
+      <trans-unit id="WL4HqTP" resname="add a date">
+        <source>add a date</source>
+        <target>__add a date</target>
+      </trans-unit>
+      <trans-unit id="iDtENgI" resname="add a new event">
+        <source>add a new event</source>
+        <target>__add a new event</target>
+      </trans-unit>
+      <trans-unit id="UFoOj8N" resname="start date">
+        <source>start date</source>
+        <target>__start date</target>
+      </trans-unit>
+      <trans-unit id="NCM_VCt" resname="All day">
+        <source>All day</source>
+        <target>__All day</target>
+      </trans-unit>
+      <trans-unit id="kNsHSsY" resname="end date">
+        <source>end date</source>
+        <target>__end date</target>
+      </trans-unit>
+      <trans-unit id="X0Ctzrv" resname="colors">
+        <source>colors</source>
+        <target>__colors</target>
+      </trans-unit>
+      <trans-unit id="XEqRqSu" resname="add a date to the calendar">
+        <source>add a date to the calendar</source>
+        <target>__add a date to the calendar</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

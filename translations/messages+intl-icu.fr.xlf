@@ -1049,6 +1049,90 @@
         <source>see messages</source>
         <target>voir les messages</target>
       </trans-unit>
+      <trans-unit id="buSkac1" resname="manager">
+        <source>manager</source>
+        <target>gestionnaire</target>
+      </trans-unit>
+      <trans-unit id="aENLew_" resname="A new document in your private area">
+        <source>A new document in your private area</source>
+        <target>Un nouveau document dans votre espace privé</target>
+      </trans-unit>
+      <trans-unit id="Vyg.MQW" resname="Go to the document tab of your private area, you have received a new document.">
+        <source>Go to the document tab of your private area, you have received a new document.</source>
+        <target>Rendez-vous dans l'onglet document de votre espace privé, vous avez reçu un nouveau document.</target>
+      </trans-unit>
+      <trans-unit id="Lzy3xZB" resname="The date has been added to the calendar successfully">
+        <source>The date has been added to the calendar successfully</source>
+        <target>La date a été ajoutée au calendrier avec succès</target>
+      </trans-unit>
+      <trans-unit id="5Qo0PMp" resname="my space">
+        <source>my space</source>
+        <target>mon espace</target>
+      </trans-unit>
+      <trans-unit id="d4Xu4Wd" resname="my agenda">
+        <source>my agenda</source>
+        <target>mon agenda</target>
+      </trans-unit>
+      <trans-unit id="GzrW134" resname="new document">
+        <source>new document</source>
+        <target>nouveau document</target>
+      </trans-unit>
+      <trans-unit id="KmnFcVb" resname="reply to message">
+        <source>reply to message</source>
+        <target>répondre au message</target>
+      </trans-unit>
+      <trans-unit id="Fbe7iXc" resname="see message">
+        <source>see message</source>
+        <target>voir le message</target>
+      </trans-unit>
+      <trans-unit id="Zj6hv.." resname="to">
+        <source>to</source>
+        <target>à</target>
+      </trans-unit>
+      <trans-unit id="TJW1oPu" resname="original subject">
+        <source>original subject</source>
+        <target>sujet original</target>
+      </trans-unit>
+      <trans-unit id="KRvzJr_" resname="original message">
+        <source>original message</source>
+        <target>message original</target>
+      </trans-unit>
+      <trans-unit id="fHXMtbx" resname="sent on">
+        <source>sent on</source>
+        <target>envoyé le</target>
+      </trans-unit>
+      <trans-unit id="sda5G2f" resname="at">
+        <source>at</source>
+        <target>à</target>
+      </trans-unit>
+      <trans-unit id="WL4HqTP" resname="add a date">
+        <source>add a date</source>
+        <target>ajouter une date</target>
+      </trans-unit>
+      <trans-unit id="iDtENgI" resname="add a new event">
+        <source>add a new event</source>
+        <target>ajouter un nouvel événement</target>
+      </trans-unit>
+      <trans-unit id="UFoOj8N" resname="start date">
+        <source>start date</source>
+        <target>date de début</target>
+      </trans-unit>
+      <trans-unit id="NCM_VCt" resname="All day">
+        <source>All day</source>
+        <target>Journée entière</target>
+      </trans-unit>
+      <trans-unit id="kNsHSsY" resname="end date">
+        <source>end date</source>
+        <target>date de fin</target>
+      </trans-unit>
+      <trans-unit id="X0Ctzrv" resname="colors">
+        <source>colors</source>
+        <target>couleurs</target>
+      </trans-unit>
+      <trans-unit id="XEqRqSu" resname="add a date to the calendar">
+        <source>add a date to the calendar</source>
+        <target>ajouter une date au calendrier</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

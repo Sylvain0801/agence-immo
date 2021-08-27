@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('assets/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/fullcalendar/lib/main.css') }}">
+{% endblock %}
+{% block javascripts %}
+	<script src="{{ asset('assets/fullcalendar/lib/main.js') }}"></script>
+	<script src="{{ asset('assets/fullcalendar/lib/locales/fr.js') }}"></script>
+	<script src="{{ asset('assets/fullcalendar/lib/locales/en-gb.js') }}"></script>
+	<script src="{{ asset('assets/fullcalendar/lib/locales/es.js') }}"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var calendarEl = document.getElementById('calendar');
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				initialView: 'dayGridMonth',
+				headerToolbar: 
+					{
+						start: 'prev,next today', 
+						center: 'title',
+						end: 'dayGridMonth,timeGridWeek,timeGridDay listMonth' 
+					},
+        eventTimeFormat: 
+          {
+            hour: 'numeric',
+            minute: '2-digit',
+            meridiem: false
+          },
+        dayMaxEventRows: 2,
+        moreLinkClick: 'popover',
+        dayPopoverFormat: { month: 'long', day: 'numeric', year: 'numeric' },
+				events: {{ data|raw }},
+			});
+			calendar.setOption('locale', "{{ app.session.get('_locale') }}");
+			calendar.render();
+		});
+	</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="{{ asset('assets/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+{% endblock %}
+{% block body %}
+<main id="private-area-main">
+	{% include "private_area/_header_user.html.twig" %}
+	{% for message in app.flashes('message_alert') %}
+    {{ include('include/_alert.html.twig') }}
+  {% endfor %}
+	<h2>{{'tenant no'|trans|capitalize}}&nbsp;{{ tenant.id }}</h2>
+	<div class="view-informations">
+    {% include "private_area/tenant/_tenant_infos.html.twig" %}
+		<div class="view-informations-group-2">
+      <div class="actions-buttons-group">
+        <a href="#" role="button" class="button button-small" data-target="#modal-add-date" data-toggle="modal" style="margin-top: 20px;"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add a date'|trans }}</a>
+      </div>
+			<div id='calendar'></div>
+		</div>
+	</div>
+	<a href="{{ path('private_area_tenant_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+</main>
+<div class="modal" id="modal-add-date" role="dialog">
+	<div class="modal-content">
+		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+		<div class="modal-header">
+		<h3><i class="fa fa-calendar"></i>&nbsp;{{ 'add a new event'|trans|capitalize }}</h3>
+		</div>
+		<div class="modal-body">
+			{{ form_start(form, {'attr': {'class': 'private-area-form'}}) }}
+      <div class="d-flex">
+        <div class="form-control-group" style="margin-right: 5px">
+          {{ form_label(form.start, null, {'label': 'start date'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					<div class="input-append date form_datetime">
+						<div class="input-group">
+							{{ form_widget(form.start) }}
+							<span class="add-on input-group-text"><i class="icon-th fa fa-calendar-o"></i></span>
+						</div>
+					</div>
+          <div class="input-checkbox-group">
+            {{ form_widget(form.all_day) }}
+            <label for="calendar_all_day"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{'All day'|trans}}</label>
+          </div>
+        </div>
+        <div class="form-control-group" style="margin-left: 5px">
+          {{ form_label(form.end, null, {'label': 'end date'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					<div class="input-append date form_datetime">
+						<div class="input-group">
+							{{ form_widget(form.end) }}
+							<span class="add-on input-group-text"><i class="icon-th fa fa-calendar-o"></i></span>
+						</div>
+					</div>
+        </div>
+      </div>
+			<div class="form-control-group">
+				{{ form_label(form.title, null, {'label': 'title'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+				{{ form_widget(form.title) }}
+			</div>
+			<div class="form-control-group">
+				{{ form_label(form.description, null, {'label': 'description'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+				{{ form_widget(form.description) }}
+			</div>
+			<div class="form-control-group">
+				{{ form_label(form.background_color, null, {'label': 'colors'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+				<div class="input-horizontal-group">
+					{% for child in form.background_color %}
+						<div class="input-radio-group">
+							<input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.background_color.vars.name ~ ']' }}" required="required" value="{{ child.vars.value }}">
+							<label for="{{ child.vars.id }}" class="required">
+								<span style="background-color: {{ child.vars.value }}">
+									<div class="modal-header-color" style="background-color: {{ child.vars.value }}">
+										<h3><i class="fa fa-calendar"></i>&nbsp;{{ 'add a new event'|trans|capitalize }}</h3>
+									</div>
+								</span>
+							</label>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+			<input type="hidden" id="calendar__token" name="calendar[_token]" value="{{ csrf_token('calendar') }}"/>
+			<div class="form-button-submit-between">
+				<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+				<button type="submit" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+			</div>
+			{{ form_end(form, {'render_rest': false}) }}
+		</div>
+	</div>
+</div>
+{% if app.session.get('_locale') == 'fr' %}
+	<script type="text/javascript" src="{{ asset('assets/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js') }}" charset="UTF-8"></script>
+{% endif %}
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({
+        format: "dd/mm/yy hh:ii",
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left",
+				language: "{{ app.session.get('_locale') }}",
+    });
+</script>
+{% endblock %}

@@ -41,6 +41,7 @@
 					<li class="{{ active is defined and active == 'owner' ? 'active' : '' }}"><a href="{{ path('private_area_owner_list') }}"><i class="fa fa-address-card-o"></i>{{ 'owners' |trans }}</a></li>
 					<li class="{{ active is defined and active == 'tenant' ? 'active' : '' }}"><a href="{{ path('private_area_tenant_list') }}"><i class="fa fa-address-book-o"></i>{{ 'tenants' |trans }}</a></li>
 					<li class="{{ active is defined and active == 'message' ? 'active' : '' }}"><a href="{{ path('private_area_message_list') }}"><i class="fa fa-envelope-o"></i>{{ 'messages' |trans }}</a></li>
+					<li class="{{ active is defined and active == 'calendar' ? 'active' : '' }}"><a href="{{ path('private_area_calendar_list') }}"><i class="fa fa-calendar"></i>{{ 'my agenda' |trans }}</a></li>
 				</ul>
 			</div>
 		</nav>

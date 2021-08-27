@@ -1,7 +1,7 @@
 main#private-area-main {
   min-height: initial;
   height: calc(100vh - 12em);
-  margin: 6em 20px;
+  // margin: 6em 20px;
   margin-left: 20px;
   transition: margin-left .3s .3s ease-in-out;
   &.show {

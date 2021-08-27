@@ -16,6 +16,35 @@ use Symfony\Component\Routing\Annotation\Route;
 class CalendarController extends AbstractController
 {
     /**
+     * @Route("/", name="list")
+     */
+    public function list(CalendarRepository $calendarRepo): Response
+    {
+        $calendarEvents = $calendarRepo->findAll();
+
+        $data = [];
+
+        foreach($calendarEvents as $event) {
+
+            $data[] = [
+                'id' => $event->getId(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitle(),
+                'description' => $event->getDescription(),
+                'backgroundColor' => $event->getBackgroundColor(),
+                'allDay' => $event->getAllDay(),
+            ];
+        }
+
+        return $this->render('private_area/calendar/list.html.twig', [
+            'navigationPrivate' => true,
+            'data' => json_encode($data),
+            'active' => 'calendar'
+        ]);
+    }
+    
+    /**
      * @Route("/", name="index", methods={"GET"})
      */
     public function index(CalendarRepository $calendarRepository): Response
@@ -39,7 +68,7 @@ class CalendarController extends AbstractController
             $em->persist($calendar);
             $em->flush();
 
-            return $this->redirectToRoute('calendar_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('private_area_calendar_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('calendar/new.html.twig', [
@@ -69,7 +98,7 @@ class CalendarController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('calendar_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('private_area_calendar_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('calendar/edit.html.twig', [
@@ -89,6 +118,6 @@ class CalendarController extends AbstractController
             $em->flush();
         }
 
-        return $this->redirectToRoute('calendar_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('private_area_calendar_index', [], Response::HTTP_SEE_OTHER);
     }
 }

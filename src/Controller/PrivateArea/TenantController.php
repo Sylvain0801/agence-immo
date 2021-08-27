@@ -2,12 +2,16 @@
 
 namespace App\Controller\PrivateArea;
 
+use App\Entity\Calendar;
 use App\Entity\User\Tenant;
+use App\Form\PrivateArea\CalendarType;
 use App\Form\PrivateArea\TenantAddEditFormType;
+use App\Repository\CalendarRepository;
 use App\Repository\User\TenantRepository;
 use App\Security\EmailVerifier;
 use App\Service\ConfigTenantTableService;
 use App\Service\MailManagerService;
+use DateTime;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -123,6 +127,65 @@ class TenantController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/calendar/{id}", name="calendar")
+     */
+    public function calendar(Tenant $tenant, CalendarRepository $calendarRepo, Request $request, TranslatorInterface $translator): Response
+    {      
+        $calendarEvents = $calendarRepo->findAll();
+        $data = [];
+
+        foreach($calendarEvents as $event) {
+            $data[] = [
+                'id' => $event->getId(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'title' => $event->getTitle(),
+                'description' => $event->getDescription(),
+                'backgroundColor' => $event->getBackgroundColor(),
+                'allDay' => $event->getAllDay(),
+            ];
+        }
+       
+       
+        $calendar = new Calendar();
+        $form = $this->createForm(CalendarType::class, $calendar);
+        $formDatas = $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $startDate = $this->convertStringToDateTime($formDatas->get('start')->getData());
+            $endDate = $this->convertStringToDateTime($formDatas->get('end')->getData());
+            if ($startDate > $endDate) {
+                $calendar->setStart($endDate)
+                        ->setEnd($startDate);
+            } else {
+                $calendar->setStart($startDate)
+                        ->setEnd($endDate);
+            }
+            $calendar->setBackgroundColor($formDatas->get('background_color')->getData());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($calendar);
+            $em->flush();
+
+            $this->addFlash('message_alert', [
+                'text' => $translator->trans('The date has been added to the calendar successfully'), 
+                'style' => 'success'
+            ]);
+
+            return $this->redirectToRoute('private_area_tenant_calendar', ['id' => $tenant->getId()], Response::HTTP_SEE_OTHER);
+        }
+        
+            
+        return $this->render('private_area/tenant/calendar.html.twig', [
+            'navigationPrivate' => true,
+            'data' => json_encode($data),
+            'active' => 'tenant',
+            'tenant' => $tenant,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     private function generate_password(int $length = 10)
     {
         $chars =  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.
@@ -135,5 +198,13 @@ class TenantController extends AbstractController
           $str .= $chars[random_int(0, $max)];
       
         return $str;
+    }
+
+    private function convertStringToDateTime(string $dateString) : ?DateTime
+    {
+        $dateTemp = explode(' ', $dateString);
+        $newDate = implode('-', array_reverse(explode('/', $dateTemp[0]))) . ' ' . $dateTemp[1];
+
+        return new DateTime($newDate);
     }
 }

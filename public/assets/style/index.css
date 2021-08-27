@@ -1716,8 +1716,37 @@ footer .footer-social-media a:hover i {
   opacity: 1;
 }
 
+.modal .form-control-group {
+  text-align: initial;
+  margin-bottom: 0;
+}
+
+.modal .form-control-group .form-control-input {
+  height: 35px;
+}
+
+.modal .form-control-group textarea.form-control-input {
+  height: initial;
+}
+
+.modal .form-control-group .input-group {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  padding: 0;
+}
+
+.modal .form-control-group .input-group span {
+  height: 35px;
+  border-bottom-left-radius: initial;
+  border-top-left-radius: initial;
+  padding-bottom: .6rem;
+}
+
 .modal-content {
   margin: 10px 25%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 @media screen and (max-width: 1400px) {
@@ -1762,10 +1791,29 @@ footer .footer-social-media a:hover i {
   text-align: center;
 }
 
+.modal-header-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 2.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  border-top-left-radius: calc(0.3rem - 1px);
+  border-top-right-radius: calc(0.3rem - 1px);
+}
+
 .modal-body {
   margin: 2em;
   font-size: 1em;
   text-align: justify;
+  position: initial;
 }
 
 .modal-footer {
@@ -3561,7 +3609,6 @@ tr {
 main#private-area-main {
   min-height: initial;
   height: calc(100vh - 12em);
-  margin: 6em 20px;
   margin-left: 20px;
   -webkit-transition: margin-left .3s .3s ease-in-out;
   transition: margin-left .3s .3s ease-in-out;
@@ -3917,6 +3964,10 @@ main#private-area-main .input-horizontal-group input[type="checkbox"] + label di
   margin-right: 5px;
 }
 
+main#private-area-main .form-control-group {
+  text-align: initial;
+}
+
 main#private-area-main select {
   font-size: .9em;
 }
@@ -4047,7 +4098,7 @@ main#private-area-main span.current-files span.current-file-item i.fa.fa-trash {
 
 #calendar {
   min-width: 350px;
-  max-width: 60%;
+  max-width: 800px;
   height: 60vh;
   margin-top: 20px;
 }
@@ -4058,6 +4109,7 @@ main#private-area-main span.current-files span.current-file-item i.fa.fa-trash {
   padding: 0;
   font-size: 1.2em;
   font-weight: bold;
+  margin: 0 50px;
 }
 
 #calendar button {
@@ -4071,6 +4123,48 @@ main#private-area-main span.current-files span.current-file-item i.fa.fa-trash {
 
 #calendar .fc-icon {
   font-size: 1.2em;
+}
+
+.input-horizontal-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.input-radio-group input[type="radio"] {
+  display: block;
+}
+
+.input-radio-group input[type="radio"] + label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 !important;
+}
+
+.input-radio-group input[type="radio"] + label span {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  padding: 7px;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.input-radio-group input[type="radio"] + label span .modal-header-color {
+  opacity: 0;
+}
+
+.input-radio-group input[type="radio"]:checked + label span .modal-header-color {
+  opacity: 1;
 }
 
 .offer-table-view-img-grid {
