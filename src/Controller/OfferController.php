@@ -148,7 +148,8 @@ class OfferController extends AbstractController
             }
             $citiesGroupCoord = implode('|', $temp);
             // Récupére les distances via l'api
-            $datas = json_decode(file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=$cityCoordOrigin&destinations=$citiesGroupCoord&key=AIzaSyB1Q8l6-m7A9Rb6v_WQGB8LOBXJboI8O7o"), true);
+            $secretKey = $this->getParameter('app.apigooglekey');
+            $datas = json_decode(file_get_contents("https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=$cityCoordOrigin&destinations=$citiesGroupCoord&key=$secretKey"), true);
             // Crée un tableau avec l'id des villes et les distances
             foreach ($datas['rows'][0]['elements'] as $key => $data) {
                 if ($data['distance']['value'] < $radius * 1000) {
