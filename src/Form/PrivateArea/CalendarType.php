@@ -24,28 +24,49 @@ class CalendarType extends AbstractType
             4 => '#EB403D', 
             5 => '#CCCCCC'
         ];
+        $repeats = [
+            'weekly' => 'week',
+            'monthly' => 'month',
+            'annual' => 'year'
+        ];
+
         $builder
-            ->add('start', TextType::class, [
+            ->add('date_reminder', TextType::class, [
                 'attr' => [
                     'class' => 'form-control form-control-input',
-                    'autocomplete' => 'off'
+                    'autocomplete' => 'off',
+                    'pattern' => '^\d{2}\/\d{2}\/\d{2}$',
+                    'placeholder' => 'jj/mm/aa'
                 ],
-                'mapped' => false
             ])
-            ->add('end', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control form-control-input',
-                    'autocomplete' => 'off'
-                ],
-                'mapped' => false
-            ])
-            ->add('all_day', CheckboxType::class, [
+            ->add('repeat', CheckboxType::class, [
                 'required' => false
+                ])
+            ->add('frequency', ChoiceType::class, [
+                'expanded' => true,
+                'multiple' => false,
+                'required' => false,
+                'choices' => $repeats,
+                'mapped' => false,
+                'placeholder' => false, 
+            ])
+            ->add('repeat_end', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control form-control-input',
+                    'autocomplete' => 'off',
+                    'pattern' => '^\d{2}\/\d{2}\/\d{2}$',
+                    'placeholder' => 'jj/mm/aa',
+                    'disabled' => 'disabled'
+                ],
+                'mapped' => false,
+                'required' => false,
             ])
             ->add('title', TextType::class, [
                 'attr' => ['class' => 'form-control-input'],
             ])
             ->add('description', TextareaType::class, [
+                'required' => false,
+                'mapped' => false,
                 'attr' => [
                     'class' => 'form-control-input',
                     'rows' => 5
@@ -62,7 +83,7 @@ class CalendarType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Calendar::class,
+            // Configure your form options here
         ]);
     }
 }

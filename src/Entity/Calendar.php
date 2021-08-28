@@ -47,6 +47,11 @@ class Calendar
      */
     private $background_color;
 
+    /**
+     * @ORM\Column(type="string", length=7)
+     */
+    private $border_color;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -123,4 +128,17 @@ class Calendar
 
         return $this;
     }
+    
+    public function getBorderColor(): ?string
+    {
+        return $this->border_color;
+    }
+
+    public function setBorderColor(string $border_color): self
+    {
+        $this->border_color = $border_color;
+
+        return $this;
+    }
+
 }

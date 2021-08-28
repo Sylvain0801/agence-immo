@@ -2594,7 +2594,7 @@ a.underlined-link:hover {
   height: 1em;
   width: 1em;
   position: relative;
-  margin-right: 10px;
+  margin-right: .625em;
   border-radius: 3px;
   -webkit-box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15);
           box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15);
@@ -2740,6 +2740,144 @@ a.underlined-link:hover {
 
 .input-checkbox-group input[type="checkbox"]:checked + label span i {
   opacity: 1;
+}
+
+.input-horizontal-group-colors {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.input-horizontal-group-colors .input-radio-group input[type="radio"] {
+  margin-bottom: -20px;
+  height: 1px;
+  width: 1px;
+  opacity: 0;
+}
+
+.input-horizontal-group-colors .input-radio-group input[type="radio"] + label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.input-horizontal-group-colors .input-radio-group input[type="radio"] + label span {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  padding: 7px;
+  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.input-horizontal-group-colors .input-radio-group input[type="radio"] + label span .modal-header-color {
+  opacity: 0;
+}
+
+.input-horizontal-group-colors .input-radio-group input[type="radio"]:checked + label span .modal-header-color {
+  opacity: 1;
+}
+
+.input-allday-repeat-checkbox-group {
+  font-size: .8rem;
+}
+
+.input-allday-repeat-checkbox-group .input-checkbox-group label {
+  padding-bottom: 0;
+}
+
+.input-allday-repeat-checkbox-group .input-checkbox-group label span {
+  margin-right: 5px !important;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group {
+  margin-top: .5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group .input-radio-group input[type="radio"] {
+  opacity: 0;
+  height: 1px;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group .input-radio-group input[type="radio"] + label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 15px 0 0;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group .input-radio-group input[type="radio"] + label span {
+  height: 8px;
+  width: 8px;
+  position: relative;
+  margin-right: 5px;
+  border-radius: 50%;
+  padding: 5px;
+  -webkit-box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15);
+          box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15);
+  cursor: pointer;
+  border: 1px solid #ccc;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group .input-radio-group input[type="radio"] + label span:after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  height: 6px;
+  width: 6px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: rgba(51, 64, 74, 0.9);
+  -webkit-box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15);
+          box-shadow: inset 0 1px 3px rgba(51, 64, 74, 0.15);
+  -webkit-transition: opacity .1s ease;
+  transition: opacity .1s ease;
+  opacity: 0;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group .input-radio-group input[type="radio"]:checked + label span:after {
+  opacity: 1;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group .input-radio-group input[type="radio"]:disabled + label {
+  color: #CCCCCC;
+}
+
+.input-allday-repeat-checkbox-group .input-horizontal-group .input-radio-group input[type="radio"]:disabled + label span {
+  background-color: #CCCCCC;
+  cursor: not-allowed;
+}
+
+.input-allday-repeat-checkbox-group #calendar_repeat_end:disabled {
+  cursor: not-allowed;
+  background-color: #CCCCCC;
+}
+
+.input-allday-repeat-checkbox-group #calendar_repeat_end:disabled + .input-group-addon span {
+  background-color: #CCCCCC;
+}
+
+.input-allday-repeat-checkbox-group [for="calendar_repeat_end"] {
+  color: #CCCCCC;
 }
 
 .modal-popup {
@@ -2980,6 +3118,35 @@ tr {
 
 .toggle-switch-button input[type="checkbox"]:checked + label span.ball-switch-button, .toggle-switch-button input[type="radio"]:checked + label span.ball-switch-button {
   background-color: #13c551;
+}
+
+.datepicker {
+  width: 150px;
+}
+
+.datepicker span {
+  cursor: pointer;
+}
+
+.datepicker table {
+  font-size: .9rem;
+}
+
+.datepicker td, .datepicker th {
+  padding: 0;
+}
+
+.datepicker tr {
+  border: none;
+}
+
+.datepicker .day.active, .datepicker .day.active:hover, .datepicker .month.active, .datepicker .month.active:hover, .datepicker .year.active, .datepicker .year.active:hover {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#33404A), to(#0a0d0f));
+  background-image: linear-gradient(180deg, #33404A 0%, #0a0d0f 100%);
+}
+
+.datepicker input {
+  font-size: .9rem;
 }
 
 .property-view {
@@ -4123,48 +4290,6 @@ main#private-area-main span.current-files span.current-file-item i.fa.fa-trash {
 
 #calendar .fc-icon {
   font-size: 1.2em;
-}
-
-.input-horizontal-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.input-radio-group input[type="radio"] {
-  display: block;
-}
-
-.input-radio-group input[type="radio"] + label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 0 !important;
-}
-
-.input-radio-group input[type="radio"] + label span {
-  height: 20px;
-  width: 20px;
-  margin-right: 10px;
-  border-radius: 50%;
-  padding: 7px;
-  -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-          box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-
-.input-radio-group input[type="radio"] + label span .modal-header-color {
-  opacity: 0;
-}
-
-.input-radio-group input[type="radio"]:checked + label span .modal-header-color {
-  opacity: 1;
 }
 
 .offer-table-view-img-grid {

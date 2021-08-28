@@ -1,0 +1,24 @@
+.datepicker {
+  width: 150px;
+  span {
+    cursor: pointer;
+  }
+  table {
+    font-size: .9rem;
+  }
+  td, th {
+    padding: 0;
+  }
+  tr {
+    border: none;
+  }
+  .day, .month, .year {
+    &.active, &.active:hover {
+      background-image: $color-linear-gradient-primary;
+    }
+  }
+  input {
+    font-size: .9rem;
+  }
+}
+

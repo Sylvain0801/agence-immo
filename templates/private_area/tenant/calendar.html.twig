@@ -3,7 +3,8 @@
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
 {% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('assets/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
+  {# <link rel="stylesheet" href="{{ asset('assets/datetimepicker/css/bootstrap-datetimepicker.min.css') }}"> #}
+	<link rel="stylesheet" href="{{ asset('assets/bootstrap-datepicker-1.9.0-dist/css/bootstrap-datepicker.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/fullcalendar/lib/main.css') }}">
 {% endblock %}
 {% block javascripts %}
@@ -32,14 +33,16 @@
         moreLinkClick: 'popover',
         dayPopoverFormat: { month: 'long', day: 'numeric', year: 'numeric' },
 				events: {{ data|raw }},
+				eventClick: function(info) {
+					console.log(info);
+				}
 			});
 			calendar.setOption('locale', "{{ app.session.get('_locale') }}");
 			calendar.render();
 		});
 	</script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <script src="{{ asset('assets/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery-1.8.3.min.js') }}"></script>
+	<script src="{{ asset('assets/bootstrap-datepicker-1.9.0-dist/js/bootstrap-datepicker.js') }}"></script>
 {% endblock %}
 {% block body %}
 <main id="private-area-main">
@@ -63,78 +66,120 @@
 	<div class="modal-content">
 		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
 		<div class="modal-header">
-		<h3><i class="fa fa-calendar"></i>&nbsp;{{ 'add a new event'|trans|capitalize }}</h3>
+		<h3><i class="fa fa-calendar"></i>&nbsp;{{ 'add a new reminder'|trans|capitalize }}</h3>
 		</div>
 		<div class="modal-body">
 			{{ form_start(form, {'attr': {'class': 'private-area-form'}}) }}
-      <div class="d-flex">
-        <div class="form-control-group" style="margin-right: 5px">
-          {{ form_label(form.start, null, {'label': 'start date'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-					<div class="input-append date form_datetime">
-						<div class="input-group">
-							{{ form_widget(form.start) }}
-							<span class="add-on input-group-text"><i class="icon-th fa fa-calendar-o"></i></span>
+        <div class="form-control-group">
+          {{ form_label(form.date_reminder, null, {'label': 'reminder date'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					<div class="input-group date datepicker">
+						{{ form_widget(form.date_reminder) }}
+						<div class="input-group-addon">
+								<span class="glyphicon glyphicon-th input-group-text"><i class="fa fa-calendar-o"></i></span>
 						</div>
 					</div>
-          <div class="input-checkbox-group">
-            {{ form_widget(form.all_day) }}
-            <label for="calendar_all_day"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{'All day'|trans}}</label>
-          </div>
-        </div>
-        <div class="form-control-group" style="margin-left: 5px">
-          {{ form_label(form.end, null, {'label': 'end date'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-					<div class="input-append date form_datetime">
-						<div class="input-group">
-							{{ form_widget(form.end) }}
-							<span class="add-on input-group-text"><i class="icon-th fa fa-calendar-o"></i></span>
-						</div>
-					</div>
-        </div>
-      </div>
-			<div class="form-control-group">
-				{{ form_label(form.title, null, {'label': 'title'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-				{{ form_widget(form.title) }}
-			</div>
-			<div class="form-control-group">
-				{{ form_label(form.description, null, {'label': 'description'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-				{{ form_widget(form.description) }}
-			</div>
-			<div class="form-control-group">
-				{{ form_label(form.background_color, null, {'label': 'colors'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-				<div class="input-horizontal-group">
-					{% for child in form.background_color %}
-						<div class="input-radio-group">
-							<input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.background_color.vars.name ~ ']' }}" required="required" value="{{ child.vars.value }}">
-							<label for="{{ child.vars.id }}" class="required">
-								<span style="background-color: {{ child.vars.value }}">
-									<div class="modal-header-color" style="background-color: {{ child.vars.value }}">
-										<h3><i class="fa fa-calendar"></i>&nbsp;{{ 'add a new event'|trans|capitalize }}</h3>
-									</div>
-								</span>
-							</label>
-						</div>
-					{% endfor %}
 				</div>
-			</div>
-			<input type="hidden" id="calendar__token" name="calendar[_token]" value="{{ csrf_token('calendar') }}"/>
-			<div class="form-button-submit-between">
-				<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
-				<button type="submit" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
-			</div>
+        <div class="form-control-group">
+          <div class="input-allday-repeat-checkbox-group">
+						<div class="input-checkbox-group">
+							{{ form_widget(form.repeat) }}
+							<label for="calendar_repeat"><span><i class="fa fa-check"></i></span><i class="fa fa-caret-left"></i>&nbsp;{{'repeat the reminder'|trans|capitalize}}</label>
+						</div>
+						<div id="repeat-remind-details">
+							<div class="input-horizontal-group">
+								{% for child in form.frequency %}
+									<div class="input-radio-group">
+										<input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.frequency.vars.name ~ ']' }}" value="{{ child.vars.value }}" disabled>
+										<label for="{{ child.vars.id }}" ><span></span><i class="fa fa-caret-left"></i>&nbsp;{{ child.vars.label }}</label>
+									</div>
+								{% endfor %}
+							</div>
+							{{ form_label(form.repeat_end, null, {'label': 'reminder repetition end date'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+							<div class="input-group date datepicker">
+								{{ form_widget(form.repeat_end) }}
+								<div class="input-group-addon">
+									<span class="glyphicon glyphicon-th input-group-text"><i class="fa fa-calendar-o"></i></span>
+								</div>
+							</div>
+						</div>
+					</div>
+        </div>
+				<div class="form-control-group">
+					{{ form_label(form.title, null, {'label': 'title'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					{{ form_widget(form.title) }}
+				</div>
+				<div class="form-control-group">
+					{{ form_label(form.description, null, {'label': 'description'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					{{ form_widget(form.description) }}
+				</div>
+				<div class="form-control-group">
+					{{ form_label(form.background_color, null, {'label': 'colors'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					<div class="input-horizontal-group-colors">
+						{% for child in form.background_color %}
+							<div class="input-radio-group">
+								<input type="radio" id="{{ child.vars.id }}" name="{{ form.vars.id ~ '[' ~ form.background_color.vars.name ~ ']' }}" required="required" value="{{ child.vars.value }}">
+								<label for="{{ child.vars.id }}" class="required">
+									<span style="background-color: {{ child.vars.value }}">
+										<div class="modal-header-color" style="background-color: {{ child.vars.value }}">
+											<h3><i class="fa fa-calendar"></i>&nbsp;{{ 'add a new reminder'|trans|capitalize }}</h3>
+										</div>
+									</span>
+								</label>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<input type="hidden" id="calendar__token" name="calendar[_token]" value="{{ csrf_token('calendar') }}"/>
+				<div class="form-button-submit-between">
+					<button class="button button-rounded button-outline button-small" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+					<button type="submit" class="button button-rounded button-small"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+				</div>
 			{{ form_end(form, {'render_rest': false}) }}
 		</div>
 	</div>
 </div>
-{% if app.session.get('_locale') == 'fr' %}
-	<script type="text/javascript" src="{{ asset('assets/datetimepicker/js/locales/bootstrap-datetimepicker.fr.js') }}" charset="UTF-8"></script>
+{% set getlocale = app.session.get('_locale') %}
+{% if getlocale != 'en' %}
+	<script type="text/javascript" src="{{ asset('assets/bootstrap-datepicker-1.9.0-dist/locales/bootstrap-datepicker.' ~ getlocale ~ '.min.js') }}" charset="UTF-8"></script>
 {% endif %}
 <script type="text/javascript">
-    $(".form_datetime").datetimepicker({
-        format: "dd/mm/yy hh:ii",
-        autoclose: true,
-        todayBtn: true,
-        pickerPosition: "bottom-left",
-				language: "{{ app.session.get('_locale') }}",
-    });
+window.onload = () => {
+	const repeatRemindDetails = document.getElementById('repeat-remind-details')
+	const checkboxRepeatRemind = document.getElementById('calendar_repeat')
+	const inputsFrequency = document.querySelectorAll('#repeat-remind-details .input-radio-group input')
+	const endRepeatRemindDate = repeatRemindDetails.querySelector(' [for=calendar_repeat_end]')
+	const inputCalendarRepeatEnd = document.getElementById('calendar_repeat_end')
+	const itemsRemind = document.querySelectorAll('a.fc-daygrid-event')
+	console.log(itemsRemind)
+	checkboxRepeatRemind.addEventListener('click', function(e) {
+		if (this.checked) {
+			[inputCalendarRepeatEnd, ...inputsFrequency].forEach(elt => {
+				elt.removeAttribute('disabled')
+				elt.setAttribute('required', 'required')
+			})
+			endRepeatRemindDate.setAttribute('style', 'color: #33404A')
+		} else {
+			[inputCalendarRepeatEnd, ...inputsFrequency].forEach(elt => {
+				elt.removeAttribute('required')
+				elt.checked = false
+				elt.setAttribute('disabled', 'disabled')
+			})
+			endRepeatRemindDate.setAttribute('style', 'color: #CCCCCC')
+		}
+	})
+	for (let item of itemsRemind) {
+		item.addEventListener('click', function(e) {
+			console.log(e.target)
+		})
+	}
+}
+	$('.datepicker').datepicker({
+		 autoclose: true,
+		 clearBtn: true,
+		 format: "dd/mm/yy",
+		 orientation: "bottom left",
+		 language: "{{ app.session.get('_locale') }}",
+  }
+	});
 </script>
 {% endblock %}
