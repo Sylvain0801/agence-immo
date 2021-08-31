@@ -12,8 +12,8 @@ setTimeout(() => {
     // document.querySelector('.show .logo-company-group').style.transition = 'color .1s .5s ease'
 }, 500)
 
-if (window.innerWidth > 768) [navigation, main].forEach(elt => elt.classList.add('show'))
-if (window.innerWidth < 768) main.classList.remove('show')
+if (window.innerWidth > 1200) [navigation, main].forEach(elt => elt.classList.add('show'))
+if (window.innerWidth < 1200) main.classList.remove('show')
 
 burger.addEventListener('click', (e) => {
     e.stopPropagation()

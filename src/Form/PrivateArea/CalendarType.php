@@ -2,11 +2,10 @@
 
 namespace App\Form\PrivateArea;
 
-use App\Entity\Calendar;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\RadioType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,7 +30,8 @@ class CalendarType extends AbstractType
         ];
 
         $builder
-            ->add('date_reminder', TextType::class, [
+            ->add('reminder_id', HiddenType::class)
+            ->add('reminder_date', TextType::class, [
                 'attr' => [
                     'class' => 'form-control form-control-input',
                     'autocomplete' => 'off',
@@ -39,7 +39,7 @@ class CalendarType extends AbstractType
                     'placeholder' => 'jj/mm/aa'
                 ],
             ])
-            ->add('repeat', CheckboxType::class, [
+            ->add('is_repeated', CheckboxType::class, [
                 'required' => false
                 ])
             ->add('frequency', ChoiceType::class, [
@@ -72,7 +72,7 @@ class CalendarType extends AbstractType
                     'rows' => 5
                 ],
             ])
-            ->add('background_color', ChoiceType::class, [
+            ->add('color', ChoiceType::class, [
                 'expanded' => true,
                 'multiple' => false,
                 'choices' => $colors

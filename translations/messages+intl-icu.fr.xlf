@@ -1133,6 +1133,30 @@
         <source>add a date to the calendar</source>
         <target>ajouter une date au calendrier</target>
       </trans-unit>
+      <trans-unit id="7EvWyCK" resname="no description">
+        <source>no description</source>
+        <target>aucune description</target>
+      </trans-unit>
+      <trans-unit id="Kx8Jq0I" resname="edit a reminder">
+        <source>edit a reminder</source>
+        <target>éditer un rappel</target>
+      </trans-unit>
+      <trans-unit id="lhSvBID" resname="add a new reminder">
+        <source>add a new reminder</source>
+        <target>ajouter un nouveau rappel</target>
+      </trans-unit>
+      <trans-unit id="zRBscSv" resname="reminder date">
+        <source>reminder date</source>
+        <target>date du rappel</target>
+      </trans-unit>
+      <trans-unit id="XMfvq1d" resname="repeat the reminder">
+        <source>repeat the reminder</source>
+        <target>répéter le rappel</target>
+      </trans-unit>
+      <trans-unit id="_noR19P" resname="reminder repetition end date">
+        <source>reminder repetition end date</source>
+        <target>date de fin de répétition du rappel</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

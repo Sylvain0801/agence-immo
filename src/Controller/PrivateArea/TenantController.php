@@ -2,13 +2,12 @@
 
 namespace App\Controller\PrivateArea;
 
-use App\Entity\Calendar;
 use App\Entity\User\Tenant;
 use App\Form\PrivateArea\CalendarType;
 use App\Form\PrivateArea\TenantAddEditFormType;
-use App\Repository\CalendarRepository;
 use App\Repository\User\TenantRepository;
 use App\Security\EmailVerifier;
+use App\Service\CalendarManagerService;
 use App\Service\ConfigTenantTableService;
 use App\Service\MailManagerService;
 use DateTime;
@@ -81,7 +80,7 @@ class TenantController extends AbstractController
         $formDatas = $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $password = $this->generate_password();
             $tenant
                 ->setPassword($userPasswordHasher->hashPassword($tenant, $password))
@@ -114,7 +113,6 @@ class TenantController extends AbstractController
                 'private_area/tenant/email',
                 $context
             );
-
             $this->addFlash('message_alert', [
                 'text' => $this->translator->trans('The tenant account has been created successfully'), 
                 'style' => 'success'
@@ -133,52 +131,22 @@ class TenantController extends AbstractController
     /**
      * @Route("/calendar/{id}", name="calendar")
      */
-    public function calendar(Tenant $tenant, CalendarRepository $calendarRepo, Request $request): Response
+    public function calendar(Tenant $tenant, Request $request, CalendarManagerService $calendarManager): Response
     {      
-        $calendarEvents = $calendarRepo->findAll();
-        $data = [];
-
-        foreach($calendarEvents as $event) {
-            $data[] = [
-                'id' => $event->getId(),
-                'start' => $event->getStart()->format('Y-m-d H:i:s'),
-                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
-                'title' => $event->getTitle(),
-                'description' => $event->getDescription(),
-                'backgroundColor' => $event->getBackgroundColor(),
-                'borderColor' => $event->getBorderColor(),
-                'allDay' => $event->getAllDay(),
-            ];
-        }
-       
-       
-        $calendar = new Calendar();
+        $data = $calendarManager->getAllDatas($tenant);
         $form = $this->createForm(CalendarType::class);
         $formDatas = $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $date = $this->convertStringToDateTime($formDatas->get('date_reminder')->getData());
-            $calendar->setStart($date)->setEnd($date);
-            $description = $formDatas->get('description')->getData();
-            empty($description) ? $calendar->setDescription($this->translator->trans('no description')) : $calendar->setDescription($description);
+            $calendar = $calendarManager->getCalendarByIdOrCreateNew($formDatas->get('reminder_id')->getData());
+            $calendarManager->createRemind($calendar, $formDatas, $tenant);
             
-            $color = $formDatas->get('background_color')->getData();
-            $calendar->setBorderColor($color)
-                    ->setBackgroundColor($color)
-                    ->setAllDay(1)
-                    ->setTitle($formDatas->get('title')->getData());
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($calendar);
-            $em->flush();
-
-            if ($formDatas->get('repeat')->getData()) {
-                $this->convertStringToDateTimeRepeat($formDatas);
-                $em->flush();
-            }
+            if ($formDatas->get('is_repeated')->getData()) {
+                $calendarManager->createRemindRepeat($calendar, $formDatas, $tenant);
+            } 
 
             $this->addFlash('message_alert', [
-                'text' => $this->translator->trans('The date has been added to the calendar successfully'), 
+                'text' => $this->translator->trans('The remind has been added to the calendar successfully'), 
                 'style' => 'success'
             ]);
 
@@ -188,13 +156,12 @@ class TenantController extends AbstractController
             
         return $this->render('private_area/tenant/calendar.html.twig', [
             'navigationPrivate' => true,
-            'data' => json_encode($data),
+            'data' => $data,
             'active' => 'tenant',
             'tenant' => $tenant,
             'form' => $form->createView(),
         ]);
     }
-
 
     private function generate_password(int $length = 10)
     {
@@ -207,42 +174,5 @@ class TenantController extends AbstractController
           $str .= $chars[random_int(0, $max)];
       
         return $str;
-    }
-
-    private function convertStringToDateTime(?string $dateString) : ?DateTime
-    {
-        $newDate = implode('-', array_reverse(explode('/', $dateString)));
-
-        return new DateTime($newDate);
-    }
-
-    private function convertStringToDateTimeRepeat($formDatas): void
-    {
-        $formatDateStringInit = implode('-', array_reverse(explode('/', $formDatas->get('date_reminder')->getData())));
-        $formatDateStringEnd = implode('-', array_reverse(explode('/', $formDatas->get('repeat_end')->getData())));
-        $dateInit = new DateTime($formatDateStringInit);
-        $dateEnd = new DateTime($formatDateStringEnd);
-        $frequency = $formDatas->get('frequency')->getData();
-        $color = $formDatas->get('background_color')->getData();
-        $description = $formDatas->get('description')->getData();
-        if (empty($description)) $description = $this->translator->trans('no description');
-        $k = 1;
-        $dateRepeat = (new DateTime)->setTimestamp(strtotime("$formatDateStringInit +$k $frequency"));
-        if ($dateRepeat < $dateEnd) {
-            while ($dateRepeat <= $dateEnd) {
-                $calendar = (new Calendar())
-                    ->setStart($dateRepeat)->setEnd($dateRepeat)
-                    ->setAllDay(1)
-                    ->setTitle($formDatas->get('title')->getData())
-                    ->setDescription($description)
-                    ->setBorderColor($color)
-                    ->setBackgroundColor($color);
-                
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($calendar);
-                $k++;
-                $dateRepeat = (new DateTime)->setTimestamp(strtotime("$formatDateStringInit +$k $frequency"));
-            }
-        }
     }
 }

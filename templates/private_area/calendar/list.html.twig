@@ -17,18 +17,16 @@
 					{
 						start: 'prev,next today', 
 						center: 'title',
-						end: 'dayGridMonth,timeGridWeek,timeGridDay listMonth' 
+						end: 'dayGridMonth,dayGridWeek listMonth' 
 					},
-        eventTimeFormat: 
-          {
-            hour: 'numeric',
-            minute: '2-digit',
-            meridiem: false
-          },
+				defaultAllDay: true,
         dayMaxEventRows: 2,
         moreLinkClick: 'popover',
         dayPopoverFormat: { month: 'long', day: 'numeric', year: 'numeric' },
 				events: {{ data|raw }},
+				eventMouseEnter: function(item) { 
+					item.el.setAttribute('title', item.event.start.toLocaleString('fr-FR', {year: '2-digit', month: '2-digit', day: '2-digit'}) + '\n' + item.event.title + ' :\n' +  item.event.extendedProps.description)
+				},
 			});
 			calendar.setOption('locale', "{{ app.session.get('_locale') }}");
 			calendar.render();

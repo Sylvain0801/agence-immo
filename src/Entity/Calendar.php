@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\User\Tenant;
 use App\Repository\CalendarRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,9 +29,9 @@ class Calendar
     private $start;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
-    private $end;
+    private $repeat_end;
 
     /**
      * @ORM\Column(type="text")
@@ -38,19 +39,29 @@ class Calendar
     private $description;
 
     /**
+     * @ORM\Column(type="string", length=7, nullable=true)
+     */
+    private $frequency;
+
+    /**
+     * @ORM\Column(type="string", length=7)
+     */
+    private $color;
+
+    /**
      * @ORM\Column(type="boolean")
      */
-    private $all_day;
+    private $is_repeated = false;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $background_color;
+    private $repeat_id;
 
     /**
-     * @ORM\Column(type="string", length=7)
+     * @ORM\ManyToOne(targetEntity=Tenant::class, inversedBy="calendars")
      */
-    private $border_color;
+    private $tenant;
 
     public function getId(): ?int
     {
@@ -81,14 +92,14 @@ class Calendar
         return $this;
     }
 
-    public function getEnd(): ?\DateTimeInterface
+    public function getRepeatEnd(): ?\DateTimeInterface
     {
-        return $this->end;
+        return $this->repeat_end;
     }
 
-    public function setEnd(\DateTimeInterface $end): self
+    public function setRepeatEnd(?\DateTimeInterface $repeat_end): self
     {
-        $this->end = $end;
+        $this->repeat_end = $repeat_end;
 
         return $this;
     }
@@ -105,40 +116,79 @@ class Calendar
         return $this;
     }
 
-    public function getAllDay(): ?bool
+    /**
+     * Get the value of frequency
+     */ 
+    public function getFrequency(): ?string
     {
-        return $this->all_day;
+        return $this->frequency;
     }
 
-    public function setAllDay(bool $all_day): self
+    /**
+     * Set the value of frequency
+     *
+     * @return  self
+     */ 
+    public function setFrequency(?string $frequency)
     {
-        $this->all_day = $all_day;
+        $this->frequency = $frequency;
 
         return $this;
     }
 
-    public function getBackgroundColor(): ?string
+    /**
+     * Get the value of color
+     */ 
+    public function getColor(): ?string
     {
-        return $this->background_color;
+        return $this->color;
     }
 
-    public function setBackgroundColor(string $background_color): self
+    /**
+     * Set the value of color
+     *
+     * @return  self
+     */ 
+    public function setColor(string $color)
     {
-        $this->background_color = $background_color;
-
-        return $this;
-    }
-    
-    public function getBorderColor(): ?string
-    {
-        return $this->border_color;
-    }
-
-    public function setBorderColor(string $border_color): self
-    {
-        $this->border_color = $border_color;
+        $this->color = $color;
 
         return $this;
     }
 
+    public function getIsRepeated(): ?bool
+    {
+        return $this->is_repeated;
+    }
+
+    public function setIsRepeated(bool $is_repeated): self
+    {
+        $this->is_repeated = $is_repeated;
+
+        return $this;
+    }
+
+    public function getRepeatId(): ?int
+    {
+        return $this->repeat_id;
+    }
+
+    public function setRepeatId(?int $repeat_id): self
+    {
+        $this->repeat_id = $repeat_id;
+
+        return $this;
+    }
+
+    public function getTenant(): ?Tenant
+    {
+        return $this->tenant;
+    }
+
+    public function setTenant(?Tenant $tenant): self
+    {
+        $this->tenant = $tenant;
+
+        return $this;
+    }
 }

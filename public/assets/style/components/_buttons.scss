@@ -20,7 +20,13 @@
 		transform: scale(1.03);
 	}
 }
-
+.button-red {
+	background: $color-red;
+	border: solid 2px $color-red;
+	&:hover {
+		color: $color-red;
+	}
+}
 .button-rounded {
 	border-radius: 18px;
 }
@@ -37,7 +43,7 @@
 .button-small {
 	width: 140px;
 	height: 30px;
-	font-size: .8rem;
+	font-size: .7rem;
 }
 .button-fit {
 	width: initial;
