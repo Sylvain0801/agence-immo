@@ -50,7 +50,7 @@ class OfferController extends AbstractController
         $offers = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
-            10
+            23
         );
 
         return $this->render('offer/index.html.twig', [
@@ -167,7 +167,7 @@ class OfferController extends AbstractController
             $offers = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
-            10);
+            23);
         } else {
             $offers = $data;
         }

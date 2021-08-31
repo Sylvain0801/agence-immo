@@ -1173,6 +1173,50 @@
         <source>reminder repetition end date</source>
         <target>__reminder repetition end date</target>
       </trans-unit>
+      <trans-unit id="UlMFOP6" resname="The remind has been changed successfully">
+        <source>The remind has been changed successfully</source>
+        <target>__The remind has been changed successfully</target>
+      </trans-unit>
+      <trans-unit id="VCt3GSm" resname="An error occurred, please try again later">
+        <source>An error occurred, please try again later</source>
+        <target>__An error occurred, please try again later</target>
+      </trans-unit>
+      <trans-unit id="E_g_EjR" resname="The remind has been deleted successfully">
+        <source>The remind has been deleted successfully</source>
+        <target>__The remind has been deleted successfully</target>
+      </trans-unit>
+      <trans-unit id="377V083" resname="All reminders have been deleted successfully">
+        <source>All reminders have been deleted successfully</source>
+        <target>__All reminders have been deleted successfully</target>
+      </trans-unit>
+      <trans-unit id="a8Zsq2U" resname="The remind has been added to the calendar successfully">
+        <source>The remind has been added to the calendar successfully</source>
+        <target>__The remind has been added to the calendar successfully</target>
+      </trans-unit>
+      <trans-unit id="7ZXDQ4d" resname="rental properties informations">
+        <source>rental properties informations</source>
+        <target>__rental properties informations</target>
+      </trans-unit>
+      <trans-unit id="YSJOwB." resname="rental no">
+        <source>rental no</source>
+        <target>__rental no</target>
+      </trans-unit>
+      <trans-unit id="Q1WzSlr" resname="modify this reminder">
+        <source>modify this reminder</source>
+        <target>__modify this reminder</target>
+      </trans-unit>
+      <trans-unit id="vU2hgdS" resname="modify this reminder and its repetitions">
+        <source>modify this reminder and its repetitions</source>
+        <target>__modify this reminder and its repetitions</target>
+      </trans-unit>
+      <trans-unit id="ODLR7eG" resname="delete this reminder">
+        <source>delete this reminder</source>
+        <target>__delete this reminder</target>
+      </trans-unit>
+      <trans-unit id="1YnFxMn" resname="delete this reminder and its repetitions">
+        <source>delete this reminder and its repetitions</source>
+        <target>__delete this reminder and its repetitions</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

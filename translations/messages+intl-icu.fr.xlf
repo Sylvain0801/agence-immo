@@ -1157,6 +1157,50 @@
         <source>reminder repetition end date</source>
         <target>date de fin de répétition du rappel</target>
       </trans-unit>
+      <trans-unit id="UlMFOP6" resname="The remind has been changed successfully">
+        <source>The remind has been changed successfully</source>
+        <target>Le rappel a été modifié avec succès</target>
+      </trans-unit>
+      <trans-unit id="VCt3GSm" resname="An error occurred, please try again later">
+        <source>An error occurred, please try again later</source>
+        <target>Une erreur s'est produite, veuillez réessayer plus tard</target>
+      </trans-unit>
+      <trans-unit id="E_g_EjR" resname="The remind has been deleted successfully">
+        <source>The remind has been deleted successfully</source>
+        <target>Le rappel a été supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="377V083" resname="All reminders have been deleted successfully">
+        <source>All reminders have been deleted successfully</source>
+        <target>Tous les rappels ont été supprimés avec succès</target>
+      </trans-unit>
+      <trans-unit id="a8Zsq2U" resname="The remind has been added to the calendar successfully">
+        <source>The remind has been added to the calendar successfully</source>
+        <target>Le rappel a été ajouté au calendrier avec succès</target>
+      </trans-unit>
+      <trans-unit id="7ZXDQ4d" resname="rental properties informations">
+        <source>rental properties informations</source>
+        <target>informations sur les biens locatifs</target>
+      </trans-unit>
+      <trans-unit id="YSJOwB." resname="rental no">
+        <source>rental no</source>
+        <target>location n°</target>
+      </trans-unit>
+      <trans-unit id="Q1WzSlr" resname="modify this reminder">
+        <source>modify this reminder</source>
+        <target>modifier ce rappel</target>
+      </trans-unit>
+      <trans-unit id="vU2hgdS" resname="modify this reminder and its repetitions">
+        <source>modify this reminder and its repetitions</source>
+        <target>modifier ce rappel et ses répétitions</target>
+      </trans-unit>
+      <trans-unit id="ODLR7eG" resname="delete this reminder">
+        <source>delete this reminder</source>
+        <target>supprimer ce rappel</target>
+      </trans-unit>
+      <trans-unit id="1YnFxMn" resname="delete this reminder and its repetitions">
+        <source>delete this reminder and its repetitions</source>
+        <target>supprimer ce rappel et ses répétitions</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
