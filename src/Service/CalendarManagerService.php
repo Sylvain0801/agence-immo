@@ -64,10 +64,12 @@ class CalendarManagerService
 				'description' => $event->getDescription(),
 				'backgroundColor' => $event->getColor(),
 				'borderColor' => $event->getColor(),
-				'pathEditAll' => $repeatId ? $this->router->generate('private_area_calendar_edit_all', ['id' => $id, 'repeatId' => $repeatId]) : null,
-				'pathEdit' => $this->router->generate('private_area_calendar_edit', ['id' => $id]),
-				'pathDelete' => $this->router->generate('private_area_calendar_delete', ['id' => $id]),
-				'pathDeleteAll' => $repeatId ? $this->router->generate('private_area_calendar_delete_all', ['id' => $id, 'repeatId' => $repeatId]) : null
+				'path' => [
+					'editAll' => $repeatId ? $this->router->generate('private_area_calendar_edit_all', ['id' => $id, 'repeatId' => $repeatId]) : null,
+					'edit' => $this->router->generate('private_area_calendar_edit', ['id' => $id]),
+					'delete' => $this->router->generate('private_area_calendar_delete', ['id' => $id]),
+					'deleteAll' => $repeatId ? $this->router->generate('private_area_calendar_delete_all', ['id' => $id, 'repeatId' => $repeatId]) : null
+				]
 			];
 		}
 

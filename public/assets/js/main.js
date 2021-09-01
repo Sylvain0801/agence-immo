@@ -64,6 +64,11 @@ for (let button of modalButtons) {
       if (target === '#modal-confirm-delete') {
         document.querySelector(target + ' span.span-item-id').textContent = this.dataset.id
         document.getElementById('delete-button').href = this.dataset.path
+        }
+      // Modale confirmer la suppression des rappels
+      if (target === '#modal-confirm-delete-remind') {
+        document.querySelector(target + ' span.span-item-id').textContent = this.dataset.message
+        document.getElementById('delete-button').setAttribute('formaction', this.dataset.path)
       }
       // Modale gestion des locataires
       if (target === '#modal-confirm-manage-tenant') {

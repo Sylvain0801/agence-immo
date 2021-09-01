@@ -38,7 +38,7 @@
 		position: relative;
 		width: 1100px;
 		margin: 0 7%;
-		li.navigation-item.active a {
+		li.navigation-item.active > a {
 			color: $color-gold;
 			@media screen and (min-width: 768px) {
 				border-bottom: 3px solid;

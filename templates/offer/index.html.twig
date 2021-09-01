@@ -30,16 +30,12 @@
 				</div>
 			</div>
 		</div>
-	<script src="{{ asset('assets/aos-master/js/aos.js') }}"></script>
-	<script>
-      AOS.init({
-        easing: 'ease-in-out-sine'
-      });
-    </script>
 	</section>
 	{% if offers.getTotalItemCount > 23 %}
 		{{ knp_pagination_render(offers) }}
 	{% endif %}
+	<script src="{{ asset('assets/aos-master/js/aos.js') }}"></script>
+	<script>AOS.init({ easing: 'ease-in-out' });</script>
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('assets/js/searchForm.js') }}"></script>

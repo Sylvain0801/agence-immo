@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const ButtonSubmitGroup = document.getElementById('button-submit-group')
       const setInputValues = () => {
         clearInputValues()
-        editReminder.setAttribute('formaction', item.event.extendedProps.pathEdit)
-        editReminderAll.setAttribute('formaction', item.event.extendedProps.pathEditAll)
-        deleteReminder.setAttribute('formaction', item.event.extendedProps.pathDelete)
-        deleteReminderAll.setAttribute('formaction', item.event.extendedProps.pathDeleteAll)
+        editReminder.setAttribute('formaction', item.event.extendedProps.path.edit)
+        editReminderAll.setAttribute('formaction', item.event.extendedProps.path.editAll)
+        deleteReminder.setAttribute('data-path', item.event.extendedProps.path.delete)
+        deleteReminderAll.setAttribute('data-path', item.event.extendedProps.path.deleteAll)
         ButtonSubmitGroup.classList.add('d-none')
         for (const elt of [editReminder, deleteReminder, cancelEditReminder]) elt.classList.remove('d-none')
         if (item.event.extendedProps.isRepeated) [editReminderAll, deleteReminderAll].forEach(elt => elt.classList.remove('d-none'))
@@ -73,10 +73,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       const clearInputValues = () => {
         ButtonSubmitGroup.classList.remove('d-none')
-        for (const elt of [editReminder, editReminderAll, deleteReminder, deleteReminderAll, cancelEditReminder]) {
+        for (const elt of [editReminder, editReminderAll, deleteReminderAll, cancelEditReminder]) {
           elt.classList.add('d-none')
           elt.removeAttribute('formaction')
         }
+        deleteReminder.removeAttribute('data-path')
+        deleteReminderAll.removeAttribute('data-path')
         modalTitle.forEach(elt => elt.innerHTML = `<i class="fa fa-calendar"></i>&nbsp;${elt.dataset.titleAdd}`)
         title.value = ''
         description.textContent = ''

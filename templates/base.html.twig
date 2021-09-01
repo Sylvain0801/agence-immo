@@ -14,7 +14,7 @@
         <script type="text/javascript" src="{{ asset('assets/style/bootstrap-5.0.2-dist/js/bootstrap.js') }}" defer></script>
         {% block javascripts %}{% endblock %}
         <script type="text/javascript" src="{{ asset('assets/js/main.js') }}" defer></script>
-        <style>{% if navigationPrivate is defined %}body { padding: 6em 20px; } {% endif %}</style>
+        <style>{% if navigationPrivate is defined %} body { padding: 6em 20px; } {% endif %}</style>
     </head>
     <body>
         {% if navigationPrivate is defined %}

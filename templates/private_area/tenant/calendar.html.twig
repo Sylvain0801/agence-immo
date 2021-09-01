@@ -120,10 +120,8 @@
 				<input type="hidden" id="calendar__token" name="calendar[_token]" value="{{ csrf_token('calendar') }}"/>
 				<button id="edit-reminder" class="button button-rounded button-fit button-small d-none" type="submit" style="width: 100%"><i class="fa fa-pencil"></i>&nbsp;{{'modify this reminder'|trans}}</button>
 				<button id="edit-reminder-all" class="button button-rounded button-fit button-small d-none" type="submit" style="width: 100%"><i class="fa fa-pencil"></i>&nbsp;{{'modify this reminder and its repetitions'|trans}}</button>
-				<button id="delete-reminder" class="button button-rounded button-fit button-small button-red d-none" type="submit" style="width: 100%"><i class="fa fa-trash-o"></i>&nbsp;{{'delete this reminder'|trans}}</button>
-				<input type="hidden" name="delete_token" value="{{ csrf_token('delete-reminder') }}"/>
-				<button id="delete-reminder-all" class="button button-rounded button-fit button-small button-red d-none" type="submit" style="width: 100%"><i class="fa fa-trash-o"></i>&nbsp;{{'delete this reminder and its repetitions'|trans}}</button>
-				<input type="hidden" name="delete_all_token" value="{{ csrf_token('delete-reminder-all') }}"/>
+				<a id="delete-reminder" href="" data-target="#modal-confirm-delete-remind" data-message="{{ 'you are about to delete this reminder'|trans|capitalize }}" data-toggle="modal" class="button button-rounded button-fit button-small button-red d-none" ><i class="fa fa-trash-o"></i>&nbsp;{{'delete this reminder'|trans}}</a>
+				<a id="delete-reminder-all" href="" data-target="#modal-confirm-delete-remind" data-toggle="modal" data-message="{{ 'you are about to delete this reminder and its repetitions'|trans|capitalize }}" class="button button-rounded button-fit button-small button-red d-none" ><i class="fa fa-trash-o"></i>&nbsp;{{'delete this reminder and its repetitions'|trans}}</a>
 				<a id="cancel-edit-reminder" class="button button-rounded button-fit button-outline button-small d-none" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</a>
 
 				<div id="button-submit-group" class="form-button-submit-between">
@@ -131,6 +129,26 @@
 					<button type="submit" class="button button-rounded button-small"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
 				</div>
 			{{ form_end(form, {'render_rest': false}) }}
+		</div>
+	</div>
+</div>
+<div class="modal" id="modal-confirm-delete-remind" role="dialog">
+	<div class="modal-content w-450">
+		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
+		<div class="modal-header">
+		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'confirm deletion'|trans|capitalize }}</h3>
+		</div>
+		<div class="modal-body">
+			<p><span class="span-item-id"></span>.</p>
+			<br>
+			<p>{{ 'this action is irreversible.'|trans|capitalize }}</p>
+		</div>
+		<div class="modal-footer">
+			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+			<form method="POST">
+				<button id="delete-button" type="submit" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</button>
+				<input type="hidden" name="delete_token" value="{{ csrf_token('delete-reminder') }}"/>
+			</form>
 		</div>
 	</div>
 </div>
