@@ -157,11 +157,25 @@ class OfferRepository extends ServiceEntityRepository
     public function findFavorites(array $liste = null) : array
     {
         $qb = $this->createQueryBuilder('o')
-            ->leftJoin('o.property', 'p')
-            ->where('p.id IN(:listFavoritesId)')
-            ->setParameter('listFavoritesId', array_values($liste));
+                ->addSelect('o')
+                ->leftJoin('o.images', 'i')
+                ->addSelect('i')
+                ->leftJoin('o.property', 'p')
+                ->addSelect('p')
+                ->leftJoin('p.city', 'c')
+                ->addSelect('c')
+                ->leftJoin('p.property_type', 't')
+                ->addSelect('t')
+                ->leftJoin('p.owner_property', 'ow')
+                ->addSelect('ow')
+                ->leftJoin('p.manager_property', 'm')
+                ->addSelect('m')
+                ->leftJoin('p.options', 'opt')
+                ->addSelect('opt')
+                ->where('p.id IN(:listFavoritesId)')
+                ->setParameter('listFavoritesId', array_values($liste));
 
-        return $qb->getQuery()->execute();
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     }
     
     public function findListSortedFilteredBycriteria($criterias = null, string $sortBy = 'id', string $order = 'asc') : array

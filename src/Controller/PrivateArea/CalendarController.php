@@ -88,6 +88,7 @@ class CalendarController extends AbstractController
      */
     public function delete(Calendar $calendar, CalendarManagerService $calendarManager, Request $request): Response
     {
+        dd($request);
         $tenantId = $calendar->getTenant()->getId();
         $submittedToken = $request->request->get('delete_token');
         if ($this->isCsrfTokenValid('delete-reminder', $submittedToken)) {
@@ -113,8 +114,8 @@ class CalendarController extends AbstractController
     public function deleteAll(Calendar $calendar, $repeatId, CalendarManagerService $calendarManager, Request $request): Response
     {
         $tenantId = $calendar->getTenant()->getId();
-        $submittedToken = $request->request->get('delete_all_token');
-        if ($this->isCsrfTokenValid('delete-reminder-all', $submittedToken)) {
+        $submittedToken = $request->request->get('delete_token');
+        if ($this->isCsrfTokenValid('delete-reminder', $submittedToken)) {
             $calendarManager->deleteRemindAll($repeatId);
             $this->addFlash('message_alert', [
                 'text' => $this->translator->trans('All reminders have been deleted successfully'), 

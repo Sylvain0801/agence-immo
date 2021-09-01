@@ -2,6 +2,10 @@
 
 {% block title %}{{'properties'|trans|capitalize}} - {{'Real estate agency'|trans}}{% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/aos-master/css/aos.css') }}" />
+{% endblock %}
+
 {% block body %}
 {% for message in app.flashes('message_alert') %}
   {{ include('include/_alert.html.twig') }}
@@ -9,21 +13,29 @@
 	{{ include('offer/_search_form.html.twig') }}
 	<section class="properties-section">
 		<div class="property-counter"></div>
-		<div class="properties-container">
-			{% for offer in offers %}
-				{{ include('components/_card_property.html.twig') }}
+		<div id="transcroller-body" class="properties-container">
+			{% for k, offer in offers %}
+				<div class="aos-item" data-aos="fade-up">
+					{{ include('components/_card_property.html.twig') }}
+				</div>
 			{% else %}
-				<div class="no-property-to-display">😓 {{'There are no properties to display yet.'|trans}}</div>
+				<div class="aos-item" data-aos="fade-up">
+					<div class="no-property-to-display">😓 {{'There are no properties to display yet.'|trans}}</div>
+				</div>
 			{% endfor %}
-			<div class="card-show-more">
-				<a class="button-circle" href="{{ path('offer_home') }}">{{'display'|trans}}<br>{{'all'|trans}}<br>{{'properties'|trans}}
-				</a>
+			<div class="aos-item" data-aos="fade-up">
+				<div class="card-show-more">
+					<a class="button-circle" href="{{ path('offer_home') }}">{{'display'|trans}}<br>{{'all'|trans}}<br>{{'properties'|trans}}
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>
-	{% if offers.getTotalItemCount > 10 %}
+	{% if offers.getTotalItemCount > 23 %}
 		{{ knp_pagination_render(offers) }}
 	{% endif %}
+	<script src="{{ asset('assets/aos-master/js/aos.js') }}"></script>
+	<script>AOS.init({ easing: 'ease-in-out' });</script>
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('assets/js/searchForm.js') }}"></script>

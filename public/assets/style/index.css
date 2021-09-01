@@ -102,11 +102,11 @@ section {
   width: 1100px;
   margin: 0 7%;
 }
-.navigation ul li.navigation-item.active a {
+.navigation ul li.navigation-item.active > a {
   color: #C29C63;
 }
 @media screen and (min-width: 768px) {
-  .navigation ul li.navigation-item.active a {
+  .navigation ul li.navigation-item.active > a {
     border-bottom: 3px solid;
   }
 }
@@ -641,7 +641,7 @@ footer {
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
-  background-color: #33404A;
+  background: linear-gradient(180deg, #33404A 0%, #0a0d0f 100%);
   color: #F3F3F3;
   padding: 30px 15%;
 }
