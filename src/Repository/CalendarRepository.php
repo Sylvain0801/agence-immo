@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Calendar;
+use App\Entity\User\User;
+use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -19,4 +21,17 @@ class CalendarRepository extends ServiceEntityRepository
         parent::__construct($registry, Calendar::class);
     }
 
+    public function getAllRemindersForNextTwoMonths(?User $user) {
+        $start = new DateTime();
+        $end = (new DateTime())->setTimestamp(strtotime("now + 2 months"));
+        $qb = $this->createQueryBuilder('c')
+                ->where('c.tenant = :user')
+                ->setParameter('user', $user)
+                ->andWhere('c.start >= :start')
+                ->setParameter('start', $start)
+                ->andWhere('c.start <= :end')
+                ->setParameter('end', $end);
+
+        return $qb->getQuery()->getResult();
+    }
 }

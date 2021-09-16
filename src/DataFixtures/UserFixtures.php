@@ -9,16 +9,16 @@ use App\Entity\User\Tenant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Faker;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture implements FixtureGroupInterface
 {
-  private $userPasswordHasher;
+  private $passwordEncoder;
 
-  public function __construct(UserPasswordHasherInterface $userPasswordHasher)
+  public function __construct(UserPasswordEncoderInterface $passwordEncoder)
   {
-      $this->userPasswordHasher = $userPasswordHasher;
+      $this->passwordEncoder = $passwordEncoder;
   }
   
   public function load(ObjectManager $manager)
@@ -40,7 +40,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setIsVerified(1)
           ->setIsActive(1)
           ->setPublicPhone(rand(0, 1))
-          ->setPassword($this->userPasswordHasher->hashPassword($privateOwner, 'agence_immo'));
+          ->setPassword($this->passwordEncoder->encodePassword($privateOwner, 'agence_immo'));
 
       $manager->persist($privateOwner);
 
@@ -59,13 +59,16 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setRoles(['ROLE_AGENT'])
           ->setIsVerified(1)
           ->setIsActive(1)
-          ->setPassword($this->userPasswordHasher->hashPassword($agent, 'agence_immo'));
+          ->setPassword($this->passwordEncoder->encodePassword($agent, 'agence_immo'));
 
       $manager->persist($agent);
 
       $this->addReference('agent_'.$i, $agent);
     }
-    for($i = 0; $i < 100; $i++) {
+
+    $manager->flush();
+
+    for($i = 0; $i < 50; $i++) {
 
       $owner = new Owner();
   
@@ -76,9 +79,10 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setPhoneNumber($faker->phoneNumber)
           ->setAddress($faker->address)
           ->setRoles(['ROLE_OWNER'])
+          ->setAgent($this->getReference('agent_' . $i % 10))
           ->setIsVerified(1)
           ->setIsActive(1)
-          ->setPassword($this->userPasswordHasher->hashPassword($owner, 'agence_immo'));
+          ->setPassword($this->passwordEncoder->encodePassword($owner, 'agence_immo'));
 
       $manager->persist($owner);
 
@@ -97,7 +101,7 @@ class UserFixtures extends Fixture implements FixtureGroupInterface
           ->setRoles(['ROLE_TENANT'])
           ->setIsVerified(1)
           ->setIsActive(1)
-          ->setPassword($this->userPasswordHasher->hashPassword($tenant, 'agence_immo'));
+          ->setPassword($this->passwordEncoder->encodePassword($tenant, 'agence_immo'));
 
       $manager->persist($tenant);
 

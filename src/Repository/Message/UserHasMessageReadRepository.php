@@ -42,7 +42,8 @@ class UserHasMessageReadRepository extends ServiceEntityRepository
         } else if ($sortBy === 'created_at') {
             $qb->orderBy('msg.created_at', $order);
         } else {
-            $qb->orderBy('um.'.$sortBy, $order);
+            $qb->addOrderBy('um.'.$sortBy, $order)
+                ->addOrderBy('msg.created_at', 'DESC');
 
         }
 

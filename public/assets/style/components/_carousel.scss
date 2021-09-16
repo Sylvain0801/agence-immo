@@ -2,7 +2,7 @@
   margin: 0;
 }
 .carousel.slide {
-  margin-bottom: 250px;
+  margin-bottom: 22vh;
   position: relative;
   .carousel-indicators {
     @media screen and (max-width: 992px) {
@@ -23,31 +23,32 @@
     }
   }
   .slogan {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     right: 10vw;
-    max-width: 300px;
+    width: 300px;
     margin-left: 10vw;
-    top: 50%;
+    top: 40vh;
+    height: 40vh;
     background-color: transparentize($color-primary, .25);
-    padding: 2rem;
+    padding: 1.3em;;
     color: $color-white;
     box-shadow: 0 3px 6px rgba(#000000, .7);
     h2 {
       font-family: $font-roboto;
+      margin-bottom: .5em;
+      font-size: 1.5em;
     }
     p {
-      max-height: 250px;
+      font-size: .9em;
       overflow-y: auto;
       padding-right: 5px;
     }
     @media screen and (max-width: 992px) {
-      padding: 1.5rem;
-      h2 {
-        font-size: 1.5rem;
-      }
-      p {
-        font-size: .8rem;
-      }
+      font-size: .8rem;
+      width: 250px;
     }
   }
 }

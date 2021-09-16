@@ -2,15 +2,11 @@
 
 namespace App\Controller\PrivateArea;
 
-use App\Entity\Property\Image;
 use App\Entity\Property\Offer;
-use App\Entity\Property\Property;
 use App\Form\PrivateArea\OfferAddEditFormType;
-use App\Form\PrivateArea\PropertyAddEditFormType;
 use App\Repository\Property\ImageRepository;
 use App\Repository\Property\OfferRepository;
 use App\Repository\Property\PropertyRepository;
-use App\Service\CityManageService;
 use App\Service\ConfigOfferTableService;
 use App\Service\ImageManageService;
 use Knp\Component\Pager\PaginatorInterface;
@@ -89,7 +85,6 @@ class OfferController extends AbstractController
         ]);
     }
 
-    
     /**
      * @Route("/view/{slug}", name="view")
      */
@@ -109,6 +104,21 @@ class OfferController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/active/{id}", name="active")
+     */
+    public function active(Offer $offer): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $offer->setIsActive($offer->getIsActive() ? false : true);
+
+        $em->persist($offer);
+        $em->flush();
+
+        return new Response('true');
+    }
+
     
     /**
      * @Route("/new/{propertyId}", name="new")
@@ -121,7 +131,7 @@ class OfferController extends AbstractController
         $form = $this->createForm(OfferAddEditFormType::class, $offer);
         $formData = $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form-> isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $images = ($formData->get('images')->getData());
@@ -160,7 +170,7 @@ class OfferController extends AbstractController
         $form = $this->createForm(OfferAddEditFormType::class, $offer);
         $formData = $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form-> isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $images = ($formData->get('images')->getData());

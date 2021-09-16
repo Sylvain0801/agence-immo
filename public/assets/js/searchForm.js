@@ -16,17 +16,21 @@ window.onload = () => {
   if (window.innerWidth < 768) { 
     searchButton.classList.add('show') 
     formGroup.classList.remove('show')
-  } else {
+  } else if (window.innerWidth > 768) {
     searchButton.classList.remove('show')
     formGroup.classList.add('show')
   }
+  let currentWidth = window.innerWidth
   window.addEventListener('resize', () => {
-    if (window.innerWidth < 768) { 
-      searchButton.classList.add('show') 
-      formGroup.classList.remove('show')
-    } else {
-      searchButton.classList.remove('show')
-      formGroup.classList.add('show')
+    if (window.innerWidth !== currentWidth) {
+      if (window.innerWidth < 768) { 
+        searchButton.classList.add('show') 
+        formGroup.classList.remove('show')
+      } else if (window.innerWidth > 768) {
+        searchButton.classList.remove('show')
+        formGroup.classList.add('show')
+      }
+      currentWidth = window.innerWidth
     }
   })
   searchButton.addEventListener('click', function(e) {
@@ -76,14 +80,13 @@ window.onload = () => {
 
   checkboxSell.addEventListener('click', function(e) {
     e.stopPropagation()
-    setTimeout( () => disabledSellOrRent(this, groupRent), 200)
+    setTimeout(() => disabledSellOrRent(this, groupRent), 200)
   })
 
   checkboxRent.addEventListener('click', function(e) {
     e.stopPropagation()
     setTimeout( () => disabledSellOrRent(this, groupSell), 200)
   })
-
 
 
   // Gestion api proposition de ville en fonction des lettres tapées
@@ -127,5 +130,9 @@ window.onload = () => {
     cityList.innerHTML = ""
     document.querySelector('.search-form-group.show').style.overflow = 'hidden'
   }
-
+  
+  document.addEventListener('click', function() {
+    cityList.innerHTML = ""
+    document.querySelector('.search-form-group.show').style.overflow = 'hidden'
+  })
 }

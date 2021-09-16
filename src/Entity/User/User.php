@@ -3,6 +3,7 @@
 namespace App\Entity\User;
 
 use App\Entity\Document;
+use App\Entity\Document\DocHasSeen;
 use App\Entity\Message\Message;
 use App\Entity\Message\UserHasMessageRead;
 use App\Entity\Property\Property;
@@ -19,10 +20,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"protected_owner" = "PrivateOwner", "owner" = "Owner", "agent" = "Agent", "tenant" = "Tenant"})
+ * @ORM\DiscriminatorMap({"user" = "User", "private_owner" = "PrivateOwner", "owner" = "Owner", "agent" = "Agent", "tenant" = "Tenant"})
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -86,9 +87,9 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     protected $is_active = true;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Document::class, mappedBy="users")
+     * @ORM\OneToMany(targetEntity=DocHasSeen::class, mappedBy="user", orphanRemoval=true)
      */
-    protected $documents;
+    private $documents;
 
     /**
      * @ORM\OneToMany(targetEntity=Property::class, mappedBy="manager_property")
@@ -280,27 +281,30 @@ abstract class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|Document[]
+     * @return Collection|DocHasSeen[]
      */
     public function getDocuments(): Collection
     {
         return $this->documents;
     }
 
-    public function addDocument(Document $document): self
+    public function addDocument(DocHasSeen $document): self
     {
         if (!$this->documents->contains($document)) {
             $this->documents[] = $document;
-            $document->addUser($this);
+            $document->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeDocument(Document $document): self
+    public function removeDocument(DocHasSeen $document): self
     {
         if ($this->documents->removeElement($document)) {
-            $document->removeUser($this);
+            // set the owning side to null (unless already changed)
+            if ($document->getUser() === $this) {
+                $document->setUser(null);
+            }
         }
 
         return $this;

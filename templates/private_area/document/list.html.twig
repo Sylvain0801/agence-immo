@@ -2,9 +2,9 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
@@ -12,8 +12,8 @@
 	<div class="actions-buttons-group">
 		<a href="#" rolle="button" class="button button-small" data-target="#modal-add-document" data-toggle="modal" ><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a>
 	</div>
-	<div class="table-responsive-container">
-			<table>
+	<div class="private-area-scroll-container">
+			<table class="table-responsive-line">
 				<thead>
 					<tr>
 						{% for k, header in headers %}
@@ -23,8 +23,8 @@
 										{{ header.label|trans|capitalize }}
 										{% if header.sort %}
 											<div class="table-sort-buttons">
-												<a href="{{ path('private_area_document_list', {order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
-												<a href="{{ path('private_area_document_list', {order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+												<a href="{{ path('private_area_document_list', {sortBy: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+												<a href="{{ path('private_area_document_list', {sortBy: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
 											</div>
 										{% endif %}
 									</div>
@@ -34,30 +34,26 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for document in datas %}
+					{% for doc in datas %}
 						<tr>
-							<td><a href="{{ asset(document.path) }}" class="document-title-link" target="_blank" title="{{ 'download document'|trans|capitalize }}"><i class="fa fa-download"></i>&nbsp;{{ document.title }}</a></td>
 							<td>
-								<ul>
-									{% for user in document.users %}
-										<li>{{ user.lastname }} {{ user.firstname }} {{ user.email }}</li>
+								<a href="" data-id="{{ doc.document.id }}" class="button-icon button-document-seen">
+									<i class="{{ doc.hasSeen ? 'fa fa-file-o' : 'fa fa-file' }}"></i>
+								</a>
+							</td>
+							<td><a href="{{ asset(doc.document.path) }}" class="document-title-link" target="_blank" title="{{ 'download document'|trans|capitalize }}"><i class="fa fa-download"></i>&nbsp;{{ doc.document.title }}</a></td>
+							<td>
+								<ul style="list-style: inside; margin-bottom: 0;">
+									{% for user in doc.document.users %}
+										<li title="{{ user.user.email }}">{{ user.user.lastname }} {{ user.user.firstname }}</li>
 									{% endfor %}
 								</ul>
 							</td>
+							<td>{{ doc.document.createdAt|date('d/m/Y') }}</td>
 							<td>
 								<div class="table-td-actions">
-									{% if document.users|length > 0 %}
-										{% set usersList = '' %}
-										{% for k, user in document.users %}
-											{% if k == 0 %}
-												{% set usersList = user.id %}
-											{% else %}
-												{% set usersList = usersList ~ ',' ~ user.id %}
-											{% endif %}
-										{% endfor %}
-									{% endif %}
-									<a href="{{ path('private_area_document_manage_users_access', {id: document.id}) }}" role="button" title="{{ 'manage users access'|trans|capitalize }}"><i class="fa fa-user-plus"></i></a>
-									<a href="" role="button" title="{{ 'delete document'|trans|capitalize }}" data-target="#modal-confirm-delete" data-toggle="modal" data-id="{{ document.id }}" data-path="{{ path('private_area_document_delete', {id: document.id}) }}"><i class="fa fa-trash"></i></a>
+									<a href="{{ path('private_area_document_manage_users_access', {id: doc.document.id}) }}" role="button" title="{{ 'manage users access'|trans|capitalize }}"><i class="fa fa-user-plus"></i></a>
+									<a href="" role="button" title="{{ 'delete document'|trans|capitalize }}" data-token="{{ csrf_token('delete-document-' ~ doc.id) }}" data-target="#modal-confirm-delete-document" data-toggle="modal" data-id="{{ doc.id }}" data-path="{{ path('private_area_document_delete', {id: doc.id}) }}"><i class="fa fa-trash"></i></a>
 								</div>
 							</td>
 						</tr>
@@ -71,20 +67,23 @@
 		{% endif %}
 	</div>
 </main>
-<div class="modal" id="modal-confirm-delete" role="dialog">
+<div class="modal" id="modal-confirm-delete-document" role="dialog">
 	<div class="modal-content w-450">
 		<a href="#" class="modal-close fa fa-close" role="button" data-dismiss="dialog"></a>
 		<div class="modal-header">
 		<h3><i class="fa fa-warning"></i>&nbsp;{{ 'confirm deletion'|trans|capitalize }}</h3>
 		</div>
 		<div class="modal-body">
-			<p>{{ 'you are about to delete document no'|trans|capitalize }}&nbsp;<span class="span-item-id"></span>.</p>
+			<p>{{ 'you are about to delete this document'|trans|capitalize }}.</p>
 			<br>
 			<p>{{ 'this action is irreversible.'|trans|capitalize }}</p>
 		</div>
 		<div class="modal-footer">
 			<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
-			<a id="delete-button" role="button" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+			<form method="POST">
+				<input type="hidden" name="delete_document_token" value=""/>
+				<button id="delete-button" type="submit" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</button>
+			</form>
 		</div>
 	</div>
 </div>
@@ -106,8 +105,8 @@
 				<span id="input-file-container" data-count-current-files="1"></span>
 			</div>
 			<div class="form-button-submit-between">
-				<button class="button button-rounded button-outline" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
-				<button type="submit" class="button button-rounded"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
+				<button class="button button-rounded button-outline button-small" role="button" data-dismiss="dialog"><i class="fa fa-close"></i>&nbsp;{{'cancel'|trans}}</button>
+				<button type="submit" class="button button-rounded button-small"><i class="fa fa-check"></i>&nbsp;{{'confirm'|trans}}</a>
 			</div>
 			{{ form_end(form) }}
 		</div>
@@ -116,4 +115,6 @@
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('assets/js/customInputFileDocument.js') }}"></script>
+	<script src="{{ asset('assets/js/tableResponsive.js') }}" defer></script>
+	<script src="{{ asset('assets/js/documentSeen.js') }}" defer></script>
 {% endblock %}

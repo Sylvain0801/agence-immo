@@ -46,6 +46,9 @@
   &.w-450 {
     max-width: 450px;
   } 
+  button, a {
+    margin-bottom: 0!important;
+  }
 }
 
 .modal-close{
@@ -71,6 +74,7 @@
   justify-content: center;
   border: none;
   text-align: center;
+  padding: 1rem 2rem;
 }
 .modal-header-color {
   position: absolute;
@@ -87,10 +91,14 @@
   border-top-right-radius: calc(0.3rem - 1px);
 }
 .modal-body {
-  margin: 2em;
+  margin: 0 2em;
   font-size: 1em;
   text-align: justify;
   position: initial;
+  @media screen and (max-width: 576px) {
+    margin: 0;
+    padding: 0 .8rem .8rem;
+  }
 }
 
 .modal-footer{

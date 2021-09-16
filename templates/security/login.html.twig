@@ -4,9 +4,10 @@
 {% endblock %}
 
 {% block body %}
-	<section class="form-section">
+	<section class="form-section" style="background-image: url( {{ asset('assets/images/carousel/carousel-bg-1.jpg') }} );">
+		<div class="overlay-brightness"></div>
+		<form method="post" class="login-register">
 		<h1>{{'please sign in'|trans}}</h1>
-		<form method="post">
 			{% if error %}
 			<div class="form-control-group">
 				<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -37,7 +38,7 @@
 				</div>
 			</div> 
 			<div class="form-button-submit-right">
-				<button type="submit" class="button button-rounded button-outline"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{{'log in'|trans}}</button>
+				<button type="submit" class="button button-rounded button-outline button-small button-fit"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{{'log in'|trans}}</button>
 			</div>
 			<div class="form-button-submit-right">
 				<a class="underlined-link" href="{{ path('app_register_private_owner') }}">{{'Not yet registered, create an account ?'|trans}}</a>

@@ -2,7 +2,7 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
 <div class="message-alert message-alert-danger" role="alert" id="max-size-exceeded">
   <span><i class="fa fa-close"></i></span>
   <p>{{ 'the maximum size allowed per file is'|trans|capitalize }} 2M</p>
@@ -13,37 +13,41 @@
   <p>{{ '6 files maximum per download'|trans|capitalize }}</p>
   <a href="#" class="modal-close fa fa-close" role="button" data-dismiss="alert"></a>
 </div>
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-  {% include "private_area/_header_user.html.twig" %}
-  <h1>{{'create new property ad for property no'|trans|upper}} {{ propertyId }}</h1>
-  {{ form_start(form, {'attr': {'class': 'private-area-form'}}) }}
-  <div class="form-control-group">
-    {% for flashError in app.flashes('verify_email_error') %}
-      <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
-  </div>
-  <div class="form-control-group">
-    {{ form_label(form.title, null, {'label': 'title'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-    {{ form_widget(form.title) }}
-  </div>
-  <div class="form-control-group">
-    {{ form_label(form.description, null, {'label': 'description'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-    {{ form_widget(form.description) }}
-  </div>
-  <div class="form-control-group">
-    {{ form_widget(form.images) }}
-    <label for="offer_add_edit_form_images"><span class="input-file-button button button-fit"><i class="fa fa-download"></i>&nbsp;{{ 'download images'|trans }}</span></label>
-    <span id="input-file-container" data-count-current-files="6"></span>
-    <ul>
-      <li>{{ 'the maximum size allowed per file is'|trans|capitalize }} 2M</li>
-      <li>{{ '6 files maximum per download'|trans|capitalize }}</li>
-    </ul>
-  </div>
-  <div class="form-button-submit-between">
-    <a href="{{ path('private_area_property_list') }}" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
-    <button type="submit" class="button button-rounded button-outline"><i class="fa fa-check"></i>&nbsp;{{'create'|trans}}</button>
-  </div>
-{{ form_end(form) }}
+  <section class="form-section-private">
+		<div class="private-area-scroll-container position-center">
+      {{ form_start(form, {'attr': {'class': 'private-area-form'}}) }}
+        <h1>{{'create new property ad for property no'|trans|upper}} {{ propertyId }}</h1>
+        <div class="form-control-group">
+          {% for flashError in app.flashes('verify_email_error') %}
+            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+          {% endfor %}
+        </div>
+        <div class="form-control-group">
+          {{ form_label(form.title, null, {'label': 'title'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+          {{ form_widget(form.title) }}
+        </div>
+        <div class="form-control-group">
+          {{ form_label(form.description, null, {'label': 'description'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+          {{ form_widget(form.description) }}
+        </div>
+        <div class="form-control-group">
+          {{ form_widget(form.images) }}
+          <label for="offer_add_edit_form_images"><span class="input-file-button button button-fit"><i class="fa fa-download"></i>&nbsp;{{ 'download images'|trans }}</span></label>
+          <span id="input-file-container" data-count-current-files="6"></span>
+          <ul>
+            <li>{{ 'the maximum size allowed per file is'|trans|capitalize }} 2M</li>
+            <li>{{ '6 files maximum per download'|trans|capitalize }}</li>
+          </ul>
+        </div>
+        <div class="form-button-submit-between">
+          <a href="{{ path('private_area_property_list') }}" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+          <button type="submit" class="button button-rounded button-outline"><i class="fa fa-check"></i>&nbsp;{{'create'|trans}}</button>
+        </div>
+      {{ form_end(form) }}
+    </div>
+	</section>
 </main>
 {% endblock %}
 {% block javascripts %}

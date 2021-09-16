@@ -1,4 +1,5 @@
 window.onload = () => {
+  const redirectPath = document.querySelector('body').dataset.path
   // Récupère l'élement button
   let cardButton = document.getElementById("card-button");
   let modalButton = document.getElementById("display-modal-confirm-payment")
@@ -10,7 +11,7 @@ window.onload = () => {
   }
   
   const fetchPaymentPeriods = async (price) => {
-    intent = await fetch(`/payment/intention/${price}`)
+    intent = await fetch(`${redirectPath}/payment/intention/${price}`)
     .then((res) => {
       return res.ok ? res.json() : alert("Une erreur s'est produite, veuillez réessayer plus tard")
     })

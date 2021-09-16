@@ -2,37 +2,39 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
-  <section class="form-section">
+  <section class="form-section-private">
 		<h1>{{'reply to message'|trans}}</h1>
-		<div class="form-control-group">
-			<h5>{{'from'|trans|capitalize}} : {{ app.user.lastname }} {{ app.user.firstname }}</h5>
-			<h5>{{'to'|trans|capitalize}} : {{ msgRead.message.sender.lastname }} {{ msgRead.message.sender.firstname }} {{ msgRead.message.sender.id }}</h5>
-		</div>
-    {{ form_start(form) }}
+		<div class="private-area-scroll-container position-center">
 			<div class="form-control-group">
-        {{ form_label(form.subject, null, {'label': 'subject'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-        {{ form_widget(form.subject, {'value': 'RE : ' ~ msgRead.message.subject}) }}
+				<h5>{{'from'|trans|capitalize}} : {{ app.user.lastname }} {{ app.user.firstname }}</h5>
+				<h5>{{'to'|trans|capitalize}} : {{ msgRead.message.sender.lastname }} {{ msgRead.message.sender.firstname }} {{ msgRead.message.sender.id }}</h5>
 			</div>
+			{{ form_start(form) }}
+				<div class="form-control-group">
+					{{ form_label(form.subject, null, {'label': 'subject'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					{{ form_widget(form.subject, {'value': 'RE : ' ~ msgRead.message.subject}) }}
+				</div>
+				<div class="form-control-group">
+					{{ form_label(form.content, null, {'label': 'your message'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					{{ form_widget(form.content) }}
+				</div>
+				<div class="form-button-submit-between">
+					<a href="{{ path('private_area_message_list') }}" role="button" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{'back to list'|trans}}</a>
+					<button type="submit" class="button button-rounded button-outline"><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;{{'send'|trans}}</button>
+				</div>
+			{{ form_end(form) }}
 			<div class="form-control-group">
-        {{ form_label(form.content, null, {'label': 'your message'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
-        {{ form_widget(form.content) }}
-			</div>
-      <div class="form-button-submit-between">
-				<a href="{{ path('private_area_message_list') }}" role="button" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{'back to list'|trans}}</a>
-				<button type="submit" class="button button-rounded button-outline"><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;{{'send'|trans}}</button>
-			</div>
-    {{ form_end(form) }}
-			<div class="form-control-group">
-        <label for="original_subject">{{ 'original subject'|trans|capitalize }}</label>&nbsp;<i class="fa fa-caret-right"></i>
+				<label for="original_subject">{{ 'original subject'|trans|capitalize }}</label>&nbsp;<i class="fa fa-caret-right"></i>
 				<input type="text" class="form-control-input" name="original_subject" id="original_subject" value="{{ msgRead.message.subject }}" disabled>
 			</div>
 			<div class="form-control-group">
-        <label for="original_message">{{ 'original message'|trans|capitalize }}</label>&nbsp;<i class="fa fa-caret-right"></i>
+				<label for="original_message">{{ 'original message'|trans|capitalize }}</label>&nbsp;<i class="fa fa-caret-right"></i>
 				<textarea type="text" class="form-control-input" name="original_message" id="original_message" disabled>{{ msgRead.message.content }}</textarea>
 			</div>
+		</div>
 	</section>
 </main>
 

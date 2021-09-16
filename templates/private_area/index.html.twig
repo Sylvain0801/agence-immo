@@ -2,10 +2,113 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
+	{% for message in app.flashes('message_alert') %}
+    {{ include('include/_alert.html.twig') }}
+  {% endfor %}
 	<h2>Bonjour, bienvenue dans votre espace privé</h2>
+	<br>
+	<div class="card-private-area-container">
+		<div class="card-private-area">
+			<h3><i class="fa fa-envelope-square"></i>&nbsp;{{ 'my messages'|trans|capitalize }}</h3>
+			<hr>
+			{% if messages|length == 0 %}
+				<p>{{ 'you have no new message'|trans|capitalize }}.</p>
+			{% elseif messages|length == 1 %}
+				<p>{{ 'you have'|trans|capitalize ~ ' ' ~ messages|length ~ ' ' ~ 'new message from'|trans }} :</p>
+			{% else %}
+				<p>{{ 'you have'|trans|capitalize ~ ' ' ~ messages|length ~ ' ' ~ 'new messages from'|trans }} :</p>
+			{% endif %}
+			<ul>
+				{% for k, msg in messages|sort((a, b) => a.message.createdAt < b.message.createdAt) %}
+					{% if k < 10 %}
+						<li title="{{ 'see message'|trans|capitalize }}">
+							<a href="{{ path('private_area_message_view', {id: msg.id}) }}">
+								<i class="fa fa-user"></i>
+								&nbsp;{{ msg.message.sender.lastname }} {{ msg.message.sender.firstname }}
+							</a>
+							<small>
+								&nbsp;{{ 'on'|trans }} {{ msg.message.createdAt|date('m/d/Y') }} {{ 'at'|trans }} {{ msg.message.createdAt|date('H:i') }}
+							</small>
+						</li>
+					{% endif %}
+				{% endfor %}
+				{% if messages|length > 10  %}
+					<a href="{{ path('private_area_message_list') }}" title="{{ 'see all messages'|trans|capitalize }}" class="button-icon"><i class="fa fa-ellipsis-h"></i></a>
+				{% endif %}
+			</ul>
+			<div class="d-flex justify-content-end">
+				<a href="{{ path('private_area_message_list') }}" title="{{ 'see all messages'|trans|capitalize }}" class="button button-small">{{ 'see all'|trans }}</a>
+			</div>
+		</div>
+		<div class="card-private-area">
+			<h3><i class="fa fa-file-pdf-o"></i>&nbsp;{{ 'my documents'|trans|capitalize }}</h3>
+			<hr>
+			{% if documents|length == 0 %}
+				<p>{{ 'you have no new document'|trans|capitalize }}.</p>
+			{% elseif documents|length == 1 %}
+				<p>{{ 'you have'|trans|capitalize ~ ' ' ~ documents|length ~ ' ' ~ 'new document'|trans }} :</p>
+			{% else %}
+				<p>{{ 'you have'|trans|capitalize ~ ' ' ~ documents|length ~ ' ' ~ 'new documents'|trans }} :</p>
+			{% endif %}
+			<ul>
+				{% for k, doc in documents|filter((doc, k) => k < 10)|sort((a, b) => a.document.createdAt < b.document.createdAt) %}
+					<li>
+						<a href="{{ asset(doc.document.path) }}" target="_blank" title="{{ 'download document'|trans|capitalize }}">
+							<i class="fa fa-download"></i>
+							&nbsp;{{ doc.document.title }}
+						</a>
+					</li>
+				{% endfor %}
+				{% if documents|length > 10  %}
+					<a href="{{ path('private_area_document_list') }}" title="{{ 'see all documents'|trans|capitalize }}" class="button-icon"><i class="fa fa-ellipsis-h"></i></a>
+				{% endif %}
+			</ul>
+			<div class="d-flex justify-content-end">
+				<a href="{{ path('private_area_document_list') }}" title="{{ 'see all documents'|trans|capitalize }}" class="button button-small">{{ 'see all'|trans }}</a>
+			</div>
+		</div>
+		<div class="card-private-area">
+			<h3><i class="fa fa-calendar"></i>&nbsp;{{ 'my upcoming reminders'|trans|capitalize }}</h3>
+			<hr>
+			{% if reminders|length == 0 %}
+				<p>{{ 'you have no reminder'|trans|capitalize }}.</p>
+			{% elseif reminders|length == 1 %}
+				<p>{{ 'you have'|trans|capitalize ~ ' ' ~ reminders|length ~ ' ' ~ 'reminder'|trans }} :</p>
+			{% else %}
+				<p>{{ 'you have'|trans|capitalize ~ ' ' ~ reminders|length ~ ' ' ~ 'reminders'|trans }} :</p>
+			{% endif %}
+			<ul>
+				{% for k, remind in reminders|filter((doc, k) => k < 10)|sort((a, b) => a.start < b.start) %}
+					<li class="reminder-item" title="{{ remind.start|date('m/d/Y') ~ '\n' ~ remind.title ~ '\n' ~ remind.description }}" style="{{ 'background-color:' ~ remind.color }}">
+						<span><i class="fa fa-calendar-check-o"></i>&nbsp;{{ remind.title }}</span>
+						<small>&nbsp;{{ 'on'|trans }} {{ remind.start|date('m/d/Y') }}</small>
+					</li>
+				{% endfor %}
+				{% if reminders|length > 10  %}
+					<a href="{{ path('private_area_calendar_list') }}" title="{{ 'see all reminders'|trans|capitalize }}" class="button-icon"><i class="fa fa-ellipsis-h"></i></a>
+				{% endif %}
+			</ul>
+			<div class="d-flex justify-content-end">
+				<a href="{{ path('private_area_calendar_list') }}" title="{{ 'see all reminders'|trans|capitalize }}" class="button button-small">{{ 'see all'|trans }}</a>
+			</div>
+		</div>
+		<div class="card-private-area">
+			<h3><i class="fa fa-user-circle-o"></i>&nbsp;{{ 'my profile'|trans|capitalize }}</h3>
+			<hr>
+			<ul>
+				<li class="profile-item"><strong>{{ 'firstname'|trans|capitalize }} :</strong>&nbsp;{{ app.user.firstname }}</li>
+				<li class="profile-item"><strong>{{ 'lastname'|trans|capitalize }} :</strong>&nbsp;{{ app.user.lastname }}</li>
+				<li class="profile-item"><strong>{{ 'email address'|trans|capitalize }} :</strong>&nbsp;{{ app.user.email }}</li>
+				<li class="profile-item"><strong>{{ 'phone number'|trans|capitalize }} :</strong>&nbsp;{{ app.user.phoneNumber }}</li>
+				<li class="profile-item"><strong>{{ 'address'|trans|capitalize }} :</strong>&nbsp;<address>{{ app.user.address }}</address></li>
+			</ul>
+			<div class="d-flex justify-content-end">
+				<a href="{{ path('private_area_edit_profil') }}" title="{{ 'modify my personal information'|trans|capitalize }}" class="button button-small">{{ 'modify'|trans }}</a>
+			</div>
+		</div>
+	</div>
 </main>
 {% endblock %}

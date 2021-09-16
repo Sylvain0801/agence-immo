@@ -33,7 +33,13 @@ $color-linear-gradient-primary: linear-gradient(180deg, $color-primary 0%, rgba(
   @media screen and (max-width: 768px) {
     --navbar-height: 35px;
   }
+  --navbar-aside-width: 300px;
+  @media screen and (max-width: 576px) {
+    --navbar-aside-width: 220px;
+  }
+  --body-private-width: calc(100vw - 2rem)
 }
+
 $navbar-top: 170px;
 $footer-height: 260px;
 

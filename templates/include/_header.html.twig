@@ -18,7 +18,7 @@
 			</a>
 			<div class="button-group">
 				{% if app.user %}
-					<a href="{{ path('private_area_message_list') }}" class="button button-rounded button-outline"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{{'my space'|trans}}</a>
+					<a href="{{ path('private_area_home') }}" class="button button-rounded button-outline"><i class="fa fa-desktop"></i>&nbsp;&nbsp;{{'my space'|trans}}</a>
 				{% else %}
 					<a href="{{ path('app_login') }}" class="button button-rounded button-outline"><i class="fa fa-sign-in"></i>&nbsp;&nbsp;{{'log in'|trans}}</a>
 				{% endif %}

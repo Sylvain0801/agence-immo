@@ -138,7 +138,7 @@ class ConfigPropertyTableService
 			'sort' => true, 
 			'filter' => false,
 		],
-		'offer' => [
+		'property_ad_count' => [
 			'header' => true,
 			'label' => $this->translator->trans('property ad'), 
 			'sort' => true, 

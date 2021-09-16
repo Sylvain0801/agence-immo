@@ -36,4 +36,8 @@ window.onload = () => {
     searchInput.value = cityName
     cityList.innerHTML = ""
   }
+  
+  document.addEventListener('click', function() {
+    cityList.innerHTML = ""
+  })
 }

@@ -88,7 +88,6 @@ class CalendarController extends AbstractController
      */
     public function delete(Calendar $calendar, CalendarManagerService $calendarManager, Request $request): Response
     {
-        dd($request);
         $tenantId = $calendar->getTenant()->getId();
         $submittedToken = $request->request->get('delete_token');
         if ($this->isCsrfTokenValid('delete-reminder', $submittedToken)) {

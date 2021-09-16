@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
+<main id="private-area-main">
+  <section class="form-section-private">
+		<div class="private-area-scroll-container position-center">
+			{{ form_start(form) }}
+				<h1>{{'contact my agent'|trans}}</h1>
+				<div class="form-control-group">
+					<h5>{{'from'|trans|capitalize}} : {{ app.user.lastname }} {{ app.user.firstname }}</h5>
+					<h5>{{'to'|trans|capitalize}} : {{ agent.lastname }} {{ agent.firstname }}</h5>
+				</div>
+				<div class="form-control-group">
+					{{ form_label(form.subject, null, {'label': 'subject'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					{{ form_widget(form.subject) }}
+				</div>
+				<div class="form-control-group">
+					{{ form_label(form.content, null, {'label': 'your message'|trans|capitalize}) }}&nbsp;<i class="fa fa-caret-right"></i>
+					{{ form_widget(form.content) }}
+				</div>
+				<div class="form-button-submit-between">
+					<a href="{{ path('private_area_message_list') }}" role="button" class="button button-rounded"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{'back to list'|trans}}</a>
+					<button type="submit" class="button button-rounded button-outline"><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;{{'send'|trans}}</button>
+				</div>
+			{{ form_end(form) }}
+		</div>
+	</section>
+</main>
+
+{% endblock %}
+

@@ -4,9 +4,12 @@ namespace App\Controller\PrivateArea;
 
 use App\Entity\Message\Message;
 use App\Entity\Message\UserHasMessageRead;
+use App\Entity\User\User;
 use App\Form\PrivateArea\MessageAnswerFormType;
+use App\Repository\Message\MessageRepository;
 use App\Repository\Message\UserHasMessageReadRepository;
 use App\Service\ConfigMessageTableService;
+use App\Service\MailManagerService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +28,7 @@ class MessageController extends AbstractController
      */
     public function list($sortBy, $order, UserHasMessageReadRepository $msgReadRepo, ConfigMessageTableService $configMessageTableService, Request $request, PaginatorInterface $paginator): Response
     {
-        $datas = $configMessageTableService->configInitDocumentTable($msgReadRepo, $sortBy, $order, $this->getUser()->getId());
+        $datas = $configMessageTableService->configInitMessageTable($msgReadRepo, $sortBy, $order, $this->getUser()->getId());
 
         $messages = $paginator->paginate(
             $datas['table'],
@@ -63,7 +66,6 @@ class MessageController extends AbstractController
         ]);
     }
 
-    
     /**
      * @Route("/view/{id}", name="view")
      */
@@ -82,6 +84,18 @@ class MessageController extends AbstractController
     }
 
     /**
+     * @Route("/sent-view/{id}", name="sent_view")
+     */
+    public function sentView(Message $msg): Response
+    {
+        return $this->render('private_area/message/sent_view.html.twig', [
+            'navigationPrivate' => true,
+            'active' => 'message',
+            'message' => $msg,
+        ]);
+    }
+
+    /**
      * @Route("/reply/{id}", name="reply")
      */
     public function reply(UserHasMessageRead $msgRead, Request $request, TranslatorInterface $translator): Response
@@ -95,7 +109,7 @@ class MessageController extends AbstractController
         $form = $this->createForm(MessageAnswerFormType::class, $message);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form-> isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
 
             $message->setSender($this->getUser());
@@ -121,6 +135,137 @@ class MessageController extends AbstractController
             'active' => 'message',
             'form' => $form->createView(),
             'msgRead' => $msgRead
+        ]);
+    }
+
+    /**
+     * @Route("/contact-agent", name="contact_agent")
+     */
+    public function contactAgent(Request $request, MailManagerService $mailManager, TranslatorInterface $translator): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_OWNER');
+        $agent = $this->getUser()->getAgent();
+        
+        $message = new Message();
+        $form = $this->createForm(MessageAnswerFormType::class, $message);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $message->setSender($this->getUser());
+            $em->persist($message);
+
+            $msgRead = (new UserHasMessageRead())->setMessage($message)->setRecipient($agent);   
+            $em->persist($msgRead);
+            $em->flush();
+
+            $subject = $translator->trans('A new message in your private area');
+            $content = $translator->trans('Go to the message tab of your private area, you have received a new message.');
+
+            $context = [
+                'mail' => $this->getUser()->getEmail(),
+                'firstname' => $this->getUser()->getFirstname(),
+                'lastname' => $this->getUser()->getLastname(),
+                'subject' => $subject,
+                'message' => $content
+            ];
+            $mailManager->create(
+                $this->getUser()->getEmail(),
+                $agent->getEmail(),
+                $subject,
+                'private_area/message/email',
+                $context
+            );
+
+            $this->addFlash('message_alert', [
+                'text' => $translator->trans('your message has been sent successfully'), 
+                'style' => 'success'
+            ]);
+
+            return $this->redirectToRoute('private_area_message_list');
+        }
+
+        return $this->render('private_area/message/contact_agent.html.twig', [
+            'navigationPrivate' => true,
+            'active' => 'message',
+            'form' => $form->createView(),
+            'agent' => $agent
+        ]);
+    }
+
+    /**
+     * @Route("/contact-manager/{id}", name="contact_manager")
+     */
+    public function contactManager(User $manager, Request $request, MailManagerService $mailManager, TranslatorInterface $translator): Response
+    {
+        $this->denyAccessUnlessGranted('ROLE_TENANT');
+        
+        $message = new Message();
+        $form = $this->createForm(MessageAnswerFormType::class, $message);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $message->setSender($this->getUser());
+            $em->persist($message);
+
+            $msgRead = (new UserHasMessageRead())->setMessage($message)->setRecipient($manager);   
+            $em->persist($msgRead);
+            $em->flush();
+
+            $subject = $translator->trans('A new message in your private area');
+            $content = $translator->trans('Go to the message tab of your private area, you have received a new message.');
+
+            $context = [
+                'mail' => $this->getUser()->getEmail(),
+                'firstname' => $this->getUser()->getFirstname(),
+                'lastname' => $this->getUser()->getLastname(),
+                'subject' => $subject,
+                'message' => $content
+            ];
+            $mailManager->create(
+                $this->getUser()->getEmail(),
+                $manager->getEmail(),
+                $subject,
+                'private_area/message/email',
+                $context
+            );
+
+            $this->addFlash('message_alert', [
+                'text' => $translator->trans('your message has been sent successfully'), 
+                'style' => 'success'
+            ]);
+
+            return $this->redirectToRoute('private_area_message_list');
+        }
+
+        return $this->render('private_area/message/contact_manager.html.twig', [
+            'navigationPrivate' => true,
+            'active' => 'message',
+            'form' => $form->createView(),
+            'manager' => $manager
+        ]);
+    }
+
+    /**
+     * @Route("/sent/{sortBy}/{order}", name="sent", defaults={"sortBy": "is_read", "order": "asc"})
+     */
+    public function sent($sortBy, $order, MessageRepository $msgRepo, ConfigMessageTableService $configMessageTableService, Request $request, PaginatorInterface $paginator): Response
+    {
+        $datas = $configMessageTableService->configInitMessageSentTable($msgRepo, $sortBy, $order, $this->getUser()->getId());
+
+        $messages = $paginator->paginate(
+            $datas['table'],
+            $request->query->getInt('page', 1),
+            10);
+
+        return $this->render('private_area/message/sent.html.twig', [
+            'navigationPrivate' => true,
+            'active' => $datas['activeTab'],
+            'headers' => $datas['headers'],
+            'datas' => $messages,
         ]);
     }
 }

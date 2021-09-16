@@ -1,8 +1,11 @@
 main#private-area-main {
   .private-area-form {
-    height: calc(100vh - 8em);
+    // height: calc(100vh - 14em);
     overflow-y: auto;
     position: relative;
+    @media screen and (max-width: 576px) {
+      overflow-x: hidden;
+    }
   }
   .input-horizontal-group {
     display: flex;

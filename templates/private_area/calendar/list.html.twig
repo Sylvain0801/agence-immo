@@ -33,9 +33,9 @@
 		});
 	</script>
 {% endblock %}
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	<h2>{{'my agenda'|trans|capitalize}}</h2>
 	<div id='calendar'></div>
 </main>

@@ -1,5 +1,4 @@
 #calendar {
-  min-width: 350px;
   max-width: 800px;
   height: 60vh;
   margin-top: 20px;
@@ -9,7 +8,11 @@
     padding: 0;
     font-size: 1.2em;
     font-weight: bold;
+    width: initial;
     margin: 0 50px;
+    @media screen and (max-width: 576px){
+      margin: 0 20px;
+    }
   } 
   button {
     padding: 0 5px;
@@ -23,5 +26,8 @@
   }
   .fc-daygrid-event {
     cursor: pointer;
+  }
+  @media screen and (max-width: 768px){
+    width: calc(#{var(--body-private-width)} - 40px);
   }
 }

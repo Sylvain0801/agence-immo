@@ -167,7 +167,7 @@ class CalendarManagerService
                     ->setStart($dateRepeat)->setRepeatEnd($dateEnd)->setIsRepeated(true)
                     ->setFrequency($formDatas->get('frequency')->getData())
                     ->setRepeatId($repeatId)
-					->setTenant($tenant)
+										->setTenant($tenant)
                     ->setTitle($formDatas->get('title')->getData())
                     ->setDescription($description)
                     ->setColor($formDatas->get('color')->getData());

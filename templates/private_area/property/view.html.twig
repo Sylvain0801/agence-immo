@@ -2,9 +2,9 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
@@ -97,9 +97,11 @@
 					</ul>
 				{% endfor %}
 			{% endif %}
+			<div class="form-button-submit-right">
+				<a href="{{ path('private_area_property_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+			</div>
 		</div>
 	</div>
-	<a href="{{ path('private_area_property_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
 </main>
 <div class="modal" id="modal-confirm-manage-tenant" role="dialog">
 	<div class="modal-content">

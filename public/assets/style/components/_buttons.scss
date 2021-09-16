@@ -14,6 +14,11 @@
 	border: solid 2px $color-primary; 
 	box-shadow: 0 3px 6px rgba($color-primary, .5); 
 	transition: all .3s ease;
+	@media screen and (max-width: 768px) {
+		width: 120px;
+		height: 30px;
+		font-size: .7rem;
+	}
 	&:hover {
 		background: $color-white;
 		color: $color-primary;
@@ -41,7 +46,7 @@
 }
 
 .button-small {
-	width: 140px;
+	width: 120px;
 	height: 30px;
 	font-size: .7rem;
 }

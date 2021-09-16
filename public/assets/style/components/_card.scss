@@ -164,16 +164,17 @@
 }
 .property-counter {
   width: 100%;
-  height: var(--navbar-height);
+  min-height: var(--navbar-height);
   text-transform: uppercase;
   font-weight: 600;
   font-size: 1.2rem;
   font-family: $font-roboto;
-  margin-top: calc(#{var(--navbar-height)} * 1.5);
+  text-align: center;
+  // margin-top: calc(#{var(--navbar-height)} * 1.5);
   @include flex-center;
   @media screen and (max-width: 768px) {
-    margin-top: calc(#{var(--navbar-height)} * 1.5);
+    // margin-top: calc(#{var(--navbar-height)} * 1.5);
     font-size: .9rem;
-    height: var(--navbar-height);
+    // height: var(--navbar-height);
   }
 }

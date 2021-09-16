@@ -1,4 +1,5 @@
 window.onload = () => {
+  const redirectPath = document.querySelector('body').dataset.path
   // Gestion input file customisé
   const customInputFile = document.getElementById('document_add_edit_form_document')
   const inputFileContainer = document.getElementById('input-file-container')
@@ -48,7 +49,7 @@ window.onload = () => {
   // Gestion en version edit 
   const deleteFileItems = document.querySelectorAll('.delete-current-file-item')
   const fetchRemoveImage = async (item, offer, img) => {
-    await fetch(`/private-area/offer/delete/image/${offer}/${img}`)
+    await fetch(`${redirectPath}/private-area/offer/delete/image/${offer}/${img}`)
     .then(res => {
       if (res.ok) {
         inputFileContainer.dataset.countCurrentFiles = parseInt(inputFileContainer.dataset.countCurrentFiles) + 1,

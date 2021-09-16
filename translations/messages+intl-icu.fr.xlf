@@ -1201,6 +1201,130 @@
         <source>delete this reminder and its repetitions</source>
         <target>supprimer ce rappel et ses répétitions</target>
       </trans-unit>
+      <trans-unit id="vo98hu0" resname="all our property ads">
+        <source>all our property ads</source>
+        <target>toutes nos annonces</target>
+      </trans-unit>
+      <trans-unit id="KjCFQci" resname="you are about to delete this reminder">
+        <source>you are about to delete this reminder</source>
+        <target>vous êtes sur le point de supprimer ce rappel</target>
+      </trans-unit>
+      <trans-unit id="jxN71CM" resname="you are about to delete this reminder and its repetitions">
+        <source>you are about to delete this reminder and its repetitions</source>
+        <target>vous êtes sur le point de supprimer ce rappel et ses répétitions</target>
+      </trans-unit>
+      <trans-unit id="LrdjqUP" resname="discover all our real estate ads">
+        <source>discover all our real estate ads</source>
+        <target>découvrez toutes nos annonces immobilières</target>
+      </trans-unit>
+      <trans-unit id="SkBReB6" resname="you have no new message">
+        <source>you have no new message</source>
+        <target>vous n'avez pas de nouveau message</target>
+      </trans-unit>
+      <trans-unit id="dlUqAkT" resname="contact my agent">
+        <source>contact my agent</source>
+        <target>contacter mon agent</target>
+      </trans-unit>
+      <trans-unit id=".mK5r8e" resname="send reset email">
+        <source>send reset email</source>
+        <target>envoyer l'email de réinitialisation</target>
+      </trans-unit>
+      <trans-unit id="RO.Strf" resname="A new message in your private area">
+        <source>A new message in your private area</source>
+        <target>Un nouveau message dans votre espace privé</target>
+      </trans-unit>
+      <trans-unit id="nw88qS8" resname="Go to the message tab of your private area, you have received a new message.">
+        <source>Go to the message tab of your private area, you have received a new message.</source>
+        <target>Allez dans l'onglet message de votre espace privé, vous avez reçu un nouveau message.</target>
+      </trans-unit>
+      <trans-unit id="zmpUCdO" resname="recipients">
+        <source>recipients</source>
+        <target>destinataires</target>
+      </trans-unit>
+      <trans-unit id="Hxwb1KW" resname="access my private area">
+        <source>access my private area</source>
+        <target>accéder à mon espace privé</target>
+      </trans-unit>
+      <trans-unit id="DrneiYb" resname="sent message">
+        <source>sent message</source>
+        <target>messages envoyés</target>
+      </trans-unit>
+      <trans-unit id="2YLSGe7" resname="received messages">
+        <source>received messages</source>
+        <target>messages reçus</target>
+      </trans-unit>
+      <trans-unit id="N2zVyMv" resname="you have">
+        <source>you have</source>
+        <target>vous avez</target>
+      </trans-unit>
+      <trans-unit id="ZXkIlI1" resname="new message from">
+        <source>new message from</source>
+        <target>nouveau message de</target>
+      </trans-unit>
+      <trans-unit id="3JGfp1B" resname="new messages from">
+        <source>new messages from</source>
+        <target>nouveaux messages de</target>
+      </trans-unit>
+      <trans-unit id="uNMehSc" resname="on">
+        <source>on</source>
+        <target>le</target>
+      </trans-unit>
+      <trans-unit id="vAdu3ol" resname="see all">
+        <source>see all</source>
+        <target>voir tout</target>
+      </trans-unit>
+      <trans-unit id="anJeiSx" resname="contact the manager">
+        <source>contact the manager</source>
+        <target>contacter le gestionnaire</target>
+      </trans-unit>
+      <trans-unit id="I7_EMz4" resname="created on">
+        <source>created on</source>
+        <target>créé le</target>
+      </trans-unit>
+      <trans-unit id="Aq0tPTk" resname="my documents">
+        <source>my documents</source>
+        <target>mes documents</target>
+      </trans-unit>
+      <trans-unit id="5mUBERu" resname="you have no new document">
+        <source>you have no new document</source>
+        <target>vous n'avez pas de nouveau document</target>
+      </trans-unit>
+      <trans-unit id="kR8PjbC" resname="new documents">
+        <source>new documents</source>
+        <target>nouveaux documents</target>
+      </trans-unit>
+      <trans-unit id="Zs2WiKK" resname="dashboard">
+        <source>dashboard</source>
+        <target>tableau de bord</target>
+      </trans-unit>
+      <trans-unit id="dwIbOU6" resname="see all messages">
+        <source>see all messages</source>
+        <target>voir tous les messages</target>
+      </trans-unit>
+      <trans-unit id="_iSahwv" resname="see all documents">
+        <source>see all documents</source>
+        <target>voir tous les documents</target>
+      </trans-unit>
+      <trans-unit id="yidT0ym" resname="my upcoming reminders">
+        <source>my upcoming reminders</source>
+        <target>mes prochains rappels</target>
+      </trans-unit>
+      <trans-unit id="nhnmBCy" resname="you have no reminder">
+        <source>you have no reminder</source>
+        <target>vous n'avez aucun rappels</target>
+      </trans-unit>
+      <trans-unit id="nOcBGrS" resname="reminder">
+        <source>reminder</source>
+        <target>rappel</target>
+      </trans-unit>
+      <trans-unit id="pT6_2Ez" resname="reminders">
+        <source>reminders</source>
+        <target>rappels</target>
+      </trans-unit>
+      <trans-unit id="_D7_NxP" resname="see all reminders">
+        <source>see all reminders</source>
+        <target>voir tous les rappels</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

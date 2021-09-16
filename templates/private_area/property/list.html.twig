@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
-	<h2>{{'my properties'|trans|capitalize}}</h2>
+	<h2>{{'my properties'|trans|capitalize}}<span>&nbsp;({{ datas|length }})</span></h2> 
 	{% if is_granted('ROLE_AGENT') or is_granted('ROLE_PRIVATE_OWNER') %}
 		<div class="actions-buttons-group">
 			<a href="{{ path('private_area_property_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a>
@@ -29,8 +29,8 @@
 		</div>
 		{{ include('private_area/_filter.html.twig', {entity: 'property'}) }}
 	{% endif %}
-	<div class="table-responsive-container">
-		<table>
+	<div class="private-area-scroll-container">
+		<table class="table-responsive-line">
 			<thead>
 				<tr>
 					{% for k, header in headers %}
@@ -147,5 +147,6 @@
 </div>
 {% endblock %}
 {% block javascripts %}
-	<script src="{{ asset('assets/js/filter.js') }}"></script>
+	<script src="{{ asset('assets/js/filter.js') }}" defer></script>
+	<script src="{{ asset('assets/js/tableResponsive.js') }}" defer></script>
 {% endblock %}

@@ -10,15 +10,14 @@ use App\Security\EmailVerifier;
 use App\Service\CalendarManagerService;
 use App\Service\ConfigTenantTableService;
 use App\Service\MailManagerService;
-use DateTime;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -73,7 +72,7 @@ class TenantController extends AbstractController
     /**
      * @Route("/new", name="new")
      */
-    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, MailManagerService $mailManager): Response
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder, MailManagerService $mailManager): Response
     {      
         $tenant = new Tenant();
         $form = $this->createForm(TenantAddEditFormType::class, $tenant);
@@ -83,7 +82,7 @@ class TenantController extends AbstractController
             
             $password = $this->generate_password();
             $tenant
-                ->setPassword($userPasswordHasher->hashPassword($tenant, $password))
+                ->setPassword($passwordEncoder->encodePassword($tenant, $password))
                 ->setRoles(['ROLE_TENANT']);
 
             $em = $this->getDoctrine()->getManager();

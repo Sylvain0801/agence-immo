@@ -2,9 +2,9 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	<h2>{{'from'|trans|capitalize}} : {{ message.message.sender.lastname }} {{ message.message.sender.firstname }}</h2>
 	<div class="view-informations">
 		<div class="view-informations-group-1">
@@ -12,9 +12,11 @@
 			<h6><i class="fa fa-calendar"></i>&nbsp;{{ 'sent on'|trans|capitalize }} {{ message.message.createdAt|date('d/m/Y') }} {{ 'at'|trans }} {{ message.message.createdAt|date('H:i') }}</h6>
 			<br>
 			<p>{{ message.message.content }}</p>
+			<div class="form-button-submit-right">
+				<a href="{{ path('private_area_message_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+			</div>
 		</div>
 	</div>
-	<a href="{{ path('private_area_message_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
 </main>
 {% endblock %}
 

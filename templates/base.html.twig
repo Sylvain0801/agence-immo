@@ -12,24 +12,21 @@
         <link rel="stylesheet" href="{{ asset('assets/style/font-awesome.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/style/index.css') }}">
         <script type="text/javascript" src="{{ asset('assets/style/bootstrap-5.0.2-dist/js/bootstrap.js') }}" defer></script>
-        {% block javascripts %}{% endblock %}
         <script type="text/javascript" src="{{ asset('assets/js/main.js') }}" defer></script>
-        <style>{% if navigationPrivate is defined %} body { padding: 6em 20px; } {% endif %}</style>
+        {% block javascripts %}{% endblock %}
     </head>
-    <body>
-        {% if navigationPrivate is defined %}
+    {% if navigationPrivate is defined %}
+        <body class="private-area-body" data-path="{{ redirectPath }}">
             {% include "include/_header_private.html.twig" %}
-        {% else %}
-            {% include "include/_header.html.twig" %}
-        {% endif %}
-        {% block body %}{% endblock %}
-        {% if not navigationPrivate is defined %}
-            {% include "include/_footer.html.twig" %}
-        {% endif %}
-        {% if navigationPrivate is defined %}
+            {% block bodyPrivateArea %}{% endblock %}
 	        <script type="text/javascript" src="{{ asset('assets/js/navigationPrivate.js') }}"></script>  
-        {% else %}
+        </body>
+    {% else %}
+        <body data-path="{{ redirectPath }}">
+            {% include "include/_header.html.twig" %}
+            {% block body %}{% endblock %}
+            {% include "include/_footer.html.twig" %}
 	        <script type="text/javascript" src="{{ asset('assets/js/navigationMain.js') }}"></script>  
-        {% endif %}
-    </body>
+        </body>
+    {% endif %}
 </html>

@@ -2,74 +2,81 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
-	{% if datas|length > 0 %}
-		<h2>{{'my messages'|trans|capitalize}}</h2>
-		<div class="actions-buttons-group">
-			<a href="#" role="button" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'new'|trans }}</a>
-		</div>
-		<div class="table-responsive-container">
-			<table>
-				<thead>
-					<tr>
-						{% for k, header in headers %}
-							{% if header.header %}
-								<th>
-									<div class="header-btn-sort-group">
-										{{ header.label|trans|capitalize }}
-										{% if header.sort %}
-											<div class="table-sort-buttons">
-												<a href="{{ path('private_area_message_list', {sortBy: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
-												<a href="{{ path('private_area_message_list', {sortBy: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
-											</div>
-										{% endif %}
-									</div>
-								</th>
-							{% endif %}
-						{% endfor %}
-					</tr>
-				</thead>
-				<tbody>
-					{% for msgRead in datas %}
-						<tr>
-							<td>
-								<a href="" class="button-icon button-msg-read" data-id="{{ msgRead.id }}"><i class="{{ msgRead.is_read ? 'fa fa-envelope-open-o' : 'fa fa-envelope'}}"></i></a>
-							</td>
-							<td>
-								<strong>{{ msgRead.message.sender.lastname }} {{ msgRead.message.sender.firstname }}</strong>
-								<br>
-								{{ msgRead.message.sender.email }}
-							</td>
-							<td>
-								<strong>{{ msgRead.message.subject }}</strong>
-								<br>
-								{{ msgRead.message.content|slice(0, 200) }}...
-							</td>
-							<td>{{ msgRead.message.created_at|date('d/m/Y H:i') }}</td>
-							<td>
-								<div class="table-td-actions">
-									<a href="{{ path('private_area_message_reply', {id: msgRead.id}) }}" title="{{ 'reply to message'|trans|capitalize }}"><i class="fa fa-reply"></i></a>
-									<a href="{{ path('private_area_message_view', {id: msgRead.id}) }}" title="{{ 'see message'|trans|capitalize }}"><i class="fa fa-eye"></i></a>
+	<h2>{{'my messages'|trans|capitalize}}</h2>
+	<div class="actions-buttons-group">
+		{% if is_granted('ROLE_OWNER') %}
+			<a href="{{ path('private_area_message_contact_agent') }}" role="button" class="button button-small button-fit"><i class="fa fa-envelope-o"></i>&nbsp;{{ 'contact my agent'|trans }}</a>
+		{% elseif is_granted('ROLE_TENANT') %}
+			{% for property in app.user.tenantProperties %}
+				<a href="{{ path('private_area_message_contact_manager', {id: property.managerProperty.id}) }}" title="{{ property.managerProperty.lastname }} {{ property.managerProperty.firstname }}" role="button" class="button button-small button-fit"><i class="fa fa-envelope-o"></i>&nbsp;{{ 'contact the manager'|trans }}</a>
+			{% endfor %}
+		{% endif %}
+			<a href="{{ path('private_area_message_sent') }}" role="button" class="button button-small button-fit button-outline">{{ 'sent message'|trans }}</a>
+	</div>
+	<div class="private-area-scroll-container">
+		<table class="table-responsive-line">
+			<thead>
+				<tr>
+					{% for k, header in headers %}
+						{% if header.header %}
+							<th>
+								<div class="header-btn-sort-group">
+									{{ header.label|trans|capitalize }}
+									{% if header.sort %}
+										<div class="table-sort-buttons">
+											<a href="{{ path('private_area_message_list', {sortBy: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+											<a href="{{ path('private_area_message_list', {sortBy: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+										</div>
+									{% endif %}
 								</div>
-							</td>
-						</tr>
+							</th>
+						{% endif %}
 					{% endfor %}
-				</tbody>
-			</table>
-			{% if datas|length > 0 %}
-				{% if datas.getTotalItemCount > 10 %}
-					{{ knp_pagination_render(datas) }}
-				{% endif %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for msgRead in datas %}
+					<tr>
+						<td>
+							<a href="" class="button-icon button-msg-read" data-id="{{ msgRead.id }}"><i class="{{ msgRead.is_read ? 'fa fa-envelope-open-o' : 'fa fa-envelope'}}"></i></a>
+						</td>
+						<td>
+							<strong>{{ msgRead.message.sender.lastname }} {{ msgRead.message.sender.firstname }}</strong>
+							<br>
+							{{ msgRead.message.sender.email }}
+						</td>
+						<td>
+							<strong>{{ msgRead.message.subject }}</strong>
+							<br>
+							{{ msgRead.message.content|slice(0, 200) }}...
+						</td>
+						<td>{{ msgRead.message.created_at|date('d/m/Y H:i') }}</td>
+						<td>
+							<div class="table-td-actions">
+								<a href="{{ path('private_area_message_reply', {id: msgRead.id}) }}" title="{{ 'reply to message'|trans|capitalize }}"><i class="fa fa-reply"></i></a>
+								<a href="{{ path('private_area_message_view', {id: msgRead.id}) }}" title="{{ 'see message'|trans|capitalize }}"><i class="fa fa-eye"></i></a>
+							</div>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td clospan="{{ headers|length }}">{{ 'you have no new message'|trans|capitalize }}.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% if datas|length > 0 %}
+			{% if datas.getTotalItemCount > 10 %}
+				{{ knp_pagination_render(datas) }}
 			{% endif %}
-		</div>
-	{% else %}
-		<h2>Bonjour, bienvenue dans votre espace privé</h2>
-	{% endif %}
+		{% endif %}
+	</div>
 </main>
 <div class="modal" id="modal-confirm-delete" role="dialog">
 	<div class="modal-content w-450">
@@ -91,4 +98,5 @@
 {% endblock %}
 {% block javascripts %}
 	<script src="{{ asset('assets/js/message.js') }}"></script>
+	<script src="{{ asset('assets/js/tableResponsive.js') }}" defer></script>
 {% endblock %}

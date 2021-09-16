@@ -2,17 +2,19 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
 	<h2>{{'tenant no'|trans|capitalize}}&nbsp;{{ tenant.id }}</h2>
 	<div class="view-informations">
 		{% include "private_area/tenant/_tenant_infos.html.twig" %}
+		<div class="form-button-submit-right">
+			<a href="{{ path('private_area_tenant_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+		</div>
 	</div>
-	<a href="{{ path('private_area_tenant_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
 </main>
 {% endblock %}
 

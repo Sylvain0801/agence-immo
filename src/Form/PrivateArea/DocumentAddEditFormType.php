@@ -2,7 +2,7 @@
 
 namespace App\Form\PrivateArea;
 
-use App\Entity\Document;
+use App\Entity\Document\Document;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

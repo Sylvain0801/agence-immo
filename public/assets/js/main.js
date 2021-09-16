@@ -3,18 +3,19 @@
 // #                       Gestion des favoris                        #
 // #                                                                  #
 // ####################################################################
-
+const redirectPath = document.querySelector('body').dataset.path
 const buttonFavorite = document.querySelectorAll('i.card-button-favorite')
 const displayAllFavorite = document.getElementById('button-favorite-list')
+const favoritePath = `${redirectPath}/offer/favorite/`
 if (localStorage.getItem('favorites')) {
     let favorite = localStorage.getItem('favorites').split(',')
-    displayAllFavorite.href = '/offer/favorite/' + encodeURIComponent(favorite.join(','))
+    displayAllFavorite.href = favoritePath + encodeURIComponent(favorite.join(','))
 }
 for (const btn of buttonFavorite) {
     if (localStorage.getItem('favorites')) {
         favorite = localStorage.getItem('favorites').split(',')
         favorite.indexOf(btn.dataset.id) > -1 && (btn.className = 'card-button-favorite fa fa-star')
-        displayAllFavorite.href = '/offer/favorite/' + encodeURIComponent(favorite.join(','))
+        displayAllFavorite.href = favoritePath + encodeURIComponent(favorite.join(','))
     }
     btn.addEventListener('click', function(e) {
         if (localStorage.getItem('favorites')) {
@@ -23,16 +24,17 @@ for (const btn of buttonFavorite) {
             if (index > -1) {
                 favorite.splice(index, 1)
                 this.className = 'card-button-favorite fa fa-star-o'
-                displayAllFavorite.href = '/offer/favorite/' + encodeURIComponent(favorite.join(','))
+                displayAllFavorite.href = favoritePath + encodeURIComponent(favorite.join(','))
             } else {
                 favorite.push(this.dataset.id)
                 this.className = 'card-button-favorite fa fa-star'
-                displayAllFavorite.href = '/offer/favorite/' + encodeURIComponent(favorite.join(','))
+                displayAllFavorite.href = favoritePath + encodeURIComponent(favorite.join(','))
             }
             localStorage.setItem('favorites', favorite.join(','))
         } else {
             localStorage.setItem('favorites', this.dataset.id)
             this.className = 'card-button-favorite fa fa-star'
+            displayAllFavorite.href = favoritePath + this.dataset.id
         }
     })
 }
@@ -64,6 +66,11 @@ for (let button of modalButtons) {
       if (target === '#modal-confirm-delete') {
         document.querySelector(target + ' span.span-item-id').textContent = this.dataset.id
         document.getElementById('delete-button').href = this.dataset.path
+        }
+      // Modale confirmer la suppression des documents
+      if (target === '#modal-confirm-delete-document') {
+        document.querySelector('[name=delete_document_token]').value = this.dataset.token
+        document.getElementById('delete-button').setAttribute('formaction', this.dataset.path)
         }
       // Modale confirmer la suppression des rappels
       if (target === '#modal-confirm-delete-remind') {

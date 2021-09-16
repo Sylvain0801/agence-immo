@@ -14,8 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -67,7 +67,7 @@ class OwnerController extends AbstractController
     /**
      * @Route("/new", name="new")
      */
-    public function new(Request $request, UserPasswordHasherInterface $userPasswordHasher, MailManagerService $mailManager, TranslatorInterface $translator): Response
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder, MailManagerService $mailManager, TranslatorInterface $translator): Response
     {      
         $owner = new Owner();
         $form = $this->createForm(OwnerAddEditFormType::class, $owner);
@@ -77,8 +77,9 @@ class OwnerController extends AbstractController
 
             $password = $this->generate_password();
             $owner
-                ->setPassword($userPasswordHasher->hashPassword($owner, $password))
-                ->setRoles(['ROLE_OWNER']);
+                ->setPassword($passwordEncoder->encodePassword($owner, $password))
+                ->setRoles(['ROLE_OWNER'])
+                ->setAgent($this->getUser());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($owner);

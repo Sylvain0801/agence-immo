@@ -8,36 +8,24 @@
 
 {% block body %}
 	<section class="slider-top-section">
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		<div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
 			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+				{% for i in range(0, 4) %}
+					<button type="button" data-bs-target="#carouselMain" data-bs-slide-to="{{ i }}" aria-label="Slide {{ i + 1 }}" class="{{ i == 0 ? 'active' : '' }}" aria-current="{{ i == 0 ? 'true' : '' }}"></button>
+				{% endfor %}
 			</div>
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="carousel-img" style="background-image: url( {{ asset('assets/images/carousel/carousel-bg-1.jpg') }} );"></div>
-				</div>
-				<div class="carousel-item">
-					<div class="carousel-img" style="background-image: url( {{ asset('assets/images/carousel/carousel-bg-2.jpg') }} );"></div>
-				</div>
-				<div class="carousel-item">
-					<div class="carousel-img" style="background-image: url( {{ asset('assets/images/carousel/carousel-bg-3.jpg') }} );"></div>
-				</div>
-				<div class="carousel-item">
-					<div class="carousel-img" style="background-image: url( {{ asset('assets/images/carousel/carousel-bg-4.jpg') }} );"></div>
-				</div>
-				<div class="carousel-item">
-					<div class="carousel-img" style="background-image: url( {{ asset('assets/images/carousel/carousel-bg-5.jpg') }} );"></div>
-				</div>
+				{% for i in range(0, 4) %}
+					<div class="carousel-item {{ i == 0 ? 'active' : '' }}">
+						<div class="carousel-img" style="background-image: url( {{ asset('assets/images/carousel/carousel-bg-' ~ ( i + 1 ) ~ '.jpg') }} );"></div>
+					</div>
+				{% endfor %}
 			</div>
-			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselMain" data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Previous</span>
 			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselMain" data-bs-slide="next">
 				<span class="carousel-control-next-icon" aria-hidden="true"></span>
 				<span class="visually-hidden">Next</span>
 			</button>

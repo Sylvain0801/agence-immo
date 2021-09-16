@@ -9,13 +9,15 @@ use App\Entity\Property\Option;
 use App\Entity\Property\Property;
 use App\Entity\Property\PropertyType;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 
-class AppFixtures extends Fixture implements DependentFixtureInterface
+class AppFixtures extends Fixture implements DependentFixtureInterface, FixtureGroupInterface
 {
+
     public function load(ObjectManager $manager)
     {
         $faker = Faker\Factory::create('fr_FR');
@@ -89,7 +91,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             }
             $property    
                 ->setManagerProperty($this->getReference("agent_" . $i % 10))
-                ->setOwnerProperty($this->getReference("owner_" . $faker->numberBetween(0, 99)))
+                ->setOwnerProperty($this->getReference("owner_" . $i % 50))
                 ->setArea(rand(20, 200))
                 ->setRooms(rand(2, 10));
             $options = array_rand($optionNames, rand(2, count($optionNames)));
@@ -132,5 +134,10 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
         return [
             UserFixtures::class
         ];
+    }
+
+    public static function getGroups(): array
+    {
+      return [''];
     }
 }

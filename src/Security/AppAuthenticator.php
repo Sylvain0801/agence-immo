@@ -51,7 +51,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
         }
         
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('private_area_message_list'));
+        return new RedirectResponse($this->urlGenerator->generate('private_area_home'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 

@@ -9,4 +9,10 @@
     @include img-cover;
     height: $height-img;
   }
+  @media screen and (max-width: 576px) {
+    height: calc(3 * #{$height-img});
+    width: calc(#{$height-img} * 1.5 * 2);
+    grid-template: repeat(3, $height-img) / repeat(2, 1fr);
+    
+  }
 }

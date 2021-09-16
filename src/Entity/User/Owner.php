@@ -18,6 +18,11 @@ class Owner extends User
      */
     private $owner_properties;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Agent::class, inversedBy="owners")
+     */
+    private $agent;
+
     public function __construct()
     {
         parent::__construct();
@@ -50,6 +55,18 @@ class Owner extends User
                 $ownerProperty->setOwnerProperty(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAgent(): ?Agent
+    {
+        return $this->agent;
+    }
+
+    public function setAgent(?Agent $agent): self
+    {
+        $this->agent = $agent;
 
         return $this;
     }

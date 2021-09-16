@@ -81,7 +81,7 @@ class PropertyController extends AbstractController
         $form = $this->createForm(PropertyAddEditFormType::class, $property);
         $formData = $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form-> isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $request->getSession()->set('referer', $request->headers->get('referer'));
             $em = $this->getDoctrine()->getManager();
 
@@ -122,7 +122,7 @@ class PropertyController extends AbstractController
         $form = $this->createForm(PropertyAddEditFormType::class, $property);
         $formData = $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form-> isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $zipCode = substr($formData->get('city')->getData(), 0, 5);
@@ -199,7 +199,7 @@ class PropertyController extends AbstractController
         $form = $this->createForm(PropertyManageTenantFormType::class, $property);
         $formData = $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form-> isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
             $offers = $property->getOffers();

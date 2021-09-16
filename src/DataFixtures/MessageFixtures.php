@@ -15,15 +15,21 @@ class MessageFixtures extends Fixture implements DependentFixtureInterface
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        for ($i = 0; $i < 10; $i++) { 
+        for ($i = 0; $i < 30; $i++) { 
             $message = new Message();
             $message->setSubject($faker->realText(50, $indexSize = 2));
             $message->setContent($faker->realText(400, $indexSize = 2));
-            $message->setSender($this->getReference("agent_$i"));
-            for ($j = 0; $j < 10; $j++) { 
+            $message->setSender($this->getReference("agent_" . $i % 10));
+            for ($j = 0; $j < 2; $j++) { 
                 $msgRead = new UserHasMessageRead();
                 $msgRead->setMessage($message);
                 $msgRead->setRecipient($this->getReference('tenant_' . $faker->numberBetween(0, 49)));
+                $manager->persist($msgRead);
+            }
+            for ($j = 0; $j < 2; $j++) { 
+                $msgRead = new UserHasMessageRead();
+                $msgRead->setMessage($message);
+                $msgRead->setRecipient($this->getReference('owner_' . $faker->numberBetween(0, 49)));
                 $manager->persist($msgRead);
             }
             $manager->persist($message);

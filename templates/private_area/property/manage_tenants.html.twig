@@ -2,9 +2,9 @@
 
 {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-  {% include "private_area/_header_user.html.twig" %}
   <h1><i class="fa fa-user-plus"></i>&nbsp;{{ 'manage tenants for rental property no'|trans|upper }}&nbsp;{{ propertyId }}</h1>
   {{ form_start(form) }}
     <div class="form-control-group">

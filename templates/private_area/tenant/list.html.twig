@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
@@ -10,43 +10,43 @@
   <div class="actions-buttons-group">
 		<a href="{{ path('private_area_tenant_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a>
 	</div>
-	<div class="table-responsive-container">
-			<table>
-				<thead>
-					<tr>
-						{% for k, header in headers %}
-							{% if header.header %}
-								<th>
-									<div class="header-btn-sort-group">
-										{{ header.label|trans|capitalize }}
-										{% if header.sort %}
-											<div class="table-sort-buttons">
-												<a href="{{ path('private_area_tenant_list', {sortBy: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
-												<a href="{{ path('private_area_tenant_list', {sortBy: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
-											</div>
-										{% endif %}
-									</div>
-								</th>
-							{% endif %}
-						{% endfor %}
-					</tr>
-				</thead>
-				<tbody>
-					{% for tenant in datas %}
-						<tr>
-							<td>{{ tenant.lastname|capitalize }}</td>
-							<td>{{ tenant.firstname|capitalize }}</td>
-							<td>{{ tenant.id }}</td>
-							<td>
-								<div class="table-td-actions">
-									<a href="{{ path('private_area_tenant_view', {id: tenant.id}) }}" title="{{ 'see tenant information'|trans|capitalize }}"><i class="fa fa-eye"></i></a>
-									<a href="{{ path('private_area_tenant_calendar', {id: tenant.id}) }}" title="{{ 'add a date to the calendar'|trans|capitalize }}"><i class="fa fa-calendar"></i></a>
+	<div class="private-area-scroll-container">
+		<table>
+			<thead>
+				<tr>
+					{% for k, header in headers %}
+						{% if header.header %}
+							<th>
+								<div class="header-btn-sort-group">
+									{{ header.label|trans|capitalize }}
+									{% if header.sort %}
+										<div class="table-sort-buttons">
+											<a href="{{ path('private_area_tenant_list', {sortBy: k, order: 'desc'}) }}"><i class="fa fa-caret-up" title="{{ 'descending sort'|trans|capitalize }}"></i></a>
+											<a href="{{ path('private_area_tenant_list', {sortBy: k, order: 'asc'}) }}"><i class="fa fa-caret-down" title="{{ 'ascending sort'|trans|capitalize }}"></i></a>
+										</div>
+									{% endif %}
 								</div>
-							</td>
-						</tr>
+							</th>
+						{% endif %}
 					{% endfor %}
-				</tbody>
-			</table>
+				</tr>
+			</thead>
+			<tbody>
+				{% for tenant in datas %}
+					<tr>
+						<td>{{ tenant.lastname|capitalize }}</td>
+						<td>{{ tenant.firstname|capitalize }}</td>
+						<td>{{ tenant.id }}</td>
+						<td>
+							<div class="table-td-actions">
+								<a href="{{ path('private_area_tenant_view', {id: tenant.id}) }}" title="{{ 'see tenant information'|trans|capitalize }}"><i class="fa fa-eye"></i></a>
+								<a href="{{ path('private_area_tenant_calendar', {id: tenant.id}) }}" title="{{ 'add a date to the calendar'|trans|capitalize }}"><i class="fa fa-calendar"></i></a>
+							</div>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 		{% if datas|length > 0 %}
 			{% if datas.getTotalItemCount > 10 %}
 				{{ knp_pagination_render(datas) }}

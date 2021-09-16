@@ -1,15 +1,71 @@
 .form-section {
   font-size: 1rem;
+  padding: calc(2 * #{var(--navbar-height)}) 2%;
+  margin: 0;
+  position: relative;
+  @include img-cover;
   @media screen and (max-width: 768px) {
     font-size: .9rem;
   }
+  .overlay-brightness {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    background-color: rgba($color-black, .4);
+  }
+  form.login-register {
+    max-width: 400px;
+    margin: 0 auto 30px;
+    background-color: #fff;
+    padding: 2rem 1rem;
+    border-radius: 4px;
+    font-size: .9em;
+    box-shadow: 0 3px 6px rgba($color-black, .3);
+    position: relative;
+    z-index: 1;
+    h1 {
+      padding-bottom: var(--navbar-height);
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 2em;
+      @media screen and (max-width: 768px) {
+        font-size: 1.5em;
+      }
+    }
+    .form-button-submit-right {
+      margin: 0 auto;
+    }
+    a, button {
+      margin-bottom: 0;
+    }
+    input {
+      height: 35px;
+    }
+    label {
+      padding: 0;
+    }
+    .input-checkbox-group input[type=checkbox] + label {
+      font-size: .9em;
+      align-items: baseline;
+      display: block;
+      span {
+        display: inline-block;
+      }
+    }
+  }
+}
+section.form-section-private {
+  margin: 0;
   h1 {
-    margin: calc(2 * #{var(--navbar-height)}) auto var(--navbar-height);
     text-transform: uppercase;
     text-align: center;
   }
 }
 a.underlined-link {
+  font-size: .9em;
   color: $color-brown;
   text-decoration: underline;
   &:hover {
@@ -22,8 +78,8 @@ a.underlined-link {
   margin: 10px auto 20px;
   width: 100%;
   max-width: 600px;
-  button {
-    margin-right: 0;
+  button, a {
+    margin: 10px 0;
   }
 }
 .form-button-submit-between {
@@ -32,15 +88,22 @@ a.underlined-link {
   margin: 10px auto 20px;
   width: 100%;
   max-width: 600px;
-  button {
-    margin-right: 0;
-    margin-left: 0;
+  button, a {
+    margin: 10px 0;
+  }
+  @media screen and (max-width: 576px) {
+    margin: 10px 5px 20px;
+    width: initial;
   }
 }
 .form-control-group {
   margin: 10px auto 20px;
   width: 100%;
   max-width: 600px;
+  @media screen and (max-width: 768px) {
+    margin: 5px 5px 10px;
+    padding-right: 10px;
+  }
   label {
     color: $color-primary;
     font-family: $font-roboto;
@@ -57,6 +120,7 @@ a.underlined-link {
     border: 1px solid $color-CCCCCC;
     outline: none;
     padding: .5em 20px;
+    appearance: none;
     &:focus {
       border: none;
       box-shadow: inset 0 1px 3px rgba($color-primary, .15), 0 0 3px 3px $color-gold;
@@ -88,7 +152,7 @@ a.underlined-link {
         height: 1em;
         width: 1em;
         position: relative;
-        margin-right: .625em;
+        margin-right: .3em;
         border-radius: 3px;
         box-shadow: inset 0 1px 3px rgba($color-primary, .15);
         cursor: pointer;
@@ -112,9 +176,10 @@ a.underlined-link {
   }
   .input-radio-group {
     input[type="radio"] {
-      margin-bottom: -5px;
+      margin-bottom: -10px;
       display: block;
       height: 1px;
+      opacity: 0;
     }
     input[type="radio"] + label {
       display: flex;
@@ -215,7 +280,6 @@ a.underlined-link {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      // margin: 0!important;
       span {
         height: 20px;
         width: 20px;

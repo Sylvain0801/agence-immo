@@ -1,8 +1,10 @@
-{% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+{% extends 'base.html.twig' %}
 
-{% block body %}
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-  {% include "private_area/_header_user.html.twig" %}
   <h1><i class="fa fa-user-plus"></i>&nbsp;{{ 'Manage user access for document number'|trans|upper }}&nbsp;{{ documentId }}</h1>
   {{ form_start(form) }}
     <div class="form-control-group">

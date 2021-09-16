@@ -20,4 +20,27 @@ class MessageRepository extends ServiceEntityRepository
         parent::__construct($registry, Message::class);
     }
 
+    public function findArrayMessageSent(string $sortBy = 'created_at', string $order = 'DESC', int $userId = null) : array
+    {
+        $qb = $this->createQueryBuilder('m')
+                    ->leftJoin('m.recipients', 'rts')
+                    ->addSelect('rts')
+                    ->leftJoin('rts.recipient', 'r')
+                    ->addSelect('r');
+                      
+        if ($userId !== null) {
+            $qb->where('m.sender =:userId')
+                ->setParameter('userId', $userId);
+        }
+
+        if ($sortBy === 'recipient') {
+            $qb->orderBy('r.lastname', $order);
+        } else if ($sortBy === 'content') {
+            $qb->orderBy('m.subject', $order);
+        } else if ($sortBy === 'created_at') {
+            $qb->orderBy('m.created_at', $order);
+        }
+
+        return $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
+    }
 }

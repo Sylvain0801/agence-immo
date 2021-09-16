@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
@@ -14,7 +14,6 @@
 			<a href="{{ path('private_area_offer_list_sorted', {viewMode: 'thumbnail'}) }}" class="button-icon" title="{{ 'thumbnails'|trans }}"><i class="fa fa-th"></i>&nbsp;</a>
 		{% endif %}
 		<div>
-			{# <a href="{{ path('private_area_offer_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a> #}
 			<a href="#" class="button button-small button-filter" id="main-button-filter">
 				<i class="fa fa-filter"></i>&nbsp;{{ 'filter'|trans|capitalize }}
 				{% if app.request.session.get('filter_criterias') != null %}
@@ -34,7 +33,7 @@
 		</div>
 	</div>
   {{ include('private_area/_filter.html.twig', {entity: 'offer'}) }}
-	<div class="table-responsive-container">
+	<div class="private-area-scroll-container">
 		{% if viewMode is defined and viewMode == 'thumbnail' %}
 		<div class="properties-container">
 			{% for offer in datas %}
@@ -44,7 +43,7 @@
 			{% endfor %}
 		</div>
 		{% else %}
-			<table>
+			<table class="table-responsive-line">
 				<thead>
 					<tr>
 						{% for k, header in headers %}
@@ -113,5 +112,7 @@
 </div>
 {% endblock %}
 {% block javascripts %}
-	<script src="{{ asset('assets/js/filter.js') }}"></script>
+	<script src="{{ asset('assets/js/filter.js') }}" defer></script>
+	<script src="{{ asset('assets/js/tableResponsive.js') }}" defer></script>
+	<script src="{{ asset('assets/js/offerActive.js') }}" defer></script>
 {% endblock %}

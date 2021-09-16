@@ -4,10 +4,24 @@ header.private-navigation {
 .navigation-responsive {
   overflow-y: auto;
   height: calc(100% - 100px);
+  padding-bottom: 100px;
 }
 .private-navigation-aside {
-  transform: translateX(-300px);
+  font-size: 1rem;
+  width: var(--navbar-aside-width);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: $color-linear-gradient-primary;
+  padding: 20px 0;
+  color: $color-white;
+  transform: translateX(calc(-1 * #{var(--navbar-aside-width)}));
   transition: transform .3s .3s ease-in-out;
+  @media screen and (max-width: 576px) {
+    font-size: .8rem;
+  }
   &.show {
     transform: translateX(0);
     transition: transform .3s .3s ease-in-out;
@@ -39,41 +53,31 @@ header.private-navigation {
       }
     }
   }
-  font-size: 1rem;
-  width: 300px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  background: $color-linear-gradient-primary;
-  padding: 20px 0;
-  color: $color-white;
   h3 {
     font-size: 1em;
     text-transform: uppercase;
-    margin: 20px 0 10px;
-    padding: 0 20px;
+    margin: 1.25em 0 .625em;
+    padding: 0 1.25em;
     color: $color-grey;
   }
   h3.title-border-top {
     border-top: 1px solid $color-grey;
-    padding-top: 20px;
+    padding-top: 1.25em;
   }
   li {
-    padding: 0 20px;
+    padding: 0 1.25em;
   }
   a {
     display: flex;
     align-items: center;
     color: inherit;
     margin: 5px 0;
-    padding: 10px 0;
+    padding: .625em 0;
     font-size: .9em;
     text-transform: uppercase;
     i {
       font-size: 1.7em;
-      margin-right: 20px;
+      margin-right: 15px;
       width: 25px;
     }
   }
@@ -98,22 +102,22 @@ header.private-navigation {
         font-size: .9em;
         display: flex;
         align-items: center;
-        padding: 10px 20px 0;
+        padding: .625em 1.25em 0;
         i {
           font-size: 1.7em;
-          margin-right: 20px;
+          margin-right: 15px;
           width: 25px;
         }
         .flag-lang-group {
           display: flex;
-          margin-left: 20px;
+          margin-left: 1em;
           a {
             margin: 0;
             padding: 0;
             .flag-lang-item {
               height: 20px;
               width: 20px;
-              margin-left: 10px;
+              margin-left: .625em;
             }
           }
         }
@@ -146,7 +150,7 @@ header.private-navigation {
         transform: translateX(10px);
       }
       a {
-        margin: 30px 0;
+        margin: 1.875em 0;
         padding: 0;
       }
     }
@@ -155,10 +159,10 @@ header.private-navigation {
   .burger-logo-group {
     display: flex;
     align-items: center;
-    margin-bottom: 40px;
-    transform: translateX(300px);
+    margin-bottom: 2em;
+    transform: translateX(var(--navbar-aside-width));
     transition: transform .3s .3s ease-in-out;
-    padding: 0 20px;
+    padding: 0 1.25em;
     a {
       margin: 0;
       padding: 0;

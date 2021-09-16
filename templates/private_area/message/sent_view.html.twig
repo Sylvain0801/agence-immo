@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
+
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
+<main id="private-area-main">
+	<h2>{{'from'|trans|capitalize}} : {{ message.sender.lastname }} {{ message.sender.firstname }}</h2>
+	<div class="view-informations">
+		<div class="view-informations-group-1">
+			<h3><i class="fa fa-user-circle-o"></i>&nbsp;{{ 'recipients'|trans|capitalize }} :</h3>
+			<ul style="list-style: inside">
+				{% for user in message.recipients %}
+					<li title="{{ user.recipient.email }}">{{ user.recipient.lastname }} {{ user.recipient.firstname }}</li>									
+				{% endfor %}
+			</ul>
+			<h3>{{ 'subject'|trans|capitalize }} : {{ message.subject }}</h3>
+			<h6><i class="fa fa-calendar"></i>&nbsp;{{ 'sent on'|trans|capitalize }} {{ message.createdAt|date('d/m/Y') }} {{ 'at'|trans }} {{ message.createdAt|date('H:i') }}</h6>
+			<br>
+			<p>{{ message.content }}</p>
+			<div class="form-button-submit-right">
+				<a href="{{ path('private_area_message_sent') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}
+

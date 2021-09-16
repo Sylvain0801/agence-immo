@@ -12,7 +12,7 @@
 {% endfor %}
 	{{ include('offer/_search_form.html.twig') }}
 	<section class="properties-section">
-		<div class="property-counter"></div>
+		<div class="property-counter">{{'discover all our real estate ads'|trans}}</div>
 		<div id="transcroller-body" class="properties-container">
 			{% for k, offer in offers %}
 				<div class="aos-item" data-aos="fade-up">

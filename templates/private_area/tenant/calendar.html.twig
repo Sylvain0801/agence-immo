@@ -16,9 +16,9 @@
 	<script src="{{ asset('assets/js/fullCalendar.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/modalRemind.js') }}"></script>
 {% endblock %}
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
@@ -43,9 +43,11 @@
         <a href="#" role="button" class="button button-small" data-target="#modal-add-date" data-toggle="modal" style="margin-top: 20px;"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add a date'|trans }}</a>
       </div>
 			<div id='calendar' data-datas="{{ data }}" data-locale="{{ app.session.get('_locale') }}"></div>
+			<div class="form-button-submit-right">
+				<a href="{{ path('private_area_tenant_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
+			</div>
 		</div>
 	</div>
-	<a href="{{ path('private_area_tenant_list') }}" class="button button-rounded button-small"><i class="fa fa-arrow-left"></i>&nbsp;{{ 'back to list'|trans }}</a>
 </main>
 <div class="modal" id="modal-add-date" role="dialog">
 	<div class="modal-content">

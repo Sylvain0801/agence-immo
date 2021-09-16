@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %} {% block title %}{{ "private area" | trans | capitalize }} - {{ "Real estate agency" | trans }} {% endblock %}
 
-{% block body %}
+{% block bodyPrivateArea %}
+{% include "private_area/_header_user.html.twig" %}
 <main id="private-area-main">
-	{% include "private_area/_header_user.html.twig" %}
 	{% for message in app.flashes('message_alert') %}
     {{ include('include/_alert.html.twig') }}
   {% endfor %}
@@ -10,7 +10,7 @@
   <div class="actions-buttons-group">
 		<a href="{{ path('private_area_owner_new') }}" class="button button-small"><i class="fa fa-plus-circle"></i>&nbsp;{{ 'add new'|trans }}</a>
 	</div>
-	<div class="table-responsive-container">
+	<div class="private-area-scroll-container">
 			<table>
 				<thead>
 					<tr>

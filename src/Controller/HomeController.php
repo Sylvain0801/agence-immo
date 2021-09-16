@@ -16,10 +16,9 @@ class HomeController extends AbstractController
      */
     public function index(OfferRepository $offerRepository, Request $request): Response
     {
-        // Met par défaut la langue du navigateur
-        $locale = substr($request->server->get('LANG'), 0, 2);
+        // Met par défaut la langue en français
         if (!$request->getSession()->get('_locale')) {
-            $request->getSession()->set('_locale', $locale);
+            $request->getSession()->set('_locale', 'fr');
             return $this->redirectToRoute('home');
         }
 

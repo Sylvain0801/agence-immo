@@ -235,99 +235,99 @@
       </trans-unit>
       <trans-unit id="h3gPpd5" resname="register">
         <source>register</source>
-        <target>__register</target>
+        <target>registrarse</target>
       </trans-unit>
       <trans-unit id="TP3eab3" resname="firstname">
         <source>firstname</source>
-        <target>__firstname</target>
+        <target>nombre</target>
       </trans-unit>
       <trans-unit id="c1prjRW" resname="Agree terms">
         <source>Agree terms</source>
-        <target>__Agree terms</target>
+        <target>Aceptar términos</target>
       </trans-unit>
       <trans-unit id="u3I07BJ" resname="Register">
         <source>Register</source>
-        <target>__Register</target>
+        <target>Registrarse</target>
       </trans-unit>
       <trans-unit id="cHB4BFd" resname="your question has been sent successfully">
         <source>your question has been sent successfully</source>
-        <target>__your question has been sent successfully</target>
+        <target>tu pregunta ha sido enviada con éxito</target>
       </trans-unit>
       <trans-unit id="LAXqlq0" resname="ask a question">
         <source>ask a question</source>
-        <target>__ask a question</target>
+        <target>hacer una pregunta</target>
       </trans-unit>
       <trans-unit id="T_6ag8M" resname="email address">
         <source>email address</source>
-        <target>__email address</target>
+        <target>dirección de correo electrónico</target>
       </trans-unit>
       <trans-unit id="7TNivS3" resname="your question">
         <source>your question</source>
-        <target>__your question</target>
+        <target>tu pregunta</target>
       </trans-unit>
       <trans-unit id="x_uzepG" resname="back to faq">
         <source>back to faq</source>
-        <target>__back to faq</target>
+        <target>volver a la faq</target>
       </trans-unit>
       <trans-unit id="J84dG.Q" resname="send">
         <source>send</source>
-        <target>__send</target>
+        <target>enviar</target>
       </trans-unit>
       <trans-unit id="N4uWqjr" resname="back to homepage">
         <source>back to homepage</source>
-        <target>__back to homepage</target>
+        <target>Volver a la página de inicio</target>
       </trans-unit>
       <trans-unit id="PyUAuC2" resname="Sale">
         <source>Sale</source>
-        <target>__Sale</target>
+        <target>Venta</target>
       </trans-unit>
       <trans-unit id="aDtTH0H" resname="price">
         <source>price</source>
-        <target>__price</target>
+        <target>precio</target>
       </trans-unit>
       <trans-unit id="29ZlLoj" resname="Rental">
         <source>Rental</source>
-        <target>__Rental</target>
+        <target>Alquiler</target>
       </trans-unit>
       <trans-unit id="Dp.RWWx" resname="rent">
         <source>rent</source>
-        <target>__rent</target>
+        <target>alquilar</target>
       </trans-unit>
       <trans-unit id="EwPAaws" resname="type">
         <source>type</source>
-        <target>__type</target>
+        <target>tipo</target>
       </trans-unit>
       <trans-unit id="X21yWHI" resname="type of property">
         <source>type of property</source>
-        <target>__type of property</target>
+        <target>tipo de propiedad</target>
       </trans-unit>
       <trans-unit id="YMAz34e" resname="furnished">
         <source>furnished</source>
-        <target>__furnished</target>
+        <target>amueblado</target>
       </trans-unit>
       <trans-unit id="EaYsI0E" resname="city">
         <source>city</source>
-        <target>__city</target>
+        <target>ciudad</target>
       </trans-unit>
       <trans-unit id="mBl5oiu" resname="radius">
         <source>radius</source>
-        <target>__radius</target>
+        <target>radio</target>
       </trans-unit>
       <trans-unit id="JBkykGe" resname="search">
         <source>search</source>
-        <target>__search</target>
+        <target>buscar</target>
       </trans-unit>
       <trans-unit id="VbXFH4Z" resname="lastname">
         <source>lastname</source>
-        <target>__lastname</target>
+        <target>apellido</target>
       </trans-unit>
       <trans-unit id="2Ayb_RD" resname="address">
         <source>address</source>
-        <target>__address</target>
+        <target>dirección</target>
       </trans-unit>
       <trans-unit id="XohImNo" resname="password">
         <source>password</source>
-        <target>__password</target>
+        <target>contraseña</target>
       </trans-unit>
       <trans-unit id="WsJl85a" resname="Confirm password">
         <source>Confirm password</source>
@@ -335,143 +335,139 @@
       </trans-unit>
       <trans-unit id="WfpDeb4" resname="Reset your password">
         <source>Reset your password</source>
-        <target>__Reset your password</target>
-      </trans-unit>
-      <trans-unit id="DMkAEun" resname="address email">
-        <source>address email</source>
-        <target>__address email</target>
+        <target>Confirmar contraseña</target>
       </trans-unit>
       <trans-unit id="hOB8_o1" resname="Enter your email address and we we will send you a link to reset your password.">
         <source>Enter your email address and we we will send you a link to reset your password.</source>
-        <target>__Enter your email address and we we will send you a link to reset your password.</target>
+        <target>Ingrese su dirección de correo electrónico y le enviaremos un enlace para restablecer su contraseña.</target>
       </trans-unit>
       <trans-unit id="HGwELqp" resname="send password reset email">
         <source>send password reset email</source>
-        <target>__send password reset email</target>
+        <target>restablecimiento de contraseña</target>
       </trans-unit>
       <trans-unit id="f5NGhoD" resname="please sign in">
         <source>please sign in</source>
-        <target>__please sign in</target>
+        <target>por favor, registrese</target>
       </trans-unit>
       <trans-unit id="acVpEs4" resname="You are logged in as">
         <source>You are logged in as</source>
-        <target>__You are logged in as</target>
+        <target>Has iniciado sesión como</target>
       </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
-        <target>__Logout</target>
+        <target>Cerrar sesión</target>
       </trans-unit>
       <trans-unit id="23A6pdO" resname="forgot your password ?">
         <source>forgot your password ?</source>
-        <target>__forgot your password ?</target>
+        <target>Olvidaste tu contraseña ?</target>
       </trans-unit>
       <trans-unit id="_TJnqhH" resname="Remember me">
         <source>Remember me</source>
-        <target>__Remember me</target>
+        <target>Recuérdame</target>
       </trans-unit>
       <trans-unit id="lv8WRZJ" resname="Not yet registered, create an account ?">
         <source>Not yet registered, create an account ?</source>
-        <target>__Not yet registered, create an account ?</target>
+        <target>¿Aún no estás registrado, crea una cuenta?</target>
       </trans-unit>
       <trans-unit id="BA.9WSX" resname="payment">
         <source>payment</source>
-        <target>__payment</target>
+        <target>pago</target>
       </trans-unit>
       <trans-unit id="tWv15pQ" resname="Subscription periodicity">
         <source>Subscription periodicity</source>
-        <target>__Subscription periodicity</target>
+        <target>Periodicidad de la suscripción</target>
       </trans-unit>
       <trans-unit id="kWnjynP" resname="monthly">
         <source>monthly</source>
-        <target>__monthly</target>
+        <target>mensual</target>
       </trans-unit>
       <trans-unit id="iLHRpn4" resname="per month">
         <source>per month</source>
-        <target>__per month</target>
+        <target>por mes</target>
       </trans-unit>
       <trans-unit id="7l4oeMS" resname="annual">
         <source>annual</source>
-        <target>__annual</target>
+        <target>anual</target>
       </trans-unit>
       <trans-unit id="YRwe4y2" resname="per year">
         <source>per year</source>
-        <target>__per year</target>
+        <target>por año</target>
       </trans-unit>
       <trans-unit id="N8kaHp5" resname="Credit cardholder">
         <source>Credit cardholder</source>
-        <target>__Credit cardholder</target>
+        <target>Titular de la tarjeta</target>
       </trans-unit>
       <trans-unit id="DxenLOZ" resname="Validate the payment">
         <source>Validate the payment</source>
-        <target>__Validate the payment</target>
+        <target>Validar el pago</target>
       </trans-unit>
       <trans-unit id="pVxO0ts" resname="Confirm payment">
         <source>Confirm payment</source>
-        <target>__Confirm payment</target>
+        <target>Confirmar pago</target>
       </trans-unit>
       <trans-unit id="I3TZF5S" resname="cancel">
         <source>cancel</source>
-        <target>__cancel</target>
+        <target>cancelar</target>
       </trans-unit>
       <trans-unit id="PyZ8KrQ" resname="confirm">
         <source>confirm</source>
-        <target>__confirm</target>
+        <target>confirmar</target>
       </trans-unit>
       <trans-unit id="FmrMHS6" resname="If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.">
         <source>If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</source>
-        <target>__If an account matching your email exists, then an email was just sent that contains a link that you can use to reset your password.</target>
+        <target>Si existe una cuenta que coincide con su correo electrónico, entonces se acaba de enviar un correo electrónico que contiene un enlace que puede usar para restablecer su contraseña.</target>
       </trans-unit>
       <trans-unit id="87wG9uu" resname="This link will expire in">
         <source>This link will expire in</source>
-        <target>__This link will expire in</target>
+        <target>Este enlace caducará en</target>
       </trans-unit>
       <trans-unit id="bs9avOq" resname="If you don't receive an email please check your spam folder or">
         <source>If you don't receive an email please check your spam folder or</source>
-        <target>__If you don't receive an email please check your spam folder or</target>
+        <target>Si no recibe un correo electrónico, consulte su carpeta de correo no deseado o</target>
       </trans-unit>
       <trans-unit id="W13t7jL" resname="try again">
         <source>try again</source>
-        <target>__try again</target>
+        <target>intentar otra vez</target>
       </trans-unit>
       <trans-unit id="TJRSvLr" resname="-- Choose a reason --">
         <source>-- Choose a reason --</source>
-        <target>__-- Choose a reason --</target>
+        <target>-- Elige una razón --</target>
       </trans-unit>
       <trans-unit id="S9GeOjE" resname="contact us">
         <source>contact us</source>
-        <target>__contact us</target>
+        <target>contacta con nosotros</target>
       </trans-unit>
       <trans-unit id="j8.M9nW" resname="reason">
         <source>reason</source>
-        <target>__reason</target>
+        <target>razón</target>
       </trans-unit>
       <trans-unit id="oCEDyIl" resname="property address">
         <source>property address</source>
-        <target>__property address</target>
+        <target>dirección de Propiedad</target>
       </trans-unit>
       <trans-unit id="IeRf0ck" resname="your message">
         <source>your message</source>
-        <target>__your message</target>
+        <target>tu mensaje</target>
       </trans-unit>
       <trans-unit id="PnqTnpb" resname="phone number">
         <source>phone number</source>
-        <target>__phone number</target>
+        <target>número de teléfono</target>
       </trans-unit>
       <trans-unit id="Gy121Ee" resname="create an account">
         <source>create an account</source>
-        <target>__create an account</target>
+        <target>crea una cuenta</target>
       </trans-unit>
       <trans-unit id="t2zh.Em" resname="password reset email sent">
         <source>password reset email sent</source>
-        <target>__password reset email sent</target>
+        <target>correo electrónico de restablecimiento de contraseña enviado</target>
       </trans-unit>
       <trans-unit id="ylHOH7F" resname="Hi!">
         <source>Hi!</source>
-        <target>__Hi!</target>
+        <target>¡Hola!</target>
       </trans-unit>
       <trans-unit id="vQH5j0c" resname="To reset your password, please visit the following link">
         <source>To reset your password, please visit the following link</source>
-        <target>__To reset your password, please visit the following link</target>
+        <target>Para restablecer su contraseña, visite el siguiente enlace</target>
       </trans-unit>
       <trans-unit id="F7WctIl" resname="Cheers!">
         <source>Cheers!</source>
@@ -479,31 +475,31 @@
       </trans-unit>
       <trans-unit id="dW2OSVc" resname="reset your password">
         <source>reset your password</source>
-        <target>__reset your password</target>
+        <target>Restablecer su contraseña</target>
       </trans-unit>
       <trans-unit id="idUPqG8" resname="new password">
         <source>new password</source>
-        <target>__new password</target>
+        <target>nueva contraseña</target>
       </trans-unit>
       <trans-unit id="4FJQr4X" resname="repeat password">
         <source>repeat password</source>
-        <target>__repeat password</target>
+        <target>repite la contraseña</target>
       </trans-unit>
       <trans-unit id="8hGtqC1" resname="reset password">
         <source>reset password</source>
-        <target>__reset password</target>
+        <target>restablecer la contraseña</target>
       </trans-unit>
       <trans-unit id="lyA4dMH" resname="I accept the conditions of use of the data of the form after sending">
         <source>I accept the conditions of use of the data of the form after sending</source>
-        <target>__I accept the conditions of use of the data of the form after sending</target>
+        <target>Acepto las condiciones de uso de los datos del formulario tras el envío</target>
       </trans-unit>
       <trans-unit id="rf5UeEN" resname="I subscribe to the newsletter">
         <source>I subscribe to the newsletter</source>
-        <target>__I subscribe to the newsletter</target>
+        <target>Me suscribo a la newsletter</target>
       </trans-unit>
       <trans-unit id="nqc5TlV" resname="your message has been sent successfully">
         <source>your message has been sent successfully</source>
-        <target>__your message has been sent successfully</target>
+        <target>Tu mensaje ha sido enviado exitosamente</target>
       </trans-unit>
       <trans-unit id="ghqN5v_" resname="new message">
         <source>new message</source>
@@ -1216,6 +1212,134 @@
       <trans-unit id="1YnFxMn" resname="delete this reminder and its repetitions">
         <source>delete this reminder and its repetitions</source>
         <target>__delete this reminder and its repetitions</target>
+      </trans-unit>
+      <trans-unit id="vo98hu0" resname="all our property ads">
+        <source>all our property ads</source>
+        <target>__all our property ads</target>
+      </trans-unit>
+      <trans-unit id="KjCFQci" resname="you are about to delete this reminder">
+        <source>you are about to delete this reminder</source>
+        <target>__you are about to delete this reminder</target>
+      </trans-unit>
+      <trans-unit id="jxN71CM" resname="you are about to delete this reminder and its repetitions">
+        <source>you are about to delete this reminder and its repetitions</source>
+        <target>__you are about to delete this reminder and its repetitions</target>
+      </trans-unit>
+      <trans-unit id="LrdjqUP" resname="discover all our real estate ads">
+        <source>discover all our real estate ads</source>
+        <target>__discover all our real estate ads</target>
+      </trans-unit>
+      <trans-unit id="SkBReB6" resname="you have no new message">
+        <source>you have no new message</source>
+        <target>__you have no new message</target>
+      </trans-unit>
+      <trans-unit id="dlUqAkT" resname="contact my agent">
+        <source>contact my agent</source>
+        <target>__contact my agent</target>
+      </trans-unit>
+      <trans-unit id=".mK5r8e" resname="send reset email">
+        <source>send reset email</source>
+        <target>__send reset email</target>
+      </trans-unit>
+      <trans-unit id="RO.Strf" resname="A new message in your private area">
+        <source>A new message in your private area</source>
+        <target>__A new message in your private area</target>
+      </trans-unit>
+      <trans-unit id="nw88qS8" resname="Go to the message tab of your private area, you have received a new message.">
+        <source>Go to the message tab of your private area, you have received a new message.</source>
+        <target>__Go to the message tab of your private area, you have received a new message.</target>
+      </trans-unit>
+      <trans-unit id="zmpUCdO" resname="recipients">
+        <source>recipients</source>
+        <target>__recipients</target>
+      </trans-unit>
+      <trans-unit id="Hxwb1KW" resname="access my private area">
+        <source>access my private area</source>
+        <target>__access my private area</target>
+      </trans-unit>
+      <trans-unit id="DrneiYb" resname="sent message">
+        <source>sent message</source>
+        <target>__sent message</target>
+      </trans-unit>
+      <trans-unit id="ZgdmB1X" resname="message sent">
+        <source>message sent</source>
+        <target>__message sent</target>
+      </trans-unit>
+      <trans-unit id="2YLSGe7" resname="received messages">
+        <source>received messages</source>
+        <target>__received messages</target>
+      </trans-unit>
+      <trans-unit id="N2zVyMv" resname="you have">
+        <source>you have</source>
+        <target>__you have</target>
+      </trans-unit>
+      <trans-unit id="ZXkIlI1" resname="new message from">
+        <source>new message from</source>
+        <target>__new message from</target>
+      </trans-unit>
+      <trans-unit id="3JGfp1B" resname="new messages from">
+        <source>new messages from</source>
+        <target>__new messages from</target>
+      </trans-unit>
+      <trans-unit id="uNMehSc" resname="on">
+        <source>on</source>
+        <target>__on</target>
+      </trans-unit>
+      <trans-unit id="vAdu3ol" resname="see all">
+        <source>see all</source>
+        <target>__see all</target>
+      </trans-unit>
+      <trans-unit id="anJeiSx" resname="contact the manager">
+        <source>contact the manager</source>
+        <target>__contact the manager</target>
+      </trans-unit>
+      <trans-unit id="I7_EMz4" resname="created on">
+        <source>created on</source>
+        <target>__created on</target>
+      </trans-unit>
+      <trans-unit id="Aq0tPTk" resname="my documents">
+        <source>my documents</source>
+        <target>__my documents</target>
+      </trans-unit>
+      <trans-unit id="5mUBERu" resname="you have no new document">
+        <source>you have no new document</source>
+        <target>__you have no new document</target>
+      </trans-unit>
+      <trans-unit id="kR8PjbC" resname="new documents">
+        <source>new documents</source>
+        <target>__new documents</target>
+      </trans-unit>
+      <trans-unit id="Zs2WiKK" resname="dashboard">
+        <source>dashboard</source>
+        <target>__dashboard</target>
+      </trans-unit>
+      <trans-unit id="dwIbOU6" resname="see all messages">
+        <source>see all messages</source>
+        <target>__see all messages</target>
+      </trans-unit>
+      <trans-unit id="_iSahwv" resname="see all documents">
+        <source>see all documents</source>
+        <target>__see all documents</target>
+      </trans-unit>
+      <trans-unit id="yidT0ym" resname="my upcoming reminders">
+        <source>my upcoming reminders</source>
+        <target>__my upcoming reminders</target>
+      </trans-unit>
+      <trans-unit id="nhnmBCy" resname="you have no reminder">
+        <source>you have no reminder</source>
+        <target>__you have no reminder</target>
+      </trans-unit>
+      <trans-unit id="nOcBGrS" resname="reminder">
+        <source>reminder</source>
+        <target>__reminder</target>
+      </trans-unit>
+      <trans-unit id="pT6_2Ez" resname="reminders">
+        <source>reminders</source>
+        <target>__reminders</target>
+      </trans-unit>
+      <trans-unit id="_D7_NxP" resname="see all reminders">
+        <source>see all reminders</source>
+        <target>__see all reminders</target>
       </trans-unit>
     </body>
   </file>
